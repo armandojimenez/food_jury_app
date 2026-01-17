@@ -105,6 +105,34 @@ abstract final class AppColors {
   static const Color shadow = Color(0x29000000);
 
   // ============================================
+  // DARK MODE COLORS
+  // ============================================
+
+  /// Dark background - Deep navy
+  static const Color backgroundDark = Color(0xFF1A1A2E);
+
+  /// Dark surface - Card surface
+  static const Color surfaceDark = Color(0xFF2D2D44);
+
+  /// Dark primary - Lighter orange for better contrast
+  static const Color primaryDark2 = Color(0xFFFF8A5C);
+
+  /// Dark text primary - Warm cream
+  static const Color textPrimaryDark = Color(0xFFFFF8F0);
+
+  /// Dark text secondary - Muted
+  static const Color textSecondaryDark = Color(0xFFB8B8C8);
+
+  /// Dark text muted - For hints and placeholders
+  static const Color textMutedDark = Color(0xFF8888A0);
+
+  /// Dark border - Subtle borders
+  static const Color borderDark = Color(0xFF3D3D54);
+
+  /// Dark shadow color
+  static const Color shadowDark = Color(0x40000000);
+
+  // ============================================
   // GRADIENTS
   // ============================================
 
@@ -135,5 +163,12 @@ abstract final class AppColors {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [background, Color(0xFFFFF0E0)],
+  );
+
+  /// Dark background gradient - Subtle depth
+  static const LinearGradient backgroundGradientDark = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [backgroundDark, Color(0xFF151525)],
   );
 }

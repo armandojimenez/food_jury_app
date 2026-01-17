@@ -19,13 +19,15 @@ class AppCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     final card = Container(
       padding: padding ?? const EdgeInsets.all(AppDimensions.spaceMd),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: colorScheme.surface,
         borderRadius: AppDimensions.borderRadiusMd,
         border: Border.all(
-          color: AppColors.accent,
+          color: colorScheme.secondary,
           width: AppDimensions.borderThick,
         ),
         boxShadow: AppDimensions.shadowRetro,
@@ -64,10 +66,12 @@ class AppModernCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     final card = Container(
       padding: padding ?? const EdgeInsets.all(AppDimensions.spaceMd),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: colorScheme.surface,
         borderRadius: AppDimensions.borderRadiusMd,
         boxShadow: AppDimensions.shadowMd,
       ),
@@ -107,6 +111,8 @@ class FoodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return AppCard(
       tilt: tilt,
       onTap: onTap,
@@ -117,7 +123,7 @@ class FoodCard extends StatelessWidget {
             width: AppDimensions.foodCardImageSize,
             height: AppDimensions.foodCardImageSize,
             decoration: BoxDecoration(
-              color: AppColors.primaryLight,
+              color: colorScheme.primaryContainer,
               borderRadius: AppDimensions.borderRadiusSm,
               image: imageUrl != null
                   ? DecorationImage(
@@ -128,11 +134,11 @@ class FoodCard extends StatelessWidget {
             ),
             child: imageUrl == null
                 ? (imagePlaceholder ??
-                      const Icon(
-                        Icons.restaurant,
-                        size: AppDimensions.iconSizeXl,
-                        color: AppColors.primary,
-                      ))
+                    Icon(
+                      Icons.restaurant,
+                      size: AppDimensions.iconSizeXl,
+                      color: colorScheme.primary,
+                    ))
                 : null,
           ),
           const SizedBox(width: AppDimensions.spaceMd),
@@ -145,7 +151,9 @@ class FoodCard extends StatelessWidget {
               children: [
                 Text(
                   title.toUpperCase(),
-                  style: AppTypography.foodTitle,
+                  style: AppTypography.foodTitle.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -154,7 +162,7 @@ class FoodCard extends StatelessWidget {
                   Text(
                     description!,
                     style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.textSecondary,
+                      color: colorScheme.onSurfaceVariant,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -184,6 +192,8 @@ class VerdictCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Transform.rotate(
       angle: -AppDimensions.verdictTiltAngle * 2,
       child: Container(
@@ -214,7 +224,7 @@ class VerdictCard extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: AppColors.surface,
+                  color: colorScheme.surface,
                   borderRadius: AppDimensions.borderRadiusMd,
                   border: Border.all(
                     color: AppColors.pop,
@@ -255,7 +265,7 @@ class VerdictCard extends StatelessWidget {
               child: Text(
                 'WINNER!',
                 style: AppTypography.labelLarge.copyWith(
-                  color: AppColors.accent,
+                  color: colorScheme.secondary,
                 ),
               ),
             ),

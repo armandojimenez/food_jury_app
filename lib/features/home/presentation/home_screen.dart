@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/routes/app_router.dart';
@@ -9,62 +10,116 @@ import '../../../core/widgets/widgets.dart';
 /// Home screen - main landing page with Judge Bite and navigation.
 ///
 /// Features:
+/// - Warm gradient background
 /// - Time-based greeting
 /// - Judge Bite mascot with idle animation
 /// - New Decision CTA
 /// - Recent verdicts section (empty state for now)
-/// - Settings access (dev mode)
+/// - Settings access
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            // Custom App Bar
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: AppDimensions.screenPadding,
-                child: _HomeHeader(),
-              ),
-            ),
-
-            // Main Content
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: AppDimensions.screenPadding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(height: AppDimensions.spaceLg),
-
-                    // Time-based Greeting
-                    _GreetingSection(),
-
-                    const SizedBox(height: AppDimensions.spaceXxl),
-
-                    // Judge Bite Mascot
-                    const _JudgeBiteSection(),
-
-                    const SizedBox(height: AppDimensions.spaceXxl),
-
-                    // New Decision CTA
-                    const _NewDecisionButton(),
-
-                    const SizedBox(height: AppDimensions.spaceXxl),
-
-                    // Recent Verdicts Section
-                    const _RecentVerdictsSection(),
-
-                    const SizedBox(height: AppDimensions.spaceLg),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: isDark
+                ? [
+                    AppColors.backgroundDark,
+                    const Color(0xFF1E1E35),
+                    const Color(0xFF151525),
+                  ]
+                : [
+                    AppColors.background,
+                    const Color(0xFFFFF5EB),
+                    const Color(0xFFFFEDD8),
                   ],
+            stops: const [0.0, 0.5, 1.0],
+          ),
+        ),
+        child: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              // Custom App Bar
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: AppDimensions.screenPadding,
+                  child: _HomeHeader()
+                      .animate()
+                      .fadeIn(duration: AppDimensions.durationMedium),
                 ),
               ),
-            ),
-          ],
+
+              // Main Content
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: AppDimensions.screenPadding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(height: AppDimensions.spaceLg),
+
+                      // Time-based Greeting
+                      _GreetingSection()
+                          .animate()
+                          .fadeIn(
+                            duration: AppDimensions.durationMedium,
+                            delay: const Duration(milliseconds: 100),
+                          )
+                          .slideY(
+                            begin: 0.2,
+                            end: 0.0,
+                            duration: AppDimensions.durationMedium,
+                            delay: const Duration(milliseconds: 100),
+                          ),
+
+                      const SizedBox(height: AppDimensions.spaceXxl),
+
+                      // Judge Bite Mascot
+                      const _JudgeBiteSection(),
+
+                      const SizedBox(height: AppDimensions.spaceXxl),
+
+                      // New Decision CTA
+                      const _NewDecisionButton()
+                          .animate()
+                          .fadeIn(
+                            duration: AppDimensions.durationMedium,
+                            delay: const Duration(milliseconds: 400),
+                          )
+                          .scale(
+                            begin: const Offset(0.9, 0.9),
+                            end: const Offset(1.0, 1.0),
+                            duration: AppDimensions.durationMedium,
+                            delay: const Duration(milliseconds: 400),
+                            curve: Curves.elasticOut,
+                          ),
+
+                      const SizedBox(height: AppDimensions.spaceXxl),
+
+                      // Recent Verdicts Section
+                      const _RecentVerdictsSection()
+                          .animate()
+                          .fadeIn(
+                            duration: AppDimensions.durationMedium,
+                            delay: const Duration(milliseconds: 500),
+                          ),
+
+                      const SizedBox(height: AppDimensions.spaceLg),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -75,6 +130,8 @@ class HomeScreen extends StatelessWidget {
 class _HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -82,13 +139,13 @@ class _HomeHeader extends StatelessWidget {
         Text(
           context.l10n.appTitle.toUpperCase(),
           style: AppTypography.displayMedium.copyWith(
-            color: AppColors.primary,
+            color: colorScheme.primary,
             fontStyle: FontStyle.italic, // Slanted for movement/energy
             letterSpacing: 2.0, // Dramatic spacing for impact
             shadows: [
               // Subtle shadow for depth (retro sign effect)
               Shadow(
-                color: AppColors.accent.withValues(alpha: 0.2),
+                color: colorScheme.secondary.withValues(alpha: 0.2),
                 offset: const Offset(2, 2),
                 blurRadius: 1,
               ),
@@ -96,12 +153,23 @@ class _HomeHeader extends StatelessWidget {
           ),
         ),
 
-        // Settings Icon (dev mode only)
-        IconButton(
-          onPressed: () => context.push(AppRouter.devSettings),
-          icon: const Icon(Icons.settings),
-          color: AppColors.textSecondary,
-          tooltip: context.l10n.settings_screenTitle,
+        // Settings Icon with retro styling
+        Container(
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: colorScheme.secondary,
+              width: AppDimensions.borderMedium,
+            ),
+            boxShadow: AppDimensions.shadowRetroSm,
+          ),
+          child: IconButton(
+            onPressed: () => context.push(AppRouter.settings),
+            icon: const Icon(Icons.settings_outlined),
+            color: colorScheme.secondary,
+            tooltip: context.l10n.settings_screenTitle,
+          ),
         ),
       ],
     );
@@ -130,7 +198,7 @@ class _GreetingSection extends StatelessWidget {
     return Text(
       _getGreeting(context),
       style: AppTypography.headlineLarge.copyWith(
-        color: AppColors.textPrimary,
+        color: Theme.of(context).colorScheme.onSurface,
         letterSpacing: 0.5, // Slight spacing for elegance
         height: 1.3, // Better line height
       ),
@@ -148,10 +216,10 @@ class _JudgeBiteSection extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          // Animated Judge Bite
+          // Animated Judge Bite (Large for hero section, XLarge reserved for splash)
           JudgeBiteAnimated(
             pose: JudgeBitePose.idle,
-            size: JudgeBiteSize.xlarge,
+            size: JudgeBiteSize.large,
           ),
 
           const SizedBox(height: AppDimensions.spaceMd),
@@ -160,7 +228,7 @@ class _JudgeBiteSection extends StatelessWidget {
           Text(
             context.l10n.appTagline,
             style: AppTypography.bodyLarge.copyWith(
-              color: AppColors.textSecondary,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontStyle: FontStyle.italic,
               letterSpacing: 0.3,
               height: 1.4,
@@ -201,7 +269,7 @@ class _RecentVerdictsSection extends StatelessWidget {
         Text(
           context.l10n.home_recentVerdicts,
           style: AppTypography.titleLarge.copyWith(
-            color: AppColors.textPrimary,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
 
@@ -220,6 +288,8 @@ class _EmptyVerdictsState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return AppCard(
       child: Padding(
         padding: const EdgeInsets.all(AppDimensions.spaceLg),
@@ -234,7 +304,7 @@ class _EmptyVerdictsState extends StatelessWidget {
             Text(
               context.l10n.home_emptyTitle,
               style: AppTypography.titleMedium.copyWith(
-                color: AppColors.textPrimary,
+                color: colorScheme.onSurface,
               ),
               textAlign: TextAlign.center,
             ),
@@ -245,7 +315,7 @@ class _EmptyVerdictsState extends StatelessWidget {
             Text(
               context.l10n.home_emptyMessage,
               style: AppTypography.bodyMedium.copyWith(
-                color: AppColors.textSecondary,
+                color: colorScheme.onSurfaceVariant,
               ),
               textAlign: TextAlign.center,
             ),

@@ -360,7 +360,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'THE VERDICT IS IN'**
-  String get verdict_title;
+  String get verdict_theVerdictIsIn;
+
+  /// Winner badge text
+  ///
+  /// In en, this message translates to:
+  /// **'WINNER'**
+  String get verdict_winner;
 
   /// Section header for AI reasoning
   ///
@@ -374,7 +380,19 @@ abstract class AppLocalizations {
   /// **'See all rankings'**
   String get verdict_seeAllRankings;
 
+  /// Button to collapse rankings
+  ///
+  /// In en, this message translates to:
+  /// **'Hide rankings'**
+  String get verdict_hideRankings;
+
   /// Button to start another decision
+  ///
+  /// In en, this message translates to:
+  /// **'New Decision'**
+  String get verdict_newDecision;
+
+  /// Button to start another decision (alternative)
   ///
   /// In en, this message translates to:
   /// **'New Case'**

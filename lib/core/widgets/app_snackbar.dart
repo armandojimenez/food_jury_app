@@ -152,6 +152,8 @@ class _SnackbarContentState extends State<_SnackbarContent>
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return SlideTransition(
       position: _slideAnimation,
       child: ScaleTransition(
@@ -159,10 +161,10 @@ class _SnackbarContentState extends State<_SnackbarContent>
         child: Container(
           padding: const EdgeInsets.all(AppDimensions.spaceMd),
           decoration: BoxDecoration(
-            color: AppColors.surface,
+            color: colorScheme.surface,
             borderRadius: AppDimensions.borderRadiusMd,
             border: Border.all(
-              color: AppColors.accent,
+              color: colorScheme.secondary,
               width: AppDimensions.borderThick,
             ),
             boxShadow: AppDimensions.shadowRetro,
@@ -173,12 +175,12 @@ class _SnackbarContentState extends State<_SnackbarContent>
               Container(
                 padding: const EdgeInsets.all(AppDimensions.spaceSm),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryLight,
+                  color: colorScheme.primary.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   widget.icon,
-                  color: AppColors.primary,
+                  color: colorScheme.primary,
                   size: AppDimensions.iconSizeMd,
                 ),
               ),
@@ -189,7 +191,7 @@ class _SnackbarContentState extends State<_SnackbarContent>
                 child: Text(
                   widget.message,
                   style: AppTypography.bodyLarge.copyWith(
-                    color: AppColors.textPrimary,
+                    color: colorScheme.onSurface,
                   ),
                 ),
               ),

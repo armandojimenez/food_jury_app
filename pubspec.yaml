@@ -29,6 +29,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.32
   path_provider: ^2.1.5
   path: ^1.9.1
+  shared_preferences: ^2.3.3
 
   # Utilities
   equatable: ^2.0.7
@@ -55,6 +56,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/judge_bite/
     - assets/animations/
 
   fonts:

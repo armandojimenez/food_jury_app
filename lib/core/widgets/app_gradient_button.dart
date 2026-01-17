@@ -39,6 +39,7 @@ class _AppGradientButtonState extends State<AppGradientButton> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final isEnabled = widget.onPressed != null;
 
     return GestureDetector(
@@ -62,20 +63,26 @@ class _AppGradientButtonState extends State<AppGradientButton> {
                     end: Alignment.bottomCenter,
                   )
                 : null,
-            color: isEnabled ? null : AppColors.border,
+            color: isEnabled ? null : colorScheme.outline,
             borderRadius: AppDimensions.borderRadiusXl,
             border: Border.all(
-              color: AppColors.accent, // Black border like mockup!
+              color: colorScheme.secondary, // Dark border
               width: AppDimensions.borderThick,
             ),
-            // Hard retro shadow for dramatic impact
+            // Hard retro shadow + gold glow for dramatic impact
             boxShadow: isEnabled && !_isPressed
                 ? [
                     // Hard retro shadow (no blur!) - signature diner style
-                    const BoxShadow(
-                      color: AppColors.accent,
+                    BoxShadow(
+                      color: colorScheme.secondary,
                       blurRadius: 0,
-                      offset: Offset(4, 4),
+                      offset: const Offset(4, 4),
+                    ),
+                    // Subtle gold glow for warmth
+                    BoxShadow(
+                      color: AppColors.pop.withValues(alpha: 0.3),
+                      blurRadius: 16,
+                      spreadRadius: 0,
                     ),
                   ]
                 : [
@@ -98,7 +105,7 @@ class _AppGradientButtonState extends State<AppGradientButton> {
                     widget.icon,
                     color: isEnabled
                         ? AppColors.textInverse
-                        : AppColors.textMuted,
+                        : colorScheme.onSurfaceVariant,
                     size: AppDimensions.iconSizeMd,
                   ),
                   const SizedBox(width: AppDimensions.spaceSm),
@@ -108,7 +115,7 @@ class _AppGradientButtonState extends State<AppGradientButton> {
                   style: AppTypography.labelLarge.copyWith(
                     color: isEnabled
                         ? AppColors.textInverse
-                        : AppColors.textMuted,
+                        : colorScheme.onSurfaceVariant,
                     letterSpacing: 0.5,
                   ),
                 ),

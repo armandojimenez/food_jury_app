@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../env/env.dart';
 import '../../app.dart';
@@ -23,23 +24,18 @@ Future<void> bootstrap(Environment environment) async {
     DeviceOrientation.portraitDown,
   ]);
 
-  // Set system UI overlay style
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.light,
-    ),
-  );
-
   // Initialize services
   await _initializeServices();
 
   // Log environment info
   _logEnvironmentInfo();
 
-  // Run the app
-  runApp(const FoodJuryApp());
+  // Run the app wrapped in ProviderScope
+  runApp(
+    const ProviderScope(
+      child: FoodJuryApp(),
+    ),
+  );
 }
 
 Future<void> _configureErrorHandling() async {

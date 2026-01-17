@@ -216,9 +216,14 @@
     "description": "Loading message variant"
   },
 
-  "verdict_title": "THE VERDICT IS IN",
-  "@verdict_title": {
+  "verdict_theVerdictIsIn": "THE VERDICT IS IN",
+  "@verdict_theVerdictIsIn": {
     "description": "Main verdict reveal title"
+  },
+
+  "verdict_winner": "WINNER",
+  "@verdict_winner": {
+    "description": "Winner badge text"
   },
 
   "verdict_judgesNotes": "Judge's Notes",
@@ -231,9 +236,19 @@
     "description": "Button to expand and show all options ranked"
   },
 
+  "verdict_hideRankings": "Hide rankings",
+  "@verdict_hideRankings": {
+    "description": "Button to collapse rankings"
+  },
+
+  "verdict_newDecision": "New Decision",
+  "@verdict_newDecision": {
+    "description": "Button to start another decision"
+  },
+
   "verdict_newCase": "New Case",
   "@verdict_newCase": {
-    "description": "Button to start another decision"
+    "description": "Button to start another decision (alternative)"
   },
 
   "verdict_share": "Share",

@@ -27,6 +27,8 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,7 +36,7 @@ class AppTextField extends StatelessWidget {
         Text(
           label,
           style: AppTypography.labelMedium.copyWith(
-            color: AppColors.textPrimary,
+            color: colorScheme.onSurface,
           ),
         ),
         const SizedBox(height: AppDimensions.spaceSm),
@@ -47,36 +49,38 @@ class AppTextField extends StatelessWidget {
           keyboardType: keyboardType,
           onChanged: onChanged,
           validator: validator,
-          style: AppTypography.bodyLarge,
+          style: AppTypography.bodyLarge.copyWith(
+            color: colorScheme.onSurface,
+          ),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: AppTypography.bodyLarge.copyWith(
-              color: AppColors.textMuted,
+              color: colorScheme.onSurfaceVariant,
             ),
             filled: true,
-            fillColor: AppColors.surface,
+            fillColor: colorScheme.surface,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: AppDimensions.spaceMd,
               vertical: AppDimensions.spaceMd,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: AppColors.border,
+              borderSide: BorderSide(
+                color: colorScheme.outline,
                 width: AppDimensions.borderMedium,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: AppColors.border,
+              borderSide: BorderSide(
+                color: colorScheme.outline,
                 width: AppDimensions.borderMedium,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: AppColors.primary,
+              borderSide: BorderSide(
+                color: colorScheme.primary,
                 width: AppDimensions.borderThick,
               ),
             ),

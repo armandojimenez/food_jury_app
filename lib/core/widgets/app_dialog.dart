@@ -137,6 +137,8 @@ class _AppDialogWidgetState extends State<_AppDialogWidget>
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return FadeTransition(
       opacity: _fadeAnimation,
       child: ScaleTransition(
@@ -147,10 +149,10 @@ class _AppDialogWidgetState extends State<_AppDialogWidget>
             constraints: const BoxConstraints(maxWidth: 400),
             padding: const EdgeInsets.all(AppDimensions.spaceLg),
             decoration: BoxDecoration(
-              color: AppColors.surface,
+              color: colorScheme.surface,
               borderRadius: AppDimensions.borderRadiusMd,
               border: Border.all(
-                color: AppColors.accent,
+                color: colorScheme.secondary,
                 width: AppDimensions.borderThick,
               ),
               boxShadow: AppDimensions.shadowXl,
@@ -163,13 +165,13 @@ class _AppDialogWidgetState extends State<_AppDialogWidget>
                   Container(
                     padding: const EdgeInsets.all(AppDimensions.spaceMd),
                     decoration: BoxDecoration(
-                      color: AppColors.primaryLight,
+                      color: colorScheme.primary.withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       widget.icon,
                       size: AppDimensions.iconSizeXl,
-                      color: AppColors.primary,
+                      color: colorScheme.primary,
                     ),
                   ),
                   const SizedBox(height: AppDimensions.spaceMd),
@@ -178,7 +180,9 @@ class _AppDialogWidgetState extends State<_AppDialogWidget>
                 // Title
                 Text(
                   widget.title,
-                  style: AppTypography.displaySmall,
+                  style: AppTypography.displaySmall.copyWith(
+                    color: colorScheme.onSurface,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: AppDimensions.spaceMd),
@@ -187,7 +191,7 @@ class _AppDialogWidgetState extends State<_AppDialogWidget>
                 Text(
                   widget.message,
                   style: AppTypography.bodyLarge.copyWith(
-                    color: AppColors.textSecondary,
+                    color: colorScheme.onSurfaceVariant,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -318,24 +322,26 @@ class _BottomSheetWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: colorScheme.surface,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppDimensions.radiusLg),
           topRight: Radius.circular(AppDimensions.radiusLg),
         ),
-        border: const Border(
+        border: Border(
           top: BorderSide(
-            color: AppColors.accent,
+            color: colorScheme.secondary,
             width: AppDimensions.borderThick,
           ),
           left: BorderSide(
-            color: AppColors.accent,
+            color: colorScheme.secondary,
             width: AppDimensions.borderThick,
           ),
           right: BorderSide(
-            color: AppColors.accent,
+            color: colorScheme.secondary,
             width: AppDimensions.borderThick,
           ),
         ),
@@ -349,7 +355,7 @@ class _BottomSheetWrapper extends StatelessWidget {
             width: AppDimensions.dragHandleWidth,
             height: AppDimensions.dragHandleHeight,
             decoration: BoxDecoration(
-              color: AppColors.border,
+              color: colorScheme.outline,
               borderRadius: BorderRadius.circular(
                 AppDimensions.dragHandleHeight / 2,
               ),

@@ -118,6 +118,17 @@ abstract final class AppDimensions {
     BoxShadow(color: Color(0xFF1A1A2E), blurRadius: 0, offset: Offset(2, 2)),
   ];
 
+  /// Gold glow shadow - For highlights and emphasis (mustard yellow)
+  static const List<BoxShadow> shadowGlow = [
+    BoxShadow(color: Color(0x4DFFD23F), blurRadius: 12, spreadRadius: 2),
+  ];
+
+  /// Combined retro + glow for hero elements
+  static const List<BoxShadow> shadowRetroGlow = [
+    BoxShadow(color: Color(0xFF1A1A2E), blurRadius: 0, offset: Offset(4, 4)),
+    BoxShadow(color: Color(0x33FFD23F), blurRadius: 16, spreadRadius: 0),
+  ];
+
   // ============================================
   // COMPONENT SIZES
   // ============================================

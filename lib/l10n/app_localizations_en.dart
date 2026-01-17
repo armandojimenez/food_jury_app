@@ -139,13 +139,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loading_almostThere => 'Almost there...';
 
   @override
-  String get verdict_title => 'THE VERDICT IS IN';
+  String get verdict_theVerdictIsIn => 'THE VERDICT IS IN';
+
+  @override
+  String get verdict_winner => 'WINNER';
 
   @override
   String get verdict_judgesNotes => 'Judge\'s Notes';
 
   @override
   String get verdict_seeAllRankings => 'See all rankings';
+
+  @override
+  String get verdict_hideRankings => 'Hide rankings';
+
+  @override
+  String get verdict_newDecision => 'New Decision';
 
   @override
   String get verdict_newCase => 'New Case';

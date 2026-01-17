@@ -18,7 +18,9 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: FoodJury MVP project setup\n\n- Flutter project with Riverpod 3.0 + GoRouter + Drift architecture\n- Full design system documented \\(Retro Diner Courtroom theme\\)\n- Dev/prod environment bootstrap configuration\n- VS Code launch configurations\n- Judge Bite mascot system and poses planned\n- All core dependencies configured in pubspec.yaml\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git config:*)",
       "Bash(git branch:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(flutter gen-l10n:*)",
+      "Bash(flutter pub run build_runner build:*)"
     ]
   }
 }

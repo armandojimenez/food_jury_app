@@ -11,22 +11,25 @@ class AppBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final effectiveColor = color ?? colorScheme.secondary;
+
     return IconButton(
       onPressed: onPressed ?? () => Navigator.of(context).pop(),
       icon: Container(
         padding: const EdgeInsets.all(AppDimensions.spaceSm),
         decoration: BoxDecoration(
-          color: (color ?? AppColors.accent).withValues(alpha: 0.1),
+          color: effectiveColor.withValues(alpha: 0.1),
           shape: BoxShape.circle,
           border: Border.all(
-            color: color ?? AppColors.accent,
+            color: effectiveColor,
             width: AppDimensions.borderMedium,
           ),
         ),
         child: Icon(
           Icons.arrow_back,
           size: AppDimensions.iconSizeMd,
-          color: color ?? AppColors.accent,
+          color: effectiveColor,
         ),
       ),
     );
@@ -42,22 +45,24 @@ class AppCloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveColor = color ?? AppColors.error;
+
     return IconButton(
       onPressed: onPressed ?? () => Navigator.of(context).pop(),
       icon: Container(
         padding: const EdgeInsets.all(AppDimensions.spaceSm),
         decoration: BoxDecoration(
-          color: (color ?? AppColors.error).withValues(alpha: 0.1),
+          color: effectiveColor.withValues(alpha: 0.1),
           shape: BoxShape.circle,
           border: Border.all(
-            color: color ?? AppColors.error,
+            color: effectiveColor,
             width: AppDimensions.borderMedium,
           ),
         ),
         child: Icon(
           Icons.close,
           size: AppDimensions.iconSizeMd,
-          color: color ?? AppColors.error,
+          color: effectiveColor,
         ),
       ),
     );
@@ -84,12 +89,19 @@ class AppRetroAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return AppBar(
-      backgroundColor: AppColors.surface,
+      backgroundColor: colorScheme.surface,
       elevation: 0,
       leading: showBackButton ? AppBackButton(onPressed: onBackPressed) : null,
       title: title != null
-          ? Text(title!, style: AppTypography.titleLarge)
+          ? Text(
+              title!,
+              style: AppTypography.titleLarge.copyWith(
+                color: colorScheme.onSurface,
+              ),
+            )
           : null,
       actions: actions,
       bottom: PreferredSize(
@@ -99,9 +111,9 @@ class AppRetroAppBar extends StatelessWidget implements PreferredSizeWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.primary.withValues(alpha: 0.0),
-                AppColors.primary,
-                AppColors.primary.withValues(alpha: 0.0),
+                colorScheme.primary.withValues(alpha: 0.0),
+                colorScheme.primary,
+                colorScheme.primary.withValues(alpha: 0.0),
               ],
             ),
           ),
@@ -239,6 +251,8 @@ class AppTabItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Expanded(
       child: InkWell(
         onTap: onTap,
@@ -249,7 +263,7 @@ class AppTabItem extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border(
               top: BorderSide(
-                color: isSelected ? AppColors.primary : Colors.transparent,
+                color: isSelected ? colorScheme.primary : Colors.transparent,
                 width: AppDimensions.borderThick,
               ),
             ),
@@ -259,14 +273,18 @@ class AppTabItem extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: isSelected ? AppColors.primary : AppColors.textMuted,
+                color: isSelected
+                    ? colorScheme.primary
+                    : colorScheme.onSurfaceVariant,
                 size: AppDimensions.iconSizeMd,
               ),
               const SizedBox(height: AppDimensions.spaceXxs),
               Text(
                 label,
                 style: AppTypography.labelSmall.copyWith(
-                  color: isSelected ? AppColors.primary : AppColors.textMuted,
+                  color: isSelected
+                      ? colorScheme.primary
+                      : colorScheme.onSurfaceVariant,
                   fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
                 ),
               ),

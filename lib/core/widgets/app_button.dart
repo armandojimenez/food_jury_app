@@ -68,6 +68,7 @@ class _AppButtonState extends State<AppButton>
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final bool isDisabled = widget.onPressed == null || widget.isLoading;
     final height = widget.size.height;
     final fontSize = widget.size.fontSize;
@@ -88,13 +89,13 @@ class _AppButtonState extends State<AppButton>
           padding: padding,
           decoration: BoxDecoration(
             gradient: isDisabled ? null : AppColors.primaryGradient,
-            color: isDisabled ? AppColors.border : null,
+            color: isDisabled ? colorScheme.outline : null,
             borderRadius: BorderRadius.circular(height / 2),
             border: Border.all(
-              color: isDisabled ? AppColors.border : AppColors.primaryDark,
+              color: isDisabled ? colorScheme.outline : colorScheme.secondary,
               width: AppDimensions.borderThick,
             ),
-            boxShadow: isDisabled ? null : AppDimensions.shadowMd,
+            boxShadow: isDisabled ? null : AppDimensions.shadowRetroSm,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -116,7 +117,7 @@ class _AppButtonState extends State<AppButton>
                   widget.icon,
                   size: fontSize,
                   color: isDisabled
-                      ? AppColors.textMuted
+                      ? colorScheme.onSurfaceVariant
                       : AppColors.textInverse,
                 ),
                 const SizedBox(width: AppDimensions.spaceSm),
@@ -129,7 +130,7 @@ class _AppButtonState extends State<AppButton>
                   fontWeight: FontWeight.w700,
                   letterSpacing: 0.5,
                   color: isDisabled
-                      ? AppColors.textMuted
+                      ? colorScheme.onSurfaceVariant
                       : AppColors.textInverse,
                 ),
               ),
@@ -142,8 +143,8 @@ class _AppButtonState extends State<AppButton>
 }
 
 /// Secondary button for supporting actions
-/// Features: Outlined style, navy border
-class AppSecondaryButton extends StatelessWidget {
+/// Features: Outlined style, navy border, press animation
+class AppSecondaryButton extends StatefulWidget {
   const AppSecondaryButton({
     required this.onPressed,
     required this.label,
@@ -158,48 +159,103 @@ class AppSecondaryButton extends StatelessWidget {
   final AppButtonSize size;
 
   @override
-  Widget build(BuildContext context) {
-    final bool isDisabled = onPressed == null;
-    final height = size.height;
-    final fontSize = size.fontSize;
-    final padding = size.padding;
+  State<AppSecondaryButton> createState() => _AppSecondaryButtonState();
+}
 
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: BorderRadius.circular(height / 2),
-      child: Container(
-        height: height,
-        padding: padding,
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(height / 2),
-          border: Border.all(
-            color: isDisabled ? AppColors.border : AppColors.accent,
-            width: AppDimensions.borderMedium,
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (icon != null) ...[
-              Icon(
-                icon,
-                size: fontSize,
-                color: isDisabled ? AppColors.textMuted : AppColors.accent,
-              ),
-              const SizedBox(width: AppDimensions.spaceSm),
-            ],
-            Text(
-              label,
-              style: TextStyle(
-                fontFamily: AppTypography.bodyFont,
-                fontSize: fontSize,
-                fontWeight: FontWeight.w600,
-                color: isDisabled ? AppColors.textMuted : AppColors.accent,
-              ),
+class _AppSecondaryButtonState extends State<AppSecondaryButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: AppDimensions.durationFast,
+      vsync: this,
+    );
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _handleTapDown(TapDownDetails details) {
+    if (widget.onPressed != null) {
+      _controller.forward();
+    }
+  }
+
+  void _handleTapUp(TapUpDetails details) {
+    _controller.reverse();
+  }
+
+  void _handleTapCancel() {
+    _controller.reverse();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final bool isDisabled = widget.onPressed == null;
+    final height = widget.size.height;
+    final fontSize = widget.size.fontSize;
+    final padding = widget.size.padding;
+
+    return GestureDetector(
+      onTapDown: _handleTapDown,
+      onTapUp: _handleTapUp,
+      onTapCancel: _handleTapCancel,
+      onTap: widget.onPressed,
+      child: AnimatedBuilder(
+        animation: _scaleAnimation,
+        builder: (context, child) {
+          return Transform.scale(scale: _scaleAnimation.value, child: child);
+        },
+        child: Container(
+          height: height,
+          padding: padding,
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: BorderRadius.circular(height / 2),
+            border: Border.all(
+              color: isDisabled ? colorScheme.outline : colorScheme.secondary,
+              width: AppDimensions.borderThick,
             ),
-          ],
+            boxShadow: isDisabled ? null : AppDimensions.shadowRetroSm,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (widget.icon != null) ...[
+                Icon(
+                  widget.icon,
+                  size: fontSize,
+                  color: isDisabled
+                      ? colorScheme.onSurfaceVariant
+                      : colorScheme.secondary,
+                ),
+                const SizedBox(width: AppDimensions.spaceSm),
+              ],
+              Text(
+                widget.label,
+                style: TextStyle(
+                  fontFamily: AppTypography.bodyFont,
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w600,
+                  color: isDisabled
+                      ? colorScheme.onSurfaceVariant
+                      : colorScheme.secondary,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -221,10 +277,12 @@ class AppIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return IconButton(
       icon: Icon(icon),
       onPressed: onPressed,
-      color: color ?? AppColors.accent,
+      color: color ?? colorScheme.secondary,
       iconSize: AppDimensions.iconSizeMd,
     );
   }

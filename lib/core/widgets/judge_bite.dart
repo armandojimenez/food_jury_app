@@ -31,7 +31,7 @@ class JudgeBite extends StatelessWidget {
           ),
         );
       },
-      child: _JudgeBitePlaceholder(
+      child: _JudgeBiteImage(
         key: ValueKey(pose),
         pose: pose,
         size: size.value,
@@ -40,9 +40,9 @@ class JudgeBite extends StatelessWidget {
   }
 }
 
-/// Placeholder for Judge Bite until we have actual assets
-class _JudgeBitePlaceholder extends StatelessWidget {
-  const _JudgeBitePlaceholder({
+/// Judge Bite image widget
+class _JudgeBiteImage extends StatelessWidget {
+  const _JudgeBiteImage({
     required this.pose,
     required this.size,
     super.key,
@@ -51,61 +51,20 @@ class _JudgeBitePlaceholder extends StatelessWidget {
   final JudgeBitePose pose;
   final double size;
 
-  IconData get _icon {
-    switch (pose) {
-      case JudgeBitePose.idle:
-        return Icons.gavel;
-      case JudgeBitePose.thinking:
-        return Icons.pending;
-      case JudgeBitePose.excited:
-        return Icons.celebration;
-      case JudgeBitePose.stern:
-        return Icons.crisis_alert;
-      case JudgeBitePose.confused:
-        return Icons.help_outline;
-      case JudgeBitePose.celebrating:
-        return Icons.emoji_events;
-      case JudgeBitePose.sleeping:
-        return Icons.bedtime;
-      case JudgeBitePose.eating:
-        return Icons.restaurant;
-      case JudgeBitePose.pointing:
-        return Icons.arrow_forward;
-      case JudgeBitePose.waving:
-        return Icons.waving_hand;
-    }
-  }
-
-  Color get _backgroundColor {
-    switch (pose) {
-      case JudgeBitePose.excited:
-      case JudgeBitePose.celebrating:
-        return AppColors.success.withValues(alpha: 0.2);
-      case JudgeBitePose.confused:
-        return AppColors.warning.withValues(alpha: 0.2);
-      case JudgeBitePose.sleeping:
-        return AppColors.accentLight.withValues(alpha: 0.2);
-      default:
-        return AppColors.primaryLight;
-    }
-  }
+  String get _assetPath => 'assets/images/judge_bite/${pose.name}.png';
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: size,
       height: size,
-      padding: EdgeInsets.all(size * 0.2),
-      decoration: BoxDecoration(
-        color: _backgroundColor,
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: AppColors.accent,
-          width: AppDimensions.borderThick,
-        ),
-        boxShadow: AppDimensions.shadowRetro,
+      child: Image.asset(
+        _assetPath,
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.medium,
       ),
-      child: Icon(_icon, size: size * 0.5, color: AppColors.primary),
     );
   }
 }

@@ -15,8 +15,10 @@ class LoadingOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
-      color: AppColors.overlay,
+      color: colorScheme.scrim.withValues(alpha: 0.7),
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -32,16 +34,18 @@ class LoadingOverlay extends StatelessWidget {
                 vertical: AppDimensions.spaceMd,
               ),
               decoration: BoxDecoration(
-                color: AppColors.surface,
+                color: colorScheme.surface,
                 borderRadius: AppDimensions.borderRadiusMd,
                 border: Border.all(
-                  color: AppColors.accent,
+                  color: colorScheme.secondary,
                   width: AppDimensions.borderMedium,
                 ),
               ),
               child: Text(
                 message,
-                style: AppTypography.judgeSpeech,
+                style: AppTypography.judgeSpeech.copyWith(
+                  color: colorScheme.onSurface,
+                ),
                 textAlign: TextAlign.center,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
@@ -124,6 +128,8 @@ class _GavelSpinnerState extends State<_GavelSpinner>
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
@@ -137,18 +143,18 @@ class _GavelSpinnerState extends State<_GavelSpinner>
         height: AppDimensions.judgeBiteMd,
         padding: const EdgeInsets.all(AppDimensions.spaceLg),
         decoration: BoxDecoration(
-          color: AppColors.primaryLight,
+          color: colorScheme.primary.withValues(alpha: 0.2),
           shape: BoxShape.circle,
           border: Border.all(
-            color: AppColors.accent,
+            color: colorScheme.secondary,
             width: AppDimensions.borderThick,
           ),
           boxShadow: AppDimensions.shadowMd,
         ),
-        child: const Icon(
+        child: Icon(
           Icons.gavel,
           size: AppDimensions.iconSizeXl,
-          color: AppColors.primary,
+          color: colorScheme.primary,
         ),
       ),
     );
@@ -190,6 +196,8 @@ class _PulsingGavelState extends State<_PulsingGavel>
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return AnimatedBuilder(
       animation: _scaleAnimation,
       builder: (context, child) {
@@ -203,7 +211,7 @@ class _PulsingGavelState extends State<_PulsingGavel>
           gradient: AppColors.primaryGradient,
           shape: BoxShape.circle,
           border: Border.all(
-            color: AppColors.accent,
+            color: colorScheme.secondary,
             width: AppDimensions.borderThick,
           ),
           boxShadow: AppDimensions.shadowLg,
@@ -227,12 +235,14 @@ class AppLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return SizedBox(
       width: size,
       height: size,
       child: CircularProgressIndicator(
         strokeWidth: 3,
-        valueColor: AlwaysStoppedAnimation<Color>(color ?? AppColors.primary),
+        valueColor: AlwaysStoppedAnimation<Color>(color ?? colorScheme.primary),
       ),
     );
   }
