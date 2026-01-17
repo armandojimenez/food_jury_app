@@ -90,56 +90,32 @@ abstract final class AppDimensions {
 
   /// Subtle elevation - Resting state
   static const List<BoxShadow> shadowSm = [
-    BoxShadow(
-      color: Color(0x1A000000),
-      blurRadius: 4,
-      offset: Offset(0, 2),
-    ),
+    BoxShadow(color: Color(0x1A000000), blurRadius: 4, offset: Offset(0, 2)),
   ];
 
   /// Medium elevation - Cards, buttons
   static const List<BoxShadow> shadowMd = [
-    BoxShadow(
-      color: Color(0x1F000000),
-      blurRadius: 8,
-      offset: Offset(0, 4),
-    ),
+    BoxShadow(color: Color(0x1F000000), blurRadius: 8, offset: Offset(0, 4)),
   ];
 
   /// High elevation - Modals, floating elements
   static const List<BoxShadow> shadowLg = [
-    BoxShadow(
-      color: Color(0x29000000),
-      blurRadius: 16,
-      offset: Offset(0, 8),
-    ),
+    BoxShadow(color: Color(0x29000000), blurRadius: 16, offset: Offset(0, 8)),
   ];
 
   /// Dramatic - Verdict cards, hero elements
   static const List<BoxShadow> shadowXl = [
-    BoxShadow(
-      color: Color(0x33000000),
-      blurRadius: 24,
-      offset: Offset(0, 12),
-    ),
+    BoxShadow(color: Color(0x33000000), blurRadius: 24, offset: Offset(0, 12)),
   ];
 
   /// Retro hard shadow - Diner sign style (no blur!)
   static const List<BoxShadow> shadowRetro = [
-    BoxShadow(
-      color: Color(0xFF1A1A2E),
-      blurRadius: 0,
-      offset: Offset(4, 4),
-    ),
+    BoxShadow(color: Color(0xFF1A1A2E), blurRadius: 0, offset: Offset(4, 4)),
   ];
 
   /// Retro hard shadow - Smaller version
   static const List<BoxShadow> shadowRetroSm = [
-    BoxShadow(
-      color: Color(0xFF1A1A2E),
-      blurRadius: 0,
-      offset: Offset(2, 2),
-    ),
+    BoxShadow(color: Color(0xFF1A1A2E), blurRadius: 0, offset: Offset(2, 2)),
   ];
 
   // ============================================
@@ -156,6 +132,14 @@ abstract final class AppDimensions {
   static const double iconSizeMd = 24.0;
   static const double iconSizeLg = 32.0;
   static const double iconSizeXl = 48.0;
+
+  /// Icon container sizes (for circular icon backgrounds)
+  static const double iconContainerSm = 32.0;
+  static const double iconContainerMd = 40.0;
+  static const double iconContainerLg = 56.0;
+
+  /// Bottom sheet specific radius
+  static const double bottomSheetRadius = 20.0;
 
   /// Avatar/profile sizes
   static const double avatarSizeSm = 32.0;

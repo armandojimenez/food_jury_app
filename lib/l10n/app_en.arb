@@ -1,0 +1,478 @@
+{
+  "@@locale": "en",
+  
+  "appTitle": "FoodJury",
+  "@appTitle": {
+    "description": "The application title"
+  },
+
+  "appTagline": "Order in the kitchen!",
+  "@appTagline": {
+    "description": "App tagline shown on splash screen"
+  },
+
+  "common_ok": "OK",
+  "@common_ok": {
+    "description": "Generic OK button"
+  },
+
+  "common_cancel": "Cancel",
+  "@common_cancel": {
+    "description": "Generic cancel button"
+  },
+
+  "common_delete": "Delete",
+  "@common_delete": {
+    "description": "Generic delete button"
+  },
+
+  "common_save": "Save",
+  "@common_save": {
+    "description": "Generic save button"
+  },
+
+  "common_yes": "Yes",
+  "@common_yes": {
+    "description": "Generic yes confirmation"
+  },
+
+  "common_no": "No",
+  "@common_no": {
+    "description": "Generic no confirmation"
+  },
+
+  "common_back": "Back",
+  "@common_back": {
+    "description": "Back navigation label"
+  },
+
+  "common_close": "Close",
+  "@common_close": {
+    "description": "Close button label"
+  },
+
+  "greeting_morning": "Good morning, hungry one!",
+  "@greeting_morning": {
+    "description": "Morning greeting on home screen"
+  },
+
+  "greeting_afternoon": "Good afternoon, hungry one!",
+  "@greeting_afternoon": {
+    "description": "Afternoon greeting on home screen"
+  },
+
+  "greeting_evening": "Good evening, hungry one!",
+  "@greeting_evening": {
+    "description": "Evening greeting on home screen"
+  },
+
+  "greeting_night": "Good night, hungry one!",
+  "@greeting_night": {
+    "description": "Late night greeting on home screen"
+  },
+
+  "home_newDecision": "New Decision",
+  "@home_newDecision": {
+    "description": "Button to start a new food decision"
+  },
+
+  "home_recentVerdicts": "Recent Verdicts",
+  "@home_recentVerdicts": {
+    "description": "Section header for recent decisions"
+  },
+
+  "home_emptyTitle": "No verdicts yet...",
+  "@home_emptyTitle": {
+    "description": "Title for empty state when user has no decisions"
+  },
+
+  "home_emptyMessage": "The court is empty! Time to bring a case.",
+  "@home_emptyMessage": {
+    "description": "Message for empty state on home screen"
+  },
+
+  "home_emptyAction": "Start Your First Case",
+  "@home_emptyAction": {
+    "description": "Button text for first decision on empty home screen"
+  },
+
+  "decision_screenTitle": "What's the dilemma?",
+  "@decision_screenTitle": {
+    "description": "Header for new decision screen"
+  },
+
+  "decision_yourOptions": "YOUR OPTIONS",
+  "@decision_yourOptions": {
+    "description": "Section header for food options list"
+  },
+
+  "decision_addOption": "Add Option",
+  "@decision_addOption": {
+    "description": "Button to add a new food option"
+  },
+
+  "decision_tapToAdd": "Tap to add",
+  "@decision_tapToAdd": {
+    "description": "Placeholder text for add option button"
+  },
+
+  "decision_whatsYourGoal": "WHAT'S YOUR GOAL?",
+  "@decision_whatsYourGoal": {
+    "description": "Section header for objective selection"
+  },
+
+  "decision_letJudgeDecide": "Let the Judge Decide",
+  "@decision_letJudgeDecide": {
+    "description": "Submit button to get verdict"
+  },
+
+  "decision_minOptionsError": "Add at least 2 options to proceed",
+  "@decision_minOptionsError": {
+    "description": "Error shown when trying to submit with less than 2 options"
+  },
+
+  "option_add": "ADD OPTION",
+  "@option_add": {
+    "description": "Header for add option bottom sheet"
+  },
+
+  "option_tapToAddPhoto": "Tap to add photo",
+  "@option_tapToAddPhoto": {
+    "description": "Placeholder for image picker"
+  },
+
+  "option_nameLabel": "Name",
+  "@option_nameLabel": {
+    "description": "Label for option name input"
+  },
+
+  "option_nameHint": "What is it?",
+  "@option_nameHint": {
+    "description": "Hint text for option name input"
+  },
+
+  "option_notesLabel": "Notes (optional)",
+  "@option_notesLabel": {
+    "description": "Label for option notes input"
+  },
+
+  "option_notesHint": "Any details the judge should know?",
+  "@option_notesHint": {
+    "description": "Hint text for option notes input"
+  },
+
+  "option_addToCase": "Add to Case",
+  "@option_addToCase": {
+    "description": "Button to confirm adding option"
+  },
+
+  "option_deleteConfirmTitle": "Delete Option?",
+  "@option_deleteConfirmTitle": {
+    "description": "Confirmation dialog title for deleting an option"
+  },
+
+  "option_deleteConfirmMessage": "This will remove the option from your case.",
+  "@option_deleteConfirmMessage": {
+    "description": "Confirmation dialog message for deleting an option"
+  },
+
+  "objective_fun": "Fun",
+  "@objective_fun": {
+    "description": "Fun objective label"
+  },
+
+  "objective_healthy": "Healthy",
+  "@objective_healthy": {
+    "description": "Healthy objective label"
+  },
+
+  "objective_fit": "Fit",
+  "@objective_fit": {
+    "description": "Fit objective label"
+  },
+
+  "objective_quick": "Quick",
+  "@objective_quick": {
+    "description": "Quick objective label"
+  },
+
+  "loading_courtInSession": "The court is in session...",
+  "@loading_courtInSession": {
+    "description": "Loading message while AI processes"
+  },
+
+  "loading_examiningEvidence": "Examining the evidence...",
+  "@loading_examiningEvidence": {
+    "description": "Loading message variant"
+  },
+
+  "loading_deliberating": "Deliberating...",
+  "@loading_deliberating": {
+    "description": "Loading message variant"
+  },
+
+  "loading_almostThere": "Almost there...",
+  "@loading_almostThere": {
+    "description": "Loading message variant"
+  },
+
+  "verdict_title": "THE VERDICT IS IN",
+  "@verdict_title": {
+    "description": "Main verdict reveal title"
+  },
+
+  "verdict_judgesNotes": "Judge's Notes",
+  "@verdict_judgesNotes": {
+    "description": "Section header for AI reasoning"
+  },
+
+  "verdict_seeAllRankings": "See all rankings",
+  "@verdict_seeAllRankings": {
+    "description": "Button to expand and show all options ranked"
+  },
+
+  "verdict_newCase": "New Case",
+  "@verdict_newCase": {
+    "description": "Button to start another decision"
+  },
+
+  "verdict_share": "Share",
+  "@verdict_share": {
+    "description": "Button to share verdict"
+  },
+
+  "history_screenTitle": "Past Verdicts",
+  "@history_screenTitle": {
+    "description": "Header for history screen"
+  },
+
+  "history_emptyTitle": "The court records are empty...",
+  "@history_emptyTitle": {
+    "description": "Title for empty history state"
+  },
+
+  "history_emptyMessage": "No cases have been decided yet!",
+  "@history_emptyMessage": {
+    "description": "Message for empty history state"
+  },
+
+  "history_today": "Today",
+  "@history_today": {
+    "description": "Section header for today's decisions"
+  },
+
+  "history_yesterday": "Yesterday",
+  "@history_yesterday": {
+    "description": "Section header for yesterday's decisions"
+  },
+
+  "history_thisWeek": "This Week",
+  "@history_thisWeek": {
+    "description": "Section header for this week's decisions"
+  },
+
+  "history_deleteConfirmTitle": "Delete Decision?",
+  "@history_deleteConfirmTitle": {
+    "description": "Confirmation dialog title for deleting a decision"
+  },
+
+  "history_deleteConfirmMessage": "This cannot be undone.",
+  "@history_deleteConfirmMessage": {
+    "description": "Confirmation dialog message for deleting a decision"
+  },
+
+  "settings_screenTitle": "Settings",
+  "@settings_screenTitle": {
+    "description": "Header for settings screen"
+  },
+
+  "settings_judgePersonality": "JUDGE'S PERSONALITY",
+  "@settings_judgePersonality": {
+    "description": "Section header for tone selection"
+  },
+
+  "settings_appearance": "APPEARANCE",
+  "@settings_appearance": {
+    "description": "Section header for appearance settings"
+  },
+
+  "settings_subscription": "SUBSCRIPTION",
+  "@settings_subscription": {
+    "description": "Section header for subscription settings"
+  },
+
+  "settings_about": "About",
+  "@settings_about": {
+    "description": "About link"
+  },
+
+  "settings_privacy": "Privacy",
+  "@settings_privacy": {
+    "description": "Privacy policy link"
+  },
+
+  "settings_terms": "Terms",
+  "@settings_terms": {
+    "description": "Terms of service link"
+  },
+
+  "tone_stern": "Stern & Fair",
+  "@tone_stern": {
+    "description": "Stern judge personality option"
+  },
+
+  "tone_sternPreview": "The court finds...",
+  "@tone_sternPreview": {
+    "description": "Preview text for stern tone"
+  },
+
+  "tone_sassy": "Sassy",
+  "@tone_sassy": {
+    "description": "Sassy judge personality option"
+  },
+
+  "tone_sassyPreview": "Listen, I've seen...",
+  "@tone_sassyPreview": {
+    "description": "Preview text for sassy tone"
+  },
+
+  "tone_enthusiastic": "Enthusiastic",
+  "@tone_enthusiastic": {
+    "description": "Enthusiastic judge personality option"
+  },
+
+  "tone_enthusiasticPreview": "OH WOW! This is...",
+  "@tone_enthusiasticPreview": {
+    "description": "Preview text for enthusiastic tone"
+  },
+
+  "tone_chill": "Chill",
+  "@tone_chill": {
+    "description": "Chill judge personality option"
+  },
+
+  "tone_chillPreview": "So like, here's...",
+  "@tone_chillPreview": {
+    "description": "Preview text for chill tone"
+  },
+
+  "theme_light": "Light",
+  "@theme_light": {
+    "description": "Light theme option"
+  },
+
+  "theme_dark": "Dark",
+  "@theme_dark": {
+    "description": "Dark theme option"
+  },
+
+  "theme_system": "Auto",
+  "@theme_system": {
+    "description": "System theme option"
+  },
+
+  "subscription_pro": "FoodJury Pro",
+  "@subscription_pro": {
+    "description": "Pro subscription tier name"
+  },
+
+  "subscription_unlimitedDecisions": "Unlimited decisions",
+  "@subscription_unlimitedDecisions": {
+    "description": "Pro feature description"
+  },
+
+  "subscription_upgradeNow": "Upgrade Now",
+  "@subscription_upgradeNow": {
+    "description": "Button to upgrade to pro"
+  },
+
+  "error_noInternet": "The court is offline...",
+  "@error_noInternet": {
+    "description": "Error message for no internet connection"
+  },
+
+  "error_noInternetMessage": "Wake me when we're back online!",
+  "@error_noInternetMessage": {
+    "description": "Secondary message for no internet"
+  },
+
+  "error_tryAgain": "Try Again",
+  "@error_tryAgain": {
+    "description": "Button to retry after error"
+  },
+
+  "error_genericTitle": "Oops!",
+  "@error_genericTitle": {
+    "description": "Generic error title"
+  },
+
+  "error_genericMessage": "Something went wrong. Please try again.",
+  "@error_genericMessage": {
+    "description": "Generic error message"
+  },
+
+  "onboarding_skip": "Skip",
+  "@onboarding_skip": {
+    "description": "Button to skip onboarding"
+  },
+
+  "onboarding_next": "Next",
+  "@onboarding_next": {
+    "description": "Button to go to next onboarding screen"
+  },
+
+  "onboarding_getStarted": "Get Started",
+  "@onboarding_getStarted": {
+    "description": "Button to finish onboarding"
+  },
+
+  "onboarding_welcome_title": "Meet Judge Bite",
+  "@onboarding_welcome_title": {
+    "description": "First onboarding screen title"
+  },
+
+  "onboarding_welcome_message": "Your personal food court judge who helps you make delicious decisions!",
+  "@onboarding_welcome_message": {
+    "description": "First onboarding screen message"
+  },
+
+  "onboarding_howItWorks_title": "How It Works",
+  "@onboarding_howItWorks_title": {
+    "description": "Second onboarding screen title"
+  },
+
+  "onboarding_howItWorks_message": "Add your food options, set your goal, and let the judge deliver the verdict!",
+  "@onboarding_howItWorks_message": {
+    "description": "Second onboarding screen message"
+  },
+
+  "onboarding_personality_title": "Pick Your Style",
+  "@onboarding_personality_title": {
+    "description": "Third onboarding screen title"
+  },
+
+  "onboarding_personality_message": "Choose how Judge Bite should deliver verdicts. You can change this anytime!",
+  "@onboarding_personality_message": {
+    "description": "Third onboarding screen message"
+  },
+
+  "snackbar_decisionSaved": "Decision recorded!",
+  "@snackbar_decisionSaved": {
+    "description": "Success message when decision is saved"
+  },
+
+  "snackbar_optionAdded": "Option added to the case",
+  "@snackbar_optionAdded": {
+    "description": "Success message when option is added"
+  },
+
+  "snackbar_optionDeleted": "Option removed",
+  "@snackbar_optionDeleted": {
+    "description": "Success message when option is deleted"
+  },
+
+  "snackbar_decisionDeleted": "Decision deleted",
+  "@snackbar_decisionDeleted": {
+    "description": "Success message when decision is deleted"
+  }
+}
