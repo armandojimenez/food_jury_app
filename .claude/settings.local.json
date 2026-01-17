@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter create:*)",
+      "Bash(curl:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter pub get:*)",
+      "Bash(npm run lint:*)",
+      "Bash(dart analyze:*)",
+      "Bash(mklink /D C:flutter \"C:\\\\Users\\\\Armando PC\\\\sdk\\\\flutter\")",
+      "Bash(cmd /c \"mklink /D C:\\\\flutter \"\"C:\\\\Users\\\\Armando PC\\\\sdk\\\\flutter\"\"\")",
+      "Bash(flutter clean:*)",
+      "Bash(flutter build:*)",
+      "Bash(flutter run:*)",
+      "Bash(flutter devices:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: FoodJury MVP project setup\n\n- Flutter project with Riverpod 3.0 + GoRouter + Drift architecture\n- Full design system documented \\(Retro Diner Courtroom theme\\)\n- Dev/prod environment bootstrap configuration\n- VS Code launch configurations\n- Judge Bite mascot system and poses planned\n- All core dependencies configured in pubspec.yaml\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

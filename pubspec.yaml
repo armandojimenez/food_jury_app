@@ -1,0 +1,75 @@
+name: food_jury
+description: "FoodJury - Your personal food court judge. Can't decide what to eat? Let Judge Bite deliver the verdict!"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI & Design
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Navigation
+  go_router: ^15.1.2
+
+  # Local Storage
+  drift: ^2.26.0
+  sqlite3_flutter_libs: ^0.5.32
+  path_provider: ^2.1.5
+  path: ^1.9.1
+
+  # Utilities
+  equatable: ^2.0.7
+  uuid: ^4.5.1
+  intl: ^0.20.2
+
+  # Animations
+  flutter_animate: ^4.5.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+  # Code Generation
+  build_runner: ^2.4.14
+  riverpod_generator: ^2.6.4
+  drift_dev: ^2.26.0
+  json_serializable: ^6.9.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/animations/
+
+  fonts:
+    - family: Bangers
+      fonts:
+        - asset: assets/fonts/Bangers-Regular.ttf
+
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Nunito-Italic.ttf
+          style: italic
