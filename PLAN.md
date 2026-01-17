@@ -913,24 +913,16 @@ Provide these 10 poses at 2x and 3x resolution (PNG with transparency):
 2. **Project Setup**: Flutter project initialized with folder structure
 3. **Architecture**: Riverpod 3.0 + GoRouter + Drift configured
 4. **Dependencies**: All packages added to pubspec.yaml
+5. **Core Widgets**: Build design system components
+6. **Home + Decision Flow**: Implement main user journey
 
 ### In Progress 🔄
-5. **Build Environment Issue**: Flutter SDK path contains space (`C:\Users\Armando PC\sdk\flutter`) which breaks native compilation for `objective_c` package during iOS builds.
-   - **Workaround needed**: Move Flutter SDK to a path without spaces (e.g., `C:\flutter`) and update PATH environment variable.
-   - This only affects iOS builds; Android should work fine.
+1. **AI Integration**: Connect Firebase AI Logic + Gemini
 
 ### Next Steps
 
-1. **Fix Flutter SDK Path** (blocking for iOS builds)
-   - Move Flutter SDK to `C:\flutter`
-   - Update system PATH variable
-   - Run `flutter doctor` to verify
-
-2. **Core Widgets**: Build design system components
-3. **Home + Decision Flow**: Implement main user journey
-4. **AI Integration**: Connect Firebase AI Logic + Gemini
-5. **Storage**: Set up Drift for decision history
-6. **Monetization**: RevenueCat subscription integration
-7. **Polish**: Animations, transitions, empty states
-8. **Testing**: Full test pass
-9. **Launch**: App store submission
+2. **Storage**: Set up Drift for decision history
+3. **Monetization**: RevenueCat subscription integration
+4. **Polish**: Animations, transitions, empty states
+5. **Testing**: Full test pass
+6. **Launch**: App store submission

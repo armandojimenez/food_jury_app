@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../env/env.dart';
 import '../../app.dart';
+import '../env/env.dart';
 
 Future<void> bootstrap(Environment environment) async {
   // Ensure Flutter bindings are initialized
@@ -38,8 +39,8 @@ Future<void> bootstrap(Environment environment) async {
   // Log environment info
   _logEnvironmentInfo();
 
-  // Run the app
-  runApp(const FoodJuryApp());
+  // Run the app hiding the splash screen if needed
+  runApp(const ProviderScope(child: FoodJuryApp()));
 }
 
 Future<void> _configureErrorHandling() async {
@@ -86,8 +87,12 @@ void _logEnvironmentInfo() {
     debugPrint('╠══════════════════════════════════════════════════════════╣');
     debugPrint('║ Environment: ${Env.name.padRight(44)}║');
     debugPrint('║ App Name: ${Env.appName.padRight(47)}║');
-    debugPrint('║ Logging: ${(Env.enableLogging ? 'Enabled' : 'Disabled').padRight(48)}║');
-    debugPrint('║ Analytics: ${(Env.enableAnalytics ? 'Enabled' : 'Disabled').padRight(46)}║');
+    debugPrint(
+      '║ Logging: ${(Env.enableLogging ? 'Enabled' : 'Disabled').padRight(48)}║',
+    );
+    debugPrint(
+      '║ Analytics: ${(Env.enableAnalytics ? 'Enabled' : 'Disabled').padRight(46)}║',
+    );
     debugPrint('╚══════════════════════════════════════════════════════════╝');
   }
 }
