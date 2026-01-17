@@ -20,7 +20,15 @@
       "Bash(git branch:*)",
       "Bash(git commit:*)",
       "Bash(flutter gen-l10n:*)",
-      "Bash(flutter pub run build_runner build:*)"
+      "Bash(flutter pub run build_runner build:*)",
+      "Bash(git push)",
+      "Bash(git push:*)",
+      "WebFetch(domain:pub.dev)",
+      "WebFetch(domain:firebase.google.com)",
+      "Bash(flutter pub add:*)",
+      "Bash(dart pub global list:*)",
+      "Bash(xargs cat:*)",
+      "Bash(dart run build_runner:*)"
     ]
   }
 }

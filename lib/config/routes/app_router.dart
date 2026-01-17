@@ -68,9 +68,22 @@ class AppRouter {
           path: verdict,
           name: 'verdict',
           pageBuilder: (context, state) {
-            final verdictData = state.extra as Verdict;
+            final extra = state.extra;
+            // Support both Verdict directly (new verdict) and VerdictRouteData (from history)
+            final Verdict verdictData;
+            final bool showAnimation;
+            if (extra is VerdictRouteData) {
+              verdictData = extra.verdict;
+              showAnimation = extra.showRevealAnimation;
+            } else {
+              verdictData = extra as Verdict;
+              showAnimation = true;
+            }
             return _buildPageWithTransition(
-              child: VerdictScreen(verdict: verdictData),
+              child: VerdictScreen(
+                verdict: verdictData,
+                showRevealAnimation: showAnimation,
+              ),
               state: state,
               transitionType: _TransitionType.fade,
             );
@@ -81,14 +94,11 @@ class AppRouter {
         GoRoute(
           path: history,
           name: 'history',
-          pageBuilder: (context, state) {
-            final verdicts = state.extra as List<Verdict>? ?? [];
-            return _buildPageWithTransition(
-              child: HistoryScreen(verdicts: verdicts),
-              state: state,
-              transitionType: _TransitionType.slideLeft,
-            );
-          },
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            child: const HistoryScreen(),
+            state: state,
+            transitionType: _TransitionType.slideLeft,
+          ),
         ),
 
         // Settings Screen
@@ -169,3 +179,14 @@ class AppRouter {
 
 /// Transition types for page animations.
 enum _TransitionType { fade, slideUp, slideLeft }
+
+/// Data class for passing verdict with animation flag to the verdict screen.
+class VerdictRouteData {
+  const VerdictRouteData({
+    required this.verdict,
+    this.showRevealAnimation = true,
+  });
+
+  final Verdict verdict;
+  final bool showRevealAnimation;
+}

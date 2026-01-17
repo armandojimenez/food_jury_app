@@ -21,11 +21,16 @@ import '../data/models/verdict.dart';
 class VerdictScreen extends StatefulWidget {
   const VerdictScreen({
     required this.verdict,
+    this.showRevealAnimation = true,
     super.key,
   });
 
   /// The verdict to display.
   final Verdict verdict;
+
+  /// Whether to play the dramatic reveal animation.
+  /// Set to false when viewing from history.
+  final bool showRevealAnimation;
 
   @override
   State<VerdictScreen> createState() => _VerdictScreenState();
@@ -34,15 +39,23 @@ class VerdictScreen extends StatefulWidget {
 class _VerdictScreenState extends State<VerdictScreen>
     with TickerProviderStateMixin {
   /// Controls whether we show the post-reveal content.
-  bool _showFullContent = false;
+  late bool _showFullContent;
 
   /// Controls confetti animation.
-  bool _showConfetti = false;
+  late bool _showConfetti;
 
   @override
   void initState() {
     super.initState();
-    _startRevealSequence();
+    // Skip animation if viewing from history
+    if (widget.showRevealAnimation) {
+      _showFullContent = false;
+      _showConfetti = false;
+      _startRevealSequence();
+    } else {
+      _showFullContent = true;
+      _showConfetti = false; // No confetti when viewing from history
+    }
   }
 
   Future<void> _startRevealSequence() async {

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/routes/app_router.dart';
-import '../../../core/services/mock_ai_service.dart';
+import '../../../core/providers/ai_service_provider.dart';
+import '../../../core/services/ai_service.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../data/providers/verdict_provider.dart';
 import '../data/models/food_option.dart';
 import '../data/models/objective.dart';
 import '../data/models/verdict.dart';
@@ -18,20 +21,18 @@ import '../data/models/verdict.dart';
 /// - Progress indicator showing readiness
 /// - Judge Bite with speech bubble reactions
 /// - Smooth animations throughout
-/// - Submit for verdict with mock AI
-class NewDecisionScreen extends StatefulWidget {
+/// - Submit for verdict with Gemini AI
+class NewDecisionScreen extends ConsumerStatefulWidget {
   const NewDecisionScreen({super.key});
 
   @override
-  State<NewDecisionScreen> createState() => _NewDecisionScreenState();
+  ConsumerState<NewDecisionScreen> createState() => _NewDecisionScreenState();
 }
 
-class _NewDecisionScreenState extends State<NewDecisionScreen> {
+class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
   final List<FoodOption> _options = [];
   Objective? _selectedObjective;
   bool _isLoading = false;
-
-  final _mockAiService = MockAiService();
 
   static const int _minOptions = 2;
   static const int _maxOptions = 5;
@@ -79,18 +80,30 @@ class _NewDecisionScreenState extends State<NewDecisionScreen> {
         message: context.l10n.loading_courtInSession,
       );
 
-      final verdict = await _mockAiService.generateVerdict(
+      final aiService = ref.read(aiServiceProvider);
+      final locale = Localizations.localeOf(context);
+      final verdict = await aiService.generateVerdict(
         options: _options,
         objective: _selectedObjective!,
         tone: JudgeTone.stern,
+        locale: locale,
       );
+
+      // Save the verdict to the database
+      await ref.read(verdictNotifierProvider.notifier).saveVerdict(verdict);
 
       if (!mounted) return;
       LoadingOverlay.hide(context);
       context.push(AppRouter.verdict, extra: verdict);
+    } on AiServiceException catch (e) {
+      if (!mounted) return;
+      LoadingOverlay.hide(context);
+      debugPrint('AI Service Error: ${e.message}');
+      AppSnackbar.showError(context, message: context.l10n.error_genericMessage);
     } catch (e) {
       if (!mounted) return;
       LoadingOverlay.hide(context);
+      debugPrint('Unexpected error: $e');
       AppSnackbar.showError(context, message: context.l10n.error_genericMessage);
     } finally {
       if (mounted) setState(() => _isLoading = false);

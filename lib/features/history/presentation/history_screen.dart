@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/routes/app_router.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../data/providers/verdict_provider.dart';
 import '../../decision/data/models/objective.dart';
 import '../../decision/data/models/verdict.dart';
+
+// Using VerdictRouteData from app_router.dart
 
 /// History Screen - displays past verdicts grouped by date.
 ///
@@ -16,18 +20,13 @@ import '../../decision/data/models/verdict.dart';
 /// - Winner thumbnail, objective badge, date
 /// - Empty state with sleeping Judge Bite
 /// - Tap to view full verdict
-class HistoryScreen extends StatelessWidget {
-  const HistoryScreen({
-    required this.verdicts,
-    super.key,
-  });
-
-  /// List of past verdicts to display.
-  final List<Verdict> verdicts;
+class HistoryScreen extends ConsumerWidget {
+  const HistoryScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
+    final verdictsAsync = ref.watch(verdictsProvider);
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -35,9 +34,37 @@ class HistoryScreen extends StatelessWidget {
         title: context.l10n.history_screenTitle,
         onBackPressed: () => context.pop(),
       ),
-      body: verdicts.isEmpty
-          ? const _EmptyState()
-          : _VerdictsList(verdicts: verdicts),
+      body: verdictsAsync.when(
+        data: (verdicts) => verdicts.isEmpty
+            ? const _EmptyState()
+            : _VerdictsList(verdicts: verdicts),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        error: (error, stack) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              JudgeBite(
+                pose: JudgeBitePose.confused,
+                size: JudgeBiteSize.medium,
+              ),
+              const SizedBox(height: AppDimensions.spaceLg),
+              Text(
+                context.l10n.error_genericMessage,
+                style: AppTypography.bodyLarge.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: AppDimensions.spaceMd),
+              AppButton(
+                label: 'Retry',
+                onPressed: () => ref.invalidate(verdictsProvider),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -303,7 +330,10 @@ class _VerdictCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return InkWell(
-      onTap: () => context.push(AppRouter.verdict, extra: verdict),
+      onTap: () => context.push(
+        AppRouter.verdict,
+        extra: VerdictRouteData(verdict: verdict, showRevealAnimation: false),
+      ),
       borderRadius: AppDimensions.borderRadiusMd,
       child: Container(
         padding: const EdgeInsets.all(AppDimensions.spaceMd),

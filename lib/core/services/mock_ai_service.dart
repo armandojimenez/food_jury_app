@@ -1,14 +1,16 @@
 import 'dart:math';
+import 'dart:ui';
 
 import '../../features/decision/data/models/food_option.dart';
 import '../../features/decision/data/models/objective.dart';
 import '../../features/decision/data/models/verdict.dart';
+import 'ai_service.dart';
 
 /// Mock AI service for generating verdicts during development.
 ///
 /// Simulates a 2-3 second delay and returns mock verdicts
 /// with personality based on the selected judge tone.
-class MockAiService {
+class MockAiService implements AiService {
   MockAiService();
 
   final _random = Random();
@@ -16,10 +18,13 @@ class MockAiService {
   /// Generates a mock verdict for the given options and objective.
   ///
   /// Simulates network delay and AI processing time.
+  /// Note: Mock service only returns English responses for simplicity.
+  @override
   Future<Verdict> generateVerdict({
     required List<FoodOption> options,
     required Objective objective,
     required JudgeTone tone,
+    required Locale locale,
   }) async {
     // Simulate AI processing time (2-3 seconds)
     final delay = 2000 + _random.nextInt(1000);

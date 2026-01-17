@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/routes/app_router.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../../data/providers/verdict_provider.dart';
+import '../../decision/data/models/verdict.dart';
 
 /// Home screen - main landing page with Judge Bite and navigation.
 ///
@@ -153,23 +156,49 @@ class _HomeHeader extends StatelessWidget {
           ),
         ),
 
-        // Settings Icon with retro styling
-        Container(
-          decoration: BoxDecoration(
-            color: colorScheme.surface,
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: colorScheme.secondary,
-              width: AppDimensions.borderMedium,
+        // Header icons row
+        Row(
+          children: [
+            // History Icon
+            Container(
+              decoration: BoxDecoration(
+                color: colorScheme.surface,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: colorScheme.secondary,
+                  width: AppDimensions.borderMedium,
+                ),
+                boxShadow: AppDimensions.shadowRetroSm,
+              ),
+              child: IconButton(
+                onPressed: () => context.push(AppRouter.history),
+                icon: const Icon(Icons.history),
+                color: colorScheme.secondary,
+                tooltip: context.l10n.history_screenTitle,
+              ),
             ),
-            boxShadow: AppDimensions.shadowRetroSm,
-          ),
-          child: IconButton(
-            onPressed: () => context.push(AppRouter.settings),
-            icon: const Icon(Icons.settings_outlined),
-            color: colorScheme.secondary,
-            tooltip: context.l10n.settings_screenTitle,
-          ),
+
+            const SizedBox(width: AppDimensions.spaceSm),
+
+            // Settings Icon
+            Container(
+              decoration: BoxDecoration(
+                color: colorScheme.surface,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: colorScheme.secondary,
+                  width: AppDimensions.borderMedium,
+                ),
+                boxShadow: AppDimensions.shadowRetroSm,
+              ),
+              child: IconButton(
+                onPressed: () => context.push(AppRouter.settings),
+                icon: const Icon(Icons.settings_outlined),
+                color: colorScheme.secondary,
+                tooltip: context.l10n.settings_screenTitle,
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -256,29 +285,220 @@ class _NewDecisionButton extends StatelessWidget {
 }
 
 /// Recent verdicts section.
-/// Shows empty state for now since we haven't implemented decision storage yet.
-class _RecentVerdictsSection extends StatelessWidget {
+/// Loads verdicts from database and shows recent history.
+class _RecentVerdictsSection extends ConsumerWidget {
   const _RecentVerdictsSection();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final recentVerdictsAsync = ref.watch(recentVerdictsProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Section Header
-        Text(
-          context.l10n.home_recentVerdicts,
-          style: AppTypography.titleLarge.copyWith(
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
+        // Section Header with "See All" button
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              context.l10n.home_recentVerdicts,
+              style: AppTypography.titleLarge.copyWith(
+                color: colorScheme.onSurface,
+              ),
+            ),
+            recentVerdictsAsync.maybeWhen(
+              data: (verdicts) => verdicts.isNotEmpty
+                  ? TextButton(
+                      onPressed: () => context.push(AppRouter.history),
+                      child: Text(
+                        'See All',
+                        style: AppTypography.labelLarge.copyWith(
+                          color: colorScheme.primary,
+                        ),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+              orElse: () => const SizedBox.shrink(),
+            ),
+          ],
         ),
 
         const SizedBox(height: AppDimensions.spaceMd),
 
-        // Content: Empty state for now (Phase 4: load from database)
-        const _EmptyVerdictsState(),
+        // Content based on state
+        recentVerdictsAsync.when(
+          data: (verdicts) => verdicts.isEmpty
+              ? const _EmptyVerdictsState()
+              : _RecentVerdictsList(verdicts: verdicts),
+          loading: () => const Center(
+            child: Padding(
+              padding: EdgeInsets.all(AppDimensions.spaceLg),
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          error: (_, __) => const _EmptyVerdictsState(),
+        ),
       ],
     );
+  }
+}
+
+/// List of recent verdict cards.
+class _RecentVerdictsList extends StatelessWidget {
+  const _RecentVerdictsList({required this.verdicts});
+
+  final List<Verdict> verdicts;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: verdicts.asMap().entries.map((entry) {
+        final index = entry.key;
+        final verdict = entry.value;
+        return Padding(
+          padding: const EdgeInsets.only(bottom: AppDimensions.spaceMd),
+          child: _RecentVerdictCard(verdict: verdict)
+              .animate()
+              .fadeIn(
+                duration: AppDimensions.durationMedium,
+                delay: Duration(milliseconds: index * 100),
+              )
+              .slideX(
+                begin: 0.1,
+                end: 0.0,
+                duration: AppDimensions.durationMedium,
+                delay: Duration(milliseconds: index * 100),
+              ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+/// Individual recent verdict card.
+class _RecentVerdictCard extends StatelessWidget {
+  const _RecentVerdictCard({required this.verdict});
+
+  final Verdict verdict;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return InkWell(
+      onTap: () => context.push(
+        AppRouter.verdict,
+        extra: VerdictRouteData(verdict: verdict, showRevealAnimation: false),
+      ),
+      borderRadius: AppDimensions.borderRadiusMd,
+      child: Container(
+        padding: const EdgeInsets.all(AppDimensions.spaceMd),
+        decoration: BoxDecoration(
+          color: colorScheme.surface,
+          borderRadius: AppDimensions.borderRadiusMd,
+          border: Border.all(
+            color: colorScheme.secondary,
+            width: AppDimensions.borderMedium,
+          ),
+          boxShadow: AppDimensions.shadowRetroSm,
+        ),
+        child: Row(
+          children: [
+            // Trophy icon
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [AppColors.primary, AppColors.primaryDark],
+                ),
+                borderRadius: AppDimensions.borderRadiusSm,
+                border: Border.all(color: AppColors.pop, width: 2),
+              ),
+              child: const Center(
+                child: Text('\uD83C\uDFC6', style: TextStyle(fontSize: 24)),
+              ),
+            ),
+
+            const SizedBox(width: AppDimensions.spaceMd),
+
+            // Verdict info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    verdict.winner.name,
+                    style: AppTypography.titleSmall.copyWith(
+                      color: colorScheme.onSurface,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: AppDimensions.spaceXxs),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppDimensions.spaceXs,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: verdict.objective.color.withValues(alpha: 0.15),
+                          borderRadius: AppDimensions.borderRadiusSm,
+                        ),
+                        child: Text(
+                          '${verdict.objective.icon} ${verdict.objective.getLabel(context)}',
+                          style: AppTypography.labelSmall.copyWith(
+                            color: verdict.objective.color,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: AppDimensions.spaceSm),
+                      Text(
+                        _formatDate(verdict.createdAt),
+                        style: AppTypography.bodySmall.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            // Chevron
+            Icon(
+              Icons.chevron_right,
+              color: colorScheme.onSurfaceVariant,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _formatDate(DateTime date) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final dateOnly = DateTime(date.year, date.month, date.day);
+
+    if (dateOnly == today) {
+      final hour = date.hour > 12
+          ? date.hour - 12
+          : (date.hour == 0 ? 12 : date.hour);
+      final amPm = date.hour >= 12 ? 'PM' : 'AM';
+      final minute = date.minute.toString().padLeft(2, '0');
+      return '$hour:$minute $amPm';
+    }
+
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    return '${months[date.month - 1]} ${date.day}';
   }
 }
 
