@@ -238,6 +238,34 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settings_mockAiDisabled => 'IA real activada';
 
   @override
+  String get settings_madeWithLove => 'Hecho con ❤️ desde Puerto Rico 🇵🇷';
+
+  @override
+  String get about_developer => 'Sobre el Desarrollador';
+
+  @override
+  String get about_aboutMe => 'Sobre Mí';
+
+  @override
+  String get about_skills => 'Habilidades';
+
+  @override
+  String get about_publishedApps => 'Apps Publicadas';
+
+  @override
+  String get about_aboutFoodJury => 'Sobre FoodJury';
+
+  @override
+  String get about_foodJuryDescription =>
+      'FoodJury es tu compañero de decisiones alimenticias potenciado por IA. Cuando no puedas decidir qué comer, ¡deja que Judge Bite dicte el veredicto final! Construido con Flutter, impulsado por Gemini AI, y diseñado con una estética retro de diner.';
+
+  @override
+  String get about_connect => 'Conectemos';
+
+  @override
+  String get about_meetDeveloper => 'Conoce al Desarrollador';
+
+  @override
   String get tone_stern => 'Serio y Justo';
 
   @override

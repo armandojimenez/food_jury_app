@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../config/routes/app_router.dart';
 import '../../../core/env/env.dart';
 import '../../../core/providers/mock_ai_provider.dart';
 import '../../../core/providers/theme_provider.dart';
@@ -694,6 +695,28 @@ class _AboutSection extends StatelessWidget {
                 },
               ),
             ],
+          ),
+
+          const SizedBox(height: AppDimensions.spaceMd),
+
+          // Meet the Developer button
+          SizedBox(
+            width: double.infinity,
+            child: AppSecondaryButton(
+              label: context.l10n.about_meetDeveloper,
+              onPressed: () => context.push(AppRouter.aboutDeveloper),
+            ),
+          ),
+
+          const SizedBox(height: AppDimensions.spaceMd),
+
+          // Made with love footer
+          Text(
+            context.l10n.settings_madeWithLove,
+            style: AppTypography.bodySmall.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

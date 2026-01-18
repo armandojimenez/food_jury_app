@@ -68,6 +68,11 @@ abstract final class AppDimensions {
     Radius.circular(radiusXl),
   );
 
+  /// Pill-shaped border radius for badges and chips.
+  static const BorderRadius borderRadiusPill = BorderRadius.all(
+    Radius.circular(100),
+  );
+
   // ============================================
   // BORDER WIDTH - Bold Lines
   // ============================================

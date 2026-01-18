@@ -376,6 +376,51 @@
     "description": "Snackbar message when mock AI is disabled"
   },
 
+  "settings_madeWithLove": "Made with ❤️ from Puerto Rico 🇵🇷",
+  "@settings_madeWithLove": {
+    "description": "Footer text showing app origin"
+  },
+
+  "about_developer": "About the Developer",
+  "@about_developer": {
+    "description": "Title for about developer screen"
+  },
+
+  "about_aboutMe": "About Me",
+  "@about_aboutMe": {
+    "description": "Section header for bio"
+  },
+
+  "about_skills": "Skills",
+  "@about_skills": {
+    "description": "Section header for skills"
+  },
+
+  "about_publishedApps": "Published Apps",
+  "@about_publishedApps": {
+    "description": "Section header for published apps"
+  },
+
+  "about_aboutFoodJury": "About FoodJury",
+  "@about_aboutFoodJury": {
+    "description": "Section header for app info"
+  },
+
+  "about_foodJuryDescription": "FoodJury is your AI-powered food decision companion. When you can't decide what to eat, let Judge Bite render the final verdict! Built with Flutter, powered by Gemini AI, and designed with a playful retro diner aesthetic.",
+  "@about_foodJuryDescription": {
+    "description": "Description of the FoodJury app"
+  },
+
+  "about_connect": "Let's Connect",
+  "@about_connect": {
+    "description": "Section header for contact links"
+  },
+
+  "about_meetDeveloper": "Meet the Developer",
+  "@about_meetDeveloper": {
+    "description": "Button text to go to about developer screen"
+  },
+
   "tone_stern": "Stern & Fair",
   "@tone_stern": {
     "description": "Stern judge personality option"

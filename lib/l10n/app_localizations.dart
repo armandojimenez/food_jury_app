@@ -548,6 +548,60 @@ abstract class AppLocalizations {
   /// **'Real AI enabled'**
   String get settings_mockAiDisabled;
 
+  /// Footer text showing app origin
+  ///
+  /// In en, this message translates to:
+  /// **'Made with ❤️ from Puerto Rico 🇵🇷'**
+  String get settings_madeWithLove;
+
+  /// Title for about developer screen
+  ///
+  /// In en, this message translates to:
+  /// **'About the Developer'**
+  String get about_developer;
+
+  /// Section header for bio
+  ///
+  /// In en, this message translates to:
+  /// **'About Me'**
+  String get about_aboutMe;
+
+  /// Section header for skills
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get about_skills;
+
+  /// Section header for published apps
+  ///
+  /// In en, this message translates to:
+  /// **'Published Apps'**
+  String get about_publishedApps;
+
+  /// Section header for app info
+  ///
+  /// In en, this message translates to:
+  /// **'About FoodJury'**
+  String get about_aboutFoodJury;
+
+  /// Description of the FoodJury app
+  ///
+  /// In en, this message translates to:
+  /// **'FoodJury is your AI-powered food decision companion. When you can\'t decide what to eat, let Judge Bite render the final verdict! Built with Flutter, powered by Gemini AI, and designed with a playful retro diner aesthetic.'**
+  String get about_foodJuryDescription;
+
+  /// Section header for contact links
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Connect'**
+  String get about_connect;
+
+  /// Button text to go to about developer screen
+  ///
+  /// In en, this message translates to:
+  /// **'Meet the Developer'**
+  String get about_meetDeveloper;
+
   /// Stern judge personality option
   ///
   /// In en, this message translates to:

@@ -7,6 +7,7 @@ import '../../features/decision/presentation/verdict_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/settings/dev_settings_screen.dart';
+import '../../features/settings/presentation/about_developer_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/splash/presentation/splash_screen.dart';
 
@@ -21,6 +22,7 @@ class AppRouter {
   static const String verdict = '/decision/verdict';
   static const String history = '/history';
   static const String settings = '/settings';
+  static const String aboutDeveloper = '/about-developer';
   static const String devSettings = '/dev/settings';
 
   /// Cached router instance to prevent recreation on rebuilds.
@@ -107,6 +109,17 @@ class AppRouter {
           name: 'settings',
           pageBuilder: (context, state) => _buildPageWithTransition(
             child: const SettingsScreen(),
+            state: state,
+            transitionType: _TransitionType.slideLeft,
+          ),
+        ),
+
+        // About Developer Screen
+        GoRoute(
+          path: aboutDeveloper,
+          name: 'aboutDeveloper',
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            child: const AboutDeveloperScreen(),
             state: state,
             transitionType: _TransitionType.slideLeft,
           ),
