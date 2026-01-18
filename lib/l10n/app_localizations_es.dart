@@ -266,6 +266,82 @@ class AppLocalizationsEs extends AppLocalizations {
   String get about_meetDeveloper => 'Conoce al Desarrollador';
 
   @override
+  String get about_developerName => 'Armando Jiménez';
+
+  @override
+  String get about_developerTitle => 'DESARROLLADOR MÓVIL';
+
+  @override
+  String get about_developerLocation => 'Carolina, Puerto Rico 🇵🇷';
+
+  @override
+  String get about_bioIntro =>
+      '¡Hola! Soy Armando, desarrollador móvil de Carolina, Puerto Rico. 🇵🇷';
+
+  @override
+  String get about_bioPassion =>
+      'Tengo una profunda pasión por crear apps que hagan sonreír a la gente, que les hagan sentir positivos, y quizás hasta cambiar la forma en que ven el mundo. Ya sea una herramienta divertida, algo para el bienestar mental, o simplemente una app que traiga un poco de alegría a tu día, pongo mi corazón en todo lo que creo.';
+
+  @override
+  String get about_bioDrive =>
+      '¿Qué me impulsa? Saber que algo que construí podría ser usado por millones de personas alrededor del mundo. Que alguien en otro país podría abrir mi app y sentirse un poco mejor. Esa es la magia del desarrollo móvil, y estoy agradecido de ser parte de ella.';
+
+  @override
+  String get about_bioClosing =>
+      'Todo lo que creo está hecho con amor, desde Puerto Rico para el mundo. 🌴❤️';
+
+  @override
+  String get about_statsYears => 'AÑOS';
+
+  @override
+  String get about_statsUsers => 'USUARIOS';
+
+  @override
+  String get about_statsLove => 'AMOR';
+
+  @override
+  String get about_contactWebsite => 'Sitio Web';
+
+  @override
+  String get about_contactGitHub => 'GitHub';
+
+  @override
+  String get about_contactLinkedIn => 'LinkedIn';
+
+  @override
+  String get about_contactEmail => 'Correo';
+
+  @override
+  String get about_appBelieve => 'Believe';
+
+  @override
+  String get about_appBelieveSubtitle => 'Afirmaciones Diarias';
+
+  @override
+  String get about_appHoly => 'Holy';
+
+  @override
+  String get about_appHolySubtitle => 'Versículos Bíblicos';
+
+  @override
+  String get about_appUnique => 'Unique';
+
+  @override
+  String get about_appUniqueSubtitle => 'Recordatorios de Amor Propio';
+
+  @override
+  String get about_appMotiv => 'Motiv';
+
+  @override
+  String get about_appMotivSubtitle => 'Citas Inspiradoras';
+
+  @override
+  String get about_appDivine => 'Divine';
+
+  @override
+  String get about_appDivineSubtitle => 'Mensajes Angelicales';
+
+  @override
   String get tone_stern => 'Serio y Justo';
 
   @override

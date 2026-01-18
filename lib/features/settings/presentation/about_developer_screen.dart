@@ -160,7 +160,7 @@ class _DeveloperHeader extends StatelessWidget {
 
         // Name
         Text(
-          'Armando Jiménez',
+          context.l10n.about_developerName,
           style: AppTypography.displaySmall.copyWith(
             color: colorScheme.primary,
             fontWeight: FontWeight.w900,
@@ -186,7 +186,7 @@ class _DeveloperHeader extends StatelessWidget {
             ),
           ),
           child: Text(
-            'MOBILE DEVELOPER',
+            context.l10n.about_developerTitle,
             style: AppTypography.labelMedium.copyWith(
               color: colorScheme.onSecondary,
               fontWeight: FontWeight.w700,
@@ -208,7 +208,7 @@ class _DeveloperHeader extends StatelessWidget {
             ),
             const SizedBox(width: AppDimensions.spaceXxs),
             Text(
-              'Carolina, Puerto Rico 🇵🇷',
+              context.l10n.about_developerLocation,
               style: AppTypography.bodyMedium.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),
@@ -250,7 +250,7 @@ class _BioSection extends StatelessWidget {
           ),
           const SizedBox(height: AppDimensions.spaceMd),
           Text(
-            "Hey! I'm Armando, a mobile developer from Carolina, Puerto Rico. 🇵🇷",
+            l10n.about_bioIntro,
             style: AppTypography.bodyLarge.copyWith(
               color: colorScheme.onSurface,
               height: 1.6,
@@ -258,7 +258,7 @@ class _BioSection extends StatelessWidget {
           ),
           const SizedBox(height: AppDimensions.spaceMd),
           Text(
-            "I have a deep passion for building apps that make people smile, feel positive, and maybe even change the way they see the world. Whether it's a fun tool, something for mental wellness, or just an app that brings a little joy to your day, I pour my heart into everything I create.",
+            l10n.about_bioPassion,
             style: AppTypography.bodyMedium.copyWith(
               color: colorScheme.onSurfaceVariant,
               height: 1.6,
@@ -266,7 +266,7 @@ class _BioSection extends StatelessWidget {
           ),
           const SizedBox(height: AppDimensions.spaceMd),
           Text(
-            "What drives me? Knowing that something I built might be used by millions of people around the world. That someone in another country might open my app and feel a little bit better. That's the magic of mobile development, and I'm grateful to be part of it.",
+            l10n.about_bioDrive,
             style: AppTypography.bodyMedium.copyWith(
               color: colorScheme.onSurfaceVariant,
               height: 1.6,
@@ -274,7 +274,7 @@ class _BioSection extends StatelessWidget {
           ),
           const SizedBox(height: AppDimensions.spaceMd),
           Text(
-            "Everything I create is made with love, from Puerto Rico to the world. 🌴❤️",
+            l10n.about_bioClosing,
             style: AppTypography.bodyMedium.copyWith(
               color: colorScheme.primary,
               fontWeight: FontWeight.w600,
@@ -292,6 +292,7 @@ class _StatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = context.l10n;
 
     return Container(
       padding: const EdgeInsets.all(AppDimensions.spaceMd),
@@ -314,11 +315,23 @@ class _StatsCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _StatItem(value: '10+', label: 'YEARS', icon: Icons.favorite),
+          _StatItem(
+            value: '10+',
+            label: l10n.about_statsYears,
+            icon: Icons.favorite,
+          ),
           _VerticalDivider(),
-          _StatItem(value: '500K+', label: 'USERS', icon: Icons.people),
+          _StatItem(
+            value: '500K+',
+            label: l10n.about_statsUsers,
+            icon: Icons.people,
+          ),
           _VerticalDivider(),
-          _StatItem(value: '∞', label: 'LOVE', icon: Icons.auto_awesome),
+          _StatItem(
+            value: '∞',
+            label: l10n.about_statsLove,
+            icon: Icons.auto_awesome,
+          ),
         ],
       ),
     );
@@ -407,40 +420,40 @@ class _PublishedAppsSection extends StatelessWidget {
         ),
         const SizedBox(height: AppDimensions.spaceMd),
         _AppCard(
-          name: 'Believe',
-          subtitle: 'Daily Affirmations',
+          name: l10n.about_appBelieve,
+          subtitle: l10n.about_appBelieveSubtitle,
           rating: '4.8',
           downloads: '200K+',
           emoji: '✨',
         ),
         const SizedBox(height: AppDimensions.spaceSm),
         _AppCard(
-          name: 'Holy',
-          subtitle: 'Daily Bible Verses',
+          name: l10n.about_appHoly,
+          subtitle: l10n.about_appHolySubtitle,
           rating: '4.9',
           downloads: '75K+',
           emoji: '📖',
         ),
         const SizedBox(height: AppDimensions.spaceSm),
         _AppCard(
-          name: 'Unique',
-          subtitle: 'Self-Love Reminders',
+          name: l10n.about_appUnique,
+          subtitle: l10n.about_appUniqueSubtitle,
           rating: '4.7',
           downloads: '60K+',
           emoji: '💜',
         ),
         const SizedBox(height: AppDimensions.spaceSm),
         _AppCard(
-          name: 'Motiv',
-          subtitle: 'Inspirational Quotes',
+          name: l10n.about_appMotiv,
+          subtitle: l10n.about_appMotivSubtitle,
           rating: '4.7',
           downloads: '25K+',
           emoji: '💪',
         ),
         const SizedBox(height: AppDimensions.spaceSm),
         _AppCard(
-          name: 'Divine',
-          subtitle: 'Angel Messages',
+          name: l10n.about_appDivine,
+          subtitle: l10n.about_appDivineSubtitle,
           rating: '4.9',
           downloads: '15K+',
           emoji: '👼',
@@ -672,7 +685,7 @@ class _ContactSection extends StatelessWidget {
             Expanded(
               child: _ContactButton(
                 icon: Icons.language,
-                label: 'Website',
+                label: l10n.about_contactWebsite,
                 onTap: () => _launchUrl('https://armandojimenez.dev'),
               ),
             ),
@@ -680,7 +693,7 @@ class _ContactSection extends StatelessWidget {
             Expanded(
               child: _ContactButton(
                 icon: Icons.code,
-                label: 'GitHub',
+                label: l10n.about_contactGitHub,
                 onTap: () => _launchUrl('https://github.com/armandojimenez'),
               ),
             ),
@@ -692,7 +705,7 @@ class _ContactSection extends StatelessWidget {
             Expanded(
               child: _ContactButton(
                 icon: Icons.work_outline,
-                label: 'LinkedIn',
+                label: l10n.about_contactLinkedIn,
                 onTap: () =>
                     _launchUrl('https://linkedin.com/in/armando-jimenez-dev'),
               ),
@@ -701,7 +714,7 @@ class _ContactSection extends StatelessWidget {
             Expanded(
               child: _ContactButton(
                 icon: Icons.email_outlined,
-                label: 'Email',
+                label: l10n.about_contactEmail,
                 onTap: () => _launchUrl('mailto:contact@armandojimenez.dev'),
               ),
             ),

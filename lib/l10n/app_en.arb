@@ -421,6 +421,126 @@
     "description": "Button text to go to about developer screen"
   },
 
+  "about_developerName": "Armando Jiménez",
+  "@about_developerName": {
+    "description": "Developer's name"
+  },
+
+  "about_developerTitle": "MOBILE DEVELOPER",
+  "@about_developerTitle": {
+    "description": "Developer's job title badge"
+  },
+
+  "about_developerLocation": "Carolina, Puerto Rico 🇵🇷",
+  "@about_developerLocation": {
+    "description": "Developer's location"
+  },
+
+  "about_bioIntro": "Hey! I'm Armando, a mobile developer from Carolina, Puerto Rico. 🇵🇷",
+  "@about_bioIntro": {
+    "description": "Bio introduction paragraph"
+  },
+
+  "about_bioPassion": "I have a deep passion for building apps that make people smile, feel positive, and maybe even change the way they see the world. Whether it's a fun tool, something for mental wellness, or just an app that brings a little joy to your day, I pour my heart into everything I create.",
+  "@about_bioPassion": {
+    "description": "Bio passion paragraph"
+  },
+
+  "about_bioDrive": "What drives me? Knowing that something I built might be used by millions of people around the world. That someone in another country might open my app and feel a little bit better. That's the magic of mobile development, and I'm grateful to be part of it.",
+  "@about_bioDrive": {
+    "description": "Bio motivation paragraph"
+  },
+
+  "about_bioClosing": "Everything I create is made with love, from Puerto Rico to the world. 🌴❤️",
+  "@about_bioClosing": {
+    "description": "Bio closing statement"
+  },
+
+  "about_statsYears": "YEARS",
+  "@about_statsYears": {
+    "description": "Years of experience label"
+  },
+
+  "about_statsUsers": "USERS",
+  "@about_statsUsers": {
+    "description": "User count label"
+  },
+
+  "about_statsLove": "LOVE",
+  "@about_statsLove": {
+    "description": "Love/passion label"
+  },
+
+  "about_contactWebsite": "Website",
+  "@about_contactWebsite": {
+    "description": "Website contact button"
+  },
+
+  "about_contactGitHub": "GitHub",
+  "@about_contactGitHub": {
+    "description": "GitHub contact button"
+  },
+
+  "about_contactLinkedIn": "LinkedIn",
+  "@about_contactLinkedIn": {
+    "description": "LinkedIn contact button"
+  },
+
+  "about_contactEmail": "Email",
+  "@about_contactEmail": {
+    "description": "Email contact button"
+  },
+
+  "about_appBelieve": "Believe",
+  "@about_appBelieve": {
+    "description": "Believe app name"
+  },
+
+  "about_appBelieveSubtitle": "Daily Affirmations",
+  "@about_appBelieveSubtitle": {
+    "description": "Believe app subtitle"
+  },
+
+  "about_appHoly": "Holy",
+  "@about_appHoly": {
+    "description": "Holy app name"
+  },
+
+  "about_appHolySubtitle": "Daily Bible Verses",
+  "@about_appHolySubtitle": {
+    "description": "Holy app subtitle"
+  },
+
+  "about_appUnique": "Unique",
+  "@about_appUnique": {
+    "description": "Unique app name"
+  },
+
+  "about_appUniqueSubtitle": "Self-Love Reminders",
+  "@about_appUniqueSubtitle": {
+    "description": "Unique app subtitle"
+  },
+
+  "about_appMotiv": "Motiv",
+  "@about_appMotiv": {
+    "description": "Motiv app name"
+  },
+
+  "about_appMotivSubtitle": "Inspirational Quotes",
+  "@about_appMotivSubtitle": {
+    "description": "Motiv app subtitle"
+  },
+
+  "about_appDivine": "Divine",
+  "@about_appDivine": {
+    "description": "Divine app name"
+  },
+
+  "about_appDivineSubtitle": "Angel Messages",
+  "@about_appDivineSubtitle": {
+    "description": "Divine app subtitle"
+  },
+
   "tone_stern": "Stern & Fair",
   "@tone_stern": {
     "description": "Stern judge personality option"

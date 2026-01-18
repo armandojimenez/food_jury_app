@@ -602,6 +602,150 @@ abstract class AppLocalizations {
   /// **'Meet the Developer'**
   String get about_meetDeveloper;
 
+  /// Developer's name
+  ///
+  /// In en, this message translates to:
+  /// **'Armando Jiménez'**
+  String get about_developerName;
+
+  /// Developer's job title badge
+  ///
+  /// In en, this message translates to:
+  /// **'MOBILE DEVELOPER'**
+  String get about_developerTitle;
+
+  /// Developer's location
+  ///
+  /// In en, this message translates to:
+  /// **'Carolina, Puerto Rico 🇵🇷'**
+  String get about_developerLocation;
+
+  /// Bio introduction paragraph
+  ///
+  /// In en, this message translates to:
+  /// **'Hey! I\'m Armando, a mobile developer from Carolina, Puerto Rico. 🇵🇷'**
+  String get about_bioIntro;
+
+  /// Bio passion paragraph
+  ///
+  /// In en, this message translates to:
+  /// **'I have a deep passion for building apps that make people smile, feel positive, and maybe even change the way they see the world. Whether it\'s a fun tool, something for mental wellness, or just an app that brings a little joy to your day, I pour my heart into everything I create.'**
+  String get about_bioPassion;
+
+  /// Bio motivation paragraph
+  ///
+  /// In en, this message translates to:
+  /// **'What drives me? Knowing that something I built might be used by millions of people around the world. That someone in another country might open my app and feel a little bit better. That\'s the magic of mobile development, and I\'m grateful to be part of it.'**
+  String get about_bioDrive;
+
+  /// Bio closing statement
+  ///
+  /// In en, this message translates to:
+  /// **'Everything I create is made with love, from Puerto Rico to the world. 🌴❤️'**
+  String get about_bioClosing;
+
+  /// Years of experience label
+  ///
+  /// In en, this message translates to:
+  /// **'YEARS'**
+  String get about_statsYears;
+
+  /// User count label
+  ///
+  /// In en, this message translates to:
+  /// **'USERS'**
+  String get about_statsUsers;
+
+  /// Love/passion label
+  ///
+  /// In en, this message translates to:
+  /// **'LOVE'**
+  String get about_statsLove;
+
+  /// Website contact button
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get about_contactWebsite;
+
+  /// GitHub contact button
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get about_contactGitHub;
+
+  /// LinkedIn contact button
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn'**
+  String get about_contactLinkedIn;
+
+  /// Email contact button
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get about_contactEmail;
+
+  /// Believe app name
+  ///
+  /// In en, this message translates to:
+  /// **'Believe'**
+  String get about_appBelieve;
+
+  /// Believe app subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Affirmations'**
+  String get about_appBelieveSubtitle;
+
+  /// Holy app name
+  ///
+  /// In en, this message translates to:
+  /// **'Holy'**
+  String get about_appHoly;
+
+  /// Holy app subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Bible Verses'**
+  String get about_appHolySubtitle;
+
+  /// Unique app name
+  ///
+  /// In en, this message translates to:
+  /// **'Unique'**
+  String get about_appUnique;
+
+  /// Unique app subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Self-Love Reminders'**
+  String get about_appUniqueSubtitle;
+
+  /// Motiv app name
+  ///
+  /// In en, this message translates to:
+  /// **'Motiv'**
+  String get about_appMotiv;
+
+  /// Motiv app subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Inspirational Quotes'**
+  String get about_appMotivSubtitle;
+
+  /// Divine app name
+  ///
+  /// In en, this message translates to:
+  /// **'Divine'**
+  String get about_appDivine;
+
+  /// Divine app subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Angel Messages'**
+  String get about_appDivineSubtitle;
+
   /// Stern judge personality option
   ///
   /// In en, this message translates to:

@@ -264,6 +264,82 @@ class AppLocalizationsEn extends AppLocalizations {
   String get about_meetDeveloper => 'Meet the Developer';
 
   @override
+  String get about_developerName => 'Armando Jiménez';
+
+  @override
+  String get about_developerTitle => 'MOBILE DEVELOPER';
+
+  @override
+  String get about_developerLocation => 'Carolina, Puerto Rico 🇵🇷';
+
+  @override
+  String get about_bioIntro =>
+      'Hey! I\'m Armando, a mobile developer from Carolina, Puerto Rico. 🇵🇷';
+
+  @override
+  String get about_bioPassion =>
+      'I have a deep passion for building apps that make people smile, feel positive, and maybe even change the way they see the world. Whether it\'s a fun tool, something for mental wellness, or just an app that brings a little joy to your day, I pour my heart into everything I create.';
+
+  @override
+  String get about_bioDrive =>
+      'What drives me? Knowing that something I built might be used by millions of people around the world. That someone in another country might open my app and feel a little bit better. That\'s the magic of mobile development, and I\'m grateful to be part of it.';
+
+  @override
+  String get about_bioClosing =>
+      'Everything I create is made with love, from Puerto Rico to the world. 🌴❤️';
+
+  @override
+  String get about_statsYears => 'YEARS';
+
+  @override
+  String get about_statsUsers => 'USERS';
+
+  @override
+  String get about_statsLove => 'LOVE';
+
+  @override
+  String get about_contactWebsite => 'Website';
+
+  @override
+  String get about_contactGitHub => 'GitHub';
+
+  @override
+  String get about_contactLinkedIn => 'LinkedIn';
+
+  @override
+  String get about_contactEmail => 'Email';
+
+  @override
+  String get about_appBelieve => 'Believe';
+
+  @override
+  String get about_appBelieveSubtitle => 'Daily Affirmations';
+
+  @override
+  String get about_appHoly => 'Holy';
+
+  @override
+  String get about_appHolySubtitle => 'Daily Bible Verses';
+
+  @override
+  String get about_appUnique => 'Unique';
+
+  @override
+  String get about_appUniqueSubtitle => 'Self-Love Reminders';
+
+  @override
+  String get about_appMotiv => 'Motiv';
+
+  @override
+  String get about_appMotivSubtitle => 'Inspirational Quotes';
+
+  @override
+  String get about_appDivine => 'Divine';
+
+  @override
+  String get about_appDivineSubtitle => 'Angel Messages';
+
+  @override
   String get tone_stern => 'Stern & Fair';
 
   @override
