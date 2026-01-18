@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/env/env.dart';
+import '../../../core/providers/mock_ai_provider.dart';
 import '../../../core/providers/theme_provider.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
@@ -41,10 +43,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   void _selectTheme(ThemeMode mode) {
     ref.read(themeNotifierProvider.notifier).setThemeMode(mode);
 
-    AppSnackbar.showSuccess(
-      context,
-      message: 'Theme updated!',
-    );
+    AppSnackbar.showSuccess(context, message: 'Theme updated!');
   }
 
   JudgeBitePose get _judgeBitePose {
@@ -79,11 +78,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
             // Judge Bite preview (reacts to tone selection)
             Center(
-              child: _JudgeBitePreview(
-                pose: _judgeBitePose,
-                tone: _selectedTone,
-              ),
-            )
+                  child: _JudgeBitePreview(
+                    pose: _judgeBitePose,
+                    tone: _selectedTone,
+                  ),
+                )
                 .animate()
                 .fadeIn(duration: AppDimensions.durationMedium)
                 .scale(
@@ -96,19 +95,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             const SizedBox(height: AppDimensions.spaceXxl),
 
             // Judge's Personality Section
-            _SectionHeader(title: context.l10n.settings_judgePersonality)
-                .animate()
-                .fadeIn(
-                  duration: AppDimensions.durationMedium,
-                  delay: const Duration(milliseconds: 100),
-                ),
+            _SectionHeader(
+              title: context.l10n.settings_judgePersonality,
+            ).animate().fadeIn(
+              duration: AppDimensions.durationMedium,
+              delay: const Duration(milliseconds: 100),
+            ),
 
             const SizedBox(height: AppDimensions.spaceMd),
 
-            _ToneSelector(
-              selectedTone: _selectedTone,
-              onSelect: _selectTone,
-            )
+            _ToneSelector(selectedTone: _selectedTone, onSelect: _selectTone)
                 .animate()
                 .fadeIn(
                   duration: AppDimensions.durationMedium,
@@ -124,19 +120,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             const SizedBox(height: AppDimensions.spaceXxl),
 
             // Appearance Section
-            _SectionHeader(title: context.l10n.settings_appearance)
-                .animate()
-                .fadeIn(
-                  duration: AppDimensions.durationMedium,
-                  delay: const Duration(milliseconds: 200),
-                ),
+            _SectionHeader(
+              title: context.l10n.settings_appearance,
+            ).animate().fadeIn(
+              duration: AppDimensions.durationMedium,
+              delay: const Duration(milliseconds: 200),
+            ),
 
             const SizedBox(height: AppDimensions.spaceMd),
 
-            _ThemeSelector(
-              selectedTheme: selectedTheme,
-              onSelect: _selectTheme,
-            )
+            _ThemeSelector(selectedTheme: selectedTheme, onSelect: _selectTheme)
                 .animate()
                 .fadeIn(
                   duration: AppDimensions.durationMedium,
@@ -152,12 +145,37 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             const SizedBox(height: AppDimensions.spaceXxl),
 
             // About Section
-            _AboutSection()
-                .animate()
-                .fadeIn(
-                  duration: AppDimensions.durationMedium,
-                  delay: const Duration(milliseconds: 300),
-                ),
+            _AboutSection().animate().fadeIn(
+              duration: AppDimensions.durationMedium,
+              delay: const Duration(milliseconds: 300),
+            ),
+
+            // Dev Settings Section (only in dev mode)
+            if (Env.isDev) ...[
+              const SizedBox(height: AppDimensions.spaceXxl),
+
+              _SectionHeader(
+                title: context.l10n.settings_devSection,
+              ).animate().fadeIn(
+                duration: AppDimensions.durationMedium,
+                delay: const Duration(milliseconds: 350),
+              ),
+
+              const SizedBox(height: AppDimensions.spaceMd),
+
+              _DevSettingsSection()
+                  .animate()
+                  .fadeIn(
+                    duration: AppDimensions.durationMedium,
+                    delay: const Duration(milliseconds: 400),
+                  )
+                  .slideY(
+                    begin: 0.1,
+                    end: 0.0,
+                    duration: AppDimensions.durationMedium,
+                    delay: const Duration(milliseconds: 400),
+                  ),
+            ],
 
             const SizedBox(height: AppDimensions.spaceXxl),
           ],
@@ -187,10 +205,7 @@ class _SectionHeader extends StatelessWidget {
 
 /// Judge Bite preview that shows current tone.
 class _JudgeBitePreview extends StatelessWidget {
-  const _JudgeBitePreview({
-    required this.pose,
-    required this.tone,
-  });
+  const _JudgeBitePreview({required this.pose, required this.tone});
 
   final JudgeBitePose pose;
   final JudgeTone tone;
@@ -201,10 +216,7 @@ class _JudgeBitePreview extends StatelessWidget {
 
     return Column(
       children: [
-        JudgeBite(
-          pose: pose,
-          size: JudgeBiteSize.large,
-        ),
+        JudgeBite(pose: pose, size: JudgeBiteSize.large),
 
         const SizedBox(height: AppDimensions.spaceMd),
 
@@ -239,10 +251,7 @@ class _JudgeBitePreview extends StatelessWidget {
 
 /// Tone selector cards.
 class _ToneSelector extends StatelessWidget {
-  const _ToneSelector({
-    required this.selectedTone,
-    required this.onSelect,
-  });
+  const _ToneSelector({required this.selectedTone, required this.onSelect});
 
   final JudgeTone selectedTone;
   final Function(JudgeTone) onSelect;
@@ -303,10 +312,7 @@ class _ToneCard extends StatelessWidget {
         child: Row(
           children: [
             // Tone icon
-            Text(
-              tone.icon,
-              style: const TextStyle(fontSize: 28),
-            ),
+            Text(tone.icon, style: const TextStyle(fontSize: 28)),
 
             const SizedBox(width: AppDimensions.spaceMd),
 
@@ -321,8 +327,9 @@ class _ToneCard extends StatelessWidget {
                       color: isSelected
                           ? colorScheme.primary
                           : colorScheme.onSurface,
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.w500,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: AppDimensions.spaceXxs),
@@ -353,11 +360,7 @@ class _ToneCard extends StatelessWidget {
                 ),
               ),
               child: isSelected
-                  ? const Icon(
-                      Icons.check,
-                      size: 16,
-                      color: Colors.white,
-                    )
+                  ? const Icon(Icons.check, size: 16, color: Colors.white)
                   : null,
             ),
           ],
@@ -369,10 +372,7 @@ class _ToneCard extends StatelessWidget {
 
 /// Theme selector with segmented control and retro styling.
 class _ThemeSelector extends StatelessWidget {
-  const _ThemeSelector({
-    required this.selectedTheme,
-    required this.onSelect,
-  });
+  const _ThemeSelector({required this.selectedTheme, required this.onSelect});
 
   final ThemeMode selectedTheme;
   final Function(ThemeMode) onSelect;
@@ -475,9 +475,10 @@ class _ThemeOptionState extends State<_ThemeOption>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.95,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
   }
 
   @override
@@ -504,10 +505,7 @@ class _ThemeOptionState extends State<_ThemeOption>
         child: AnimatedBuilder(
           animation: _scaleAnimation,
           builder: (context, child) {
-            return Transform.scale(
-              scale: _scaleAnimation.value,
-              child: child,
-            );
+            return Transform.scale(scale: _scaleAnimation.value, child: child);
           },
           child: AnimatedContainer(
             duration: AppDimensions.durationFast,
@@ -546,8 +544,9 @@ class _ThemeOptionState extends State<_ThemeOption>
                     color: widget.isSelected
                         ? colorScheme.onPrimary
                         : colorScheme.onSurfaceVariant,
-                    fontWeight:
-                        widget.isSelected ? FontWeight.w700 : FontWeight.w500,
+                    fontWeight: widget.isSelected
+                        ? FontWeight.w700
+                        : FontWeight.w500,
                   ),
                 ),
               ],
@@ -590,10 +589,7 @@ class _AboutSection extends StatelessWidget {
           Row(
             children: [
               // Small Judge Bite
-              JudgeBite(
-                pose: JudgeBitePose.waving,
-                size: JudgeBiteSize.small,
-              ),
+              JudgeBite(pose: JudgeBitePose.waving, size: JudgeBiteSize.small),
               const SizedBox(width: AppDimensions.spaceMd),
               Expanded(
                 child: Column(
@@ -671,24 +667,30 @@ class _AboutSection extends StatelessWidget {
                 label: context.l10n.settings_about,
                 icon: Icons.info_outline,
                 onTap: () {
-                  AppSnackbar.showInfo(context,
-                      message: 'About page coming soon!');
+                  AppSnackbar.showInfo(
+                    context,
+                    message: 'About page coming soon!',
+                  );
                 },
               ),
               _AboutLink(
                 label: context.l10n.settings_privacy,
                 icon: Icons.privacy_tip_outlined,
                 onTap: () {
-                  AppSnackbar.showInfo(context,
-                      message: 'Privacy policy coming soon!');
+                  AppSnackbar.showInfo(
+                    context,
+                    message: 'Privacy policy coming soon!',
+                  );
                 },
               ),
               _AboutLink(
                 label: context.l10n.settings_terms,
                 icon: Icons.description_outlined,
                 onTap: () {
-                  AppSnackbar.showInfo(context,
-                      message: 'Terms of service coming soon!');
+                  AppSnackbar.showInfo(
+                    context,
+                    message: 'Terms of service coming soon!',
+                  );
                 },
               ),
             ],
@@ -701,11 +703,7 @@ class _AboutSection extends StatelessWidget {
 
 /// Clickable about link with icon.
 class _AboutLink extends StatelessWidget {
-  const _AboutLink({
-    required this.label,
-    required this.onTap,
-    this.icon,
-  });
+  const _AboutLink({required this.label, required this.onTap, this.icon});
 
   final String label;
   final VoidCallback onTap;
@@ -741,6 +739,114 @@ class _AboutLink extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Developer settings section (only shown in dev mode).
+class _DevSettingsSection extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final colorScheme = Theme.of(context).colorScheme;
+    final useMockAi = ref.watch(mockAiNotifierProvider);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.errorContainer.withValues(alpha: 0.1),
+        borderRadius: AppDimensions.borderRadiusMd,
+        border: Border.all(
+          color: colorScheme.error.withValues(alpha: 0.3),
+          width: AppDimensions.borderMedium,
+        ),
+      ),
+      child: Column(
+        children: [
+          // Mock AI Toggle
+          _DevSettingsTile(
+            icon: Icons.smart_toy_outlined,
+            title: l10n.settings_useMockAi,
+            subtitle: l10n.settings_useMockAiDescription,
+            trailing: Switch.adaptive(
+              value: useMockAi,
+              onChanged: (value) {
+                ref.read(mockAiNotifierProvider.notifier).setUseMockAi(value);
+                AppSnackbar.showSuccess(
+                  context,
+                  message: value
+                      ? l10n.settings_mockAiEnabled
+                      : l10n.settings_mockAiDisabled,
+                );
+              },
+              activeTrackColor: colorScheme.primary,
+              activeThumbColor: colorScheme.onPrimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Individual dev settings tile.
+class _DevSettingsTile extends StatelessWidget {
+  const _DevSettingsTile({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.trailing,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Widget trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.all(AppDimensions.spaceMd),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(AppDimensions.spaceSm),
+            decoration: BoxDecoration(
+              color: colorScheme.error.withValues(alpha: 0.1),
+              borderRadius: AppDimensions.borderRadiusSm,
+            ),
+            child: Icon(
+              icon,
+              size: AppDimensions.iconSizeMd,
+              color: colorScheme.error,
+            ),
+          ),
+          const SizedBox(width: AppDimensions.spaceMd),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: AppTypography.bodyLarge.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: colorScheme.onSurface,
+                  ),
+                ),
+                const SizedBox(height: AppDimensions.spaceXxs),
+                Text(
+                  subtitle,
+                  style: AppTypography.bodySmall.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          trailing,
+        ],
       ),
     );
   }

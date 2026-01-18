@@ -38,9 +38,7 @@ class HistoryScreen extends ConsumerWidget {
         data: (verdicts) => verdicts.isEmpty
             ? const _EmptyState()
             : _VerdictsList(verdicts: verdicts),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
+        loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -84,10 +82,7 @@ class _EmptyState extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Sleeping Judge Bite
-            JudgeBite(
-              pose: JudgeBitePose.sleeping,
-              size: JudgeBiteSize.large,
-            )
+            JudgeBite(pose: JudgeBitePose.sleeping, size: JudgeBiteSize.large)
                 .animate()
                 .fadeIn(duration: AppDimensions.durationMedium)
                 .scale(
@@ -106,12 +101,10 @@ class _EmptyState extends StatelessWidget {
                 color: colorScheme.onSurface,
               ),
               textAlign: TextAlign.center,
-            )
-                .animate()
-                .fadeIn(
-                  duration: AppDimensions.durationMedium,
-                  delay: const Duration(milliseconds: 200),
-                ),
+            ).animate().fadeIn(
+              duration: AppDimensions.durationMedium,
+              delay: const Duration(milliseconds: 200),
+            ),
 
             const SizedBox(height: AppDimensions.spaceSm),
 
@@ -122,21 +115,19 @@ class _EmptyState extends StatelessWidget {
                 color: colorScheme.onSurfaceVariant,
               ),
               textAlign: TextAlign.center,
-            )
-                .animate()
-                .fadeIn(
-                  duration: AppDimensions.durationMedium,
-                  delay: const Duration(milliseconds: 300),
-                ),
+            ).animate().fadeIn(
+              duration: AppDimensions.durationMedium,
+              delay: const Duration(milliseconds: 300),
+            ),
 
             const SizedBox(height: AppDimensions.spaceXxl),
 
             // CTA to start first decision
             AppButton(
-              label: context.l10n.home_emptyAction,
-              icon: Icons.gavel,
-              onPressed: () => context.go(AppRouter.newDecision),
-            )
+                  label: context.l10n.home_emptyAction,
+                  icon: Icons.gavel,
+                  onPressed: () => context.go(AppRouter.newDecision),
+                )
                 .animate()
                 .fadeIn(
                   duration: AppDimensions.durationMedium,
@@ -215,28 +206,31 @@ class _VerdictsList extends StatelessWidget {
     final groups = <_VerdictGroup>[];
 
     if (todayVerdicts.isNotEmpty) {
-      groups.add(_VerdictGroup(
-        title: context.l10n.history_today,
-        verdicts: todayVerdicts,
-      ));
+      groups.add(
+        _VerdictGroup(
+          title: context.l10n.history_today,
+          verdicts: todayVerdicts,
+        ),
+      );
     }
     if (yesterdayVerdicts.isNotEmpty) {
-      groups.add(_VerdictGroup(
-        title: context.l10n.history_yesterday,
-        verdicts: yesterdayVerdicts,
-      ));
+      groups.add(
+        _VerdictGroup(
+          title: context.l10n.history_yesterday,
+          verdicts: yesterdayVerdicts,
+        ),
+      );
     }
     if (thisWeekVerdicts.isNotEmpty) {
-      groups.add(_VerdictGroup(
-        title: context.l10n.history_thisWeek,
-        verdicts: thisWeekVerdicts,
-      ));
+      groups.add(
+        _VerdictGroup(
+          title: context.l10n.history_thisWeek,
+          verdicts: thisWeekVerdicts,
+        ),
+      );
     }
     if (earlierVerdicts.isNotEmpty) {
-      groups.add(_VerdictGroup(
-        title: 'Earlier',
-        verdicts: earlierVerdicts,
-      ));
+      groups.add(_VerdictGroup(title: 'Earlier', verdicts: earlierVerdicts));
     }
 
     return groups;
@@ -245,10 +239,7 @@ class _VerdictsList extends StatelessWidget {
 
 /// Helper class for grouping verdicts.
 class _VerdictGroup {
-  const _VerdictGroup({
-    required this.title,
-    required this.verdicts,
-  });
+  const _VerdictGroup({required this.title, required this.verdicts});
 
   final String title;
   final List<Verdict> verdicts;
@@ -286,12 +277,10 @@ class _DateGroup extends StatelessWidget {
               letterSpacing: 1.2,
             ),
           ),
-        )
-            .animate()
-            .fadeIn(
-              duration: AppDimensions.durationMedium,
-              delay: Duration(milliseconds: animationDelay),
-            ),
+        ).animate().fadeIn(
+          duration: AppDimensions.durationMedium,
+          delay: Duration(milliseconds: animationDelay),
+        ),
 
         // Verdict cards
         ...verdicts.asMap().entries.map((entry) {
@@ -344,7 +333,10 @@ class _VerdictCard extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: [
               colorScheme.surface,
-              (isDark ? colorScheme.surfaceContainerHighest : colorScheme.surfaceContainerLowest).withValues(alpha: 0.5),
+              (isDark
+                      ? colorScheme.surfaceContainerHighest
+                      : colorScheme.surfaceContainerLowest)
+                  .withValues(alpha: 0.5),
             ],
           ),
           borderRadius: AppDimensions.borderRadiusMd,
@@ -364,10 +356,7 @@ class _VerdictCard extends StatelessWidget {
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [
-                    AppColors.primary,
-                    AppColors.primaryDark,
-                  ],
+                  colors: [AppColors.primary, AppColors.primaryDark],
                 ),
                 borderRadius: AppDimensions.borderRadiusMd,
                 border: Border.all(
@@ -420,12 +409,14 @@ class _VerdictCard extends StatelessWidget {
                           vertical: AppDimensions.spaceXxs,
                         ),
                         decoration: BoxDecoration(
-                          color: _getObjectiveColor(verdict.objective)
-                              .withValues(alpha: 0.15),
+                          color: _getObjectiveColor(
+                            verdict.objective,
+                          ).withValues(alpha: 0.15),
                           borderRadius: AppDimensions.borderRadiusSm,
                           border: Border.all(
-                            color: _getObjectiveColor(verdict.objective)
-                                .withValues(alpha: 0.5),
+                            color: _getObjectiveColor(
+                              verdict.objective,
+                            ).withValues(alpha: 0.5),
                             width: 1,
                           ),
                         ),
@@ -510,14 +501,29 @@ class _VerdictCard extends StatelessWidget {
 
     if (dateOnly == today) {
       // Format time as "2:15 PM"
-      final hour = date.hour > 12 ? date.hour - 12 : (date.hour == 0 ? 12 : date.hour);
+      final hour = date.hour > 12
+          ? date.hour - 12
+          : (date.hour == 0 ? 12 : date.hour);
       final amPm = date.hour >= 12 ? 'PM' : 'AM';
       final minute = date.minute.toString().padLeft(2, '0');
       return '$hour:$minute $amPm';
     }
 
     // Format as "Jan 15"
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
     return '${months[date.month - 1]} ${date.day}';
   }
 }

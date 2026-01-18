@@ -404,6 +404,30 @@ abstract class AppLocalizations {
   /// **'Share'**
   String get verdict_share;
 
+  /// Header for joke bonus content
+  ///
+  /// In en, this message translates to:
+  /// **'Judge\'s Joke'**
+  String get verdict_bonusJoke;
+
+  /// Header for fun fact bonus content
+  ///
+  /// In en, this message translates to:
+  /// **'Fun Fact'**
+  String get verdict_bonusFunFact;
+
+  /// Header for tip bonus content
+  ///
+  /// In en, this message translates to:
+  /// **'Pro Tip'**
+  String get verdict_bonusTip;
+
+  /// Header for story bonus content
+  ///
+  /// In en, this message translates to:
+  /// **'Story Time'**
+  String get verdict_bonusStory;
+
   /// Header for history screen
   ///
   /// In en, this message translates to:
@@ -493,6 +517,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Terms'**
   String get settings_terms;
+
+  /// Section header for developer settings (only in dev mode)
+  ///
+  /// In en, this message translates to:
+  /// **'DEVELOPER OPTIONS'**
+  String get settings_devSection;
+
+  /// Toggle for using mock AI instead of real AI
+  ///
+  /// In en, this message translates to:
+  /// **'Use Simulated AI'**
+  String get settings_useMockAi;
+
+  /// Description for mock AI toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Use offline mock responses instead of real AI calls'**
+  String get settings_useMockAiDescription;
+
+  /// Snackbar message when mock AI is enabled
+  ///
+  /// In en, this message translates to:
+  /// **'Simulated AI enabled'**
+  String get settings_mockAiEnabled;
+
+  /// Snackbar message when mock AI is disabled
+  ///
+  /// In en, this message translates to:
+  /// **'Real AI enabled'**
+  String get settings_mockAiDisabled;
 
   /// Stern judge personality option
   ///
@@ -685,6 +739,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Decision deleted'**
   String get snackbar_decisionDeleted;
+
+  /// Button to add a photo to an option
+  ///
+  /// In en, this message translates to:
+  /// **'Add Photo'**
+  String get image_addPhoto;
+
+  /// Button to change an existing photo
+  ///
+  /// In en, this message translates to:
+  /// **'Change Photo'**
+  String get image_changePhoto;
+
+  /// Button to remove a photo
+  ///
+  /// In en, this message translates to:
+  /// **'Remove Photo'**
+  String get image_removePhoto;
+
+  /// Option to take a new photo with camera
+  ///
+  /// In en, this message translates to:
+  /// **'Take Photo'**
+  String get image_takePhoto;
+
+  /// Option to select a photo from gallery
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from Gallery'**
+  String get image_chooseFromGallery;
+
+  /// Label for photo section in retro courtroom style
+  ///
+  /// In en, this message translates to:
+  /// **'Photo Evidence'**
+  String get image_photoEvidence;
+
+  /// Title for camera permission dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Camera Access Needed'**
+  String get permission_cameraTitle;
+
+  /// Message explaining why camera permission is needed
+  ///
+  /// In en, this message translates to:
+  /// **'Please allow camera access to snap photos of your food options.'**
+  String get permission_cameraMessage;
+
+  /// Title for photo library permission dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Photo Library Access Needed'**
+  String get permission_galleryTitle;
+
+  /// Message explaining why gallery permission is needed
+  ///
+  /// In en, this message translates to:
+  /// **'Please allow photo library access to select photos of your food options.'**
+  String get permission_galleryMessage;
+
+  /// Title when permission was denied
+  ///
+  /// In en, this message translates to:
+  /// **'Permission Denied'**
+  String get permission_deniedTitle;
+
+  /// Message when permission was denied
+  ///
+  /// In en, this message translates to:
+  /// **'Without this permission, you cannot add photos. You can enable it in Settings.'**
+  String get permission_deniedMessage;
+
+  /// Button to open app settings
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get permission_openSettings;
+
+  /// Error when image fails to load
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load image'**
+  String get error_imageLoad;
+
+  /// Success message when photo is added
+  ///
+  /// In en, this message translates to:
+  /// **'Photo evidence added!'**
+  String get snackbar_photoAdded;
+
+  /// Success message when photo is removed
+  ///
+  /// In en, this message translates to:
+  /// **'Photo removed'**
+  String get snackbar_photoRemoved;
+
+  /// Generic loading message
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get common_loading;
+
+  /// Status text when no options added
+  ///
+  /// In en, this message translates to:
+  /// **'Add your food options to begin'**
+  String get decision_addOptionsToBegin;
+
+  /// Status text showing how many more options needed
+  ///
+  /// In en, this message translates to:
+  /// **'Add {count} more option{count, plural, =1{} other{s}}'**
+  String decision_addMoreOptions(int count);
+
+  /// Status text when options added but no goal selected
+  ///
+  /// In en, this message translates to:
+  /// **'Now pick your goal!'**
+  String get decision_pickYourGoal;
+
+  /// Status text when ready to submit
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for the verdict!'**
+  String get decision_readyForVerdict;
+
+  /// Empty state title for options list
+  ///
+  /// In en, this message translates to:
+  /// **'No evidence yet!'**
+  String get decision_noEvidenceYet;
+
+  /// Empty state message for options list
+  ///
+  /// In en, this message translates to:
+  /// **'Add your food options to build your case'**
+  String get decision_addOptionsToBuildCase;
+
+  /// Button text to add first option
+  ///
+  /// In en, this message translates to:
+  /// **'Add First Option'**
+  String get decision_addFirstOption;
+
+  /// Header for add option sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Add to your case'**
+  String get decision_addToYourCase;
+
+  /// Shows remaining option slots
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left'**
+  String decision_slotsLeft(int count);
+
+  /// Validation error for empty name field
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a name'**
+  String get validation_pleaseEnterName;
+
+  /// Judge Bite message when no options
+  ///
+  /// In en, this message translates to:
+  /// **'Present your evidence!'**
+  String get judgeBite_presentEvidence;
+
+  /// Judge Bite message with only one option
+  ///
+  /// In en, this message translates to:
+  /// **'One option? Add more to compare!'**
+  String get judgeBite_addMoreToCompare;
+
+  /// Judge Bite message when no goal selected
+  ///
+  /// In en, this message translates to:
+  /// **'Now tell me your goal!'**
+  String get judgeBite_tellMeYourGoal;
+
+  /// Judge Bite message when ready to submit
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to deliver the verdict!'**
+  String get judgeBite_readyToDeliver;
+
+  /// Judge Bite message while building case
+  ///
+  /// In en, this message translates to:
+  /// **'Building a solid case...'**
+  String get judgeBite_buildingCase;
+
+  /// Accessibility label for remove option button
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name}'**
+  String a11y_removeOption(String name);
+
+  /// Accessibility label for option photo
+  ///
+  /// In en, this message translates to:
+  /// **'Photo of {name}'**
+  String a11y_photoOf(String name);
 }
 
 class _AppLocalizationsDelegate

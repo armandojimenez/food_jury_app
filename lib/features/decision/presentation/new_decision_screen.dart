@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -99,12 +101,18 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
       if (!mounted) return;
       LoadingOverlay.hide(context);
       debugPrint('AI Service Error: ${e.message}');
-      AppSnackbar.showError(context, message: context.l10n.error_genericMessage);
+      AppSnackbar.showError(
+        context,
+        message: context.l10n.error_genericMessage,
+      );
     } catch (e) {
       if (!mounted) return;
       LoadingOverlay.hide(context);
       debugPrint('Unexpected error: $e');
-      AppSnackbar.showError(context, message: context.l10n.error_genericMessage);
+      AppSnackbar.showError(
+        context,
+        message: context.l10n.error_genericMessage,
+      );
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -115,10 +123,8 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => _AddOptionSheet(
-        onAdd: _addOption,
-        optionNumber: _options.length + 1,
-      ),
+      builder: (context) =>
+          _AddOptionSheet(onAdd: _addOption, optionNumber: _options.length + 1),
     );
   }
 
@@ -166,9 +172,9 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                         hasObjective: _selectedObjective != null,
                         minOptions: _minOptions,
                         maxOptions: _maxOptions,
-                      )
-                          .animate()
-                          .fadeIn(duration: AppDimensions.durationMedium),
+                      ).animate().fadeIn(
+                        duration: AppDimensions.durationMedium,
+                      ),
 
                       const SizedBox(height: AppDimensions.spaceLg),
 
@@ -186,12 +192,10 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                       _ObjectiveSection(
                         selectedObjective: _selectedObjective,
                         onSelect: _selectObjective,
-                      )
-                          .animate()
-                          .fadeIn(
-                            duration: AppDimensions.durationMedium,
-                            delay: const Duration(milliseconds: 200),
-                          ),
+                      ).animate().fadeIn(
+                        duration: AppDimensions.durationMedium,
+                        delay: const Duration(milliseconds: 200),
+                      ),
 
                       const SizedBox(height: AppDimensions.spaceXl),
 
@@ -310,13 +314,13 @@ class _ProgressSection extends StatelessWidget {
     return optionProgress + objectiveProgress;
   }
 
-  String get _statusText {
-    if (optionsCount == 0) return 'Add your food options to begin';
+  String _getStatusText(BuildContext context) {
+    if (optionsCount == 0) return context.l10n.decision_addOptionsToBegin;
     if (optionsCount < minOptions) {
-      return 'Add ${minOptions - optionsCount} more option${minOptions - optionsCount > 1 ? 's' : ''}';
+      return context.l10n.decision_addMoreOptions(minOptions - optionsCount);
     }
-    if (!hasObjective) return 'Now pick your goal!';
-    return 'Ready for the verdict!';
+    if (!hasObjective) return context.l10n.decision_pickYourGoal;
+    return context.l10n.decision_readyForVerdict;
   }
 
   @override
@@ -340,13 +344,15 @@ class _ProgressSection extends StatelessWidget {
             children: [
               Icon(
                 _progress >= 1.0 ? Icons.check_circle : Icons.pending,
-                color: _progress >= 1.0 ? AppColors.success : colorScheme.primary,
+                color: _progress >= 1.0
+                    ? AppColors.success
+                    : colorScheme.primary,
                 size: 20,
               ),
               const SizedBox(width: AppDimensions.spaceSm),
               Expanded(
                 child: Text(
-                  _statusText,
+                  _getStatusText(context),
                   style: AppTypography.labelMedium.copyWith(
                     color: _progress >= 1.0
                         ? AppColors.success
@@ -443,22 +449,25 @@ class _OptionsSection extends StatelessWidget {
             final option = entry.value;
             return Padding(
               padding: const EdgeInsets.only(bottom: AppDimensions.spaceMd),
-              child: _ExhibitCard(
-                option: option,
-                exhibitLetter: String.fromCharCode(65 + index), // A, B, C...
-                onRemove: () => onRemove(index),
-              )
-                  .animate()
-                  .fadeIn(
-                    duration: AppDimensions.durationMedium,
-                    delay: Duration(milliseconds: index * 100),
-                  )
-                  .slideX(
-                    begin: 0.1,
-                    end: 0.0,
-                    duration: AppDimensions.durationMedium,
-                    delay: Duration(milliseconds: index * 100),
-                  ),
+              child:
+                  _ExhibitCard(
+                        option: option,
+                        exhibitLetter: String.fromCharCode(
+                          65 + index,
+                        ), // A, B, C...
+                        onRemove: () => onRemove(index),
+                      )
+                      .animate()
+                      .fadeIn(
+                        duration: AppDimensions.durationMedium,
+                        delay: Duration(milliseconds: index * 100),
+                      )
+                      .slideX(
+                        begin: 0.1,
+                        end: 0.0,
+                        duration: AppDimensions.durationMedium,
+                        delay: Duration(milliseconds: index * 100),
+                      ),
             );
           }),
 
@@ -467,12 +476,10 @@ class _OptionsSection extends StatelessWidget {
             _AddOptionButton(
               onPressed: onAddMore!,
               remainingSlots: maxOptions - options.length,
-            )
-                .animate()
-                .fadeIn(
-                  duration: AppDimensions.durationMedium,
-                  delay: Duration(milliseconds: options.length * 100),
-                ),
+            ).animate().fadeIn(
+              duration: AppDimensions.durationMedium,
+              delay: Duration(milliseconds: options.length * 100),
+            ),
         ],
       ],
     );
@@ -490,60 +497,60 @@ class _EmptyOptionsState extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
-      padding: const EdgeInsets.all(AppDimensions.spaceXl),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: AppDimensions.borderRadiusLg,
-        border: Border.all(
-          color: colorScheme.outline,
-          width: AppDimensions.borderMedium,
-        ),
-      ),
-      child: Column(
-        children: [
-          // Icon
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: colorScheme.primary.withValues(alpha: 0.2),
-              shape: BoxShape.circle,
-            ),
-            child: const Center(
-              child: Text('🍽️', style: TextStyle(fontSize: 32)),
+          padding: const EdgeInsets.all(AppDimensions.spaceXl),
+          decoration: BoxDecoration(
+            color: colorScheme.surface,
+            borderRadius: AppDimensions.borderRadiusLg,
+            border: Border.all(
+              color: colorScheme.outline,
+              width: AppDimensions.borderMedium,
             ),
           ),
+          child: Column(
+            children: [
+              // Icon
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: colorScheme.primary.withValues(alpha: 0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Text('🍽️', style: TextStyle(fontSize: 32)),
+                ),
+              ),
 
-          const SizedBox(height: AppDimensions.spaceMd),
+              const SizedBox(height: AppDimensions.spaceMd),
 
-          Text(
-            'No evidence yet!',
-            style: AppTypography.titleMedium.copyWith(
-              color: colorScheme.onSurface,
-            ),
+              Text(
+                context.l10n.decision_noEvidenceYet,
+                style: AppTypography.titleMedium.copyWith(
+                  color: colorScheme.onSurface,
+                ),
+              ),
+
+              const SizedBox(height: AppDimensions.spaceXs),
+
+              Text(
+                context.l10n.decision_addOptionsToBuildCase,
+                style: AppTypography.bodyMedium.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: AppDimensions.spaceLg),
+
+              if (onAdd != null)
+                AppButton(
+                  label: context.l10n.decision_addFirstOption,
+                  icon: Icons.add,
+                  onPressed: onAdd,
+                ),
+            ],
           ),
-
-          const SizedBox(height: AppDimensions.spaceXs),
-
-          Text(
-            'Add your food options to build your case',
-            style: AppTypography.bodyMedium.copyWith(
-              color: colorScheme.onSurfaceVariant,
-            ),
-            textAlign: TextAlign.center,
-          ),
-
-          const SizedBox(height: AppDimensions.spaceLg),
-
-          if (onAdd != null)
-            AppButton(
-              label: 'Add First Option',
-              icon: Icons.add,
-              onPressed: onAdd,
-            ),
-        ],
-      ),
-    )
+        )
         .animate()
         .fadeIn(duration: AppDimensions.durationMedium)
         .scale(
@@ -569,6 +576,7 @@ class _ExhibitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final hasImage = option.hasImage;
 
     return Container(
       decoration: BoxDecoration(
@@ -625,20 +633,57 @@ class _ExhibitCard extends StatelessWidget {
 
                 const Spacer(),
 
-                // Delete button
-                InkWell(
-                  onTap: onRemove,
-                  borderRadius: BorderRadius.circular(12),
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: AppColors.error.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12),
+                // Photo indicator badge
+                if (hasImage)
+                  Container(
+                    margin: const EdgeInsets.only(right: AppDimensions.spaceSm),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimensions.spaceXs,
+                      vertical: AppDimensions.spaceXxs,
                     ),
-                    child: Icon(
-                      Icons.close,
-                      color: colorScheme.surface,
-                      size: 18,
+                    decoration: BoxDecoration(
+                      color: AppColors.success.withValues(alpha: 0.3),
+                      borderRadius: AppDimensions.borderRadiusSm,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.photo_camera,
+                          color: colorScheme.surface,
+                          size: 12,
+                        ),
+                        const SizedBox(width: 2),
+                        Text(
+                          'PHOTO',
+                          style: AppTypography.labelSmall.copyWith(
+                            color: colorScheme.surface,
+                            fontSize: 9,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                // Delete button
+                Semantics(
+                  label: context.l10n.a11y_removeOption(option.name),
+                  button: true,
+                  child: InkWell(
+                    onTap: onRemove,
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        color: AppColors.error.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Icon(
+                        Icons.close,
+                        color: colorScheme.surface,
+                        size: 18,
+                      ),
                     ),
                   ),
                 ),
@@ -646,26 +691,15 @@ class _ExhibitCard extends StatelessWidget {
             ),
           ),
 
-          // Content
+          // Content with image
           Padding(
             padding: const EdgeInsets.all(AppDimensions.spaceMd),
             child: Row(
               children: [
-                // Food emoji placeholder
-                Container(
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    color: colorScheme.primary.withValues(alpha: 0.2),
-                    borderRadius: AppDimensions.borderRadiusSm,
-                    border: Border.all(
-                      color: colorScheme.primary.withValues(alpha: 0.3),
-                      width: 2,
-                    ),
-                  ),
-                  child: const Center(
-                    child: Text('🍴', style: TextStyle(fontSize: 24)),
-                  ),
+                // Image or placeholder
+                _OptionThumbnail(
+                  imageBytes: option.imageBytes,
+                  optionName: option.name,
                 ),
 
                 const SizedBox(width: AppDimensions.spaceMd),
@@ -718,6 +752,71 @@ class _ExhibitCard extends StatelessWidget {
   }
 }
 
+/// Thumbnail for food option with image or placeholder.
+class _OptionThumbnail extends StatelessWidget {
+  const _OptionThumbnail({this.imageBytes, this.optionName});
+
+  final Uint8List? imageBytes;
+  final String? optionName;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final hasImage = imageBytes != null && imageBytes!.isNotEmpty;
+
+    final container = Container(
+      width: 64,
+      height: 64,
+      decoration: BoxDecoration(
+        color: hasImage
+            ? colorScheme.surface
+            : colorScheme.primary.withValues(alpha: 0.2),
+        borderRadius: AppDimensions.borderRadiusSm,
+        border: Border.all(
+          color: hasImage
+              ? colorScheme.secondary
+              : colorScheme.primary.withValues(alpha: 0.3),
+          width: hasImage ? AppDimensions.borderMedium : 2,
+        ),
+        boxShadow: hasImage ? AppDimensions.shadowRetroSm : null,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppDimensions.radiusSm - 2),
+        child: hasImage
+            ? Image.memory(
+                imageBytes!,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return const _PlaceholderContent();
+                },
+              )
+            : const _PlaceholderContent(),
+      ),
+    );
+
+    // Add semantics for images
+    if (hasImage && optionName != null) {
+      return Semantics(
+        image: true,
+        label: context.l10n.a11y_photoOf(optionName!),
+        child: container,
+      );
+    }
+
+    return container;
+  }
+}
+
+/// Placeholder content for thumbnail.
+class _PlaceholderContent extends StatelessWidget {
+  const _PlaceholderContent();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('🍴', style: TextStyle(fontSize: 28)));
+  }
+}
+
 /// Styled add option button.
 class _AddOptionButton extends StatelessWidget {
   const _AddOptionButton({
@@ -756,11 +855,7 @@ class _AddOptionButton extends StatelessWidget {
                 color: colorScheme.primary,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 20,
-              ),
+              child: const Icon(Icons.add, color: Colors.white, size: 20),
             ),
             const SizedBox(width: AppDimensions.spaceSm),
             Text(
@@ -781,7 +876,7 @@ class _AddOptionButton extends StatelessWidget {
                 borderRadius: AppDimensions.borderRadiusSm,
               ),
               child: Text(
-                '$remainingSlots left',
+                context.l10n.decision_slotsLeft(remainingSlots),
                 style: AppTypography.labelSmall.copyWith(
                   color: colorScheme.primary,
                 ),
@@ -820,11 +915,7 @@ class _ObjectiveSection extends StatelessWidget {
                 color: AppColors.pop,
                 borderRadius: AppDimensions.borderRadiusSm,
               ),
-              child: Icon(
-                Icons.flag,
-                color: colorScheme.secondary,
-                size: 16,
-              ),
+              child: Icon(Icons.flag, color: colorScheme.secondary, size: 16),
             ),
             const SizedBox(width: AppDimensions.spaceSm),
             Text(
@@ -850,10 +941,10 @@ class _ObjectiveSection extends StatelessWidget {
             final isSelected = selectedObjective == objective;
 
             return _ObjectiveCard(
-              objective: objective,
-              isSelected: isSelected,
-              onTap: () => onSelect(objective),
-            )
+                  objective: objective,
+                  isSelected: isSelected,
+                  onTap: () => onSelect(objective),
+                )
                 .animate()
                 .fadeIn(
                   duration: AppDimensions.durationMedium,
@@ -918,10 +1009,7 @@ class _ObjectiveCard extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              objective.icon,
-              style: const TextStyle(fontSize: 20),
-            ),
+            Text(objective.icon, style: const TextStyle(fontSize: 20)),
             const SizedBox(width: AppDimensions.spaceSm),
             Text(
               objective.getLabel(context),
@@ -956,46 +1044,47 @@ class _JudgeBiteSection extends StatelessWidget {
     return JudgeBitePose.pointing;
   }
 
-  String get _message {
-    if (optionsCount == 0) return 'Present your evidence!';
-    if (optionsCount == 1) return 'One option? Add more to compare!';
-    if (!hasObjective) return 'Now tell me your goal!';
-    if (canSubmit) return 'Ready to deliver the verdict!';
-    return 'Building a solid case...';
+  String _getMessage(BuildContext context) {
+    if (optionsCount == 0) return context.l10n.judgeBite_presentEvidence;
+    if (optionsCount == 1) return context.l10n.judgeBite_addMoreToCompare;
+    if (!hasObjective) return context.l10n.judgeBite_tellMeYourGoal;
+    if (canSubmit) return context.l10n.judgeBite_readyToDeliver;
+    return context.l10n.judgeBite_buildingCase;
   }
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final message = _getMessage(context);
 
     return Center(
       child: Column(
         children: [
           // Speech bubble
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.spaceLg,
-              vertical: AppDimensions.spaceMd,
-            ),
-            decoration: BoxDecoration(
-              color: colorScheme.surface,
-              borderRadius: AppDimensions.borderRadiusLg,
-              border: Border.all(
-                color: colorScheme.secondary,
-                width: AppDimensions.borderMedium,
-              ),
-              boxShadow: AppDimensions.shadowRetro,
-            ),
-            child: Text(
-              '"$_message"',
-              style: AppTypography.bodyLarge.copyWith(
-                color: colorScheme.onSurface,
-                fontStyle: FontStyle.italic,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          )
-              .animate(key: ValueKey(_message))
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimensions.spaceLg,
+                  vertical: AppDimensions.spaceMd,
+                ),
+                decoration: BoxDecoration(
+                  color: colorScheme.surface,
+                  borderRadius: AppDimensions.borderRadiusLg,
+                  border: Border.all(
+                    color: colorScheme.secondary,
+                    width: AppDimensions.borderMedium,
+                  ),
+                  boxShadow: AppDimensions.shadowRetro,
+                ),
+                child: Text(
+                  '"$message"',
+                  style: AppTypography.bodyLarge.copyWith(
+                    color: colorScheme.onSurface,
+                    fontStyle: FontStyle.italic,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              )
+              .animate(key: ValueKey(message))
               .fadeIn(duration: AppDimensions.durationMedium)
               .slideY(
                 begin: -0.2,
@@ -1043,8 +1132,16 @@ class _SpeechBubblePointer extends CustomPainter {
       ..close();
 
     canvas.drawPath(path, paint);
-    canvas.drawLine(Offset(0, 0), Offset(size.width / 2, size.height), borderPaint);
-    canvas.drawLine(Offset(size.width, 0), Offset(size.width / 2, size.height), borderPaint);
+    canvas.drawLine(
+      Offset(0, 0),
+      Offset(size.width / 2, size.height),
+      borderPaint,
+    );
+    canvas.drawLine(
+      Offset(size.width, 0),
+      Offset(size.width / 2, size.height),
+      borderPaint,
+    );
   }
 
   @override
@@ -1072,12 +1169,7 @@ class _SubmitSection extends StatelessWidget {
       padding: AppDimensions.screenPadding,
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        border: Border(
-          top: BorderSide(
-            color: colorScheme.secondary,
-            width: 3,
-          ),
-        ),
+        border: Border(top: BorderSide(color: colorScheme.secondary, width: 3)),
         boxShadow: [
           BoxShadow(
             color: colorScheme.secondary.withValues(alpha: 0.1),
@@ -1095,30 +1187,36 @@ class _SubmitSection extends StatelessWidget {
   }
 }
 
-/// Bottom sheet for adding a new option.
-class _AddOptionSheet extends StatefulWidget {
-  const _AddOptionSheet({
-    required this.onAdd,
-    required this.optionNumber,
-  });
+/// Bottom sheet for adding a new option with image support.
+class _AddOptionSheet extends ConsumerStatefulWidget {
+  const _AddOptionSheet({required this.onAdd, required this.optionNumber});
 
   final Function(FoodOption) onAdd;
   final int optionNumber;
 
   @override
-  State<_AddOptionSheet> createState() => _AddOptionSheetState();
+  ConsumerState<_AddOptionSheet> createState() => _AddOptionSheetState();
 }
 
-class _AddOptionSheetState extends State<_AddOptionSheet> {
+class _AddOptionSheetState extends ConsumerState<_AddOptionSheet> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  Uint8List? _imageBytes;
 
   @override
   void dispose() {
     _nameController.dispose();
     _notesController.dispose();
     super.dispose();
+  }
+
+  void _onImageSelected(Uint8List bytes) {
+    setState(() => _imageBytes = bytes);
+  }
+
+  void _onImageRemoved() {
+    setState(() => _imageBytes = null);
   }
 
   void _submit() {
@@ -1129,6 +1227,7 @@ class _AddOptionSheetState extends State<_AddOptionSheet> {
         notes: _notesController.text.trim().isEmpty
             ? null
             : _notesController.text.trim(),
+        imageBytes: _imageBytes,
       );
 
       widget.onAdd(option);
@@ -1157,89 +1256,101 @@ class _AddOptionSheetState extends State<_AddOptionSheet> {
           width: AppDimensions.borderThick,
         ),
       ),
-      padding: EdgeInsets.only(
-        left: AppDimensions.spaceLg,
-        right: AppDimensions.spaceLg,
-        top: AppDimensions.spaceLg,
-        bottom: MediaQuery.of(context).viewInsets.bottom + AppDimensions.spaceLg,
-      ),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Header with exhibit badge
-            Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimensions.spaceMd,
-                    vertical: AppDimensions.spaceXs,
-                  ),
-                  decoration: BoxDecoration(
-                    color: colorScheme.secondary,
-                    borderRadius: AppDimensions.borderRadiusSm,
-                  ),
-                  child: Text(
-                    'EXHIBIT $exhibitLetter',
-                    style: AppTypography.labelMedium.copyWith(
-                      color: AppColors.pop,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0,
+      child: SingleChildScrollView(
+        padding: EdgeInsets.only(
+          left: AppDimensions.spaceLg,
+          right: AppDimensions.spaceLg,
+          top: AppDimensions.spaceLg,
+          bottom:
+              MediaQuery.of(context).viewInsets.bottom + AppDimensions.spaceLg,
+        ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Header with exhibit badge
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimensions.spaceMd,
+                      vertical: AppDimensions.spaceXs,
+                    ),
+                    decoration: BoxDecoration(
+                      color: colorScheme.secondary,
+                      borderRadius: AppDimensions.borderRadiusSm,
+                    ),
+                    child: Text(
+                      'EXHIBIT $exhibitLetter',
+                      style: AppTypography.labelMedium.copyWith(
+                        color: AppColors.pop,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0,
+                      ),
                     ),
                   ),
-                ),
-                const Spacer(),
-                AppCloseButton(onPressed: () => Navigator.of(context).pop()),
-              ],
-            ),
-
-            const SizedBox(height: AppDimensions.spaceMd),
-
-            Text(
-              'Add to your case',
-              style: AppTypography.headlineSmall.copyWith(
-                color: colorScheme.onSurface,
+                  const Spacer(),
+                  AppCloseButton(onPressed: () => Navigator.of(context).pop()),
+                ],
               ),
-            ),
 
-            const SizedBox(height: AppDimensions.spaceLg),
+              const SizedBox(height: AppDimensions.spaceMd),
 
-            // Name field
-            AppTextField(
-              controller: _nameController,
-              label: context.l10n.option_nameLabel,
-              hint: context.l10n.option_nameHint,
-              validator: (value) {
-                if (value == null || value.trim().isEmpty) {
-                  return 'Please enter a name';
-                }
-                return null;
-              },
-            ),
+              Text(
+                context.l10n.decision_addToYourCase,
+                style: AppTypography.headlineSmall.copyWith(
+                  color: colorScheme.onSurface,
+                ),
+              ),
 
-            const SizedBox(height: AppDimensions.spaceMd),
+              const SizedBox(height: AppDimensions.spaceLg),
 
-            // Notes field
-            AppTextField(
-              controller: _notesController,
-              label: context.l10n.option_notesLabel,
-              hint: context.l10n.option_notesHint,
-              maxLines: 3,
-            ),
+              // Image Picker
+              FoodImagePicker(
+                imageBytes: _imageBytes,
+                onImageSelected: _onImageSelected,
+                onImageRemoved: _onImageRemoved,
+              ),
 
-            const SizedBox(height: AppDimensions.spaceLg),
+              const SizedBox(height: AppDimensions.spaceMd),
 
-            // Submit button
-            AppButton(
-              label: context.l10n.option_addToCase,
-              icon: Icons.add,
-              onPressed: _submit,
-            ),
+              // Name field
+              AppTextField(
+                controller: _nameController,
+                label: context.l10n.option_nameLabel,
+                hint: context.l10n.option_nameHint,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return context.l10n.validation_pleaseEnterName;
+                  }
+                  return null;
+                },
+              ),
 
-            const SizedBox(height: AppDimensions.spaceSm),
-          ],
+              const SizedBox(height: AppDimensions.spaceMd),
+
+              // Notes field
+              AppTextField(
+                controller: _notesController,
+                label: context.l10n.option_notesLabel,
+                hint: context.l10n.option_notesHint,
+                maxLines: 3,
+              ),
+
+              const SizedBox(height: AppDimensions.spaceLg),
+
+              // Submit button
+              AppButton(
+                label: context.l10n.option_addToCase,
+                icon: Icons.add,
+                onPressed: _submit,
+              ),
+
+              const SizedBox(height: AppDimensions.spaceSm),
+            ],
+          ),
         ),
       ),
     );

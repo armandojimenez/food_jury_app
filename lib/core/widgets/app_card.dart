@@ -134,11 +134,11 @@ class FoodCard extends StatelessWidget {
             ),
             child: imageUrl == null
                 ? (imagePlaceholder ??
-                    Icon(
-                      Icons.restaurant,
-                      size: AppDimensions.iconSizeXl,
-                      color: colorScheme.primary,
-                    ))
+                      Icon(
+                        Icons.restaurant,
+                        size: AppDimensions.iconSizeXl,
+                        color: colorScheme.primary,
+                      ))
                 : null,
           ),
           const SizedBox(width: AppDimensions.spaceMd),

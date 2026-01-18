@@ -45,5 +45,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>FoodJury needs camera access to take photos of your food options for the judge to evaluate.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>FoodJury needs photo library access to select photos of your food options for the judge to evaluate.</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>es</string>
+	</array>
 </dict>
 </plist>

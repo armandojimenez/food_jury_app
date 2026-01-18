@@ -33,11 +33,7 @@ Future<void> bootstrap(Environment environment) async {
   _logEnvironmentInfo();
 
   // Run the app wrapped in ProviderScope
-  runApp(
-    const ProviderScope(
-      child: FoodJuryApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: FoodJuryApp()));
 }
 
 Future<void> _configureErrorHandling() async {
@@ -67,9 +63,7 @@ Future<void> _configureErrorHandling() async {
 
 Future<void> _initializeServices() async {
   // Initialize Firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // TODO: Initialize local storage (Drift)
   // await LocalDatabase.initialize();
@@ -82,8 +76,12 @@ void _logEnvironmentInfo() {
     debugPrint('╠══════════════════════════════════════════════════════════╣');
     debugPrint('║ Environment: ${Env.name.padRight(44)}║');
     debugPrint('║ App Name: ${Env.appName.padRight(47)}║');
-    debugPrint('║ Logging: ${(Env.enableLogging ? 'Enabled' : 'Disabled').padRight(48)}║');
-    debugPrint('║ Analytics: ${(Env.enableAnalytics ? 'Enabled' : 'Disabled').padRight(46)}║');
+    debugPrint(
+      '║ Logging: ${(Env.enableLogging ? 'Enabled' : 'Disabled').padRight(48)}║',
+    );
+    debugPrint(
+      '║ Analytics: ${(Env.enableAnalytics ? 'Enabled' : 'Disabled').padRight(46)}║',
+    );
     debugPrint('╚══════════════════════════════════════════════════════════╝');
   }
 }

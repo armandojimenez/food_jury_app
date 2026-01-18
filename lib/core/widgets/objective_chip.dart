@@ -86,10 +86,7 @@ class _ObjectiveChipState extends State<ObjectiveChip>
       child: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {
-          return Transform.scale(
-            scale: _scale,
-            child: child,
-          );
+          return Transform.scale(scale: _scale, child: child);
         },
         child: AnimatedContainer(
           duration: AppDimensions.durationFast,
@@ -100,10 +97,14 @@ class _ObjectiveChipState extends State<ObjectiveChip>
             vertical: AppDimensions.spaceSm,
           ),
           decoration: BoxDecoration(
-            color: widget.isSelected ? colorScheme.primary : colorScheme.surface,
+            color: widget.isSelected
+                ? colorScheme.primary
+                : colorScheme.surface,
             borderRadius: BorderRadius.circular(22),
             border: Border.all(
-              color: widget.isSelected ? colorScheme.secondary : colorScheme.outline,
+              color: widget.isSelected
+                  ? colorScheme.secondary
+                  : colorScheme.outline,
               width: widget.isSelected
                   ? AppDimensions.borderThick
                   : AppDimensions.borderMedium,
@@ -128,10 +129,7 @@ class _ObjectiveChipState extends State<ObjectiveChip>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                widget.icon,
-                style: const TextStyle(fontSize: 18),
-              ),
+              Text(widget.icon, style: const TextStyle(fontSize: 18)),
               const SizedBox(width: AppDimensions.spaceXs),
               Text(
                 widget.label,
@@ -139,8 +137,9 @@ class _ObjectiveChipState extends State<ObjectiveChip>
                   color: widget.isSelected
                       ? AppColors.textInverse
                       : colorScheme.onSurface,
-                  fontWeight:
-                      widget.isSelected ? FontWeight.w700 : FontWeight.w500,
+                  fontWeight: widget.isSelected
+                      ? FontWeight.w700
+                      : FontWeight.w500,
                 ),
               ),
             ],

@@ -43,6 +43,9 @@ class MockAiService implements AiService {
       optionsCount: options.length,
     );
 
+    // Generate bonus content based on tone
+    final (bonusType, bonus) = _generateBonus(tone, winner.name);
+
     return Verdict(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       winner: winner,
@@ -51,7 +54,55 @@ class MockAiService implements AiService {
       objective: objective,
       judgeTone: tone,
       createdAt: DateTime.now(),
+      bonus: bonus,
+      bonusType: bonusType,
     );
+  }
+
+  /// Generates bonus content based on judge tone.
+  (BonusType, String) _generateBonus(JudgeTone tone, String winnerName) {
+    switch (tone) {
+      case JudgeTone.stern:
+        return (
+          BonusType.tip,
+          _randomChoice([
+            'Pro tip: Always taste your food before adding extra seasoning. A wise palate makes wise choices.',
+            'The court advises: Store leftovers within two hours to maintain food safety standards.',
+            'Judicial wisdom: Hydration is key. Pair your meal with water for optimal digestion.',
+            'Legal advice: Reading nutrition labels is not optional. Knowledge is power.',
+          ]),
+        );
+      case JudgeTone.sassy:
+        return (
+          BonusType.joke,
+          _randomChoice([
+            'Why did the $winnerName break up with the salad? It found someone with more... substance.',
+            'I told my diet I was seeing other foods. It said, "I knew it was $winnerName!"',
+            'What did the food critic say? "This $winnerName is groundbreaking!" ...because I dropped it.',
+            'My relationship with $winnerName is like a romcom. We meet, I eat it, I regret nothing.',
+          ]),
+        );
+      case JudgeTone.enthusiastic:
+        return (
+          BonusType.funFact,
+          _randomChoice([
+            'DID YOU KNOW?! The average person makes over 200 food decisions per day! You just made a GREAT one!',
+            'FUN FACT ALERT! Your taste buds regenerate every 10-14 days, so you might love $winnerName even MORE next time!',
+            'AMAZING TRIVIA! The color of your plate can affect how food tastes. Science is SO COOL!',
+            'MIND = BLOWN! Honey never spoils. Archaeologists found 3000-year-old honey still perfectly edible!',
+          ]),
+        );
+      case JudgeTone.chill:
+        return (
+          BonusType.story,
+          _randomChoice([
+            'So like, one time I was just vibing at a food truck and discovered the best $winnerName ever. Sometimes the universe just knows, you know?',
+            'Real talk: my grandma always said food tastes better when you\'re happy. She was onto something.',
+            'There\'s this cozy spot downtown that makes amazing $winnerName. The vibe is immaculate. Just saying.',
+            'I once took a whole afternoon to just enjoy a meal in the park. No rush, no stress. That\'s the energy.',
+          ]),
+        );
+    }
   }
 
   String _generateReasoning({

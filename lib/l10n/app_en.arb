@@ -256,6 +256,26 @@
     "description": "Button to share verdict"
   },
 
+  "verdict_bonusJoke": "Judge's Joke",
+  "@verdict_bonusJoke": {
+    "description": "Header for joke bonus content"
+  },
+
+  "verdict_bonusFunFact": "Fun Fact",
+  "@verdict_bonusFunFact": {
+    "description": "Header for fun fact bonus content"
+  },
+
+  "verdict_bonusTip": "Pro Tip",
+  "@verdict_bonusTip": {
+    "description": "Header for tip bonus content"
+  },
+
+  "verdict_bonusStory": "Story Time",
+  "@verdict_bonusStory": {
+    "description": "Header for story bonus content"
+  },
+
   "history_screenTitle": "Past Verdicts",
   "@history_screenTitle": {
     "description": "Header for history screen"
@@ -329,6 +349,31 @@
   "settings_terms": "Terms",
   "@settings_terms": {
     "description": "Terms of service link"
+  },
+
+  "settings_devSection": "DEVELOPER OPTIONS",
+  "@settings_devSection": {
+    "description": "Section header for developer settings (only in dev mode)"
+  },
+
+  "settings_useMockAi": "Use Simulated AI",
+  "@settings_useMockAi": {
+    "description": "Toggle for using mock AI instead of real AI"
+  },
+
+  "settings_useMockAiDescription": "Use offline mock responses instead of real AI calls",
+  "@settings_useMockAiDescription": {
+    "description": "Description for mock AI toggle"
+  },
+
+  "settings_mockAiEnabled": "Simulated AI enabled",
+  "@settings_mockAiEnabled": {
+    "description": "Snackbar message when mock AI is enabled"
+  },
+
+  "settings_mockAiDisabled": "Real AI enabled",
+  "@settings_mockAiDisabled": {
+    "description": "Snackbar message when mock AI is disabled"
   },
 
   "tone_stern": "Stern & Fair",
@@ -489,5 +534,195 @@
   "snackbar_decisionDeleted": "Decision deleted",
   "@snackbar_decisionDeleted": {
     "description": "Success message when decision is deleted"
+  },
+
+  "image_addPhoto": "Add Photo",
+  "@image_addPhoto": {
+    "description": "Button to add a photo to an option"
+  },
+
+  "image_changePhoto": "Change Photo",
+  "@image_changePhoto": {
+    "description": "Button to change an existing photo"
+  },
+
+  "image_removePhoto": "Remove Photo",
+  "@image_removePhoto": {
+    "description": "Button to remove a photo"
+  },
+
+  "image_takePhoto": "Take Photo",
+  "@image_takePhoto": {
+    "description": "Option to take a new photo with camera"
+  },
+
+  "image_chooseFromGallery": "Choose from Gallery",
+  "@image_chooseFromGallery": {
+    "description": "Option to select a photo from gallery"
+  },
+
+  "image_photoEvidence": "Photo Evidence",
+  "@image_photoEvidence": {
+    "description": "Label for photo section in retro courtroom style"
+  },
+
+  "permission_cameraTitle": "Camera Access Needed",
+  "@permission_cameraTitle": {
+    "description": "Title for camera permission dialog"
+  },
+
+  "permission_cameraMessage": "Please allow camera access to snap photos of your food options.",
+  "@permission_cameraMessage": {
+    "description": "Message explaining why camera permission is needed"
+  },
+
+  "permission_galleryTitle": "Photo Library Access Needed",
+  "@permission_galleryTitle": {
+    "description": "Title for photo library permission dialog"
+  },
+
+  "permission_galleryMessage": "Please allow photo library access to select photos of your food options.",
+  "@permission_galleryMessage": {
+    "description": "Message explaining why gallery permission is needed"
+  },
+
+  "permission_deniedTitle": "Permission Denied",
+  "@permission_deniedTitle": {
+    "description": "Title when permission was denied"
+  },
+
+  "permission_deniedMessage": "Without this permission, you cannot add photos. You can enable it in Settings.",
+  "@permission_deniedMessage": {
+    "description": "Message when permission was denied"
+  },
+
+  "permission_openSettings": "Open Settings",
+  "@permission_openSettings": {
+    "description": "Button to open app settings"
+  },
+
+  "error_imageLoad": "Failed to load image",
+  "@error_imageLoad": {
+    "description": "Error when image fails to load"
+  },
+
+  "snackbar_photoAdded": "Photo evidence added!",
+  "@snackbar_photoAdded": {
+    "description": "Success message when photo is added"
+  },
+
+  "snackbar_photoRemoved": "Photo removed",
+  "@snackbar_photoRemoved": {
+    "description": "Success message when photo is removed"
+  },
+
+  "common_loading": "Loading...",
+  "@common_loading": {
+    "description": "Generic loading message"
+  },
+
+  "decision_addOptionsToBegin": "Add your food options to begin",
+  "@decision_addOptionsToBegin": {
+    "description": "Status text when no options added"
+  },
+
+  "decision_addMoreOptions": "Add {count} more option{count, plural, =1{} other{s}}",
+  "@decision_addMoreOptions": {
+    "description": "Status text showing how many more options needed",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "decision_pickYourGoal": "Now pick your goal!",
+  "@decision_pickYourGoal": {
+    "description": "Status text when options added but no goal selected"
+  },
+
+  "decision_readyForVerdict": "Ready for the verdict!",
+  "@decision_readyForVerdict": {
+    "description": "Status text when ready to submit"
+  },
+
+  "decision_noEvidenceYet": "No evidence yet!",
+  "@decision_noEvidenceYet": {
+    "description": "Empty state title for options list"
+  },
+
+  "decision_addOptionsToBuildCase": "Add your food options to build your case",
+  "@decision_addOptionsToBuildCase": {
+    "description": "Empty state message for options list"
+  },
+
+  "decision_addFirstOption": "Add First Option",
+  "@decision_addFirstOption": {
+    "description": "Button text to add first option"
+  },
+
+  "decision_addToYourCase": "Add to your case",
+  "@decision_addToYourCase": {
+    "description": "Header for add option sheet"
+  },
+
+  "decision_slotsLeft": "{count} left",
+  "@decision_slotsLeft": {
+    "description": "Shows remaining option slots",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "validation_pleaseEnterName": "Please enter a name",
+  "@validation_pleaseEnterName": {
+    "description": "Validation error for empty name field"
+  },
+
+  "judgeBite_presentEvidence": "Present your evidence!",
+  "@judgeBite_presentEvidence": {
+    "description": "Judge Bite message when no options"
+  },
+
+  "judgeBite_addMoreToCompare": "One option? Add more to compare!",
+  "@judgeBite_addMoreToCompare": {
+    "description": "Judge Bite message with only one option"
+  },
+
+  "judgeBite_tellMeYourGoal": "Now tell me your goal!",
+  "@judgeBite_tellMeYourGoal": {
+    "description": "Judge Bite message when no goal selected"
+  },
+
+  "judgeBite_readyToDeliver": "Ready to deliver the verdict!",
+  "@judgeBite_readyToDeliver": {
+    "description": "Judge Bite message when ready to submit"
+  },
+
+  "judgeBite_buildingCase": "Building a solid case...",
+  "@judgeBite_buildingCase": {
+    "description": "Judge Bite message while building case"
+  },
+
+  "a11y_removeOption": "Remove {name}",
+  "@a11y_removeOption": {
+    "description": "Accessibility label for remove option button",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "a11y_photoOf": "Photo of {name}",
+  "@a11y_photoOf": {
+    "description": "Accessibility label for option photo",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }

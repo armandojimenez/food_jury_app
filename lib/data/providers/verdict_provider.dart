@@ -20,8 +20,10 @@ final recentVerdictsProvider = FutureProvider<List<Verdict>>((ref) async {
 });
 
 /// Provider for a single verdict by ID.
-final verdictByIdProvider =
-    FutureProvider.family<Verdict?, String>((ref, id) async {
+final verdictByIdProvider = FutureProvider.family<Verdict?, String>((
+  ref,
+  id,
+) async {
   final db = ref.watch(databaseProvider);
   return db.getVerdictById(id);
 });

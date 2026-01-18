@@ -86,10 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
               const SizedBox(height: AppDimensions.spaceXxl),
 
               // Judge Bite - bounces in from bottom
-              JudgeBite(
-                pose: JudgeBitePose.waving,
-                size: JudgeBiteSize.xlarge,
-              )
+              JudgeBite(pose: JudgeBitePose.waving, size: JudgeBiteSize.xlarge)
                   .animate()
                   .slideY(
                     begin: 2.0,
@@ -122,12 +119,10 @@ class _SplashScreenState extends State<SplashScreen> {
               const Spacer(flex: 3),
 
               // Subtle loading indicator
-              _LoadingDots()
-                  .animate()
-                  .fadeIn(
-                    duration: AppDimensions.durationMedium,
-                    delay: const Duration(milliseconds: 1500),
-                  ),
+              _LoadingDots().animate().fadeIn(
+                duration: AppDimensions.durationMedium,
+                delay: const Duration(milliseconds: 1500),
+              ),
 
               const SizedBox(height: AppDimensions.spaceXxl),
             ],
@@ -243,9 +238,7 @@ class _LoadingDots extends StatelessWidget {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 4),
           child: _Dot()
-              .animate(
-                onPlay: (controller) => controller.repeat(reverse: true),
-              )
+              .animate(onPlay: (controller) => controller.repeat(reverse: true))
               .scale(
                 begin: const Offset(0.5, 0.5),
                 end: const Offset(1.0, 1.0),

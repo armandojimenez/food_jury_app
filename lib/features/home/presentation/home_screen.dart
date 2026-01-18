@@ -55,9 +55,9 @@ class HomeScreen extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: AppDimensions.screenPadding,
-                  child: _HomeHeader()
-                      .animate()
-                      .fadeIn(duration: AppDimensions.durationMedium),
+                  child: _HomeHeader().animate().fadeIn(
+                    duration: AppDimensions.durationMedium,
+                  ),
                 ),
               ),
 
@@ -109,12 +109,10 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: AppDimensions.spaceXxl),
 
                       // Recent Verdicts Section
-                      const _RecentVerdictsSection()
-                          .animate()
-                          .fadeIn(
-                            duration: AppDimensions.durationMedium,
-                            delay: const Duration(milliseconds: 500),
-                          ),
+                      const _RecentVerdictsSection().animate().fadeIn(
+                        duration: AppDimensions.durationMedium,
+                        delay: const Duration(milliseconds: 500),
+                      ),
 
                       const SizedBox(height: AppDimensions.spaceLg),
                     ],
@@ -337,7 +335,7 @@ class _RecentVerdictsSection extends ConsumerWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-          error: (_, __) => const _EmptyVerdictsState(),
+          error: (_, _) => const _EmptyVerdictsState(),
         ),
       ],
     );
@@ -446,7 +444,9 @@ class _RecentVerdictCard extends StatelessWidget {
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
-                          color: verdict.objective.color.withValues(alpha: 0.15),
+                          color: verdict.objective.color.withValues(
+                            alpha: 0.15,
+                          ),
                           borderRadius: AppDimensions.borderRadiusSm,
                         ),
                         child: Text(
@@ -470,10 +470,7 @@ class _RecentVerdictCard extends StatelessWidget {
             ),
 
             // Chevron
-            Icon(
-              Icons.chevron_right,
-              color: colorScheme.onSurfaceVariant,
-            ),
+            Icon(Icons.chevron_right, color: colorScheme.onSurfaceVariant),
           ],
         ),
       ),
@@ -495,8 +492,18 @@ class _RecentVerdictCard extends StatelessWidget {
     }
 
     const months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ];
     return '${months[date.month - 1]} ${date.day}';
   }

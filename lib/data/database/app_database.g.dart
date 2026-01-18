@@ -84,6 +84,26 @@ class $VerdictsTable extends Verdicts
     type: DriftSqlType.dateTime,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _bonusMeta = const VerificationMeta('bonus');
+  @override
+  late final GeneratedColumn<String> bonus = GeneratedColumn<String>(
+    'bonus',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _bonusTypeMeta = const VerificationMeta(
+    'bonusType',
+  );
+  @override
+  late final GeneratedColumn<String> bonusType = GeneratedColumn<String>(
+    'bonus_type',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -93,6 +113,8 @@ class $VerdictsTable extends Verdicts
     objective,
     judgeTone,
     createdAt,
+    bonus,
+    bonusType,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -162,6 +184,18 @@ class $VerdictsTable extends Verdicts
     } else if (isInserting) {
       context.missing(_createdAtMeta);
     }
+    if (data.containsKey('bonus')) {
+      context.handle(
+        _bonusMeta,
+        bonus.isAcceptableOrUnknown(data['bonus']!, _bonusMeta),
+      );
+    }
+    if (data.containsKey('bonus_type')) {
+      context.handle(
+        _bonusTypeMeta,
+        bonusType.isAcceptableOrUnknown(data['bonus_type']!, _bonusTypeMeta),
+      );
+    }
     return context;
   }
 
@@ -199,6 +233,14 @@ class $VerdictsTable extends Verdicts
         DriftSqlType.dateTime,
         data['${effectivePrefix}created_at'],
       )!,
+      bonus: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}bonus'],
+      ),
+      bonusType: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}bonus_type'],
+      ),
     );
   }
 
@@ -229,6 +271,12 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
 
   /// When the verdict was created.
   final DateTime createdAt;
+
+  /// Optional bonus content (joke, fun fact, tip, story).
+  final String? bonus;
+
+  /// Bonus type enum name (joke, funFact, tip, story).
+  final String? bonusType;
   const VerdictRow({
     required this.id,
     required this.winnerJson,
@@ -237,6 +285,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     required this.objective,
     required this.judgeTone,
     required this.createdAt,
+    this.bonus,
+    this.bonusType,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -248,6 +298,12 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     map['objective'] = Variable<String>(objective);
     map['judge_tone'] = Variable<String>(judgeTone);
     map['created_at'] = Variable<DateTime>(createdAt);
+    if (!nullToAbsent || bonus != null) {
+      map['bonus'] = Variable<String>(bonus);
+    }
+    if (!nullToAbsent || bonusType != null) {
+      map['bonus_type'] = Variable<String>(bonusType);
+    }
     return map;
   }
 
@@ -260,6 +316,12 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       objective: Value(objective),
       judgeTone: Value(judgeTone),
       createdAt: Value(createdAt),
+      bonus: bonus == null && nullToAbsent
+          ? const Value.absent()
+          : Value(bonus),
+      bonusType: bonusType == null && nullToAbsent
+          ? const Value.absent()
+          : Value(bonusType),
     );
   }
 
@@ -276,6 +338,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       objective: serializer.fromJson<String>(json['objective']),
       judgeTone: serializer.fromJson<String>(json['judgeTone']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      bonus: serializer.fromJson<String?>(json['bonus']),
+      bonusType: serializer.fromJson<String?>(json['bonusType']),
     );
   }
   @override
@@ -289,6 +353,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       'objective': serializer.toJson<String>(objective),
       'judgeTone': serializer.toJson<String>(judgeTone),
       'createdAt': serializer.toJson<DateTime>(createdAt),
+      'bonus': serializer.toJson<String?>(bonus),
+      'bonusType': serializer.toJson<String?>(bonusType),
     };
   }
 
@@ -300,6 +366,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     String? objective,
     String? judgeTone,
     DateTime? createdAt,
+    Value<String?> bonus = const Value.absent(),
+    Value<String?> bonusType = const Value.absent(),
   }) => VerdictRow(
     id: id ?? this.id,
     winnerJson: winnerJson ?? this.winnerJson,
@@ -308,6 +376,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     objective: objective ?? this.objective,
     judgeTone: judgeTone ?? this.judgeTone,
     createdAt: createdAt ?? this.createdAt,
+    bonus: bonus.present ? bonus.value : this.bonus,
+    bonusType: bonusType.present ? bonusType.value : this.bonusType,
   );
   VerdictRow copyWithCompanion(VerdictsCompanion data) {
     return VerdictRow(
@@ -322,6 +392,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       objective: data.objective.present ? data.objective.value : this.objective,
       judgeTone: data.judgeTone.present ? data.judgeTone.value : this.judgeTone,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      bonus: data.bonus.present ? data.bonus.value : this.bonus,
+      bonusType: data.bonusType.present ? data.bonusType.value : this.bonusType,
     );
   }
 
@@ -334,7 +406,9 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
           ..write('reasoning: $reasoning, ')
           ..write('objective: $objective, ')
           ..write('judgeTone: $judgeTone, ')
-          ..write('createdAt: $createdAt')
+          ..write('createdAt: $createdAt, ')
+          ..write('bonus: $bonus, ')
+          ..write('bonusType: $bonusType')
           ..write(')'))
         .toString();
   }
@@ -348,6 +422,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     objective,
     judgeTone,
     createdAt,
+    bonus,
+    bonusType,
   );
   @override
   bool operator ==(Object other) =>
@@ -359,7 +435,9 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
           other.reasoning == this.reasoning &&
           other.objective == this.objective &&
           other.judgeTone == this.judgeTone &&
-          other.createdAt == this.createdAt);
+          other.createdAt == this.createdAt &&
+          other.bonus == this.bonus &&
+          other.bonusType == this.bonusType);
 }
 
 class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
@@ -370,6 +448,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
   final Value<String> objective;
   final Value<String> judgeTone;
   final Value<DateTime> createdAt;
+  final Value<String?> bonus;
+  final Value<String?> bonusType;
   final Value<int> rowid;
   const VerdictsCompanion({
     this.id = const Value.absent(),
@@ -379,6 +459,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     this.objective = const Value.absent(),
     this.judgeTone = const Value.absent(),
     this.createdAt = const Value.absent(),
+    this.bonus = const Value.absent(),
+    this.bonusType = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   VerdictsCompanion.insert({
@@ -389,6 +471,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     required String objective,
     required String judgeTone,
     required DateTime createdAt,
+    this.bonus = const Value.absent(),
+    this.bonusType = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        winnerJson = Value(winnerJson),
@@ -405,6 +489,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     Expression<String>? objective,
     Expression<String>? judgeTone,
     Expression<DateTime>? createdAt,
+    Expression<String>? bonus,
+    Expression<String>? bonusType,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -415,6 +501,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
       if (objective != null) 'objective': objective,
       if (judgeTone != null) 'judge_tone': judgeTone,
       if (createdAt != null) 'created_at': createdAt,
+      if (bonus != null) 'bonus': bonus,
+      if (bonusType != null) 'bonus_type': bonusType,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -427,6 +515,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     Value<String>? objective,
     Value<String>? judgeTone,
     Value<DateTime>? createdAt,
+    Value<String?>? bonus,
+    Value<String?>? bonusType,
     Value<int>? rowid,
   }) {
     return VerdictsCompanion(
@@ -437,6 +527,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
       objective: objective ?? this.objective,
       judgeTone: judgeTone ?? this.judgeTone,
       createdAt: createdAt ?? this.createdAt,
+      bonus: bonus ?? this.bonus,
+      bonusType: bonusType ?? this.bonusType,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -465,6 +557,12 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
+    if (bonus.present) {
+      map['bonus'] = Variable<String>(bonus.value);
+    }
+    if (bonusType.present) {
+      map['bonus_type'] = Variable<String>(bonusType.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -481,6 +579,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
           ..write('objective: $objective, ')
           ..write('judgeTone: $judgeTone, ')
           ..write('createdAt: $createdAt, ')
+          ..write('bonus: $bonus, ')
+          ..write('bonusType: $bonusType, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -507,6 +607,8 @@ typedef $$VerdictsTableCreateCompanionBuilder =
       required String objective,
       required String judgeTone,
       required DateTime createdAt,
+      Value<String?> bonus,
+      Value<String?> bonusType,
       Value<int> rowid,
     });
 typedef $$VerdictsTableUpdateCompanionBuilder =
@@ -518,6 +620,8 @@ typedef $$VerdictsTableUpdateCompanionBuilder =
       Value<String> objective,
       Value<String> judgeTone,
       Value<DateTime> createdAt,
+      Value<String?> bonus,
+      Value<String?> bonusType,
       Value<int> rowid,
     });
 
@@ -562,6 +666,16 @@ class $$VerdictsTableFilterComposer
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
     column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get bonus => $composableBuilder(
+    column: $table.bonus,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get bonusType => $composableBuilder(
+    column: $table.bonusType,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -609,6 +723,16 @@ class $$VerdictsTableOrderingComposer
     column: $table.createdAt,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get bonus => $composableBuilder(
+    column: $table.bonus,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get bonusType => $composableBuilder(
+    column: $table.bonusType,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$VerdictsTableAnnotationComposer
@@ -644,6 +768,12 @@ class $$VerdictsTableAnnotationComposer
 
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<String> get bonus =>
+      $composableBuilder(column: $table.bonus, builder: (column) => column);
+
+  GeneratedColumn<String> get bonusType =>
+      $composableBuilder(column: $table.bonusType, builder: (column) => column);
 }
 
 class $$VerdictsTableTableManager
@@ -684,6 +814,8 @@ class $$VerdictsTableTableManager
                 Value<String> objective = const Value.absent(),
                 Value<String> judgeTone = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
+                Value<String?> bonus = const Value.absent(),
+                Value<String?> bonusType = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => VerdictsCompanion(
                 id: id,
@@ -693,6 +825,8 @@ class $$VerdictsTableTableManager
                 objective: objective,
                 judgeTone: judgeTone,
                 createdAt: createdAt,
+                bonus: bonus,
+                bonusType: bonusType,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -704,6 +838,8 @@ class $$VerdictsTableTableManager
                 required String objective,
                 required String judgeTone,
                 required DateTime createdAt,
+                Value<String?> bonus = const Value.absent(),
+                Value<String?> bonusType = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => VerdictsCompanion.insert(
                 id: id,
@@ -713,6 +849,8 @@ class $$VerdictsTableTableManager
                 objective: objective,
                 judgeTone: judgeTone,
                 createdAt: createdAt,
+                bonus: bonus,
+                bonusType: bonusType,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

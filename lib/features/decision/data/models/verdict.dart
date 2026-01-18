@@ -16,6 +16,8 @@ class Verdict extends Equatable {
     required this.objective,
     required this.judgeTone,
     required this.createdAt,
+    this.bonus,
+    this.bonusType,
   });
 
   /// Unique identifier for this verdict.
@@ -39,16 +41,24 @@ class Verdict extends Equatable {
   /// When this verdict was created.
   final DateTime createdAt;
 
+  /// Optional bonus content (joke, fun fact, tip, story) based on judge personality.
+  final String? bonus;
+
+  /// Type of bonus content (joke, fun_fact, tip, story).
+  final BonusType? bonusType;
+
   @override
   List<Object?> get props => [
-        id,
-        winner,
-        rankings,
-        reasoning,
-        objective,
-        judgeTone,
-        createdAt,
-      ];
+    id,
+    winner,
+    rankings,
+    reasoning,
+    objective,
+    judgeTone,
+    createdAt,
+    bonus,
+    bonusType,
+  ];
 
   /// Creates a copy with optional overrides.
   Verdict copyWith({
@@ -59,6 +69,8 @@ class Verdict extends Equatable {
     Objective? objective,
     JudgeTone? judgeTone,
     DateTime? createdAt,
+    String? bonus,
+    BonusType? bonusType,
   }) {
     return Verdict(
       id: id ?? this.id,
@@ -68,6 +80,8 @@ class Verdict extends Equatable {
       objective: objective ?? this.objective,
       judgeTone: judgeTone ?? this.judgeTone,
       createdAt: createdAt ?? this.createdAt,
+      bonus: bonus ?? this.bonus,
+      bonusType: bonusType ?? this.bonusType,
     );
   }
 }
@@ -85,6 +99,52 @@ enum JudgeTone {
 
   /// Casual, relaxed.
   chill,
+}
+
+/// Type of bonus content the judge provides.
+enum BonusType {
+  /// A food-related joke.
+  joke,
+
+  /// An interesting food fact.
+  funFact,
+
+  /// A helpful food tip.
+  tip,
+
+  /// A short food-related story.
+  story,
+}
+
+/// Extension methods for [BonusType].
+extension BonusTypeExtension on BonusType {
+  /// Display name for the bonus type.
+  String get displayName {
+    switch (this) {
+      case BonusType.joke:
+        return 'Judge\'s Joke';
+      case BonusType.funFact:
+        return 'Fun Fact';
+      case BonusType.tip:
+        return 'Pro Tip';
+      case BonusType.story:
+        return 'Story Time';
+    }
+  }
+
+  /// Icon/emoji for the bonus type.
+  String get icon {
+    switch (this) {
+      case BonusType.joke:
+        return '😂';
+      case BonusType.funFact:
+        return '💡';
+      case BonusType.tip:
+        return '👨‍🍳';
+      case BonusType.story:
+        return '📖';
+    }
+  }
 }
 
 /// Extension methods for [JudgeTone].

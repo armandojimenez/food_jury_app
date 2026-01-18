@@ -52,6 +52,10 @@
   "verdict_newDecision": "Nueva Decisión",
   "verdict_newCase": "Nuevo Caso",
   "verdict_share": "Compartir",
+  "verdict_bonusJoke": "Chiste del Juez",
+  "verdict_bonusFunFact": "Dato Curioso",
+  "verdict_bonusTip": "Consejo Pro",
+  "verdict_bonusStory": "Historia",
   "history_screenTitle": "Veredictos Pasados",
   "history_emptyTitle": "Los registros de la corte están vacíos...",
   "history_emptyMessage": "¡Aún no se han decidido casos!",
@@ -67,6 +71,11 @@
   "settings_about": "Acerca de",
   "settings_privacy": "Privacidad",
   "settings_terms": "Términos",
+  "settings_devSection": "OPCIONES DE DESARROLLO",
+  "settings_useMockAi": "Usar IA Simulada",
+  "settings_useMockAiDescription": "Usar respuestas simuladas en lugar de llamadas reales a la IA",
+  "settings_mockAiEnabled": "IA simulada activada",
+  "settings_mockAiDisabled": "IA real activada",
   "tone_stern": "Serio y Justo",
   "tone_sternPreview": "La corte determina...",
   "tone_sassy": "Atrevido",
@@ -98,5 +107,47 @@
   "snackbar_decisionSaved": "¡Decisión registrada!",
   "snackbar_optionAdded": "Opción agregada al caso",
   "snackbar_optionDeleted": "Opción eliminada",
-  "snackbar_decisionDeleted": "Decisión eliminada"
+  "snackbar_decisionDeleted": "Decisión eliminada",
+
+  "image_addPhoto": "Agregar Foto",
+  "image_changePhoto": "Cambiar Foto",
+  "image_removePhoto": "Eliminar Foto",
+  "image_takePhoto": "Tomar Foto",
+  "image_chooseFromGallery": "Elegir de Galería",
+  "image_photoEvidence": "Evidencia Fotográfica",
+
+  "permission_cameraTitle": "Acceso a Cámara Necesario",
+  "permission_cameraMessage": "Por favor permite acceso a la cámara para tomar fotos de tus opciones de comida.",
+  "permission_galleryTitle": "Acceso a Fotos Necesario",
+  "permission_galleryMessage": "Por favor permite acceso a la galería para seleccionar fotos de tus opciones de comida.",
+  "permission_deniedTitle": "Permiso Denegado",
+  "permission_deniedMessage": "Sin este permiso, no puedes agregar fotos. Puedes habilitarlo en Configuración.",
+  "permission_openSettings": "Abrir Configuración",
+
+  "error_imageLoad": "Error al cargar imagen",
+  "snackbar_photoAdded": "¡Evidencia fotográfica agregada!",
+  "snackbar_photoRemoved": "Foto eliminada",
+
+  "common_loading": "Cargando...",
+
+  "decision_addOptionsToBegin": "Agrega tus opciones de comida para comenzar",
+  "decision_addMoreOptions": "Agrega {count} opción{count, plural, =1{} other{es}} más",
+  "decision_pickYourGoal": "¡Ahora elige tu objetivo!",
+  "decision_readyForVerdict": "¡Listo para el veredicto!",
+  "decision_noEvidenceYet": "¡Aún no hay evidencia!",
+  "decision_addOptionsToBuildCase": "Agrega tus opciones de comida para construir tu caso",
+  "decision_addFirstOption": "Agregar Primera Opción",
+  "decision_addToYourCase": "Agregar a tu caso",
+  "decision_slotsLeft": "{count} restante{count, plural, =1{} other{s}}",
+
+  "validation_pleaseEnterName": "Por favor ingresa un nombre",
+
+  "judgeBite_presentEvidence": "¡Presenta tu evidencia!",
+  "judgeBite_addMoreToCompare": "¿Una opción? ¡Agrega más para comparar!",
+  "judgeBite_tellMeYourGoal": "¡Ahora dime tu objetivo!",
+  "judgeBite_readyToDeliver": "¡Listo para entregar el veredicto!",
+  "judgeBite_buildingCase": "Construyendo un caso sólido...",
+
+  "a11y_removeOption": "Eliminar {name}",
+  "a11y_photoOf": "Foto de {name}"
 }

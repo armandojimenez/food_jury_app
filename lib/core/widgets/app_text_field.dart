@@ -49,9 +49,7 @@ class AppTextField extends StatelessWidget {
           keyboardType: keyboardType,
           onChanged: onChanged,
           validator: validator,
-          style: AppTypography.bodyLarge.copyWith(
-            color: colorScheme.onSurface,
-          ),
+          style: AppTypography.bodyLarge.copyWith(color: colorScheme.onSurface),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: AppTypography.bodyLarge.copyWith(

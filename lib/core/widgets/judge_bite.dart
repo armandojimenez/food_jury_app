@@ -31,22 +31,14 @@ class JudgeBite extends StatelessWidget {
           ),
         );
       },
-      child: _JudgeBiteImage(
-        key: ValueKey(pose),
-        pose: pose,
-        size: size.value,
-      ),
+      child: _JudgeBiteImage(key: ValueKey(pose), pose: pose, size: size.value),
     );
   }
 }
 
 /// Judge Bite image widget
 class _JudgeBiteImage extends StatelessWidget {
-  const _JudgeBiteImage({
-    required this.pose,
-    required this.size,
-    super.key,
-  });
+  const _JudgeBiteImage({required this.pose, required this.size, super.key});
 
   final JudgeBitePose pose;
   final double size;

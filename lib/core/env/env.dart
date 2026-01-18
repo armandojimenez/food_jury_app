@@ -1,7 +1,4 @@
-enum Environment {
-  dev,
-  prod,
-}
+enum Environment { dev, prod }
 
 class Env {
   static late Environment current;

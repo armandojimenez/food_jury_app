@@ -163,6 +163,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get verdict_share => 'Share';
 
   @override
+  String get verdict_bonusJoke => 'Judge\'s Joke';
+
+  @override
+  String get verdict_bonusFunFact => 'Fun Fact';
+
+  @override
+  String get verdict_bonusTip => 'Pro Tip';
+
+  @override
+  String get verdict_bonusStory => 'Story Time';
+
+  @override
   String get history_screenTitle => 'Past Verdicts';
 
   @override
@@ -206,6 +218,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_terms => 'Terms';
+
+  @override
+  String get settings_devSection => 'DEVELOPER OPTIONS';
+
+  @override
+  String get settings_useMockAi => 'Use Simulated AI';
+
+  @override
+  String get settings_useMockAiDescription =>
+      'Use offline mock responses instead of real AI calls';
+
+  @override
+  String get settings_mockAiEnabled => 'Simulated AI enabled';
+
+  @override
+  String get settings_mockAiDisabled => 'Real AI enabled';
 
   @override
   String get tone_stern => 'Stern & Fair';
@@ -305,4 +333,124 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get snackbar_decisionDeleted => 'Decision deleted';
+
+  @override
+  String get image_addPhoto => 'Add Photo';
+
+  @override
+  String get image_changePhoto => 'Change Photo';
+
+  @override
+  String get image_removePhoto => 'Remove Photo';
+
+  @override
+  String get image_takePhoto => 'Take Photo';
+
+  @override
+  String get image_chooseFromGallery => 'Choose from Gallery';
+
+  @override
+  String get image_photoEvidence => 'Photo Evidence';
+
+  @override
+  String get permission_cameraTitle => 'Camera Access Needed';
+
+  @override
+  String get permission_cameraMessage =>
+      'Please allow camera access to snap photos of your food options.';
+
+  @override
+  String get permission_galleryTitle => 'Photo Library Access Needed';
+
+  @override
+  String get permission_galleryMessage =>
+      'Please allow photo library access to select photos of your food options.';
+
+  @override
+  String get permission_deniedTitle => 'Permission Denied';
+
+  @override
+  String get permission_deniedMessage =>
+      'Without this permission, you cannot add photos. You can enable it in Settings.';
+
+  @override
+  String get permission_openSettings => 'Open Settings';
+
+  @override
+  String get error_imageLoad => 'Failed to load image';
+
+  @override
+  String get snackbar_photoAdded => 'Photo evidence added!';
+
+  @override
+  String get snackbar_photoRemoved => 'Photo removed';
+
+  @override
+  String get common_loading => 'Loading...';
+
+  @override
+  String get decision_addOptionsToBegin => 'Add your food options to begin';
+
+  @override
+  String decision_addMoreOptions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 's',
+      one: '',
+    );
+    return 'Add $count more option$_temp0';
+  }
+
+  @override
+  String get decision_pickYourGoal => 'Now pick your goal!';
+
+  @override
+  String get decision_readyForVerdict => 'Ready for the verdict!';
+
+  @override
+  String get decision_noEvidenceYet => 'No evidence yet!';
+
+  @override
+  String get decision_addOptionsToBuildCase =>
+      'Add your food options to build your case';
+
+  @override
+  String get decision_addFirstOption => 'Add First Option';
+
+  @override
+  String get decision_addToYourCase => 'Add to your case';
+
+  @override
+  String decision_slotsLeft(int count) {
+    return '$count left';
+  }
+
+  @override
+  String get validation_pleaseEnterName => 'Please enter a name';
+
+  @override
+  String get judgeBite_presentEvidence => 'Present your evidence!';
+
+  @override
+  String get judgeBite_addMoreToCompare => 'One option? Add more to compare!';
+
+  @override
+  String get judgeBite_tellMeYourGoal => 'Now tell me your goal!';
+
+  @override
+  String get judgeBite_readyToDeliver => 'Ready to deliver the verdict!';
+
+  @override
+  String get judgeBite_buildingCase => 'Building a solid case...';
+
+  @override
+  String a11y_removeOption(String name) {
+    return 'Remove $name';
+  }
+
+  @override
+  String a11y_photoOf(String name) {
+    return 'Photo of $name';
+  }
 }

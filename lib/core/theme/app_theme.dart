@@ -184,9 +184,7 @@ abstract final class AppTheme {
           color: AppColors.textMuted,
         ),
         labelStyle: AppTypography.bodyMedium,
-        errorStyle: AppTypography.bodySmall.copyWith(
-          color: AppColors.error,
-        ),
+        errorStyle: AppTypography.bodySmall.copyWith(color: AppColors.error),
       ),
 
       // Card
@@ -523,9 +521,7 @@ abstract final class AppTheme {
         labelStyle: AppTypography.bodyMedium.copyWith(
           color: AppColors.textPrimaryDark,
         ),
-        errorStyle: AppTypography.bodySmall.copyWith(
-          color: AppColors.error,
-        ),
+        errorStyle: AppTypography.bodySmall.copyWith(color: AppColors.error),
       ),
 
       // Card

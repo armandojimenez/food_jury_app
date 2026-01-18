@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:equatable/equatable.dart';
 
 /// Represents a food option in a decision.
@@ -9,7 +11,7 @@ class FoodOption extends Equatable {
     required this.id,
     required this.name,
     this.notes,
-    this.imagePath,
+    this.imageBytes,
   });
 
   /// Unique identifier for this option.
@@ -21,25 +23,29 @@ class FoodOption extends Equatable {
   /// Optional notes about this option.
   final String? notes;
 
-  /// Optional path to image file.
-  /// Will be used in Phase 4 when image picker is integrated.
-  final String? imagePath;
+  /// Optional image bytes (optimized JPEG).
+  /// Used for display and AI analysis.
+  final Uint8List? imageBytes;
+
+  /// Whether this option has an image.
+  bool get hasImage => imageBytes != null && imageBytes!.isNotEmpty;
 
   @override
-  List<Object?> get props => [id, name, notes, imagePath];
+  List<Object?> get props => [id, name, notes, imageBytes];
 
   /// Creates a copy with updated fields.
   FoodOption copyWith({
     String? id,
     String? name,
     String? notes,
-    String? imagePath,
+    Uint8List? imageBytes,
+    bool clearImage = false,
   }) {
     return FoodOption(
       id: id ?? this.id,
       name: name ?? this.name,
       notes: notes ?? this.notes,
-      imagePath: imagePath ?? this.imagePath,
+      imageBytes: clearImage ? null : (imageBytes ?? this.imageBytes),
     );
   }
 }

@@ -124,9 +124,7 @@ class _VerdictScreenState extends State<VerdictScreen>
                           duration: const Duration(milliseconds: 700),
                           curve: Curves.easeOutBack,
                         )
-                        .fadeIn(
-                          duration: const Duration(milliseconds: 400),
-                        ),
+                        .fadeIn(duration: const Duration(milliseconds: 400)),
 
                     const SizedBox(height: AppDimensions.spaceXxl),
 
@@ -152,26 +150,44 @@ class _VerdictScreenState extends State<VerdictScreen>
                       JudgeBite(
                         pose: JudgeBitePose.celebrating,
                         size: JudgeBiteSize.large,
-                      )
-                          .animate()
-                          .scale(
-                            begin: const Offset(0.0, 0.0),
-                            end: const Offset(1.0, 1.0),
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.elasticOut,
-                          ),
+                      ).animate().scale(
+                        begin: const Offset(0.0, 0.0),
+                        end: const Offset(1.0, 1.0),
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.elasticOut,
+                      ),
 
                     const SizedBox(height: AppDimensions.spaceLg),
 
                     // Judge's Reasoning
                     if (_showFullContent)
                       _JudgeReasoning(
-                        reasoning: widget.verdict.reasoning,
-                        tone: widget.verdict.judgeTone,
-                      )
+                            reasoning: widget.verdict.reasoning,
+                            tone: widget.verdict.judgeTone,
+                          )
+                          .animate()
+                          .fadeIn(duration: AppDimensions.durationMedium)
+                          .slideY(
+                            begin: 0.2,
+                            end: 0.0,
+                            duration: AppDimensions.durationMedium,
+                          ),
+
+                    // Bonus content (joke, tip, fun fact, story)
+                    if (_showFullContent && widget.verdict.bonus != null)
+                      Padding(
+                            padding: const EdgeInsets.only(
+                              top: AppDimensions.spaceLg,
+                            ),
+                            child: _BonusSection(
+                              bonus: widget.verdict.bonus!,
+                              bonusType: widget.verdict.bonusType,
+                            ),
+                          )
                           .animate()
                           .fadeIn(
                             duration: AppDimensions.durationMedium,
+                            delay: const Duration(milliseconds: 100),
                           )
                           .slideY(
                             begin: 0.2,
@@ -186,12 +202,10 @@ class _VerdictScreenState extends State<VerdictScreen>
                       _OtherRankings(
                         rankings: widget.verdict.rankings,
                         winner: widget.verdict.winner,
-                      )
-                          .animate()
-                          .fadeIn(
-                            duration: AppDimensions.durationMedium,
-                            delay: const Duration(milliseconds: 200),
-                          ),
+                      ).animate().fadeIn(
+                        duration: AppDimensions.durationMedium,
+                        delay: const Duration(milliseconds: 200),
+                      ),
 
                     const SizedBox(height: AppDimensions.spaceXxl),
 
@@ -297,10 +311,7 @@ class _WinnerCard extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            AppColors.primary,
-            AppColors.primaryDark,
-          ],
+          colors: [AppColors.primary, AppColors.primaryDark],
         ),
         borderRadius: AppDimensions.borderRadiusLg,
         border: Border.all(
@@ -326,12 +337,10 @@ class _WinnerCard extends StatelessWidget {
         children: [
           // Crown icon with gentle float
           Text(
-            '\uD83D\uDC51', // Crown emoji
-            style: const TextStyle(fontSize: 48),
-          )
-              .animate(
-                onPlay: (controller) => controller.repeat(reverse: true),
+                '\uD83D\uDC51', // Crown emoji
+                style: const TextStyle(fontSize: 48),
               )
+              .animate(onPlay: (controller) => controller.repeat(reverse: true))
               .scale(
                 begin: const Offset(1.0, 1.0),
                 end: const Offset(1.08, 1.08),
@@ -405,10 +414,7 @@ class _WinnerCard extends StatelessWidget {
 
 /// Judge's reasoning section with enhanced styling.
 class _JudgeReasoning extends StatelessWidget {
-  const _JudgeReasoning({
-    required this.reasoning,
-    required this.tone,
-  });
+  const _JudgeReasoning({required this.reasoning, required this.tone});
 
   final String reasoning;
   final JudgeTone tone;
@@ -450,10 +456,7 @@ class _JudgeReasoning extends StatelessWidget {
           // Header with tone badge
           Row(
             children: [
-              JudgeBite(
-                pose: JudgeBitePose.stern,
-                size: JudgeBiteSize.small,
-              ),
+              JudgeBite(pose: JudgeBitePose.stern, size: JudgeBiteSize.small),
               const SizedBox(width: AppDimensions.spaceMd),
               Expanded(
                 child: Column(
@@ -500,11 +503,7 @@ class _JudgeReasoning extends StatelessWidget {
             height: 3,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [
-                  AppColors.primary,
-                  AppColors.pop,
-                  AppColors.primary,
-                ],
+                colors: [AppColors.primary, AppColors.pop, AppColors.primary],
               ),
               borderRadius: BorderRadius.circular(2),
             ),
@@ -527,12 +526,80 @@ class _JudgeReasoning extends StatelessWidget {
   }
 }
 
+/// Bonus content section (joke, tip, fun fact, story).
+class _BonusSection extends StatelessWidget {
+  const _BonusSection({required this.bonus, this.bonusType});
+
+  final String bonus;
+  final BonusType? bonusType;
+
+  String _getLocalizedTitle(BuildContext context) {
+    final l10n = context.l10n;
+    switch (bonusType ?? BonusType.funFact) {
+      case BonusType.joke:
+        return l10n.verdict_bonusJoke;
+      case BonusType.funFact:
+        return l10n.verdict_bonusFunFact;
+      case BonusType.tip:
+        return l10n.verdict_bonusTip;
+      case BonusType.story:
+        return l10n.verdict_bonusStory;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final type = bonusType ?? BonusType.funFact;
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppDimensions.spaceMd),
+      decoration: BoxDecoration(
+        color: colorScheme.tertiary.withValues(alpha: 0.1),
+        borderRadius: AppDimensions.borderRadiusMd,
+        border: Border.all(
+          color: colorScheme.tertiary.withValues(alpha: 0.3),
+          width: AppDimensions.borderMedium,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header with icon and type
+          Row(
+            children: [
+              Text(type.icon, style: const TextStyle(fontSize: 24)),
+              const SizedBox(width: AppDimensions.spaceSm),
+              Text(
+                _getLocalizedTitle(context).toUpperCase(),
+                style: AppTypography.labelLarge.copyWith(
+                  color: colorScheme.tertiary,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppDimensions.spaceSm),
+
+          // Bonus content
+          Text(
+            bonus,
+            style: AppTypography.bodyMedium.copyWith(
+              color: colorScheme.onSurface,
+              height: 1.5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 /// Other rankings (collapsed view).
 class _OtherRankings extends StatefulWidget {
-  const _OtherRankings({
-    required this.rankings,
-    required this.winner,
-  });
+  const _OtherRankings({required this.rankings, required this.winner});
 
   final List<FoodOption> rankings;
   final FoodOption winner;
@@ -547,8 +614,9 @@ class _OtherRankingsState extends State<_OtherRankings> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final otherOptions =
-        widget.rankings.where((o) => o.id != widget.winner.id).toList();
+    final otherOptions = widget.rankings
+        .where((o) => o.id != widget.winner.id)
+        .toList();
 
     if (otherOptions.isEmpty) return const SizedBox.shrink();
 
@@ -615,10 +683,7 @@ class _OtherRankingsState extends State<_OtherRankings> {
 
 /// Single ranking item.
 class _RankingItem extends StatelessWidget {
-  const _RankingItem({
-    required this.option,
-    required this.rank,
-  });
+  const _RankingItem({required this.option, required this.rank});
 
   final FoodOption option;
   final int rank;
@@ -701,10 +766,7 @@ class _ActionButtons extends StatelessWidget {
                 label: context.l10n.verdict_share,
                 onPressed: () {
                   // TODO: Implement share functionality
-                  AppSnackbar.showInfo(
-                    context,
-                    message: 'Share coming soon!',
-                  );
+                  AppSnackbar.showInfo(context, message: 'Share coming soon!');
                 },
               ),
             ),
@@ -791,10 +853,7 @@ class _ConfettiPiece extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(size / 4),
         boxShadow: [
-          BoxShadow(
-            color: color.withValues(alpha: 0.4),
-            blurRadius: 3,
-          ),
+          BoxShadow(color: color.withValues(alpha: 0.4), blurRadius: 3),
         ],
       ),
     );
