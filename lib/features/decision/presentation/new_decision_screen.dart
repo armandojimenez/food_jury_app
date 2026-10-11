@@ -1,1358 +1,532 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../config/routes/app_router.dart';
 import '../../../core/providers/ai_service_provider.dart';
-import '../../../core/services/ai_service.dart';
+import '../../../core/providers/judge_tone_provider.dart';
+import '../../../core/providers/mock_ai_provider.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/providers/verdict_provider.dart';
 import '../data/models/food_option.dart';
 import '../data/models/objective.dart';
-import '../data/models/verdict.dart';
 
-/// New Decision Screen - where users create food decisions.
-///
-/// Features:
-/// - Courtroom-themed "Exhibit" cards for options
-/// - Progress indicator showing readiness
-/// - Judge Bite with speech bubble reactions
-/// - Smooth animations throughout
-/// - Submit for verdict with Gemini AI
+/// Build a case from two to five food options with an explicit objective.
 class NewDecisionScreen extends ConsumerStatefulWidget {
   const NewDecisionScreen({super.key});
-
   @override
   ConsumerState<NewDecisionScreen> createState() => _NewDecisionScreenState();
 }
 
 class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
   final List<FoodOption> _options = [];
-  Objective? _selectedObjective;
-  bool _isLoading = false;
+  Objective? _objective;
+  bool _submitting = false;
+  bool get _ready => _options.length >= 2 && _objective != null && !_submitting;
 
-  static const int _minOptions = 2;
-  static const int _maxOptions = 5;
-
-  bool get _canSubmit =>
-      _options.length >= _minOptions &&
-      _selectedObjective != null &&
-      !_isLoading;
-  bool get _canAddMore => _options.length < _maxOptions;
-
-  void _addOption(FoodOption option) {
-    if (_canAddMore) {
-      setState(() {
-        _options.add(option);
-      });
-    }
-  }
-
-  void _removeOption(int index) {
-    setState(() {
-      _options.removeAt(index);
-    });
-  }
-
-  void _selectObjective(Objective objective) {
-    setState(() {
-      _selectedObjective = objective;
-    });
-  }
-
-  Future<void> _submitDecision() async {
-    if (!_canSubmit) {
-      AppSnackbar.showError(
-        context,
-        message: context.l10n.decision_minOptionsError,
-      );
-      return;
-    }
-
-    setState(() => _isLoading = true);
-
-    try {
-      LoadingOverlay.show(
-        context,
-        message: context.l10n.loading_courtInSession,
-      );
-
-      final aiService = ref.read(aiServiceProvider);
-      final locale = Localizations.localeOf(context);
-      final verdict = await aiService.generateVerdict(
-        options: _options,
-        objective: _selectedObjective!,
-        tone: JudgeTone.stern,
-        locale: locale,
-      );
-
-      // Save the verdict to the database
-      await ref.read(verdictNotifierProvider.notifier).saveVerdict(verdict);
-
-      if (!mounted) return;
-      LoadingOverlay.hide(context);
-      context.push(AppRouter.verdict, extra: verdict);
-    } on AiServiceException catch (e) {
-      if (!mounted) return;
-      LoadingOverlay.hide(context);
-      debugPrint('AI Service Error: ${e.message}');
-      AppSnackbar.showError(
-        context,
-        message: context.l10n.error_genericMessage,
-      );
-    } catch (e) {
-      if (!mounted) return;
-      LoadingOverlay.hide(context);
-      debugPrint('Unexpected error: $e');
-      AppSnackbar.showError(
-        context,
-        message: context.l10n.error_genericMessage,
-      );
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
-    }
-  }
-
-  void _showAddOptionSheet() {
-    showModalBottomSheet(
+  Future<void> _editOption([FoodOption? original]) async {
+    if (_submitting || (original == null && _options.length >= 5)) return;
+    final result = await showModalBottomSheet<FoodOption>(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) =>
-          _AddOptionSheet(onAdd: _addOption, optionNumber: _options.length + 1),
+      useSafeArea: true,
+      sheetAnimationStyle: reduceDinerMotion(context)
+          ? AnimationStyle.noAnimation
+          : null,
+      builder: (context) => _OptionEditor(original: original),
     );
+    if (!mounted || result == null) return;
+    setState(() {
+      if (original == null) {
+        _options.add(result);
+      } else {
+        final index = _options.indexWhere((o) => o.id == original.id);
+        if (index >= 0) _options[index] = result;
+      }
+    });
+  }
+
+  Future<void> _submit() async {
+    if (!_ready) return;
+    setState(() => _submitting = true);
+    try {
+      await ref.read(judgeToneProvider.notifier).ready;
+      await ref.read(mockAiNotifierProvider.notifier).ready;
+      if (!mounted) return;
+      final service = ref.read(aiServiceProvider);
+      final verdict = await service.generateVerdict(
+        options: List.unmodifiable(_options),
+        objective: _objective!,
+        tone: ref.read(judgeToneProvider),
+        locale: Localizations.localeOf(context),
+      );
+      if (!mounted) return;
+      await ref.read(verdictNotifierProvider.notifier).saveVerdict(verdict);
+      if (!mounted) return;
+      setState(() => _submitting = false);
+      await context.push(AppRouter.verdict, extra: verdict);
+    } catch (error) {
+      if (!mounted) return;
+      setState(() => _submitting = false);
+      AppSnackbar.showError(
+        context,
+        message: context.l10n.error_genericMessage,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: isDark
-                ? [
-                    AppColors.backgroundDark,
-                    const Color(0xFF1E1E35),
-                    const Color(0xFF151525),
-                  ]
-                : [
-                    const Color(0xFFFFF8F0),
-                    const Color(0xFFFFF2E6),
-                    const Color(0xFFFFEBD9),
-                  ],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              // Custom Header
-              _ScreenHeader(onBack: () => context.pop()),
-
-              // Main Content
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: AppDimensions.screenPadding,
-                  child: Column(
+    ref.watch(judgeToneProvider);
+    ref.watch(mockAiNotifierProvider);
+    return PopScope(
+      canPop: !_submitting,
+      child: Stack(
+        children: [
+          DinerBusyBoundary(
+            busy: _submitting,
+            child: DinerScaffold(
+              title: context.l10n.diner_newCase,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final wide =
+                      constraints.maxWidth >= DinerTokens.tabletBreakpoint &&
+                      MediaQuery.textScalerOf(context).scale(1) <
+                          DinerTokens.largeTextBreakpoint;
+                  final menu = Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // Progress Indicator
-                      _ProgressSection(
-                        optionsCount: _options.length,
-                        hasObjective: _selectedObjective != null,
-                        minOptions: _minOptions,
-                        maxOptions: _maxOptions,
-                      ).animate().fadeIn(
-                        duration: AppDimensions.durationMedium,
-                      ),
-
-                      const SizedBox(height: AppDimensions.spaceLg),
-
-                      // Options Section
-                      _OptionsSection(
-                        options: _options,
-                        onRemove: _removeOption,
-                        onAddMore: _canAddMore ? _showAddOptionSheet : null,
-                        maxOptions: _maxOptions,
-                      ),
-
-                      const SizedBox(height: AppDimensions.spaceXl),
-
-                      // Objective Selector
-                      _ObjectiveSection(
-                        selectedObjective: _selectedObjective,
-                        onSelect: _selectObjective,
-                      ).animate().fadeIn(
-                        duration: AppDimensions.durationMedium,
-                        delay: const Duration(milliseconds: 200),
-                      ),
-
-                      const SizedBox(height: AppDimensions.spaceXl),
-
-                      // Judge Bite with Speech Bubble
-                      _JudgeBiteSection(
-                        optionsCount: _options.length,
-                        hasObjective: _selectedObjective != null,
-                        canSubmit: _canSubmit,
-                      ),
-
-                      const SizedBox(height: AppDimensions.spaceXxl),
-                    ],
-                  ),
-                ),
-              ),
-
-              // Submit Button
-              _SubmitSection(
-                canSubmit: _canSubmit,
-                isLoading: _isLoading,
-                onSubmit: _submitDecision,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Custom header with retro styling.
-class _ScreenHeader extends StatelessWidget {
-  const _ScreenHeader({required this.onBack});
-
-  final VoidCallback onBack;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimensions.spaceMd,
-        vertical: AppDimensions.spaceSm,
-      ),
-      child: Row(
-        children: [
-          // Back button
-          Container(
-            decoration: BoxDecoration(
-              color: colorScheme.surface,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: colorScheme.secondary,
-                width: AppDimensions.borderMedium,
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x20000000),
-                  offset: Offset(2, 2),
-                  blurRadius: 0,
-                ),
-              ],
-            ),
-            child: IconButton(
-              onPressed: onBack,
-              icon: const Icon(Icons.arrow_back),
-              color: colorScheme.secondary,
-            ),
-          ),
-
-          const SizedBox(width: AppDimensions.spaceMd),
-
-          // Title
-          Expanded(
-            child: Text(
-              context.l10n.decision_screenTitle,
-              style: AppTypography.headlineMedium.copyWith(
-                color: colorScheme.onSurface,
-              ),
-            ),
-          ),
-
-          // Gavel icon decoration
-          Container(
-            padding: const EdgeInsets.all(AppDimensions.spaceSm),
-            decoration: BoxDecoration(
-              color: colorScheme.primary.withValues(alpha: 0.1),
-              borderRadius: AppDimensions.borderRadiusMd,
-            ),
-            child: const Text('⚖️', style: TextStyle(fontSize: 24)),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Progress indicator showing how ready the case is.
-class _ProgressSection extends StatelessWidget {
-  const _ProgressSection({
-    required this.optionsCount,
-    required this.hasObjective,
-    required this.minOptions,
-    required this.maxOptions,
-  });
-
-  final int optionsCount;
-  final bool hasObjective;
-  final int minOptions;
-  final int maxOptions;
-
-  double get _progress {
-    double optionProgress = (optionsCount / minOptions).clamp(0.0, 1.0) * 0.7;
-    double objectiveProgress = hasObjective ? 0.3 : 0.0;
-    return optionProgress + objectiveProgress;
-  }
-
-  String _getStatusText(BuildContext context) {
-    if (optionsCount == 0) return context.l10n.decision_addOptionsToBegin;
-    if (optionsCount < minOptions) {
-      return context.l10n.decision_addMoreOptions(minOptions - optionsCount);
-    }
-    if (!hasObjective) return context.l10n.decision_pickYourGoal;
-    return context.l10n.decision_readyForVerdict;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      padding: const EdgeInsets.all(AppDimensions.spaceMd),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: AppDimensions.borderRadiusLg,
-        border: Border.all(
-          color: _progress >= 1.0 ? AppColors.success : colorScheme.outline,
-          width: AppDimensions.borderMedium,
-        ),
-      ),
-      child: Column(
-        children: [
-          // Status text
-          Row(
-            children: [
-              Icon(
-                _progress >= 1.0 ? Icons.check_circle : Icons.pending,
-                color: _progress >= 1.0
-                    ? AppColors.success
-                    : colorScheme.primary,
-                size: 20,
-              ),
-              const SizedBox(width: AppDimensions.spaceSm),
-              Expanded(
-                child: Text(
-                  _getStatusText(context),
-                  style: AppTypography.labelMedium.copyWith(
-                    color: _progress >= 1.0
-                        ? AppColors.success
-                        : colorScheme.onSurfaceVariant,
-                  ),
-                ),
-              ),
-              Text(
-                '$optionsCount/$maxOptions',
-                style: AppTypography.labelSmall.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: AppDimensions.spaceSm),
-
-          // Progress bar
-          ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: LinearProgressIndicator(
-              value: _progress,
-              backgroundColor: colorScheme.outline,
-              valueColor: AlwaysStoppedAnimation(
-                _progress >= 1.0 ? AppColors.success : colorScheme.primary,
-              ),
-              minHeight: 6,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Options section with courtroom "Exhibit" styling.
-class _OptionsSection extends StatelessWidget {
-  const _OptionsSection({
-    required this.options,
-    required this.onRemove,
-    required this.onAddMore,
-    required this.maxOptions,
-  });
-
-  final List<FoodOption> options;
-  final Function(int) onRemove;
-  final VoidCallback? onAddMore;
-  final int maxOptions;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Section Header with icon
-        Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(AppDimensions.spaceXs),
-              decoration: BoxDecoration(
-                color: colorScheme.primary,
-                borderRadius: AppDimensions.borderRadiusSm,
-              ),
-              child: const Icon(
-                Icons.restaurant_menu,
-                color: Colors.white,
-                size: 16,
-              ),
-            ),
-            const SizedBox(width: AppDimensions.spaceSm),
-            Text(
-              context.l10n.decision_yourOptions.toUpperCase(),
-              style: AppTypography.labelLarge.copyWith(
-                color: colorScheme.onSurface,
-                letterSpacing: 1.5,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-
-        const SizedBox(height: AppDimensions.spaceMd),
-
-        // Empty state or options
-        if (options.isEmpty)
-          _EmptyOptionsState(onAdd: onAddMore)
-        else ...[
-          // Option Cards with staggered animation
-          ...options.asMap().entries.map((entry) {
-            final index = entry.key;
-            final option = entry.value;
-            return Padding(
-              padding: const EdgeInsets.only(bottom: AppDimensions.spaceMd),
-              child:
-                  _ExhibitCard(
-                        option: option,
-                        exhibitLetter: String.fromCharCode(
-                          65 + index,
-                        ), // A, B, C...
-                        onRemove: () => onRemove(index),
-                      )
-                      .animate()
-                      .fadeIn(
-                        duration: AppDimensions.durationMedium,
-                        delay: Duration(milliseconds: index * 100),
-                      )
-                      .slideX(
-                        begin: 0.1,
-                        end: 0.0,
-                        duration: AppDimensions.durationMedium,
-                        delay: Duration(milliseconds: index * 100),
-                      ),
-            );
-          }),
-
-          // Add more button
-          if (onAddMore != null)
-            _AddOptionButton(
-              onPressed: onAddMore!,
-              remainingSlots: maxOptions - options.length,
-            ).animate().fadeIn(
-              duration: AppDimensions.durationMedium,
-              delay: Duration(milliseconds: options.length * 100),
-            ),
-        ],
-      ],
-    );
-  }
-}
-
-/// Empty state when no options added.
-class _EmptyOptionsState extends StatelessWidget {
-  const _EmptyOptionsState({required this.onAdd});
-
-  final VoidCallback? onAdd;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-          padding: const EdgeInsets.all(AppDimensions.spaceXl),
-          decoration: BoxDecoration(
-            color: colorScheme.surface,
-            borderRadius: AppDimensions.borderRadiusLg,
-            border: Border.all(
-              color: colorScheme.outline,
-              width: AppDimensions.borderMedium,
-            ),
-          ),
-          child: Column(
-            children: [
-              // Icon
-              Container(
-                width: 64,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: colorScheme.primary.withValues(alpha: 0.2),
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
-                  child: Text('🍽️', style: TextStyle(fontSize: 32)),
-                ),
-              ),
-
-              const SizedBox(height: AppDimensions.spaceMd),
-
-              Text(
-                context.l10n.decision_noEvidenceYet,
-                style: AppTypography.titleMedium.copyWith(
-                  color: colorScheme.onSurface,
-                ),
-              ),
-
-              const SizedBox(height: AppDimensions.spaceXs),
-
-              Text(
-                context.l10n.decision_addOptionsToBuildCase,
-                style: AppTypography.bodyMedium.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
-                textAlign: TextAlign.center,
-              ),
-
-              const SizedBox(height: AppDimensions.spaceLg),
-
-              if (onAdd != null)
-                AppButton(
-                  label: context.l10n.decision_addFirstOption,
-                  icon: Icons.add,
-                  onPressed: onAdd,
-                ),
-            ],
-          ),
-        )
-        .animate()
-        .fadeIn(duration: AppDimensions.durationMedium)
-        .scale(
-          begin: const Offset(0.95, 0.95),
-          end: const Offset(1.0, 1.0),
-          duration: AppDimensions.durationMedium,
-        );
-  }
-}
-
-/// Courtroom-styled "Exhibit" card for each option.
-class _ExhibitCard extends StatelessWidget {
-  const _ExhibitCard({
-    required this.option,
-    required this.exhibitLetter,
-    required this.onRemove,
-  });
-
-  final FoodOption option;
-  final String exhibitLetter;
-  final VoidCallback onRemove;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final hasImage = option.hasImage;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: AppDimensions.borderRadiusMd,
-        border: Border.all(
-          color: colorScheme.secondary,
-          width: AppDimensions.borderThick,
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x30000000),
-            offset: Offset(4, 4),
-            blurRadius: 0,
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Exhibit header
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.spaceMd,
-              vertical: AppDimensions.spaceSm,
-            ),
-            decoration: BoxDecoration(
-              color: colorScheme.secondary,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(AppDimensions.radiusMd - 3),
-              ),
-            ),
-            child: Row(
-              children: [
-                // Exhibit badge
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimensions.spaceSm,
-                    vertical: AppDimensions.spaceXxs,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.pop,
-                    borderRadius: AppDimensions.borderRadiusSm,
-                  ),
-                  child: Text(
-                    'EXHIBIT $exhibitLetter',
-                    style: AppTypography.labelSmall.copyWith(
-                      color: colorScheme.secondary,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0,
-                    ),
-                  ),
-                ),
-
-                const Spacer(),
-
-                // Photo indicator badge
-                if (hasImage)
-                  Container(
-                    margin: const EdgeInsets.only(right: AppDimensions.spaceSm),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDimensions.spaceXs,
-                      vertical: AppDimensions.spaceXxs,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.success.withValues(alpha: 0.3),
-                      borderRadius: AppDimensions.borderRadiusSm,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.photo_camera,
-                          color: colorScheme.surface,
-                          size: 12,
+                      DinerEntrance(
+                        child: DinerHeading(
+                          context.l10n.diner_menuTitle,
+                          large: wide,
                         ),
-                        const SizedBox(width: 2),
-                        Text(
-                          'PHOTO',
-                          style: AppTypography.labelSmall.copyWith(
-                            color: colorScheme.surface,
-                            fontSize: 9,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(height: AppDimensions.spaceSm),
+                      Text(
+                        context.l10n.diner_menuHint,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      const SizedBox(height: AppDimensions.spaceLg),
+                      if (_options.isEmpty)
+                        DinerEntrance(
+                          order: 1,
+                          child: DinerTicket(
+                            child: Column(
+                              children: [
+                                const JudgeBite(
+                                  pose: JudgeBitePose.confused,
+                                  size: JudgeBiteSize.large,
+                                ),
+                                const SizedBox(height: AppDimensions.spaceMd),
+                                Text(
+                                  context.l10n.diner_emptyMenu,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-
-                // Delete button
-                Semantics(
-                  label: context.l10n.a11y_removeOption(option.name),
-                  button: true,
-                  child: InkWell(
-                    onTap: onRemove,
-                    borderRadius: BorderRadius.circular(12),
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: AppColors.error.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(
-                        Icons.close,
-                        color: colorScheme.surface,
-                        size: 18,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Content with image
-          Padding(
-            padding: const EdgeInsets.all(AppDimensions.spaceMd),
-            child: Row(
-              children: [
-                // Image or placeholder
-                _OptionThumbnail(
-                  imageBytes: option.imageBytes,
-                  optionName: option.name,
-                ),
-
-                const SizedBox(width: AppDimensions.spaceMd),
-
-                // Option details
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        option.name,
-                        style: AppTypography.titleMedium.copyWith(
-                          color: colorScheme.onSurface,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      if (option.notes != null && option.notes!.isNotEmpty) ...[
-                        const SizedBox(height: AppDimensions.spaceXxs),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.notes,
-                              size: 14,
-                              color: colorScheme.onSurfaceVariant,
+                      for (final option in _options)
+                        Padding(
+                          key: ValueKey(option.id),
+                          padding: const EdgeInsets.only(
+                            bottom: AppDimensions.spaceMd,
+                          ),
+                          child: DinerEntrance(
+                            child: _OptionCard(
+                              option: option,
+                              onEdit: () => _editOption(option),
+                              onRemove: () => setState(
+                                () => _options.removeWhere(
+                                  (o) => o.id == option.id,
+                                ),
+                              ),
                             ),
-                            const SizedBox(width: 4),
+                          ),
+                        ),
+                      const SizedBox(height: AppDimensions.spaceMd),
+                      if (_options.length < 5)
+                        DinerButton(
+                          key: const Key('add-option'),
+                          label: context.l10n.diner_addAnother,
+                          icon: Icons.add_rounded,
+                          style: DinerButtonStyle.outline,
+                          onPressed: () => _editOption(),
+                        )
+                      else
+                        Text(
+                          context.l10n.diner_maxOptions,
+                          textAlign: TextAlign.center,
+                        ),
+                    ],
+                  );
+                  final choices = Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      DinerSection(context.l10n.diner_mood),
+                      const SizedBox(height: AppDimensions.spaceMd),
+                      LayoutBuilder(
+                        builder: (context, box) {
+                          final single =
+                              MediaQuery.textScalerOf(context).scale(1) >= 1.7;
+                          return Wrap(
+                            spacing: AppDimensions.spaceSm,
+                            runSpacing: AppDimensions.spaceSm,
+                            children: [
+                              for (final objective in Objective.values)
+                                SizedBox(
+                                  width: single
+                                      ? box.maxWidth
+                                      : (box.maxWidth - AppDimensions.spaceSm) /
+                                            2,
+                                  child: DinerChoice(
+                                    label: objective.getLabel(context),
+                                    selected: _objective == objective,
+                                    onTap: () =>
+                                        setState(() => _objective = objective),
+                                  ),
+                                ),
+                            ],
+                          );
+                        },
+                      ),
+                      const SizedBox(height: AppDimensions.spaceLg),
+                      AnimatedSwitcher(
+                        duration: reduceDinerMotion(context)
+                            ? Duration.zero
+                            : DinerTokens.press,
+                        child: Row(
+                          key: ValueKey(_ready),
+                          children: [
+                            JudgeBite(
+                              pose: _ready
+                                  ? JudgeBitePose.excited
+                                  : JudgeBitePose.thinking,
+                              size: JudgeBiteSize.small,
+                            ),
+                            const SizedBox(width: AppDimensions.spaceSm),
                             Expanded(
                               child: Text(
-                                option.notes!,
-                                style: AppTypography.bodySmall.copyWith(
-                                  color: colorScheme.onSurfaceVariant,
-                                  fontStyle: FontStyle.italic,
+                                _options.length < 2
+                                    ? context.l10n.decision_addMoreOptions(
+                                        2 - _options.length,
+                                      )
+                                    : _objective == null
+                                    ? context.l10n.decision_pickYourGoal
+                                    : context.l10n.decision_readyForVerdict,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
                                 ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
                         ),
-                      ],
+                      ),
+                      const SizedBox(height: AppDimensions.spaceMd),
+                      DinerButton(
+                        key: const Key('submit-case'),
+                        label: context.l10n.decision_letJudgeDecide,
+                        icon: Icons.gavel_rounded,
+                        onPressed: _ready ? _submit : null,
+                      ),
                     ],
+                  );
+                  if (wide) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(flex: 6, child: menu),
+                        const SizedBox(width: DinerTokens.columnGap),
+                        Expanded(
+                          flex: 4,
+                          child: DinerEntrance(
+                            order: 2,
+                            child: DinerTicket(child: choices),
+                          ),
+                        ),
+                      ],
+                    );
+                  }
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      menu,
+                      const SizedBox(height: AppDimensions.spaceLg),
+                      DinerEntrance(order: 2, child: choices),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+          if (_submitting) const Positioned.fill(child: DinerDeliberation()),
+        ],
+      ),
+    );
+  }
+}
+
+class _OptionCard extends StatelessWidget {
+  const _OptionCard({
+    required this.option,
+    required this.onEdit,
+    required this.onRemove,
+  });
+  final FoodOption option;
+  final VoidCallback onEdit;
+  final VoidCallback onRemove;
+  @override
+  Widget build(BuildContext context) => Stack(
+    clipBehavior: Clip.none,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(top: DinerTokens.touchTarget / 2),
+        child: DinerTicket(
+          padding: const EdgeInsets.all(AppDimensions.spaceSm),
+          child: Row(
+            children: [
+              DinerFoodImage(
+                bytes: option.imageBytes,
+                foodName: option.name,
+                label: context.l10n.a11y_photoOf(option.name),
+                size: MediaQuery.textScalerOf(context).scale(1) >= 1.7
+                    ? DinerTokens.touchTarget
+                    : DinerTokens.thumbnail,
+              ),
+              const SizedBox(width: AppDimensions.spaceMd),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      option.name,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    if (option.notes?.isNotEmpty == true) Text(option.notes!),
+                  ],
+                ),
+              ),
+              const SizedBox(width: AppDimensions.spaceSm),
+              IconButton(
+                onPressed: onEdit,
+                tooltip: context.l10n.diner_editOption,
+                style: IconButton.styleFrom(
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    width: AppDimensions.borderMedium,
+                  ),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: AppDimensions.borderRadiusSm,
+                  ),
+                ),
+                icon: const Icon(Icons.edit_outlined),
+              ),
+            ],
+          ),
+        ),
+      ),
+      Positioned(
+        top: 0,
+        right: 0,
+        child: IconButton(
+          constraints: const BoxConstraints.tightFor(
+            width: DinerTokens.touchTarget,
+            height: DinerTokens.touchTarget,
+          ),
+          onPressed: onRemove,
+          tooltip: context.l10n.a11y_removeOption(option.name),
+          icon: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Theme.of(context).colorScheme.onSurface,
+                width: DinerTokens.badgeBorder,
+              ),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.all(DinerTokens.badgeInset),
+              child: Icon(Icons.close_rounded, size: AppDimensions.iconSizeSm),
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+class _OptionEditor extends StatefulWidget {
+  const _OptionEditor({this.original});
+  final FoodOption? original;
+  @override
+  State<_OptionEditor> createState() => _OptionEditorState();
+}
+
+class _OptionEditorState extends State<_OptionEditor> {
+  final _form = GlobalKey<FormState>();
+  late final _name = TextEditingController(text: widget.original?.name);
+  late final _notes = TextEditingController(text: widget.original?.notes);
+  late Uint8List? _bytes = widget.original?.imageBytes;
+  @override
+  void dispose() {
+    _name.dispose();
+    _notes.dispose();
+    super.dispose();
+  }
+
+  void _save() {
+    if (_form.currentState?.validate() != true) return;
+    Navigator.pop(
+      context,
+      FoodOption(
+        id: widget.original?.id ?? const Uuid().v4(),
+        name: _name.text.trim(),
+        notes: _notes.text.trim().isEmpty ? null : _notes.text.trim(),
+        imageBytes: _bytes,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) => SingleChildScrollView(
+    padding: EdgeInsets.fromLTRB(
+      AppDimensions.spaceLg,
+      AppDimensions.spaceLg,
+      AppDimensions.spaceLg,
+      MediaQuery.viewInsetsOf(context).bottom + AppDimensions.spaceLg,
+    ),
+    child: Form(
+      key: _form,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: DinerHeading(
+                  widget.original == null
+                      ? context.l10n.decision_addToYourCase
+                      : context.l10n.diner_editOption,
+                ),
+              ),
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                tooltip: context.l10n.common_close,
+                icon: const Icon(Icons.close_rounded),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppDimensions.spaceMd),
+          FoodImagePicker(
+            imageBytes: _bytes,
+            onImageSelected: (bytes) => setState(() => _bytes = bytes),
+            onImageRemoved: () => setState(() => _bytes = null),
+          ),
+          const SizedBox(height: AppDimensions.spaceMd),
+          TextFormField(
+            key: const Key('option-name'),
+            controller: _name,
+            textCapitalization: TextCapitalization.sentences,
+            maxLength: 80,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              labelText: context.l10n.option_nameLabel,
+              hintText: context.l10n.option_nameHint,
+            ),
+            validator: (value) => value == null || value.trim().isEmpty
+                ? context.l10n.validation_pleaseEnterName
+                : value.trim().length > 80
+                ? context.l10n.diner_nameLimit
+                : null,
+          ),
+          const SizedBox(height: AppDimensions.spaceSm),
+          TextFormField(
+            key: const Key('option-notes'),
+            controller: _notes,
+            maxLines: 2,
+            maxLength: 500,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: InputDecoration(
+              labelText: context.l10n.option_notesLabel,
+              hintText: context.l10n.option_notesHint,
+            ),
+            validator: (value) => (value?.length ?? 0) > 500
+                ? context.l10n.diner_notesLimit
+                : null,
+          ),
+          const SizedBox(height: AppDimensions.spaceMd),
+          DinerButton(
+            key: const Key('save-option'),
+            label: widget.original == null
+                ? context.l10n.option_addToCase
+                : context.l10n.diner_saveOption,
+            icon: Icons.check_rounded,
+            style: DinerButtonStyle.mustard,
+            onPressed: _save,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+/// A route-owned loading state. It blocks input without popping navigators.
+class DinerDeliberation extends StatelessWidget {
+  const DinerDeliberation({super.key});
+  @override
+  Widget build(BuildContext context) => DinerNightSurface(
+    child: SafeArea(
+      child: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(AppDimensions.spaceLg),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: DinerTokens.readingWidth,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const JudgeBiteAnimated(
+                  pose: JudgeBitePose.thinking,
+                  dimension: DinerTokens.heroJudge,
+                ),
+                const SizedBox(height: AppDimensions.spaceLg),
+                DinerSignText(context.l10n.diner_deliberating),
+                const SizedBox(height: AppDimensions.spaceMd),
+                Semantics(
+                  liveRegion: true,
+                  child: Text(
+                    context.l10n.diner_weighing,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: AppColors.background,
+                      fontSize: DinerTokens.bodyEmphasis,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppDimensions.spaceLg),
+                ExcludeSemantics(
+                  child: SizedBox(
+                    width: DinerTokens.heroJudge,
+                    child: LinearProgressIndicator(
+                      value: reduceDinerMotion(context) ? .7 : null,
+                      color: AppColors.pop,
+                      backgroundColor: AppColors.accentLight,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Thumbnail for food option with image or placeholder.
-class _OptionThumbnail extends StatelessWidget {
-  const _OptionThumbnail({this.imageBytes, this.optionName});
-
-  final Uint8List? imageBytes;
-  final String? optionName;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final hasImage = imageBytes != null && imageBytes!.isNotEmpty;
-
-    final container = Container(
-      width: 64,
-      height: 64,
-      decoration: BoxDecoration(
-        color: hasImage
-            ? colorScheme.surface
-            : colorScheme.primary.withValues(alpha: 0.2),
-        borderRadius: AppDimensions.borderRadiusSm,
-        border: Border.all(
-          color: hasImage
-              ? colorScheme.secondary
-              : colorScheme.primary.withValues(alpha: 0.3),
-          width: hasImage ? AppDimensions.borderMedium : 2,
-        ),
-        boxShadow: hasImage ? AppDimensions.shadowRetroSm : null,
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppDimensions.radiusSm - 2),
-        child: hasImage
-            ? Image.memory(
-                imageBytes!,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return const _PlaceholderContent();
-                },
-              )
-            : const _PlaceholderContent(),
-      ),
-    );
-
-    // Add semantics for images
-    if (hasImage && optionName != null) {
-      return Semantics(
-        image: true,
-        label: context.l10n.a11y_photoOf(optionName!),
-        child: container,
-      );
-    }
-
-    return container;
-  }
-}
-
-/// Placeholder content for thumbnail.
-class _PlaceholderContent extends StatelessWidget {
-  const _PlaceholderContent();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('🍴', style: TextStyle(fontSize: 28)));
-  }
-}
-
-/// Styled add option button.
-class _AddOptionButton extends StatelessWidget {
-  const _AddOptionButton({
-    required this.onPressed,
-    required this.remainingSlots,
-  });
-
-  final VoidCallback onPressed;
-  final int remainingSlots;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return InkWell(
-      onTap: onPressed,
-      borderRadius: AppDimensions.borderRadiusMd,
-      child: Container(
-        padding: const EdgeInsets.all(AppDimensions.spaceMd),
-        decoration: BoxDecoration(
-          color: colorScheme.surface,
-          borderRadius: AppDimensions.borderRadiusMd,
-          border: Border.all(
-            color: colorScheme.primary,
-            width: 2,
-            strokeAlign: BorderSide.strokeAlignInside,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: colorScheme.primary,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.add, color: Colors.white, size: 20),
-            ),
-            const SizedBox(width: AppDimensions.spaceSm),
-            Text(
-              context.l10n.decision_addOption,
-              style: AppTypography.titleSmall.copyWith(
-                color: colorScheme.primary,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(width: AppDimensions.spaceSm),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimensions.spaceSm,
-                vertical: AppDimensions.spaceXxs,
-              ),
-              decoration: BoxDecoration(
-                color: colorScheme.primary.withValues(alpha: 0.2),
-                borderRadius: AppDimensions.borderRadiusSm,
-              ),
-              child: Text(
-                context.l10n.decision_slotsLeft(remainingSlots),
-                style: AppTypography.labelSmall.copyWith(
-                  color: colorScheme.primary,
-                ),
-              ),
-            ),
-          ],
         ),
       ),
-    );
-  }
-}
-
-/// Objective selector with better visual design.
-class _ObjectiveSection extends StatelessWidget {
-  const _ObjectiveSection({
-    required this.selectedObjective,
-    required this.onSelect,
-  });
-
-  final Objective? selectedObjective;
-  final Function(Objective) onSelect;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Section Header
-        Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(AppDimensions.spaceXs),
-              decoration: BoxDecoration(
-                color: AppColors.pop,
-                borderRadius: AppDimensions.borderRadiusSm,
-              ),
-              child: Icon(Icons.flag, color: colorScheme.secondary, size: 16),
-            ),
-            const SizedBox(width: AppDimensions.spaceSm),
-            Text(
-              context.l10n.decision_whatsYourGoal.toUpperCase(),
-              style: AppTypography.labelLarge.copyWith(
-                color: colorScheme.onSurface,
-                letterSpacing: 1.5,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-
-        const SizedBox(height: AppDimensions.spaceMd),
-
-        // Objective chips in a nice grid
-        Wrap(
-          spacing: AppDimensions.spaceSm,
-          runSpacing: AppDimensions.spaceSm,
-          children: Objective.values.asMap().entries.map((entry) {
-            final index = entry.key;
-            final objective = entry.value;
-            final isSelected = selectedObjective == objective;
-
-            return _ObjectiveCard(
-                  objective: objective,
-                  isSelected: isSelected,
-                  onTap: () => onSelect(objective),
-                )
-                .animate()
-                .fadeIn(
-                  duration: AppDimensions.durationMedium,
-                  delay: Duration(milliseconds: index * 50),
-                )
-                .scale(
-                  begin: const Offset(0.9, 0.9),
-                  end: const Offset(1.0, 1.0),
-                  duration: AppDimensions.durationMedium,
-                  delay: Duration(milliseconds: index * 50),
-                );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-}
-
-/// Individual objective card with better styling.
-class _ObjectiveCard extends StatelessWidget {
-  const _ObjectiveCard({
-    required this.objective,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final Objective objective;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: AppDimensions.durationFast,
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppDimensions.spaceMd,
-          vertical: AppDimensions.spaceSm,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected ? colorScheme.primary : colorScheme.surface,
-          borderRadius: AppDimensions.borderRadiusLg,
-          border: Border.all(
-            color: isSelected ? AppColors.primaryDark : colorScheme.outline,
-            width: isSelected
-                ? AppDimensions.borderThick
-                : AppDimensions.borderMedium,
-          ),
-          boxShadow: isSelected
-              ? [
-                  BoxShadow(
-                    color: colorScheme.primary.withValues(alpha: 0.3),
-                    offset: const Offset(0, 4),
-                    blurRadius: 8,
-                  ),
-                ]
-              : null,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(objective.icon, style: const TextStyle(fontSize: 20)),
-            const SizedBox(width: AppDimensions.spaceSm),
-            Text(
-              objective.getLabel(context),
-              style: AppTypography.labelLarge.copyWith(
-                color: isSelected ? Colors.white : colorScheme.onSurface,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// Judge Bite section with speech bubble.
-class _JudgeBiteSection extends StatelessWidget {
-  const _JudgeBiteSection({
-    required this.optionsCount,
-    required this.hasObjective,
-    required this.canSubmit,
-  });
-
-  final int optionsCount;
-  final bool hasObjective;
-  final bool canSubmit;
-
-  JudgeBitePose get _pose {
-    if (optionsCount == 0) return JudgeBitePose.confused;
-    if (canSubmit) return JudgeBitePose.excited;
-    if (optionsCount >= 2) return JudgeBitePose.thinking;
-    return JudgeBitePose.pointing;
-  }
-
-  String _getMessage(BuildContext context) {
-    if (optionsCount == 0) return context.l10n.judgeBite_presentEvidence;
-    if (optionsCount == 1) return context.l10n.judgeBite_addMoreToCompare;
-    if (!hasObjective) return context.l10n.judgeBite_tellMeYourGoal;
-    if (canSubmit) return context.l10n.judgeBite_readyToDeliver;
-    return context.l10n.judgeBite_buildingCase;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final message = _getMessage(context);
-
-    return Center(
-      child: Column(
-        children: [
-          // Speech bubble
-          Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.spaceLg,
-                  vertical: AppDimensions.spaceMd,
-                ),
-                decoration: BoxDecoration(
-                  color: colorScheme.surface,
-                  borderRadius: AppDimensions.borderRadiusLg,
-                  border: Border.all(
-                    color: colorScheme.secondary,
-                    width: AppDimensions.borderMedium,
-                  ),
-                  boxShadow: AppDimensions.shadowRetro,
-                ),
-                child: Text(
-                  '"$message"',
-                  style: AppTypography.bodyLarge.copyWith(
-                    color: colorScheme.onSurface,
-                    fontStyle: FontStyle.italic,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              )
-              .animate(key: ValueKey(message))
-              .fadeIn(duration: AppDimensions.durationMedium)
-              .slideY(
-                begin: -0.2,
-                end: 0.0,
-                duration: AppDimensions.durationMedium,
-              ),
-
-          // Speech bubble pointer
-          CustomPaint(
-            size: const Size(20, 10),
-            painter: _SpeechBubblePointer(colorScheme: colorScheme),
-          ),
-
-          const SizedBox(height: AppDimensions.spaceXs),
-
-          // Judge Bite
-          JudgeBite(pose: _pose, size: JudgeBiteSize.medium),
-        ],
-      ),
-    );
-  }
-}
-
-/// Custom painter for speech bubble pointer.
-class _SpeechBubblePointer extends CustomPainter {
-  _SpeechBubblePointer({required this.colorScheme});
-
-  final ColorScheme colorScheme;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = colorScheme.surface
-      ..style = PaintingStyle.fill;
-
-    final borderPaint = Paint()
-      ..color = colorScheme.secondary
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-
-    final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width / 2, size.height)
-      ..lineTo(size.width, 0)
-      ..close();
-
-    canvas.drawPath(path, paint);
-    canvas.drawLine(
-      Offset(0, 0),
-      Offset(size.width / 2, size.height),
-      borderPaint,
-    );
-    canvas.drawLine(
-      Offset(size.width, 0),
-      Offset(size.width / 2, size.height),
-      borderPaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant _SpeechBubblePointer oldDelegate) =>
-      colorScheme != oldDelegate.colorScheme;
-}
-
-/// Submit section with gradient button.
-class _SubmitSection extends StatelessWidget {
-  const _SubmitSection({
-    required this.canSubmit,
-    required this.isLoading,
-    required this.onSubmit,
-  });
-
-  final bool canSubmit;
-  final bool isLoading;
-  final VoidCallback onSubmit;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Container(
-      padding: AppDimensions.screenPadding,
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        border: Border(top: BorderSide(color: colorScheme.secondary, width: 3)),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.secondary.withValues(alpha: 0.1),
-            offset: const Offset(0, -4),
-            blurRadius: 8,
-          ),
-        ],
-      ),
-      child: AppGradientButton(
-        label: context.l10n.decision_letJudgeDecide,
-        icon: Icons.gavel,
-        onPressed: canSubmit ? onSubmit : null,
-      ),
-    );
-  }
-}
-
-/// Bottom sheet for adding a new option with image support.
-class _AddOptionSheet extends ConsumerStatefulWidget {
-  const _AddOptionSheet({required this.onAdd, required this.optionNumber});
-
-  final Function(FoodOption) onAdd;
-  final int optionNumber;
-
-  @override
-  ConsumerState<_AddOptionSheet> createState() => _AddOptionSheetState();
-}
-
-class _AddOptionSheetState extends ConsumerState<_AddOptionSheet> {
-  final _nameController = TextEditingController();
-  final _notesController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  Uint8List? _imageBytes;
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _notesController.dispose();
-    super.dispose();
-  }
-
-  void _onImageSelected(Uint8List bytes) {
-    setState(() => _imageBytes = bytes);
-  }
-
-  void _onImageRemoved() {
-    setState(() => _imageBytes = null);
-  }
-
-  void _submit() {
-    if (_formKey.currentState!.validate()) {
-      final option = FoodOption(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        name: _nameController.text.trim(),
-        notes: _notesController.text.trim().isEmpty
-            ? null
-            : _notesController.text.trim(),
-        imageBytes: _imageBytes,
-      );
-
-      widget.onAdd(option);
-      Navigator.of(context).pop();
-
-      AppSnackbar.showSuccess(
-        context,
-        message: context.l10n.snackbar_optionAdded,
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final exhibitLetter = String.fromCharCode(64 + widget.optionNumber);
-
-    return Container(
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(AppDimensions.bottomSheetRadius),
-        ),
-        border: Border.all(
-          color: colorScheme.secondary,
-          width: AppDimensions.borderThick,
-        ),
-      ),
-      child: SingleChildScrollView(
-        padding: EdgeInsets.only(
-          left: AppDimensions.spaceLg,
-          right: AppDimensions.spaceLg,
-          top: AppDimensions.spaceLg,
-          bottom:
-              MediaQuery.of(context).viewInsets.bottom + AppDimensions.spaceLg,
-        ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Header with exhibit badge
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDimensions.spaceMd,
-                      vertical: AppDimensions.spaceXs,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colorScheme.secondary,
-                      borderRadius: AppDimensions.borderRadiusSm,
-                    ),
-                    child: Text(
-                      'EXHIBIT $exhibitLetter',
-                      style: AppTypography.labelMedium.copyWith(
-                        color: AppColors.pop,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  AppCloseButton(onPressed: () => Navigator.of(context).pop()),
-                ],
-              ),
-
-              const SizedBox(height: AppDimensions.spaceMd),
-
-              Text(
-                context.l10n.decision_addToYourCase,
-                style: AppTypography.headlineSmall.copyWith(
-                  color: colorScheme.onSurface,
-                ),
-              ),
-
-              const SizedBox(height: AppDimensions.spaceLg),
-
-              // Image Picker
-              FoodImagePicker(
-                imageBytes: _imageBytes,
-                onImageSelected: _onImageSelected,
-                onImageRemoved: _onImageRemoved,
-              ),
-
-              const SizedBox(height: AppDimensions.spaceMd),
-
-              // Name field
-              AppTextField(
-                controller: _nameController,
-                label: context.l10n.option_nameLabel,
-                hint: context.l10n.option_nameHint,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return context.l10n.validation_pleaseEnterName;
-                  }
-                  return null;
-                },
-              ),
-
-              const SizedBox(height: AppDimensions.spaceMd),
-
-              // Notes field
-              AppTextField(
-                controller: _notesController,
-                label: context.l10n.option_notesLabel,
-                hint: context.l10n.option_notesHint,
-                maxLines: 3,
-              ),
-
-              const SizedBox(height: AppDimensions.spaceLg),
-
-              // Submit button
-              AppButton(
-                label: context.l10n.option_addToCase,
-                icon: Icons.add,
-                onPressed: _submit,
-              ),
-
-              const SizedBox(height: AppDimensions.spaceSm),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+    ),
+  );
 }

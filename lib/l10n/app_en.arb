@@ -1,796 +1,661 @@
 {
   "@@locale": "en",
-  
   "appTitle": "FoodJury",
   "@appTitle": {
     "description": "The application title"
   },
-
   "appTagline": "Order in the kitchen!",
   "@appTagline": {
     "description": "App tagline shown on splash screen"
   },
-
   "common_ok": "OK",
   "@common_ok": {
     "description": "Generic OK button"
   },
-
   "common_cancel": "Cancel",
   "@common_cancel": {
     "description": "Generic cancel button"
   },
-
   "common_delete": "Delete",
   "@common_delete": {
     "description": "Generic delete button"
   },
-
   "common_save": "Save",
   "@common_save": {
     "description": "Generic save button"
   },
-
   "common_yes": "Yes",
   "@common_yes": {
     "description": "Generic yes confirmation"
   },
-
   "common_no": "No",
   "@common_no": {
     "description": "Generic no confirmation"
   },
-
   "common_back": "Back",
   "@common_back": {
     "description": "Back navigation label"
   },
-
   "common_close": "Close",
   "@common_close": {
     "description": "Close button label"
   },
-
   "greeting_morning": "Good morning, hungry one!",
   "@greeting_morning": {
     "description": "Morning greeting on home screen"
   },
-
   "greeting_afternoon": "Good afternoon, hungry one!",
   "@greeting_afternoon": {
     "description": "Afternoon greeting on home screen"
   },
-
   "greeting_evening": "Good evening, hungry one!",
   "@greeting_evening": {
     "description": "Evening greeting on home screen"
   },
-
   "greeting_night": "Good night, hungry one!",
   "@greeting_night": {
     "description": "Late night greeting on home screen"
   },
-
   "home_newDecision": "New Decision",
   "@home_newDecision": {
     "description": "Button to start a new food decision"
   },
-
   "home_recentVerdicts": "Recent Verdicts",
   "@home_recentVerdicts": {
     "description": "Section header for recent decisions"
   },
-
   "home_emptyTitle": "No verdicts yet...",
   "@home_emptyTitle": {
     "description": "Title for empty state when user has no decisions"
   },
-
   "home_emptyMessage": "The court is empty! Time to bring a case.",
   "@home_emptyMessage": {
     "description": "Message for empty state on home screen"
   },
-
   "home_emptyAction": "Start Your First Case",
   "@home_emptyAction": {
     "description": "Button text for first decision on empty home screen"
   },
-
   "decision_screenTitle": "What's the dilemma?",
   "@decision_screenTitle": {
     "description": "Header for new decision screen"
   },
-
   "decision_yourOptions": "YOUR OPTIONS",
   "@decision_yourOptions": {
     "description": "Section header for food options list"
   },
-
   "decision_addOption": "Add Option",
   "@decision_addOption": {
     "description": "Button to add a new food option"
   },
-
   "decision_tapToAdd": "Tap to add",
   "@decision_tapToAdd": {
     "description": "Placeholder text for add option button"
   },
-
   "decision_whatsYourGoal": "WHAT'S YOUR GOAL?",
   "@decision_whatsYourGoal": {
     "description": "Section header for objective selection"
   },
-
   "decision_letJudgeDecide": "Let the Judge Decide",
   "@decision_letJudgeDecide": {
     "description": "Submit button to get verdict"
   },
-
   "decision_minOptionsError": "Add at least 2 options to proceed",
   "@decision_minOptionsError": {
     "description": "Error shown when trying to submit with less than 2 options"
   },
-
   "option_add": "ADD OPTION",
   "@option_add": {
     "description": "Header for add option bottom sheet"
   },
-
   "option_tapToAddPhoto": "Tap to add photo",
   "@option_tapToAddPhoto": {
     "description": "Placeholder for image picker"
   },
-
   "option_nameLabel": "Name",
   "@option_nameLabel": {
     "description": "Label for option name input"
   },
-
   "option_nameHint": "What is it?",
   "@option_nameHint": {
     "description": "Hint text for option name input"
   },
-
   "option_notesLabel": "Notes (optional)",
   "@option_notesLabel": {
     "description": "Label for option notes input"
   },
-
   "option_notesHint": "Any details the judge should know?",
   "@option_notesHint": {
     "description": "Hint text for option notes input"
   },
-
   "option_addToCase": "Add to Case",
   "@option_addToCase": {
     "description": "Button to confirm adding option"
   },
-
   "option_deleteConfirmTitle": "Delete Option?",
   "@option_deleteConfirmTitle": {
     "description": "Confirmation dialog title for deleting an option"
   },
-
   "option_deleteConfirmMessage": "This will remove the option from your case.",
   "@option_deleteConfirmMessage": {
     "description": "Confirmation dialog message for deleting an option"
   },
-
   "objective_fun": "Fun",
   "@objective_fun": {
     "description": "Fun objective label"
   },
-
   "objective_healthy": "Healthy",
   "@objective_healthy": {
     "description": "Healthy objective label"
   },
-
   "objective_fit": "Fit",
   "@objective_fit": {
     "description": "Fit objective label"
   },
-
   "objective_quick": "Quick",
   "@objective_quick": {
     "description": "Quick objective label"
   },
-
   "loading_courtInSession": "The court is in session...",
   "@loading_courtInSession": {
     "description": "Loading message while AI processes"
   },
-
   "loading_examiningEvidence": "Examining the evidence...",
   "@loading_examiningEvidence": {
     "description": "Loading message variant"
   },
-
   "loading_deliberating": "Deliberating...",
   "@loading_deliberating": {
     "description": "Loading message variant"
   },
-
   "loading_almostThere": "Almost there...",
   "@loading_almostThere": {
     "description": "Loading message variant"
   },
-
   "verdict_theVerdictIsIn": "THE VERDICT IS IN",
   "@verdict_theVerdictIsIn": {
     "description": "Main verdict reveal title"
   },
-
   "verdict_winner": "WINNER",
   "@verdict_winner": {
     "description": "Winner badge text"
   },
-
   "verdict_judgesNotes": "Judge's Notes",
   "@verdict_judgesNotes": {
     "description": "Section header for AI reasoning"
   },
-
   "verdict_seeAllRankings": "See all rankings",
   "@verdict_seeAllRankings": {
     "description": "Button to expand and show all options ranked"
   },
-
   "verdict_hideRankings": "Hide rankings",
   "@verdict_hideRankings": {
     "description": "Button to collapse rankings"
   },
-
   "verdict_newDecision": "New Decision",
   "@verdict_newDecision": {
     "description": "Button to start another decision"
   },
-
   "verdict_newCase": "New Case",
   "@verdict_newCase": {
     "description": "Button to start another decision (alternative)"
   },
-
   "verdict_share": "Share",
   "@verdict_share": {
     "description": "Button to share verdict"
   },
-
   "verdict_bonusJoke": "Judge's Joke",
   "@verdict_bonusJoke": {
     "description": "Header for joke bonus content"
   },
-
   "verdict_bonusFunFact": "Fun Fact",
   "@verdict_bonusFunFact": {
     "description": "Header for fun fact bonus content"
   },
-
   "verdict_bonusTip": "Pro Tip",
   "@verdict_bonusTip": {
     "description": "Header for tip bonus content"
   },
-
   "verdict_bonusStory": "Story Time",
   "@verdict_bonusStory": {
     "description": "Header for story bonus content"
   },
-
   "history_screenTitle": "Past Verdicts",
   "@history_screenTitle": {
     "description": "Header for history screen"
   },
-
   "history_emptyTitle": "The court records are empty...",
   "@history_emptyTitle": {
     "description": "Title for empty history state"
   },
-
   "history_emptyMessage": "No cases have been decided yet!",
   "@history_emptyMessage": {
     "description": "Message for empty history state"
   },
-
   "history_today": "Today",
   "@history_today": {
     "description": "Section header for today's decisions"
   },
-
   "history_yesterday": "Yesterday",
   "@history_yesterday": {
     "description": "Section header for yesterday's decisions"
   },
-
   "history_thisWeek": "This Week",
   "@history_thisWeek": {
     "description": "Section header for this week's decisions"
   },
-
+  "history_earlier": "Earlier",
+  "@history_earlier": {
+    "description": "Section header for older decisions"
+  },
   "history_deleteConfirmTitle": "Delete Decision?",
   "@history_deleteConfirmTitle": {
     "description": "Confirmation dialog title for deleting a decision"
   },
-
   "history_deleteConfirmMessage": "This cannot be undone.",
   "@history_deleteConfirmMessage": {
     "description": "Confirmation dialog message for deleting a decision"
   },
-
   "settings_screenTitle": "Settings",
   "@settings_screenTitle": {
     "description": "Header for settings screen"
   },
-
   "settings_judgePersonality": "JUDGE'S PERSONALITY",
   "@settings_judgePersonality": {
     "description": "Section header for tone selection"
   },
-
   "settings_appearance": "APPEARANCE",
   "@settings_appearance": {
     "description": "Section header for appearance settings"
   },
-
   "settings_subscription": "SUBSCRIPTION",
   "@settings_subscription": {
     "description": "Section header for subscription settings"
   },
-
   "settings_about": "About",
   "@settings_about": {
     "description": "About link"
   },
-
   "settings_privacy": "Privacy",
   "@settings_privacy": {
     "description": "Privacy policy link"
   },
-
   "settings_terms": "Terms",
   "@settings_terms": {
     "description": "Terms of service link"
   },
-
   "settings_devSection": "DEVELOPER OPTIONS",
   "@settings_devSection": {
     "description": "Section header for developer settings (only in dev mode)"
   },
-
   "settings_useMockAi": "Use Simulated AI",
   "@settings_useMockAi": {
     "description": "Toggle for using mock AI instead of real AI"
   },
-
   "settings_useMockAiDescription": "Use offline mock responses instead of real AI calls",
   "@settings_useMockAiDescription": {
     "description": "Description for mock AI toggle"
   },
-
   "settings_mockAiEnabled": "Simulated AI enabled",
   "@settings_mockAiEnabled": {
     "description": "Snackbar message when mock AI is enabled"
   },
-
   "settings_mockAiDisabled": "Real AI enabled",
   "@settings_mockAiDisabled": {
     "description": "Snackbar message when mock AI is disabled"
   },
-
   "settings_madeWithLove": "Made with ❤️ from Puerto Rico 🇵🇷",
   "@settings_madeWithLove": {
     "description": "Footer text showing app origin"
   },
-
   "about_developer": "About the Developer",
   "@about_developer": {
     "description": "Title for about developer screen"
   },
-
   "about_aboutMe": "About Me",
   "@about_aboutMe": {
     "description": "Section header for bio"
   },
-
   "about_skills": "Skills",
   "@about_skills": {
     "description": "Section header for skills"
   },
-
   "about_publishedApps": "Published Apps",
   "@about_publishedApps": {
     "description": "Section header for published apps"
   },
-
   "about_aboutFoodJury": "About FoodJury",
   "@about_aboutFoodJury": {
     "description": "Section header for app info"
   },
-
   "about_foodJuryDescription": "FoodJury is your AI-powered food decision companion. When you can't decide what to eat, let Judge Bite render the final verdict! Built with Flutter, powered by Gemini AI, and designed with a playful retro diner aesthetic.",
   "@about_foodJuryDescription": {
     "description": "Description of the FoodJury app"
   },
-
   "about_connect": "Let's Connect",
   "@about_connect": {
     "description": "Section header for contact links"
   },
-
   "about_meetDeveloper": "Meet the Developer",
   "@about_meetDeveloper": {
     "description": "Button text to go to about developer screen"
   },
-
   "about_developerName": "Armando Jiménez",
   "@about_developerName": {
     "description": "Developer's name"
   },
-
   "about_developerTitle": "MOBILE DEVELOPER",
   "@about_developerTitle": {
     "description": "Developer's job title badge"
   },
-
   "about_developerLocation": "Carolina, Puerto Rico 🇵🇷",
   "@about_developerLocation": {
     "description": "Developer's location"
   },
-
   "about_bioIntro": "Hey! I'm Armando, a mobile developer from Carolina, Puerto Rico. 🇵🇷",
   "@about_bioIntro": {
     "description": "Bio introduction paragraph"
   },
-
   "about_bioPassion": "I have a deep passion for building apps that make people smile, feel positive, and maybe even change the way they see the world. Whether it's a fun tool, something for mental wellness, or just an app that brings a little joy to your day, I pour my heart into everything I create.",
   "@about_bioPassion": {
     "description": "Bio passion paragraph"
   },
-
   "about_bioDrive": "What drives me? Knowing that something I built might be used by millions of people around the world. That someone in another country might open my app and feel a little bit better. That's the magic of mobile development, and I'm grateful to be part of it.",
   "@about_bioDrive": {
     "description": "Bio motivation paragraph"
   },
-
   "about_bioClosing": "Everything I create is made with love, from Puerto Rico to the world. 🌴❤️",
   "@about_bioClosing": {
     "description": "Bio closing statement"
   },
-
   "about_statsYears": "YEARS",
   "@about_statsYears": {
     "description": "Years of experience label"
   },
-
   "about_statsUsers": "USERS",
   "@about_statsUsers": {
     "description": "User count label"
   },
-
   "about_statsLove": "LOVE",
   "@about_statsLove": {
     "description": "Love/passion label"
   },
-
   "about_contactWebsite": "Website",
   "@about_contactWebsite": {
     "description": "Website contact button"
   },
-
   "about_contactGitHub": "GitHub",
   "@about_contactGitHub": {
     "description": "GitHub contact button"
   },
-
   "about_contactLinkedIn": "LinkedIn",
   "@about_contactLinkedIn": {
     "description": "LinkedIn contact button"
   },
-
   "about_contactEmail": "Email",
   "@about_contactEmail": {
     "description": "Email contact button"
   },
-
   "about_appBelieve": "Believe",
   "@about_appBelieve": {
     "description": "Believe app name"
   },
-
   "about_appBelieveSubtitle": "Daily Affirmations",
   "@about_appBelieveSubtitle": {
     "description": "Believe app subtitle"
   },
-
   "about_appHoly": "Holy",
   "@about_appHoly": {
     "description": "Holy app name"
   },
-
   "about_appHolySubtitle": "Daily Bible Verses",
   "@about_appHolySubtitle": {
     "description": "Holy app subtitle"
   },
-
   "about_appUnique": "Unique",
   "@about_appUnique": {
     "description": "Unique app name"
   },
-
   "about_appUniqueSubtitle": "Self-Love Reminders",
   "@about_appUniqueSubtitle": {
     "description": "Unique app subtitle"
   },
-
   "about_appMotiv": "Motiv",
   "@about_appMotiv": {
     "description": "Motiv app name"
   },
-
   "about_appMotivSubtitle": "Inspirational Quotes",
   "@about_appMotivSubtitle": {
     "description": "Motiv app subtitle"
   },
-
   "about_appDivine": "Divine",
   "@about_appDivine": {
     "description": "Divine app name"
   },
-
   "about_appDivineSubtitle": "Angel Messages",
   "@about_appDivineSubtitle": {
     "description": "Divine app subtitle"
   },
-
   "tone_stern": "Stern & Fair",
   "@tone_stern": {
     "description": "Stern judge personality option"
   },
-
   "tone_sternPreview": "The court finds...",
   "@tone_sternPreview": {
     "description": "Preview text for stern tone"
   },
-
   "tone_sassy": "Sassy",
   "@tone_sassy": {
     "description": "Sassy judge personality option"
   },
-
   "tone_sassyPreview": "Listen, I've seen...",
   "@tone_sassyPreview": {
     "description": "Preview text for sassy tone"
   },
-
   "tone_enthusiastic": "Enthusiastic",
   "@tone_enthusiastic": {
     "description": "Enthusiastic judge personality option"
   },
-
   "tone_enthusiasticPreview": "OH WOW! This is...",
   "@tone_enthusiasticPreview": {
     "description": "Preview text for enthusiastic tone"
   },
-
   "tone_chill": "Chill",
   "@tone_chill": {
     "description": "Chill judge personality option"
   },
-
   "tone_chillPreview": "So like, here's...",
   "@tone_chillPreview": {
     "description": "Preview text for chill tone"
   },
-
   "theme_light": "Light",
   "@theme_light": {
     "description": "Light theme option"
   },
-
   "theme_dark": "Dark",
   "@theme_dark": {
     "description": "Dark theme option"
   },
-
   "theme_system": "Auto",
   "@theme_system": {
     "description": "System theme option"
   },
-
   "subscription_pro": "FoodJury Pro",
   "@subscription_pro": {
     "description": "Pro subscription tier name"
   },
-
   "subscription_unlimitedDecisions": "Unlimited decisions",
   "@subscription_unlimitedDecisions": {
     "description": "Pro feature description"
   },
-
   "subscription_upgradeNow": "Upgrade Now",
   "@subscription_upgradeNow": {
     "description": "Button to upgrade to pro"
   },
-
   "error_noInternet": "The court is offline...",
   "@error_noInternet": {
     "description": "Error message for no internet connection"
   },
-
   "error_noInternetMessage": "Wake me when we're back online!",
   "@error_noInternetMessage": {
     "description": "Secondary message for no internet"
   },
-
   "error_tryAgain": "Try Again",
   "@error_tryAgain": {
     "description": "Button to retry after error"
   },
-
   "error_genericTitle": "Oops!",
   "@error_genericTitle": {
     "description": "Generic error title"
   },
-
   "error_genericMessage": "Something went wrong. Please try again.",
   "@error_genericMessage": {
     "description": "Generic error message"
   },
-
+  "error_networkError": "Unable to connect. Please check your internet connection.",
+  "@error_networkError": {
+    "description": "Network connectivity error message"
+  },
+  "error_networkErrorTitle": "No Connection",
+  "@error_networkErrorTitle": {
+    "description": "Network error dialog title"
+  },
+  "error_aiServiceError": "Judge Bite is taking a break. Please try again in a moment.",
+  "@error_aiServiceError": {
+    "description": "AI service error message with personality"
+  },
+  "error_timeoutError": "The request took too long. Please try again.",
+  "@error_timeoutError": {
+    "description": "Timeout error message"
+  },
+  "common_retry": "Retry",
+  "@common_retry": {
+    "description": "Generic retry button"
+  },
   "onboarding_skip": "Skip",
   "@onboarding_skip": {
     "description": "Button to skip onboarding"
   },
-
   "onboarding_next": "Next",
   "@onboarding_next": {
     "description": "Button to go to next onboarding screen"
   },
-
   "onboarding_getStarted": "Get Started",
   "@onboarding_getStarted": {
     "description": "Button to finish onboarding"
   },
-
   "onboarding_welcome_title": "Meet Judge Bite",
   "@onboarding_welcome_title": {
     "description": "First onboarding screen title"
   },
-
   "onboarding_welcome_message": "Your personal food court judge who helps you make delicious decisions!",
   "@onboarding_welcome_message": {
     "description": "First onboarding screen message"
   },
-
   "onboarding_howItWorks_title": "How It Works",
   "@onboarding_howItWorks_title": {
     "description": "Second onboarding screen title"
   },
-
   "onboarding_howItWorks_message": "Add your food options, set your goal, and let the judge deliver the verdict!",
   "@onboarding_howItWorks_message": {
     "description": "Second onboarding screen message"
   },
-
   "onboarding_personality_title": "Pick Your Style",
   "@onboarding_personality_title": {
     "description": "Third onboarding screen title"
   },
-
   "onboarding_personality_message": "Choose how Judge Bite should deliver verdicts. You can change this anytime!",
   "@onboarding_personality_message": {
     "description": "Third onboarding screen message"
   },
-
   "snackbar_decisionSaved": "Decision recorded!",
   "@snackbar_decisionSaved": {
     "description": "Success message when decision is saved"
   },
-
   "snackbar_optionAdded": "Option added to the case",
   "@snackbar_optionAdded": {
     "description": "Success message when option is added"
   },
-
   "snackbar_optionDeleted": "Option removed",
   "@snackbar_optionDeleted": {
     "description": "Success message when option is deleted"
   },
-
   "snackbar_decisionDeleted": "Decision deleted",
   "@snackbar_decisionDeleted": {
     "description": "Success message when decision is deleted"
   },
-
   "image_addPhoto": "Add Photo",
   "@image_addPhoto": {
     "description": "Button to add a photo to an option"
   },
-
   "image_changePhoto": "Change Photo",
   "@image_changePhoto": {
     "description": "Button to change an existing photo"
   },
-
   "image_removePhoto": "Remove Photo",
   "@image_removePhoto": {
     "description": "Button to remove a photo"
   },
-
   "image_takePhoto": "Take Photo",
   "@image_takePhoto": {
     "description": "Option to take a new photo with camera"
   },
-
   "image_chooseFromGallery": "Choose from Gallery",
   "@image_chooseFromGallery": {
     "description": "Option to select a photo from gallery"
   },
-
   "image_photoEvidence": "Photo Evidence",
   "@image_photoEvidence": {
     "description": "Label for photo section in retro courtroom style"
   },
-
   "permission_cameraTitle": "Camera Access Needed",
   "@permission_cameraTitle": {
     "description": "Title for camera permission dialog"
   },
-
   "permission_cameraMessage": "Please allow camera access to snap photos of your food options.",
   "@permission_cameraMessage": {
     "description": "Message explaining why camera permission is needed"
   },
-
   "permission_galleryTitle": "Photo Library Access Needed",
   "@permission_galleryTitle": {
     "description": "Title for photo library permission dialog"
   },
-
   "permission_galleryMessage": "Please allow photo library access to select photos of your food options.",
   "@permission_galleryMessage": {
     "description": "Message explaining why gallery permission is needed"
   },
-
   "permission_deniedTitle": "Permission Denied",
   "@permission_deniedTitle": {
     "description": "Title when permission was denied"
   },
-
   "permission_deniedMessage": "Without this permission, you cannot add photos. You can enable it in Settings.",
   "@permission_deniedMessage": {
     "description": "Message when permission was denied"
   },
-
   "permission_openSettings": "Open Settings",
   "@permission_openSettings": {
     "description": "Button to open app settings"
   },
-
   "error_imageLoad": "Failed to load image",
   "@error_imageLoad": {
     "description": "Error when image fails to load"
   },
-
   "snackbar_photoAdded": "Photo evidence added!",
   "@snackbar_photoAdded": {
     "description": "Success message when photo is added"
   },
-
   "snackbar_photoRemoved": "Photo removed",
   "@snackbar_photoRemoved": {
     "description": "Success message when photo is removed"
   },
-
   "common_loading": "Loading...",
   "@common_loading": {
     "description": "Generic loading message"
   },
-
   "decision_addOptionsToBegin": "Add your food options to begin",
   "@decision_addOptionsToBegin": {
     "description": "Status text when no options added"
   },
-
   "decision_addMoreOptions": "Add {count} more option{count, plural, =1{} other{s}}",
   "@decision_addMoreOptions": {
     "description": "Status text showing how many more options needed",
@@ -800,37 +665,30 @@
       }
     }
   },
-
   "decision_pickYourGoal": "Now pick your goal!",
   "@decision_pickYourGoal": {
     "description": "Status text when options added but no goal selected"
   },
-
   "decision_readyForVerdict": "Ready for the verdict!",
   "@decision_readyForVerdict": {
     "description": "Status text when ready to submit"
   },
-
   "decision_noEvidenceYet": "No evidence yet!",
   "@decision_noEvidenceYet": {
     "description": "Empty state title for options list"
   },
-
   "decision_addOptionsToBuildCase": "Add your food options to build your case",
   "@decision_addOptionsToBuildCase": {
     "description": "Empty state message for options list"
   },
-
   "decision_addFirstOption": "Add First Option",
   "@decision_addFirstOption": {
     "description": "Button text to add first option"
   },
-
   "decision_addToYourCase": "Add to your case",
   "@decision_addToYourCase": {
     "description": "Header for add option sheet"
   },
-
   "decision_slotsLeft": "{count} left",
   "@decision_slotsLeft": {
     "description": "Shows remaining option slots",
@@ -840,37 +698,30 @@
       }
     }
   },
-
   "validation_pleaseEnterName": "Please enter a name",
   "@validation_pleaseEnterName": {
     "description": "Validation error for empty name field"
   },
-
   "judgeBite_presentEvidence": "Present your evidence!",
   "@judgeBite_presentEvidence": {
     "description": "Judge Bite message when no options"
   },
-
   "judgeBite_addMoreToCompare": "One option? Add more to compare!",
   "@judgeBite_addMoreToCompare": {
     "description": "Judge Bite message with only one option"
   },
-
   "judgeBite_tellMeYourGoal": "Now tell me your goal!",
   "@judgeBite_tellMeYourGoal": {
     "description": "Judge Bite message when no goal selected"
   },
-
   "judgeBite_readyToDeliver": "Ready to deliver the verdict!",
   "@judgeBite_readyToDeliver": {
     "description": "Judge Bite message when ready to submit"
   },
-
   "judgeBite_buildingCase": "Building a solid case...",
   "@judgeBite_buildingCase": {
     "description": "Judge Bite message while building case"
   },
-
   "a11y_removeOption": "Remove {name}",
   "@a11y_removeOption": {
     "description": "Accessibility label for remove option button",
@@ -880,7 +731,6 @@
       }
     }
   },
-
   "a11y_photoOf": "Photo of {name}",
   "@a11y_photoOf": {
     "description": "Accessibility label for option photo",
@@ -889,5 +739,273 @@
         "type": "String"
       }
     }
+  },
+  "diner_court": "Court",
+  "@diner_court": {
+    "description": "Retro diner design copy: diner_court"
+  },
+  "diner_history": "History",
+  "@diner_history": {
+    "description": "Retro diner design copy: diner_history"
+  },
+  "diner_homeTitle": "Hungry?\nCourt’s in session.",
+  "@diner_homeTitle": {
+    "description": "Retro diner design copy: diner_homeTitle"
+  },
+  "diner_homeSubtitle": "Bring your options. Judge Bite will settle it.",
+  "@diner_homeSubtitle": {
+    "description": "Retro diner design copy: diner_homeSubtitle"
+  },
+  "diner_startCase": "Start a food case",
+  "@diner_startCase": {
+    "description": "Retro diner design copy: diner_startCase"
+  },
+  "diner_recent": "Recent verdicts",
+  "@diner_recent": {
+    "description": "Retro diner design copy: diner_recent"
+  },
+  "diner_viewAll": "View all",
+  "@diner_viewAll": {
+    "description": "Retro diner design copy: diner_viewAll"
+  },
+  "diner_newCase": "New case",
+  "@diner_newCase": {
+    "description": "Retro diner design copy: diner_newCase"
+  },
+  "diner_menuTitle": "What’s on the menu?",
+  "@diner_menuTitle": {
+    "description": "Retro diner design copy: diner_menuTitle"
+  },
+  "diner_menuHint": "Add 2–5 contenders. Photos are optional.",
+  "@diner_menuHint": {
+    "description": "Retro diner design copy: diner_menuHint"
+  },
+  "diner_addAnother": "Add another option",
+  "@diner_addAnother": {
+    "description": "Retro diner design copy: diner_addAnother"
+  },
+  "diner_mood": "Tonight’s mood",
+  "@diner_mood": {
+    "description": "Retro diner design copy: diner_mood"
+  },
+  "diner_caseClosed": "Case closed",
+  "@diner_caseClosed": {
+    "description": "Retro diner design copy: diner_caseClosed"
+  },
+  "diner_approved": "Approved",
+  "@diner_approved": {
+    "description": "Retro diner design copy: diner_approved"
+  },
+  "diner_ruling": "Judge Bite’s ruling",
+  "@diner_ruling": {
+    "description": "Retro diner design copy: diner_ruling"
+  },
+  "diner_otherOptions": "See the other options",
+  "@diner_otherOptions": {
+    "description": "Retro diner design copy: diner_otherOptions"
+  },
+  "diner_share": "Share verdict",
+  "@diner_share": {
+    "description": "Retro diner design copy: diner_share"
+  },
+  "diner_anotherCase": "Start another case",
+  "@diner_anotherCase": {
+    "description": "Retro diner design copy: diner_anotherCase"
+  },
+  "diner_deliberating": "The jury is deliberating…",
+  "@diner_deliberating": {
+    "description": "Retro diner design copy: diner_deliberating"
+  },
+  "diner_weighing": "Weighing the delicious evidence.",
+  "@diner_weighing": {
+    "description": "Retro diner design copy: diner_weighing"
+  },
+  "diner_reveal": "The verdict is in!",
+  "@diner_reveal": {
+    "description": "Retro diner design copy: diner_reveal"
+  },
+  "diner_revealNow": "Show my verdict",
+  "@diner_revealNow": {
+    "description": "Retro diner design copy: diner_revealNow"
+  },
+  "diner_replay": "Replay the reveal",
+  "@diner_replay": {
+    "description": "Retro diner design copy: diner_replay"
+  },
+  "diner_editOption": "Edit option",
+  "@diner_editOption": {
+    "description": "Retro diner design copy: diner_editOption"
+  },
+  "diner_saveOption": "Save option",
+  "@diner_saveOption": {
+    "description": "Retro diner design copy: diner_saveOption"
+  },
+  "diner_deleteOption": "Remove option",
+  "@diner_deleteOption": {
+    "description": "Retro diner design copy: diner_deleteOption"
+  },
+  "diner_emptyMenu": "Every great case starts with two contenders.",
+  "@diner_emptyMenu": {
+    "description": "Retro diner design copy: diner_emptyMenu"
+  },
+  "diner_archiveTitle": "The case files",
+  "@diner_archiveTitle": {
+    "description": "Retro diner design copy: diner_archiveTitle"
+  },
+  "diner_archiveSubtitle": "Good taste. On the record.",
+  "@diner_archiveSubtitle": {
+    "description": "Retro diner design copy: diner_archiveSubtitle"
+  },
+  "diner_settingsTitle": "House rules",
+  "@diner_settingsTitle": {
+    "description": "Retro diner design copy: diner_settingsTitle"
+  },
+  "diner_settingsSubtitle": "Your court. Your kind of judge.",
+  "@diner_settingsSubtitle": {
+    "description": "Retro diner design copy: diner_settingsSubtitle"
+  },
+  "diner_personalityHint": "This is how Judge Bite will deliver your next verdict.",
+  "@diner_personalityHint": {
+    "description": "Retro diner design copy: diner_personalityHint"
+  },
+  "diner_aboutTitle": "Made with appetite",
+  "@diner_aboutTitle": {
+    "description": "Retro diner design copy: diner_aboutTitle"
+  },
+  "diner_demo": "Try a sample case",
+  "@diner_demo": {
+    "description": "Retro diner design copy: diner_demo"
+  },
+  "diner_demoHint": "A preview with sample options. Your next case starts fresh.",
+  "@diner_demoHint": {
+    "description": "Retro diner design copy: diner_demoHint"
+  },
+  "diner_noPhoto": "No photo needed. Taste makes the case.",
+  "@diner_noPhoto": {
+    "description": "Retro diner design copy: diner_noPhoto"
+  },
+  "diner_maxOptions": "Five contenders. One delicious verdict.",
+  "@diner_maxOptions": {
+    "description": "Retro diner design copy: diner_maxOptions"
+  },
+  "diner_routeError": "Wrong courtroom!",
+  "@diner_routeError": {
+    "description": "Retro diner design copy: diner_routeError"
+  },
+  "diner_goHome": "Back to court",
+  "@diner_goHome": {
+    "description": "Retro diner design copy: diner_goHome"
+  },
+  "diner_copied": "Verdict copied. Ready to share!",
+  "@diner_copied": {
+    "description": "Retro diner design copy: diner_copied"
+  },
+  "diner_wins": "{food} wins!",
+  "@diner_wins": {
+    "description": "Retro diner design copy: diner_wins",
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "diner_bestFor": "Best for {goal}",
+  "@diner_bestFor": {
+    "description": "Retro diner design copy: diner_bestFor",
+    "placeholders": {
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
+  "diner_verdictCount": "{count} cases on the record",
+  "@diner_verdictCount": {
+    "description": "Retro diner design copy: diner_verdictCount",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diner_deleteCase": "Delete this case?",
+  "@diner_deleteCase": {
+    "description": "Retro diner design copy: diner_deleteCase"
+  },
+  "diner_deleteCaseHint": "This verdict will be removed from your history.",
+  "@diner_deleteCaseHint": {
+    "description": "Retro diner design copy: diner_deleteCaseHint"
+  },
+  "diner_bonus": "On the side",
+  "@diner_bonus": {
+    "description": "Retro diner design copy: diner_bonus"
+  },
+  "diner_nameLimit": "Keep the name under 80 characters.",
+  "@diner_nameLimit": {
+    "description": "Retro diner design copy: diner_nameLimit"
+  },
+  "diner_notesLimit": "Keep notes under 500 characters.",
+  "@diner_notesLimit": {
+    "description": "Retro diner design copy: diner_notesLimit"
+  },
+  "diner_emptyArchive": "No cases on the record. Yet.",
+  "@diner_emptyArchive": {
+    "description": "Retro diner design copy: diner_emptyArchive"
+  },
+  "diner_archiveHint": "Your delicious decisions will be right here.",
+  "@diner_archiveHint": {
+    "description": "Retro diner design copy: diner_archiveHint"
+  },
+  "diner_welcome": "Order in the kitchen!",
+  "@diner_welcome": {
+    "description": "Retro diner design copy: diner_welcome"
+  },
+  "diner_verdict": "The verdict",
+  "@diner_verdict": {
+    "description": "Diner verdict screen title"
+  },
+  "diner_kitchen": "Design kitchen",
+  "diner_cast": "Meet Judge Bite",
+  "diner_demoActions": "Try the details",
+  "diner_demoFood": "Tacos al pastor",
+  "diner_demoReasoning": "A little smoky, a little spicy, and a whole lot of joy. These tacos take the crown. Case closed!",
+  "diner_demoDialog": "Preview a dialog",
+  "diner_demoSheet": "Preview a sheet",
+  "diner_poseIdle": "In session",
+  "diner_poseThinking": "Deliberating",
+  "diner_poseExcited": "Ready to rule",
+  "diner_poseStern": "Order in court",
+  "diner_poseConfused": "Objection?",
+  "diner_poseCelebrating": "Case closed!",
+  "diner_poseSleeping": "Court recess",
+  "diner_poseEating": "Taste test",
+  "diner_posePointing": "Your evidence",
+  "diner_poseWaving": "Welcome in",
+  "diner_behindCounter": "Behind the counter",
+  "@diner_behindCounter": {
+    "description": "Developer diner page: diner_behindCounter"
+  },
+  "diner_moreFromKitchen": "More from my kitchen",
+  "@diner_moreFromKitchen": {
+    "description": "Developer diner page: diner_moreFromKitchen"
+  },
+  "diner_makerStamp": "Meet the maker",
+  "@diner_makerStamp": {
+    "description": "Developer diner page: diner_makerStamp"
+  },
+  "diner_houseRules": "House rules",
+  "@diner_houseRules": {
+    "description": "Tablet home court guide: diner_houseRules"
+  },
+  "diner_houseStepOne": "Bring 2–5 contenders. Photos are welcome.",
+  "@diner_houseStepOne": {
+    "description": "Tablet home court guide: diner_houseStepOne"
+  },
+  "diner_houseStepTwo": "Pick what matters: fun, healthy, fit, or quick.",
+  "@diner_houseStepTwo": {
+    "description": "Tablet home court guide: diner_houseStepTwo"
+  },
+  "diner_houseStepThree": "The judge settles it. You enjoy it.",
+  "@diner_houseStepThree": {
+    "description": "Tablet home court guide: diner_houseStepThree"
   }
 }

@@ -464,6 +464,12 @@ abstract class AppLocalizations {
   /// **'This Week'**
   String get history_thisWeek;
 
+  /// Section header for older decisions
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier'**
+  String get history_earlier;
+
   /// Confirmation dialog title for deleting a decision
   ///
   /// In en, this message translates to:
@@ -860,6 +866,36 @@ abstract class AppLocalizations {
   /// **'Something went wrong. Please try again.'**
   String get error_genericMessage;
 
+  /// Network connectivity error message
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to connect. Please check your internet connection.'**
+  String get error_networkError;
+
+  /// Network error dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'No Connection'**
+  String get error_networkErrorTitle;
+
+  /// AI service error message with personality
+  ///
+  /// In en, this message translates to:
+  /// **'Judge Bite is taking a break. Please try again in a moment.'**
+  String get error_aiServiceError;
+
+  /// Timeout error message
+  ///
+  /// In en, this message translates to:
+  /// **'The request took too long. Please try again.'**
+  String get error_timeoutError;
+
+  /// Generic retry button
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get common_retry;
+
   /// Button to skip onboarding
   ///
   /// In en, this message translates to:
@@ -1141,6 +1177,462 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Photo of {name}'**
   String a11y_photoOf(String name);
+
+  /// Retro diner design copy: diner_court
+  ///
+  /// In en, this message translates to:
+  /// **'Court'**
+  String get diner_court;
+
+  /// Retro diner design copy: diner_history
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get diner_history;
+
+  /// Retro diner design copy: diner_homeTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Hungry?\nCourt’s in session.'**
+  String get diner_homeTitle;
+
+  /// Retro diner design copy: diner_homeSubtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Bring your options. Judge Bite will settle it.'**
+  String get diner_homeSubtitle;
+
+  /// Retro diner design copy: diner_startCase
+  ///
+  /// In en, this message translates to:
+  /// **'Start a food case'**
+  String get diner_startCase;
+
+  /// Retro diner design copy: diner_recent
+  ///
+  /// In en, this message translates to:
+  /// **'Recent verdicts'**
+  String get diner_recent;
+
+  /// Retro diner design copy: diner_viewAll
+  ///
+  /// In en, this message translates to:
+  /// **'View all'**
+  String get diner_viewAll;
+
+  /// Retro diner design copy: diner_newCase
+  ///
+  /// In en, this message translates to:
+  /// **'New case'**
+  String get diner_newCase;
+
+  /// Retro diner design copy: diner_menuTitle
+  ///
+  /// In en, this message translates to:
+  /// **'What’s on the menu?'**
+  String get diner_menuTitle;
+
+  /// Retro diner design copy: diner_menuHint
+  ///
+  /// In en, this message translates to:
+  /// **'Add 2–5 contenders. Photos are optional.'**
+  String get diner_menuHint;
+
+  /// Retro diner design copy: diner_addAnother
+  ///
+  /// In en, this message translates to:
+  /// **'Add another option'**
+  String get diner_addAnother;
+
+  /// Retro diner design copy: diner_mood
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight’s mood'**
+  String get diner_mood;
+
+  /// Retro diner design copy: diner_caseClosed
+  ///
+  /// In en, this message translates to:
+  /// **'Case closed'**
+  String get diner_caseClosed;
+
+  /// Retro diner design copy: diner_approved
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get diner_approved;
+
+  /// Retro diner design copy: diner_ruling
+  ///
+  /// In en, this message translates to:
+  /// **'Judge Bite’s ruling'**
+  String get diner_ruling;
+
+  /// Retro diner design copy: diner_otherOptions
+  ///
+  /// In en, this message translates to:
+  /// **'See the other options'**
+  String get diner_otherOptions;
+
+  /// Retro diner design copy: diner_share
+  ///
+  /// In en, this message translates to:
+  /// **'Share verdict'**
+  String get diner_share;
+
+  /// Retro diner design copy: diner_anotherCase
+  ///
+  /// In en, this message translates to:
+  /// **'Start another case'**
+  String get diner_anotherCase;
+
+  /// Retro diner design copy: diner_deliberating
+  ///
+  /// In en, this message translates to:
+  /// **'The jury is deliberating…'**
+  String get diner_deliberating;
+
+  /// Retro diner design copy: diner_weighing
+  ///
+  /// In en, this message translates to:
+  /// **'Weighing the delicious evidence.'**
+  String get diner_weighing;
+
+  /// Retro diner design copy: diner_reveal
+  ///
+  /// In en, this message translates to:
+  /// **'The verdict is in!'**
+  String get diner_reveal;
+
+  /// Retro diner design copy: diner_revealNow
+  ///
+  /// In en, this message translates to:
+  /// **'Show my verdict'**
+  String get diner_revealNow;
+
+  /// Retro diner design copy: diner_replay
+  ///
+  /// In en, this message translates to:
+  /// **'Replay the reveal'**
+  String get diner_replay;
+
+  /// Retro diner design copy: diner_editOption
+  ///
+  /// In en, this message translates to:
+  /// **'Edit option'**
+  String get diner_editOption;
+
+  /// Retro diner design copy: diner_saveOption
+  ///
+  /// In en, this message translates to:
+  /// **'Save option'**
+  String get diner_saveOption;
+
+  /// Retro diner design copy: diner_deleteOption
+  ///
+  /// In en, this message translates to:
+  /// **'Remove option'**
+  String get diner_deleteOption;
+
+  /// Retro diner design copy: diner_emptyMenu
+  ///
+  /// In en, this message translates to:
+  /// **'Every great case starts with two contenders.'**
+  String get diner_emptyMenu;
+
+  /// Retro diner design copy: diner_archiveTitle
+  ///
+  /// In en, this message translates to:
+  /// **'The case files'**
+  String get diner_archiveTitle;
+
+  /// Retro diner design copy: diner_archiveSubtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Good taste. On the record.'**
+  String get diner_archiveSubtitle;
+
+  /// Retro diner design copy: diner_settingsTitle
+  ///
+  /// In en, this message translates to:
+  /// **'House rules'**
+  String get diner_settingsTitle;
+
+  /// Retro diner design copy: diner_settingsSubtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Your court. Your kind of judge.'**
+  String get diner_settingsSubtitle;
+
+  /// Retro diner design copy: diner_personalityHint
+  ///
+  /// In en, this message translates to:
+  /// **'This is how Judge Bite will deliver your next verdict.'**
+  String get diner_personalityHint;
+
+  /// Retro diner design copy: diner_aboutTitle
+  ///
+  /// In en, this message translates to:
+  /// **'Made with appetite'**
+  String get diner_aboutTitle;
+
+  /// Retro diner design copy: diner_demo
+  ///
+  /// In en, this message translates to:
+  /// **'Try a sample case'**
+  String get diner_demo;
+
+  /// Retro diner design copy: diner_demoHint
+  ///
+  /// In en, this message translates to:
+  /// **'A preview with sample options. Your next case starts fresh.'**
+  String get diner_demoHint;
+
+  /// Retro diner design copy: diner_noPhoto
+  ///
+  /// In en, this message translates to:
+  /// **'No photo needed. Taste makes the case.'**
+  String get diner_noPhoto;
+
+  /// Retro diner design copy: diner_maxOptions
+  ///
+  /// In en, this message translates to:
+  /// **'Five contenders. One delicious verdict.'**
+  String get diner_maxOptions;
+
+  /// Retro diner design copy: diner_routeError
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong courtroom!'**
+  String get diner_routeError;
+
+  /// Retro diner design copy: diner_goHome
+  ///
+  /// In en, this message translates to:
+  /// **'Back to court'**
+  String get diner_goHome;
+
+  /// Retro diner design copy: diner_copied
+  ///
+  /// In en, this message translates to:
+  /// **'Verdict copied. Ready to share!'**
+  String get diner_copied;
+
+  /// Retro diner design copy: diner_wins
+  ///
+  /// In en, this message translates to:
+  /// **'{food} wins!'**
+  String diner_wins(String food);
+
+  /// Retro diner design copy: diner_bestFor
+  ///
+  /// In en, this message translates to:
+  /// **'Best for {goal}'**
+  String diner_bestFor(String goal);
+
+  /// Retro diner design copy: diner_verdictCount
+  ///
+  /// In en, this message translates to:
+  /// **'{count} cases on the record'**
+  String diner_verdictCount(int count);
+
+  /// Retro diner design copy: diner_deleteCase
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this case?'**
+  String get diner_deleteCase;
+
+  /// Retro diner design copy: diner_deleteCaseHint
+  ///
+  /// In en, this message translates to:
+  /// **'This verdict will be removed from your history.'**
+  String get diner_deleteCaseHint;
+
+  /// Retro diner design copy: diner_bonus
+  ///
+  /// In en, this message translates to:
+  /// **'On the side'**
+  String get diner_bonus;
+
+  /// Retro diner design copy: diner_nameLimit
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the name under 80 characters.'**
+  String get diner_nameLimit;
+
+  /// Retro diner design copy: diner_notesLimit
+  ///
+  /// In en, this message translates to:
+  /// **'Keep notes under 500 characters.'**
+  String get diner_notesLimit;
+
+  /// Retro diner design copy: diner_emptyArchive
+  ///
+  /// In en, this message translates to:
+  /// **'No cases on the record. Yet.'**
+  String get diner_emptyArchive;
+
+  /// Retro diner design copy: diner_archiveHint
+  ///
+  /// In en, this message translates to:
+  /// **'Your delicious decisions will be right here.'**
+  String get diner_archiveHint;
+
+  /// Retro diner design copy: diner_welcome
+  ///
+  /// In en, this message translates to:
+  /// **'Order in the kitchen!'**
+  String get diner_welcome;
+
+  /// Diner verdict screen title
+  ///
+  /// In en, this message translates to:
+  /// **'The verdict'**
+  String get diner_verdict;
+
+  /// No description provided for @diner_kitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Design kitchen'**
+  String get diner_kitchen;
+
+  /// No description provided for @diner_cast.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet Judge Bite'**
+  String get diner_cast;
+
+  /// No description provided for @diner_demoActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Try the details'**
+  String get diner_demoActions;
+
+  /// No description provided for @diner_demoFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Tacos al pastor'**
+  String get diner_demoFood;
+
+  /// No description provided for @diner_demoReasoning.
+  ///
+  /// In en, this message translates to:
+  /// **'A little smoky, a little spicy, and a whole lot of joy. These tacos take the crown. Case closed!'**
+  String get diner_demoReasoning;
+
+  /// No description provided for @diner_demoDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview a dialog'**
+  String get diner_demoDialog;
+
+  /// No description provided for @diner_demoSheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview a sheet'**
+  String get diner_demoSheet;
+
+  /// No description provided for @diner_poseIdle.
+  ///
+  /// In en, this message translates to:
+  /// **'In session'**
+  String get diner_poseIdle;
+
+  /// No description provided for @diner_poseThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliberating'**
+  String get diner_poseThinking;
+
+  /// No description provided for @diner_poseExcited.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to rule'**
+  String get diner_poseExcited;
+
+  /// No description provided for @diner_poseStern.
+  ///
+  /// In en, this message translates to:
+  /// **'Order in court'**
+  String get diner_poseStern;
+
+  /// No description provided for @diner_poseConfused.
+  ///
+  /// In en, this message translates to:
+  /// **'Objection?'**
+  String get diner_poseConfused;
+
+  /// No description provided for @diner_poseCelebrating.
+  ///
+  /// In en, this message translates to:
+  /// **'Case closed!'**
+  String get diner_poseCelebrating;
+
+  /// No description provided for @diner_poseSleeping.
+  ///
+  /// In en, this message translates to:
+  /// **'Court recess'**
+  String get diner_poseSleeping;
+
+  /// No description provided for @diner_poseEating.
+  ///
+  /// In en, this message translates to:
+  /// **'Taste test'**
+  String get diner_poseEating;
+
+  /// No description provided for @diner_posePointing.
+  ///
+  /// In en, this message translates to:
+  /// **'Your evidence'**
+  String get diner_posePointing;
+
+  /// No description provided for @diner_poseWaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome in'**
+  String get diner_poseWaving;
+
+  /// Developer diner page: diner_behindCounter
+  ///
+  /// In en, this message translates to:
+  /// **'Behind the counter'**
+  String get diner_behindCounter;
+
+  /// Developer diner page: diner_moreFromKitchen
+  ///
+  /// In en, this message translates to:
+  /// **'More from my kitchen'**
+  String get diner_moreFromKitchen;
+
+  /// Developer diner page: diner_makerStamp
+  ///
+  /// In en, this message translates to:
+  /// **'Meet the maker'**
+  String get diner_makerStamp;
+
+  /// Tablet home court guide: diner_houseRules
+  ///
+  /// In en, this message translates to:
+  /// **'House rules'**
+  String get diner_houseRules;
+
+  /// Tablet home court guide: diner_houseStepOne
+  ///
+  /// In en, this message translates to:
+  /// **'Bring 2–5 contenders. Photos are welcome.'**
+  String get diner_houseStepOne;
+
+  /// Tablet home court guide: diner_houseStepTwo
+  ///
+  /// In en, this message translates to:
+  /// **'Pick what matters: fun, healthy, fit, or quick.'**
+  String get diner_houseStepTwo;
+
+  /// Tablet home court guide: diner_houseStepThree
+  ///
+  /// In en, this message translates to:
+  /// **'The judge settles it. You enjoy it.'**
+  String get diner_houseStepThree;
 }
 
 class _AppLocalizationsDelegate

@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-11",
+  "project": "FoodJury",
+  "status": "Round 1. Exploratory concepts; awaiting user choice. Not installed in app.",
+  "generator": "Built-in image_gen",
+  "observations": [
+    "Existing Judge Bite uses intricate wood grain, wig curls and robe folds that lose definition at small UI sizes.",
+    "Existing UI combines comic display type, hard shadows, thick borders, gradients and a repeated large mascot.",
+    "Explore simpler silhouettes, food-first hierarchy, calmer surfaces and concentrated use of orange."
+  ],
+  "proposedDesign": {
+    "name": "The warm food court",
+    "principles": [
+      "Warm ivory canvas with dark ink typography and orange primary actions.",
+      "One unmistakable primary action per screen.",
+      "The chosen mascot welcomes on Home and reacts during deliberation and verdicts.",
+      "Food names and verdict reasoning receive priority over decorative UI.",
+      "Fun, Healthy, Fit and Quick remain the app's existing objectives."
+    ],
+    "flow": [
+      "Home: a clear food dilemma headline, one start action, quiet recent verdict rows.",
+      "Decision: 2–5 food option cards, optional photos and notes, compact goal controls, clear submit action.",
+      "Verdict: winner first, concise rationale, optional other rankings, share and start again."
+    ],
+    "note": "Concept proposal only; existing application files and launcher icons remain unchanged until the user chooses a direction."
+  }
+}

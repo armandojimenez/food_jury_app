@@ -1,0 +1,24 @@
+{
+  "round": 1,
+  "status": "First-round modern direction superseded by user feedback: restore the retro diner personality. See round-2.",
+  "assets": {
+    "a-gavel.png": "Simplified orange gavel. Most direct FoodJury and courtroom association. Hero, thinking and celebrating poses.",
+    "b-dumpling.png": "Cream dumpling in a navy judicial robe. Warm food association. Hero, thinking and celebrating poses.",
+    "c-fox.png": "Orange fox in a navy judicial cape. Clever editorial personality. Hero, thinking and celebrating poses.",
+    "app-design-concept.png": "Proposed Home, Build a Case and Verdict layouts. Uses gavel provisionally, pending mascot choice. Sample food data."
+  },
+  "recommendation": "A: the gavel directly expresses the name and retains continuity while simplifying the character.",
+  "refinement_notes": {
+    "a": "Retain expressive eyebrows and T silhouette; flatten residual shading in production art.",
+    "b": "Retain the three broad crown pleats. Standardize gavel size and robe shape across all poses.",
+    "c": "Keep the knowing expression friendly; simplify tail and remove grain for tiny placements."
+  },
+  "next_after_selection": [
+    "Refine chosen character based on user feedback.",
+    "Develop a face-led app icon with a simple opaque background and no text.",
+    "Verify the icon at launcher sizes before exporting platform assets.",
+    "Build consistent transparent character poses after the design is accepted."
+  ],
+  "implementation": "Exploration only. No existing app code or installed assets changed.",
+  "user_feedback": "The app lost its retro and fun diner identity and looked like a simple modern app."
+}

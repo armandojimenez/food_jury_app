@@ -20,11 +20,8 @@ Future<void> bootstrap(Environment environment) async {
   // Configure error handling
   await _configureErrorHandling();
 
-  // Set preferred orientations
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  // Let the responsive diner layout adapt to tablets and landscape windows.
+  await SystemChrome.setPreferredOrientations([]);
 
   // Initialize services
   await _initializeServices();

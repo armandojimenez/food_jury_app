@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../theme/theme.dart';
 
-/// Retro diner style card with chunky border and hard shadow
+/// Retro diner style card with chunky border and hard shadow.
+///
+/// Includes proper accessibility support when tappable.
 class AppCard extends StatelessWidget {
   const AppCard({
     required this.child,
     this.tilt = false,
     this.padding,
     this.onTap,
+    this.semanticLabel,
     super.key,
   });
 
@@ -16,6 +19,9 @@ class AppCard extends StatelessWidget {
   final bool tilt;
   final EdgeInsets? padding;
   final VoidCallback? onTap;
+
+  /// Semantic label for screen readers when the card is tappable.
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +46,14 @@ class AppCard extends StatelessWidget {
         : card;
 
     if (onTap != null) {
-      return InkWell(
-        onTap: onTap,
-        borderRadius: AppDimensions.borderRadiusMd,
-        child: rotated,
+      return Semantics(
+        button: true,
+        label: semanticLabel,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: AppDimensions.borderRadiusMd,
+          child: rotated,
+        ),
       );
     }
 
@@ -51,18 +61,24 @@ class AppCard extends StatelessWidget {
   }
 }
 
-/// Standard modern card with soft shadow
+/// Standard modern card with soft shadow.
+///
+/// Includes proper accessibility support when tappable.
 class AppModernCard extends StatelessWidget {
   const AppModernCard({
     required this.child,
     this.padding,
     this.onTap,
+    this.semanticLabel,
     super.key,
   });
 
   final Widget child;
   final EdgeInsets? padding;
   final VoidCallback? onTap;
+
+  /// Semantic label for screen readers when the card is tappable.
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -79,10 +95,14 @@ class AppModernCard extends StatelessWidget {
     );
 
     if (onTap != null) {
-      return InkWell(
-        onTap: onTap,
-        borderRadius: AppDimensions.borderRadiusMd,
-        child: card,
+      return Semantics(
+        button: true,
+        label: semanticLabel,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: AppDimensions.borderRadiusMd,
+          child: card,
+        ),
       );
     }
 

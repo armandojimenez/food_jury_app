@@ -10,3 +10,10 @@ export 'food_image_picker.dart';
 export 'judge_bite.dart';
 export 'loading_overlay.dart';
 export 'objective_chip.dart';
+export 'diner_components.dart';
+export 'diner_motion.dart';
+export 'diner_scaffold.dart';
+
+export 'diner_illustrations.dart';
+
+export 'food_illustration.dart';

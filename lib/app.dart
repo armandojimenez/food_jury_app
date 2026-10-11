@@ -23,7 +23,7 @@ class FoodJuryApp extends ConsumerWidget {
 
     return MaterialApp.router(
       title: Env.appName,
-      debugShowCheckedModeBanner: Env.isDev,
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,

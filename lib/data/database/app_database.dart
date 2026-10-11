@@ -199,8 +199,14 @@ class AppDatabase extends _$AppDatabase {
       winner: _jsonToFoodOption(row.winnerJson),
       rankings: _jsonToFoodOptions(row.rankingsJson),
       reasoning: row.reasoning,
-      objective: Objective.values.firstWhere((e) => e.name == row.objective),
-      judgeTone: JudgeTone.values.firstWhere((e) => e.name == row.judgeTone),
+      objective: Objective.values.firstWhere(
+        (e) => e.name == row.objective,
+        orElse: () => Objective.fun, // Default fallback for data safety
+      ),
+      judgeTone: JudgeTone.values.firstWhere(
+        (e) => e.name == row.judgeTone,
+        orElse: () => JudgeTone.stern, // Default fallback for data safety
+      ),
       createdAt: row.createdAt,
       bonus: row.bonus,
       bonusType: row.bonusType != null

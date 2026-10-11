@@ -1,127 +1,53 @@
-# FoodJury ⚖️🍕
+# FoodJury
 
-An AI-powered food decision app with a retro diner courtroom aesthetic. Let Judge Bite help you decide what to eat!
+A food decision app set in a retro diner courtroom. Bring 2–5 contenders, add optional photos and notes, choose a goal, and let Judge Bite deliver a saved verdict.
 
-## 🚀 Quick Start for New AI Sessions
+## Current app
 
-**First time working on this project?** Read these in order:
+The October 2026 redesign includes all app screens, ten expressive judge poses, illustrated food fallbacks, a new app icon, the developer's illustrated portrait, tablet/landscape layouts, English/Spanish, dark mode, and a replayable verdict reveal with reduced-motion support.
 
-1. **[`INSTRUCTIONS.md`](INSTRUCTIONS.md)** - Coding standards, patterns, your expert persona
-2. **[`PLAN.md`](PLAN.md)** - Project status, what's done, what's next
-3. **[`DESIGN.md`](DESIGN.md)** - Complete design system reference
+The existing camera/gallery and AI photo-analysis flow remains intact. App illustrations are decorative; they never become AI evidence. User photos take precedence wherever a food option appears.
 
-## 📊 Current Status
+## Run
 
-**Phases 1-3**: ✅ Complete!
-- ✅ Foundation + UI Systems
-- ✅ Localization (English & Spanish)
-- ✅ Navigation (GoRouter)
-- ✅ Core Screens (Home + New Decision)
-
-**Phase 4**: 👉 Ready to start (AI & Data integration)
-
-See [`PLAN.md`](PLAN.md) for detailed roadmap.
-
-## 💻 Development
-
-```bash
-# Install dependencies
+```sh
 flutter pub get
-
-# Run app
 flutter run
 
-# Analyze code (must be clean)
+# Offline design preview: separate in-memory history and simulated AI.
+flutter run -t lib/main_preview.dart
+
+# Open a specific preview screen.
+flutter run -t lib/main_preview.dart --dart-define=PREVIEW_ROUTE=/decision/verdict
+```
+
+Normal app entry points retain Firebase and the existing persistent database. The preview entry point never writes to real case history.
+
+## Verify
+
+```sh
 flutter analyze
-
-# Run tests
 flutter test
-
-# Code generation
-flutter pub run build_runner watch
+flutter test --dart-define=UPDATE_DESIGN_PREVIEWS=true
+flutter build ios --simulator --debug --no-codesign
+flutter build apk --debug
 ```
 
-## 🎨 Design System
+The tests cover all screens on phone, tablet, landscape, dark mode, and a small Spanish screen at 200% text size, plus the full case/photo/save/reveal flow. Generated render captures live in `design/verification/`; native simulator captures are prefixed `native-`.
 
-**"Retro Diner Courtroom"** aesthetic:
-- **Colors**: Blazing orange (#FF6B35), Deep navy (#1A1A2E), Mustard yellow (#FFD23F)
-- **Typography**: Bangers (display), Nunito (body)
-- **Style**: Chunky 3px borders, hard retro shadows, bouncy animations
+## Design and implementation
 
-**All design tokens in**: `lib/core/theme/`  
-**All components in**: `lib/core/widgets/`
+- [DESIGN.md](DESIGN.md): tokens, composition, components, responsive behavior, motion, accessibility, and a new-screen recipe.
+- [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md): anatomy, ten poses, expressions, and future artwork rules.
+- [Production asset prompts](design/production/prompts.json) and [developer portrait prompt](design/production/developer-portrait-prompt.txt).
+- [Verification record](design/verification/README.md): actual checks, screenshots, and limits.
+- [INSTRUCTIONS.md](INSTRUCTIONS.md): repository coding conventions.
+- [PLAN.md](PLAN.md): current status followed by the historical roadmap.
 
-See [`DESIGN.md`](DESIGN.md) for complete reference.
+The living component and pose gallery is **Settings → Developer options → Design kitchen** in development mode. New screens should compose the shared `Diner*` widgets from `lib/core/widgets/` and use tokens from `lib/core/theme/`.
 
-## 🏗️ Project Structure
+## Stack
 
-```
-lib/
-├── core/
-│   ├── theme/          # Design tokens (colors, typography, dimensions)
-│   └── widgets/        # Reusable UI components
-├── features/
-│   └── [feature]/
-│       ├── data/       # Models, repositories
-│       ├── providers/  # Riverpod state
-│       └── presentation/  # Screens, widgets
-└── l10n/              # Localization (Phase 3)
-```
+Flutter / Dart, Riverpod 2.6 with Notifier/code generation, GoRouter, Drift/SQLite, Firebase AI Logic, image_picker, and share_plus. This redesign was validated with Flutter 3.41.7 and Dart 3.11.5; `pubspec.lock` records the resolved dependencies.
 
-## 🛠️ Tech Stack
-
-- **Framework**: Flutter 3.27.1+
-- **Language**: Dart 3.6.0+
-- **State Management**: Riverpod 3.0 (with code generation)
-- **Navigation**: GoRouter
-- **Database**: Drift (SQLite)
-- **AI**: Firebase AI Logic + Gemini 2.5 Flash Lite
-
-## 📚 Documentation
-
-- **[INSTRUCTIONS.md](INSTRUCTIONS.md)** - Complete coding standards (~6,000 words)
-- **[PLAN.md](PLAN.md)** - Project roadmap and status
-- **[DESIGN.md](DESIGN.md)** - Full design system specification
-- **[PHASE_1_SUMMARY.md](PHASE_1_SUMMARY.md)** - Core widgets summary
-- **[PHASE_2_SUMMARY.md](PHASE_2_SUMMARY.md)** - UI systems summary
-
-## 🎯 Core Principles
-
-1. **Zero analyzer errors** - `flutter analyze` must always pass
-2. **Design system only** - No hardcoded colors, sizes, or styles
-3. **Riverpod 3.0** - Modern patterns with code generation
-4. **Accessibility first** - WCAG AA compliance
-5. **Production quality** - Document, test, optimize
-
-## 🎮 Try It Out
-
-Run the app and tap **"View Design System"** to see interactive demos of all components!
-
-## 📝 What's Next (Phase 4)
-
-1. **AI Integration** - Connect Gemini 2.5 Flash Lite for verdicts
-2. **Storage** - Drift database for decision history
-3. **Verdict Screen** - Dramatic reveal animation
-4. **Advanced Features** - Image upload, sharing, more
-
-See full Phase 4 details in [`PLAN.md`](PLAN.md) and [`PHASE_3_COMPLETE.md`](PHASE_3_COMPLETE.md).
-
-## 🤝 Contributing (AI Guidelines)
-
-Read [`INSTRUCTIONS.md`](INSTRUCTIONS.md) for:
-- Expert persona definition
-- 5 critical rules
-- Flutter & Dart best practices
-- Riverpod 3.0 patterns
-- Drift database architecture
-- Design system integration
-- Accessibility requirements
-- Testing guidelines
-
-## 📄 License
-
-This project is private and proprietary.
-
----
-
-**Built with Flutter, Riverpod, and ⚖️ Judge Bite's approval!**
+The app is private and not yet live. Historical phase documents describe earlier milestones and are not the current design specification.

@@ -1,0 +1,346 @@
+{
+  "generated_with": "Built-in image generation tool",
+  "generated_on": "2026-10-11",
+  "assets": [
+    {
+      "path": "assets/images/judge_bite_v2/celebrating.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        41,
+        8,
+        1238,
+        1254
+      ],
+      "bytes": 985326,
+      "sha256": "7b79cc28b9d4e6bb0fa0a20911c5095a7276c54892b1694670e1fbc7f1051b56"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/confused.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        13,
+        1236,
+        1230
+      ],
+      "bytes": 964096,
+      "sha256": "cdb9874958f2a91ad7656544f667814dba91e5056ba41c2f63925388360a6057"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/eating.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        33,
+        19,
+        1224,
+        1228
+      ],
+      "bytes": 1074627,
+      "sha256": "8d2d8af1b719f3fda6181f52b5fabc9651e3f21378ef06a8781844c8b49fbd5e"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/excited.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        36,
+        1242,
+        1211
+      ],
+      "bytes": 980445,
+      "sha256": "381b3d54f1ea70ecf4febbe2c56ca0aa20b1083c894d30518f157cd5720da249"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/idle.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        17,
+        1236,
+        1246
+      ],
+      "bytes": 1100091,
+      "sha256": "bcb0e9548644181e05f3ba88a9ef8951f556d43404369d0b7fbf8fbb62362ae2"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/pointing.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        49,
+        23,
+        1220,
+        1230
+      ],
+      "bytes": 973890,
+      "sha256": "b60fe04e099dfcdfec62aaea22634dc11300aba2a53a8fc491b919e4a2d7cfb9"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/sleeping.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        40,
+        1222,
+        1254
+      ],
+      "bytes": 997392,
+      "sha256": "f1883c2c156c69c9d26b21f937279a83944908ac770b6c60582ec3b6496a8739"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/stern.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        43,
+        28,
+        1234,
+        1254
+      ],
+      "bytes": 925133,
+      "sha256": "3521986ff8f5fe6821b2ee34631dca9aa5f389bff84624f112a933176444d82e"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/thinking.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        17,
+        1242,
+        1214
+      ],
+      "bytes": 981004,
+      "sha256": "0a485ced92c8cb89a517c8b4249e84b67e6bce97133e1bb1536519b245344ab5"
+    },
+    {
+      "path": "assets/images/judge_bite_v2/waving.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        61,
+        36,
+        1236,
+        1254
+      ],
+      "bytes": 1043107,
+      "sha256": "43ce51cb9affc98ffcb6e9cea8c064888070f1e0d597af7ca40312f12a497042"
+    },
+    {
+      "path": "assets/images/food_illustrations/bowl.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        39,
+        62,
+        1212,
+        1228
+      ],
+      "bytes": 1027479,
+      "sha256": "bb69371d48f64fc875aa23f46aa2c141222fcd39b689aa66555760e5a31211fc"
+    },
+    {
+      "path": "assets/images/food_illustrations/burger.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        25,
+        1253,
+        1254
+      ],
+      "bytes": 992289,
+      "sha256": "d7b7fcf7d2f619f5b02fb07e9411d4da53cd601f19a5364fd0e699eb2a1f362c"
+    },
+    {
+      "path": "assets/images/food_illustrations/meal.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        39,
+        37,
+        1240,
+        1236
+      ],
+      "bytes": 744834,
+      "sha256": "efd2f8837ba3b4f7f128733e306afa459dd41e6870da691ac21c8892ac0ed7e8"
+    },
+    {
+      "path": "assets/images/food_illustrations/pizza.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        70,
+        1192,
+        1235
+      ],
+      "bytes": 869502,
+      "sha256": "494b74fe4654db95a252f48ab6ff77d22fc99e09c409f3f5624b759c48305162"
+    },
+    {
+      "path": "assets/images/food_illustrations/salad.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        51,
+        49,
+        1224,
+        1220
+      ],
+      "bytes": 1228710,
+      "sha256": "0ed368a465f18bfc0cc579ecc969c80d9ffebf59bad297254eb9175bf8c4a41e"
+    },
+    {
+      "path": "assets/images/food_illustrations/sushi.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        57,
+        1200,
+        1191
+      ],
+      "bytes": 879146,
+      "sha256": "0b40baa5c98519914304cc962ae6d9c2f9710512bcf0f641f30df9958c856414"
+    },
+    {
+      "path": "assets/images/food_illustrations/tacos.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        40,
+        1224,
+        1254
+      ],
+      "bytes": 1051408,
+      "sha256": "f3f109e73bf3c167f1b43fc06e202016744c84eac8e69dd28f402e8fb5137308"
+    },
+    {
+      "path": "assets/images/brand/app-icon-master.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGB",
+      "transparent": false,
+      "content_bounds": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "bytes": 1325811,
+      "sha256": "69325dcc96c7c6a543990ce48f5e491d2c7de32022769c82bcd23cb984255045"
+    },
+    {
+      "path": "assets/images/brand/foodjury-wordmark.png",
+      "pixels": [
+        2172,
+        724
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        19,
+        40,
+        2149,
+        706
+      ],
+      "bytes": 1011907,
+      "sha256": "bed6cf0cfe5ca7f5aff45abffd70a10372feb4fe57a2b52f8524a9dbbd7fdd83"
+    },
+    {
+      "path": "assets/images/me-diner.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        1,
+        1183,
+        1202
+      ],
+      "bytes": 1106725,
+      "sha256": "168195ee319f39e0c61b96dfb099a22353e33fb8791ce80e0c15a9e9e9b583c5"
+    }
+  ]
+}

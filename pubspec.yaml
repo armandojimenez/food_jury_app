@@ -43,6 +43,7 @@ dependencies:
   image_picker: ^1.2.1
   permission_handler: ^12.0.1
   url_launcher: ^6.3.2
+  share_plus: ^13.3.1
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +62,9 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/images/judge_bite/
+    - assets/images/judge_bite_v2/
+    - assets/images/brand/
+    - assets/images/food_illustrations/
     - assets/animations/
 
   fonts:

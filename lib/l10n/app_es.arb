@@ -1,6 +1,5 @@
 {
   "@@locale": "es",
-  
   "appTitle": "FoodJury",
   "appTagline": "¡Orden en la cocina!",
   "common_ok": "OK",
@@ -62,6 +61,7 @@
   "history_today": "Hoy",
   "history_yesterday": "Ayer",
   "history_thisWeek": "Esta Semana",
+  "history_earlier": "Anterior",
   "history_deleteConfirmTitle": "¿Eliminar Decisión?",
   "history_deleteConfirmMessage": "Esto no se puede deshacer.",
   "settings_screenTitle": "Configuración",
@@ -128,6 +128,11 @@
   "error_tryAgain": "Intentar de Nuevo",
   "error_genericTitle": "¡Oops!",
   "error_genericMessage": "Algo salió mal. Por favor, inténtalo de nuevo.",
+  "error_networkError": "No se puede conectar. Por favor, verifica tu conexión a internet.",
+  "error_networkErrorTitle": "Sin Conexión",
+  "error_aiServiceError": "Judge Bite está tomando un descanso. Inténtalo de nuevo en un momento.",
+  "error_timeoutError": "La solicitud tardó demasiado. Por favor, inténtalo de nuevo.",
+  "common_retry": "Reintentar",
   "onboarding_skip": "Omitir",
   "onboarding_next": "Siguiente",
   "onboarding_getStarted": "Comenzar",
@@ -141,14 +146,12 @@
   "snackbar_optionAdded": "Opción agregada al caso",
   "snackbar_optionDeleted": "Opción eliminada",
   "snackbar_decisionDeleted": "Decisión eliminada",
-
   "image_addPhoto": "Agregar Foto",
   "image_changePhoto": "Cambiar Foto",
   "image_removePhoto": "Eliminar Foto",
   "image_takePhoto": "Tomar Foto",
   "image_chooseFromGallery": "Elegir de Galería",
   "image_photoEvidence": "Evidencia Fotográfica",
-
   "permission_cameraTitle": "Acceso a Cámara Necesario",
   "permission_cameraMessage": "Por favor permite acceso a la cámara para tomar fotos de tus opciones de comida.",
   "permission_galleryTitle": "Acceso a Fotos Necesario",
@@ -156,15 +159,12 @@
   "permission_deniedTitle": "Permiso Denegado",
   "permission_deniedMessage": "Sin este permiso, no puedes agregar fotos. Puedes habilitarlo en Configuración.",
   "permission_openSettings": "Abrir Configuración",
-
   "error_imageLoad": "Error al cargar imagen",
   "snackbar_photoAdded": "¡Evidencia fotográfica agregada!",
   "snackbar_photoRemoved": "Foto eliminada",
-
   "common_loading": "Cargando...",
-
   "decision_addOptionsToBegin": "Agrega tus opciones de comida para comenzar",
-  "decision_addMoreOptions": "Agrega {count} opción{count, plural, =1{} other{es}} más",
+  "decision_addMoreOptions": "Agrega {count} {count, plural, =1{opción} other{opciones}} más",
   "decision_pickYourGoal": "¡Ahora elige tu objetivo!",
   "decision_readyForVerdict": "¡Listo para el veredicto!",
   "decision_noEvidenceYet": "¡Aún no hay evidencia!",
@@ -172,15 +172,280 @@
   "decision_addFirstOption": "Agregar Primera Opción",
   "decision_addToYourCase": "Agregar a tu caso",
   "decision_slotsLeft": "{count} restante{count, plural, =1{} other{s}}",
-
   "validation_pleaseEnterName": "Por favor ingresa un nombre",
-
   "judgeBite_presentEvidence": "¡Presenta tu evidencia!",
   "judgeBite_addMoreToCompare": "¿Una opción? ¡Agrega más para comparar!",
   "judgeBite_tellMeYourGoal": "¡Ahora dime tu objetivo!",
   "judgeBite_readyToDeliver": "¡Listo para entregar el veredicto!",
   "judgeBite_buildingCase": "Construyendo un caso sólido...",
-
   "a11y_removeOption": "Eliminar {name}",
-  "a11y_photoOf": "Foto de {name}"
+  "a11y_photoOf": "Foto de {name}",
+  "diner_court": "La corte",
+  "@diner_court": {
+    "description": "Retro diner design copy: diner_court"
+  },
+  "diner_history": "Historial",
+  "@diner_history": {
+    "description": "Retro diner design copy: diner_history"
+  },
+  "diner_homeTitle": "¿Con hambre?\n¡Se abre la sesión!",
+  "@diner_homeTitle": {
+    "description": "Retro diner design copy: diner_homeTitle"
+  },
+  "diner_homeSubtitle": "Trae tus opciones. Judge Bite decide.",
+  "@diner_homeSubtitle": {
+    "description": "Retro diner design copy: diner_homeSubtitle"
+  },
+  "diner_startCase": "Abrir un caso",
+  "@diner_startCase": {
+    "description": "Retro diner design copy: diner_startCase"
+  },
+  "diner_recent": "Veredictos recientes",
+  "@diner_recent": {
+    "description": "Retro diner design copy: diner_recent"
+  },
+  "diner_viewAll": "Ver todos",
+  "@diner_viewAll": {
+    "description": "Retro diner design copy: diner_viewAll"
+  },
+  "diner_newCase": "Nuevo caso",
+  "@diner_newCase": {
+    "description": "Retro diner design copy: diner_newCase"
+  },
+  "diner_menuTitle": "¿Qué hay en el menú?",
+  "@diner_menuTitle": {
+    "description": "Retro diner design copy: diner_menuTitle"
+  },
+  "diner_menuHint": "Añade de 2 a 5 opciones. Las fotos son opcionales.",
+  "@diner_menuHint": {
+    "description": "Retro diner design copy: diner_menuHint"
+  },
+  "diner_addAnother": "Añadir otra opción",
+  "@diner_addAnother": {
+    "description": "Retro diner design copy: diner_addAnother"
+  },
+  "diner_mood": "El plan de hoy",
+  "@diner_mood": {
+    "description": "Retro diner design copy: diner_mood"
+  },
+  "diner_caseClosed": "Caso cerrado",
+  "@diner_caseClosed": {
+    "description": "Retro diner design copy: diner_caseClosed"
+  },
+  "diner_approved": "Aprobado",
+  "@diner_approved": {
+    "description": "Retro diner design copy: diner_approved"
+  },
+  "diner_ruling": "La decisión de Judge Bite",
+  "@diner_ruling": {
+    "description": "Retro diner design copy: diner_ruling"
+  },
+  "diner_otherOptions": "Ver las otras opciones",
+  "@diner_otherOptions": {
+    "description": "Retro diner design copy: diner_otherOptions"
+  },
+  "diner_share": "Compartir veredicto",
+  "@diner_share": {
+    "description": "Retro diner design copy: diner_share"
+  },
+  "diner_anotherCase": "Abrir otro caso",
+  "@diner_anotherCase": {
+    "description": "Retro diner design copy: diner_anotherCase"
+  },
+  "diner_deliberating": "El jurado está deliberando…",
+  "@diner_deliberating": {
+    "description": "Retro diner design copy: diner_deliberating"
+  },
+  "diner_weighing": "Evaluando las deliciosas pruebas.",
+  "@diner_weighing": {
+    "description": "Retro diner design copy: diner_weighing"
+  },
+  "diner_reveal": "¡Tenemos un veredicto!",
+  "@diner_reveal": {
+    "description": "Retro diner design copy: diner_reveal"
+  },
+  "diner_revealNow": "Ver mi veredicto",
+  "@diner_revealNow": {
+    "description": "Retro diner design copy: diner_revealNow"
+  },
+  "diner_replay": "Repetir la revelación",
+  "@diner_replay": {
+    "description": "Retro diner design copy: diner_replay"
+  },
+  "diner_editOption": "Editar opción",
+  "@diner_editOption": {
+    "description": "Retro diner design copy: diner_editOption"
+  },
+  "diner_saveOption": "Guardar opción",
+  "@diner_saveOption": {
+    "description": "Retro diner design copy: diner_saveOption"
+  },
+  "diner_deleteOption": "Quitar opción",
+  "@diner_deleteOption": {
+    "description": "Retro diner design copy: diner_deleteOption"
+  },
+  "diner_emptyMenu": "Todo gran caso empieza con dos opciones.",
+  "@diner_emptyMenu": {
+    "description": "Retro diner design copy: diner_emptyMenu"
+  },
+  "diner_archiveTitle": "El archivo de casos",
+  "@diner_archiveTitle": {
+    "description": "Retro diner design copy: diner_archiveTitle"
+  },
+  "diner_archiveSubtitle": "El buen gusto queda registrado.",
+  "@diner_archiveSubtitle": {
+    "description": "Retro diner design copy: diner_archiveSubtitle"
+  },
+  "diner_settingsTitle": "Reglas de la casa",
+  "@diner_settingsTitle": {
+    "description": "Retro diner design copy: diner_settingsTitle"
+  },
+  "diner_settingsSubtitle": "Tu corte. Tu estilo de juez.",
+  "@diner_settingsSubtitle": {
+    "description": "Retro diner design copy: diner_settingsSubtitle"
+  },
+  "diner_personalityHint": "Así entregará Judge Bite tu próximo veredicto.",
+  "@diner_personalityHint": {
+    "description": "Retro diner design copy: diner_personalityHint"
+  },
+  "diner_aboutTitle": "Hecho con apetito",
+  "@diner_aboutTitle": {
+    "description": "Retro diner design copy: diner_aboutTitle"
+  },
+  "diner_demo": "Probar un caso de ejemplo",
+  "@diner_demo": {
+    "description": "Retro diner design copy: diner_demo"
+  },
+  "diner_demoHint": "Una vista previa con opciones de ejemplo. Tu próximo caso empieza vacío.",
+  "@diner_demoHint": {
+    "description": "Retro diner design copy: diner_demoHint"
+  },
+  "diner_noPhoto": "No hace falta foto. El sabor es la prueba.",
+  "@diner_noPhoto": {
+    "description": "Retro diner design copy: diner_noPhoto"
+  },
+  "diner_maxOptions": "Cinco opciones. Un delicioso veredicto.",
+  "@diner_maxOptions": {
+    "description": "Retro diner design copy: diner_maxOptions"
+  },
+  "diner_routeError": "¡Sala equivocada!",
+  "@diner_routeError": {
+    "description": "Retro diner design copy: diner_routeError"
+  },
+  "diner_goHome": "Volver a la corte",
+  "@diner_goHome": {
+    "description": "Retro diner design copy: diner_goHome"
+  },
+  "diner_copied": "¡Veredicto copiado y listo para compartir!",
+  "@diner_copied": {
+    "description": "Retro diner design copy: diner_copied"
+  },
+  "diner_wins": "¡Gana {food}!",
+  "@diner_wins": {
+    "description": "Retro diner design copy: diner_wins",
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "diner_bestFor": "Ideal para {goal}",
+  "@diner_bestFor": {
+    "description": "Retro diner design copy: diner_bestFor",
+    "placeholders": {
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
+  "diner_verdictCount": "{count} casos en el archivo",
+  "@diner_verdictCount": {
+    "description": "Retro diner design copy: diner_verdictCount",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diner_deleteCase": "¿Eliminar este caso?",
+  "@diner_deleteCase": {
+    "description": "Retro diner design copy: diner_deleteCase"
+  },
+  "diner_deleteCaseHint": "Este veredicto se eliminará de tu historial.",
+  "@diner_deleteCaseHint": {
+    "description": "Retro diner design copy: diner_deleteCaseHint"
+  },
+  "diner_bonus": "Para acompañar",
+  "@diner_bonus": {
+    "description": "Retro diner design copy: diner_bonus"
+  },
+  "diner_nameLimit": "Usa menos de 80 caracteres.",
+  "@diner_nameLimit": {
+    "description": "Retro diner design copy: diner_nameLimit"
+  },
+  "diner_notesLimit": "Usa menos de 500 caracteres.",
+  "@diner_notesLimit": {
+    "description": "Retro diner design copy: diner_notesLimit"
+  },
+  "diner_emptyArchive": "Aún no hay casos en el archivo.",
+  "@diner_emptyArchive": {
+    "description": "Retro diner design copy: diner_emptyArchive"
+  },
+  "diner_archiveHint": "Tus deliciosas decisiones aparecerán aquí.",
+  "@diner_archiveHint": {
+    "description": "Retro diner design copy: diner_archiveHint"
+  },
+  "diner_welcome": "¡Orden en la cocina!",
+  "@diner_welcome": {
+    "description": "Retro diner design copy: diner_welcome"
+  },
+  "diner_verdict": "El veredicto",
+  "@diner_verdict": {
+    "description": "Diner verdict screen title"
+  },
+  "diner_kitchen": "Cocina de diseño",
+  "diner_cast": "Conoce al Juez Bite",
+  "diner_demoActions": "Prueba los detalles",
+  "diner_demoFood": "Tacos al pastor",
+  "diner_demoReasoning": "Un toque ahumado, un toque picante y mucha alegría. Estos tacos se llevan la corona. ¡Caso cerrado!",
+  "diner_demoDialog": "Ver un diálogo",
+  "diner_demoSheet": "Ver un panel",
+  "diner_poseIdle": "En sesión",
+  "diner_poseThinking": "Deliberando",
+  "diner_poseExcited": "Listo para decidir",
+  "diner_poseStern": "Orden en la corte",
+  "diner_poseConfused": "¿Objeción?",
+  "diner_poseCelebrating": "¡Caso cerrado!",
+  "diner_poseSleeping": "En receso",
+  "diner_poseEating": "Probando sabores",
+  "diner_posePointing": "Tu evidencia",
+  "diner_poseWaving": "Bienvenido",
+  "diner_behindCounter": "Detrás del mostrador",
+  "@diner_behindCounter": {
+    "description": "Developer diner page: diner_behindCounter"
+  },
+  "diner_moreFromKitchen": "Más de mi cocina",
+  "@diner_moreFromKitchen": {
+    "description": "Developer diner page: diner_moreFromKitchen"
+  },
+  "diner_makerStamp": "El creador",
+  "@diner_makerStamp": {
+    "description": "Developer diner page: diner_makerStamp"
+  },
+  "diner_houseRules": "Reglas de la casa",
+  "@diner_houseRules": {
+    "description": "Tablet home court guide: diner_houseRules"
+  },
+  "diner_houseStepOne": "Trae de 2 a 5 opciones. Puedes añadir fotos.",
+  "@diner_houseStepOne": {
+    "description": "Tablet home court guide: diner_houseStepOne"
+  },
+  "diner_houseStepTwo": "Elige tu plan: diversión, saludable, fit o rápido.",
+  "@diner_houseStepTwo": {
+    "description": "Tablet home court guide: diner_houseStepTwo"
+  },
+  "diner_houseStepThree": "El juez decide. Tú disfrutas.",
+  "@diner_houseStepThree": {
+    "description": "Tablet home court guide: diner_houseStepThree"
+  }
 }

@@ -1,0 +1,509 @@
+<div id="fj-onboarding" class="viz-dotted-background" aria-label="FoodJury onboarding design preview">
+  <style>
+    @font-face{font-family:FJBangers;src:url('__FONT_BANGERS__') format('woff2');font-display:swap}
+    @font-face{font-family:FJNunito;src:url('__FONT_NUNITO__') format('woff2');font-weight:400 900;font-display:swap}
+    #fj-onboarding{--fj-orange:#ff6b35;--fj-navy:#1a1a2e;--fj-gold:#ffd23f;--fj-cream:#fff8f0;--fj-paper:light-dark(#fff8f0,#262638);--fj-ink:light-dark(#1a1a2e,#fff8f0);--fj-line:2.5px;--fj-radius:16px;--fj-shadow:4px;--fj-inset:22px;--fj-display:FJBangers,Impact,sans-serif;--fj-body:FJNunito,Arial,sans-serif;--fj-ease:cubic-bezier(.2,.85,.22,1);--fj-entry:480ms;--fj-stagger:90ms;--fj-duration:1;--fj-star:polygon(50% 0,60% 35%,85% 15%,68% 43%,100% 50%,68% 58%,85% 85%,59% 68%,50% 100%,41% 68%,15% 85%,32% 58%,0 50%,32% 43%,15% 15%,41% 35%);font-family:var(--fj-body);line-height:1.4;padding:22px 8px 16px;color:var(--fj-ink);box-sizing:border-box;position:relative}
+    #fj-onboarding *{box-sizing:border-box}
+    #fj-onboarding [hidden]{display:none!important}
+    #fj-onboarding button{font-family:inherit;color:inherit;font-size:inherit;cursor:inherit;-webkit-tap-highlight-color:transparent}
+    #fj-onboarding .fj-phone{max-width:390px;margin:auto;border:3px solid var(--fj-navy);border-radius:34px;background:var(--fj-paper);box-shadow:7px 9px 0 var(--fj-navy);position:relative;isolation:isolate;overflow:hidden}
+    #fj-onboarding .fj-top{background:var(--fj-orange);color:var(--fj-navy);position:relative;z-index:5}
+    #fj-onboarding .fj-status{height:29px;padding:9px 22px 0;display:flex;align-items:center;justify-content:space-between;font:800 12px var(--fj-body)}
+    #fj-onboarding .fj-status-mark{font-size:11px;letter-spacing:2px}
+    #fj-onboarding .fj-nav{height:61px;display:grid;grid-template-columns:54px 1fr 54px;align-items:center;padding:0 10px 6px;gap:7px}
+    #fj-onboarding .fj-logo{width:172px;max-width:100%;display:block;margin:auto}
+    #fj-onboarding .fj-back,#fj-onboarding .fj-skip{border:0;background:transparent;min-height:48px;font-weight:900;font-size:13px;padding:8px;border-radius:12px}
+    #fj-onboarding .fj-back{font-size:28px}
+    #fj-onboarding .fj-checker{height:14px;background:conic-gradient(var(--fj-navy) 25%,var(--fj-cream) 0 50%,var(--fj-navy) 0 75%,var(--fj-cream) 0) 0 0/14px 14px;border-block:1px solid var(--fj-navy)}
+    #fj-onboarding .fj-screen{min-height:686px;position:relative;display:flex;flex-direction:column;background:var(--fj-paper);color:var(--fj-ink)}
+    #fj-onboarding .fj-copy{padding:26px var(--fj-inset) 0;text-align:center;position:relative;z-index:2}
+    #fj-onboarding .fj-eyebrow{font-size:11px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;margin:0 0 9px}
+    #fj-onboarding h2{font:400 47px/.99 var(--fj-display);letter-spacing:.6px;margin:0;text-wrap:balance}
+    #fj-onboarding p{font-size:15px;line-height:1.45;font-weight:600;margin:12px 0 0;text-wrap:pretty}
+    #fj-onboarding .fj-orange-word{color:var(--fj-orange);-webkit-text-stroke:.45px var(--fj-navy);text-shadow:2px 2px 0 var(--fj-navy)}
+    #fj-onboarding .fj-display{font-family:var(--fj-display);font-weight:400;letter-spacing:.5px}
+    #fj-onboarding .fj-scene{position:relative;isolation:isolate;flex:1;min-height:323px;margin:0 10px}
+    #fj-onboarding .fj-scene img{object-fit:contain;display:block;pointer-events:none;user-select:none}
+    #fj-onboarding .fj-rays{position:absolute;inset:28px 26px 10px;background:repeating-conic-gradient(from 8deg,var(--fj-gold) 0deg 13deg,transparent 13deg 31deg);border-radius:50%;opacity:.34;mask-image:radial-gradient(ellipse,#000 20%,transparent 71%);z-index:-1}
+    #fj-onboarding .fj-star{width:45px;aspect-ratio:1;background:var(--fj-gold);clip-path:var(--fj-star);position:absolute;z-index:1}
+    #fj-onboarding .fj-star.a{top:37px;left:15px;transform:rotate(9deg)}
+    #fj-onboarding .fj-star.b{right:16px;bottom:33px;width:26px;transform:rotate(30deg)}
+    #fj-onboarding .fj-bubble{position:absolute;z-index:4;background:var(--fj-cream);color:var(--fj-navy);border:var(--fj-line) solid var(--fj-navy);box-shadow:3px 3px 0 var(--fj-navy);border-radius:50% 50% 44% 40%;padding:14px 17px;font:400 21px/1.05 var(--fj-display);text-align:center;transform:rotate(6deg)}
+    #fj-onboarding .fj-bubble:after{content:"";position:absolute;bottom:-11px;left:25px;width:17px;height:18px;background:var(--fj-cream);border-right:var(--fj-line) solid var(--fj-navy);border-bottom:var(--fj-line) solid var(--fj-navy);transform:skewY(-35deg)}
+    #fj-onboarding .fj-hero-counter{position:absolute;width:92%;left:4%;bottom:0;z-index:3;transform-origin:50% 95%;animation:fj-counter-in 640ms var(--fj-ease) both}
+    #fj-onboarding .fj-counter-label{position:absolute;left:27%;right:27%;bottom:64px;z-index:4;font:400 23px var(--fj-display);color:var(--fj-navy);text-align:center;transform:rotate(-.6deg)}
+    #fj-onboarding .fj-intro .fj-bubble{right:5px;top:3px;font-size:18px;padding:12px 16px;transform:rotate(8deg)}
+    #fj-onboarding .fj-mini-food{position:absolute;width:97px;z-index:1;background:var(--fj-cream);border:var(--fj-line) solid var(--fj-navy);border-radius:10px;box-shadow:3px 3px 0 var(--fj-navy);padding:8px 8px 4px;text-align:center;color:var(--fj-navy);font:400 17px var(--fj-display);animation:fj-slide-in 650ms var(--fj-ease) both}
+    #fj-onboarding .fj-mini-food img{width:100%;height:59px}
+    #fj-onboarding .fj-mini-food.left{left:0;top:75px;--tilt:-16deg;transform:rotate(-16deg);animation-delay:120ms}
+    #fj-onboarding .fj-mini-food.right{right:0;top:92px;--tilt:15deg;transform:rotate(15deg);animation-delay:230ms}
+    #fj-onboarding .fj-actions{padding:15px var(--fj-inset) 24px;position:relative;z-index:5}
+    #fj-onboarding .fj-button{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;min-height:59px;padding:12px 18px;background:var(--fj-gold);color:var(--fj-navy);border:var(--fj-line) solid var(--fj-navy);border-radius:var(--fj-radius);box-shadow:0 5px 0 var(--fj-navy);font:400 25px/1.12 var(--fj-display);letter-spacing:.6px;transition:transform 120ms,box-shadow 120ms}
+    #fj-onboarding .fj-button:active{transform:translateY(4px);box-shadow:0 1px 0 var(--fj-navy)}
+    #fj-onboarding .fj-text-button{display:block;border:0;background:transparent;font-size:13px;font-weight:800;min-height:44px;margin:5px auto 0;text-decoration:underline;text-underline-offset:3px;padding:10px 14px}
+    #fj-onboarding .fj-progress{display:flex;justify-content:center;align-items:center;gap:7px;margin:21px 0 0;height:5px}
+    #fj-onboarding .fj-progress span{height:5px;width:17px;border-radius:4px;background:color-mix(in srgb,var(--fj-ink) 20%,transparent)}
+    #fj-onboarding .fj-progress span.active{width:30px;background:var(--fj-ink)}
+    #fj-onboarding .fj-footnote{font-size:11px;font-weight:800;letter-spacing:.3px;text-align:center;margin:12px 0 0}
+    #fj-onboarding .fj-lineup .fj-scene{min-height:319px;margin-top:12px}
+    #fj-onboarding .fj-case-file{position:absolute;left:9%;right:9%;top:41px;bottom:23px;background:var(--fj-gold);border:var(--fj-line) solid var(--fj-navy);border-radius:8px;transform:rotate(-3deg);z-index:-1}
+    #fj-onboarding .fj-case-file:before{content:"EXHIBIT A • THE CONTENDERS";position:absolute;top:-21px;left:-3px;border:var(--fj-line) solid var(--fj-navy);border-bottom:0;border-radius:8px 8px 0 0;background:var(--fj-gold);color:var(--fj-navy);padding:5px 12px;font:900 10px var(--fj-body);letter-spacing:1px}
+    #fj-onboarding .fj-food-card{position:absolute;width:43%;height:192px;background:var(--fj-cream);color:var(--fj-navy);border:var(--fj-line) solid var(--fj-navy);border-radius:10px;padding:9px 10px 12px;box-shadow:4px 5px 0 var(--fj-navy);text-align:center;--tilt:0deg;transform:rotate(var(--tilt));animation:fj-slide-in 550ms var(--fj-ease) both}
+    #fj-onboarding .fj-food-card img{height:119px;width:100%;object-fit:contain}
+    #fj-onboarding .fj-food-card strong{font:400 25px var(--fj-display);display:block}
+    #fj-onboarding .fj-food-card small{display:block;font:800 10px var(--fj-body);letter-spacing:1px;margin-top:4px}
+    #fj-onboarding .fj-food-card.fj-pizza{left:0;top:59px;--tilt:-12deg;animation-delay:80ms}
+    #fj-onboarding .fj-food-card.fj-salad{right:1%;top:55px;--tilt:11deg;animation-delay:180ms}
+    #fj-onboarding .fj-food-card.fj-tacos{left:28%;top:110px;--tilt:-2deg;z-index:2;animation-delay:280ms}
+    #fj-onboarding .fj-lineup-stamp{position:absolute;left:6px;bottom:7px;transform:rotate(-9deg);font:400 23px var(--fj-display);padding:5px 10px;background:var(--fj-orange);color:var(--fj-navy);border:var(--fj-line) solid var(--fj-navy);box-shadow:2px 3px 0 var(--fj-navy);border-radius:5px;z-index:3}
+    #fj-onboarding .fj-evidence{display:flex;align-items:center;gap:12px;margin:8px var(--fj-inset) 0;padding:12px 14px;border:1.5px dashed var(--fj-ink);border-radius:10px;font-size:12px;line-height:1.4;font-weight:700}
+    #fj-onboarding .fj-evidence i{display:block;font:400 26px var(--fj-display);font-style:normal;transform:rotate(-8deg)}
+    #fj-onboarding .fj-mood .fj-scene{min-height:248px;flex:0;margin-top:3px}
+    #fj-onboarding .fj-mood-judge{position:absolute;width:65%;left:17%;bottom:-11px;max-height:248px;z-index:2;animation:fj-counter-in 580ms var(--fj-ease) both}
+    #fj-onboarding .fj-mood .fj-bubble{right:0;top:2px;font-size:17px;padding:12px;transform:rotate(7deg)}
+    #fj-onboarding .fj-mood .fj-star.a{top:48px;left:29px}
+    #fj-onboarding .fj-choices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:13px var(--fj-inset) 0;position:relative;z-index:3}
+    #fj-onboarding .fj-choice{min-height:54px;border:var(--fj-line) solid var(--fj-navy);border-radius:12px;background:var(--fj-cream);color:var(--fj-navy);font-weight:900;font-size:15px;box-shadow:2px 3px 0 var(--fj-navy);padding:9px 10px;display:flex;justify-content:space-between;align-items:center}
+    #fj-onboarding .fj-choice[aria-pressed=true]{background:var(--fj-gold)}
+    #fj-onboarding .fj-choice .fj-choice-mark{font-size:19px}
+    #fj-onboarding .fj-mood-caption{font-size:12px;line-height:1.35;min-height:32px;text-align:center;margin:15px 24px 0;font-weight:800}
+    #fj-onboarding .fj-verdict{background:var(--fj-navy);color:var(--fj-cream)}
+    #fj-onboarding .fj-verdict .fj-copy{padding-top:24px}
+    #fj-onboarding .fj-verdict h2{font-size:49px;color:var(--fj-gold)}
+    #fj-onboarding .fj-verdict .fj-scene{min-height:344px;margin-top:8px;display:grid;place-items:center}
+    #fj-onboarding .fj-verdict .fj-rays{inset:0;background:repeating-conic-gradient(from 4deg,rgba(255,210,63,.30) 0deg 9deg,transparent 9deg 24deg);opacity:.85;mask-image:radial-gradient(ellipse,#000 0,transparent 67%)}
+    #fj-onboarding .fj-verdict-paper{width:86%;background:var(--fj-cream);color:var(--fj-navy);border:2.5px solid var(--fj-navy);padding:17px 17px 19px;box-shadow:7px 7px 0 var(--fj-orange);transform:rotate(-4deg);position:relative;margin-top:13px;animation:fj-ticket-in 650ms var(--fj-ease) 1450ms both}
+    #fj-onboarding .fj-verdict-paper:before,#fj-onboarding .fj-member-ticket:before{content:"";position:absolute;bottom:-8px;height:10px;left:-2px;right:-2px;background:linear-gradient(135deg,var(--fj-cream) 25%,transparent 25%) -5px 0/10px 10px,linear-gradient(225deg,var(--fj-cream) 25%,transparent 25%) -5px 0/10px 10px}
+    #fj-onboarding .fj-receipt-top{display:flex;justify-content:space-between;border-bottom:1.5px dashed var(--fj-navy);padding-bottom:9px;font-size:10px;font-weight:900;letter-spacing:1px}
+    #fj-onboarding .fj-winner-food{width:72%;height:133px;margin:8px auto 0}
+    #fj-onboarding .fj-winner-name{font:400 45px/1 var(--fj-display);text-align:center;margin:0}
+    #fj-onboarding .fj-reason{font-size:12px;line-height:1.45;text-align:center;font-weight:700;margin:9px 0 0;padding:0 5px}
+    #fj-onboarding .fj-approved{position:absolute;right:-16px;top:155px;transform:rotate(13deg);border:3px solid var(--fj-orange);outline:2px solid var(--fj-cream);background:var(--fj-cream);color:var(--fj-navy);font:400 25px/1 var(--fj-display);padding:7px 10px;box-shadow:3px 3px 0 var(--fj-navy);z-index:3;animation:fj-stamp 350ms var(--fj-ease) 2150ms both}
+    #fj-onboarding .fj-verdict-judge{position:absolute;width:38%;left:-2%;bottom:-3px;z-index:4;transform:rotate(-9deg);animation:fj-counter-in 600ms var(--fj-ease) 1750ms both}
+    #fj-onboarding .fj-verdict-sub{font-size:13px;text-align:center;padding:0 30px;margin:9px 0 0;font-weight:700;line-height:1.45}
+    #fj-onboarding .fj-verdict .fj-button{box-shadow:0 5px 0 var(--fj-orange)}
+    #fj-onboarding .fj-verdict .fj-progress span{background:rgba(255,248,240,.25)}
+    #fj-onboarding .fj-verdict .fj-progress .active{background:var(--fj-gold)}
+    #fj-onboarding .fj-deliberation{position:absolute;inset:0;z-index:6;background:var(--fj-navy);display:flex;align-items:center;justify-content:center;flex-direction:column;animation:fj-deliberation-out 300ms ease 1200ms forwards;pointer-events:none}
+    #fj-onboarding .fj-deliberation img{width:210px;height:235px;object-fit:contain}
+    #fj-onboarding .fj-deliberation strong{font:400 29px var(--fj-display);color:var(--fj-gold);margin-top:12px}
+    #fj-onboarding .fj-deliberation span{font-size:12px;font-weight:700;margin-top:7px}
+    #fj-onboarding .fj-paywall .fj-copy{padding-top:23px}
+    #fj-onboarding .fj-paywall h2{font-size:42px}
+    #fj-onboarding .fj-plus-pill{display:inline-flex;align-items:center;gap:6px;background:var(--fj-navy);color:var(--fj-gold);font-size:10px;font-weight:900;letter-spacing:2px;border-radius:5px;padding:7px 11px;transform:rotate(-4deg);margin-bottom:12px}
+    #fj-onboarding .fj-membership-stage{height:165px;flex:none;position:relative;margin:17px 17px 0}
+    #fj-onboarding .fj-membership-stage .fj-rays{inset:-7px 0 -10px}
+    #fj-onboarding .fj-member-ticket{position:absolute;left:6px;right:74px;bottom:3px;background:var(--fj-cream);color:var(--fj-navy);border:2.5px solid var(--fj-navy);padding:15px 14px 17px;transform:rotate(-7deg);box-shadow:4px 5px 0 var(--fj-navy);z-index:2;animation:fj-ticket-in 600ms var(--fj-ease) both}
+    #fj-onboarding .fj-member-ticket b{font:400 31px/1 var(--fj-display);display:block;margin:7px 0 0}
+    #fj-onboarding .fj-member-ticket span{font-size:9px;font-weight:900;letter-spacing:1.3px}
+    #fj-onboarding .fj-member-ticket small{font-size:10px;font-weight:800;display:block;margin-top:8px;border-top:1.5px dashed var(--fj-navy);padding-top:6px}
+    #fj-onboarding .fj-membership-judge{position:absolute;width:45%;right:-4px;top:-2px;z-index:3;transform:rotate(7deg);animation:fj-counter-in 600ms var(--fj-ease) 120ms both}
+    #fj-onboarding .fj-perks{margin:17px var(--fj-inset) 13px;padding:0;list-style:none;display:grid;gap:9px}
+    #fj-onboarding .fj-perks li{display:flex;align-items:flex-start;gap:10px;font-size:12px;font-weight:800;line-height:1.35}
+    #fj-onboarding .fj-perks li:before{content:"✓";background:var(--fj-gold);color:var(--fj-navy);width:18px;height:18px;border:1.5px solid var(--fj-navy);border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:12px;font-weight:900}
+    #fj-onboarding .fj-plans{display:grid;gap:10px;margin:0 var(--fj-inset);border:0;padding:0;min-width:0}
+    #fj-onboarding .fj-plan{display:flex;position:relative;align-items:center;gap:11px;min-height:67px;background:var(--fj-cream);color:var(--fj-navy);border:2.5px solid var(--fj-navy);border-radius:12px;padding:13px 14px;text-align:left}
+    #fj-onboarding .fj-plan:has(input:checked){background:var(--fj-gold);box-shadow:3px 3px 0 var(--fj-navy)}
+    #fj-onboarding .fj-plan input{accent-color:var(--fj-navy);width:19px;height:19px;margin:0;flex-shrink:0}
+    #fj-onboarding .fj-plan .fj-plan-name{font-size:14px;font-weight:900;display:block}
+    #fj-onboarding .fj-plan small{font-size:10px;font-weight:700;display:block;margin-top:2px}
+    #fj-onboarding .fj-price{margin-left:auto;display:flex;align-items:baseline;gap:2px;white-space:nowrap}
+    #fj-onboarding .fj-price strong{font:400 28px var(--fj-display)}
+    #fj-onboarding .fj-price span{font-size:11px;font-weight:800}
+    #fj-onboarding .fj-best{position:absolute;right:11px;top:-10px;background:var(--fj-navy);color:var(--fj-gold);border-radius:4px;font-size:8px;font-weight:900;letter-spacing:1px;padding:4px 7px}
+    #fj-onboarding .fj-paywall .fj-actions{padding-top:16px;padding-bottom:14px}
+    #fj-onboarding .fj-billing{font-size:10px;text-align:center;line-height:1.5;margin:13px 0 1px;font-weight:700}
+    #fj-onboarding .fj-legal{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    #fj-onboarding .fj-legal button{border:0;background:transparent;font-size:10px;padding:10px 3px;min-height:40px;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+    #fj-onboarding .fj-welcome-premium{background:var(--fj-orange);color:var(--fj-navy)}
+    #fj-onboarding .fj-welcome-premium h2{color:var(--fj-cream);-webkit-text-stroke:1px var(--fj-navy);text-shadow:3px 3px 0 var(--fj-navy);font-size:51px}
+    #fj-onboarding .fj-welcome .fj-scene{min-height:337px;margin-top:0}
+    #fj-onboarding .fj-welcome-art{position:absolute;height:91%;width:87%;left:6.5%;bottom:8px;z-index:2;animation:fj-counter-in 700ms var(--fj-ease) both}
+    #fj-onboarding .fj-welcome-stamp{position:absolute;bottom:2px;left:12%;right:12%;background:var(--fj-gold);color:var(--fj-navy);border:2.5px solid var(--fj-navy);box-shadow:3px 4px 0 var(--fj-navy);border-radius:8px;padding:10px;text-align:center;font:400 27px var(--fj-display);transform:rotate(-7deg);z-index:3;animation:fj-stamp 400ms var(--fj-ease) 500ms both}
+    #fj-onboarding .fj-welcome .fj-bubble{right:4px;top:9px;font-size:18px;padding:12px 14px}
+    #fj-onboarding .fj-welcome-ticket{margin:19px var(--fj-inset) 3px;border:1.5px dashed var(--fj-navy);border-radius:10px;padding:12px 14px;background:var(--fj-cream);color:var(--fj-navy);text-align:center;font-size:13px;font-weight:800;line-height:1.45}
+    #fj-onboarding .fj-welcome-free .fj-welcome-stamp{background:var(--fj-orange)}
+    #fj-onboarding .fj-welcome-free .fj-welcome-art{height:88%;bottom:17px}
+    #fj-onboarding .fj-welcome-free h2{font-size:49px}
+    #fj-onboarding .fj-confetti{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+    #fj-onboarding .fj-confetti i{position:absolute;width:8px;height:16px;top:10%;left:var(--x);background:var(--c);animation:fj-confetti 1600ms ease-out var(--d) both;transform:rotate(30deg)}
+    #fj-onboarding .fj-preview-caption{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;text-align:center;margin:19px 0 0;color:var(--fj-ink)}
+    #fj-onboarding .fj-sheet-backdrop{position:absolute;inset:0;background:rgba(26,26,46,.6);z-index:20;display:flex;align-items:flex-end}
+    #fj-onboarding .fj-sheet{width:100%;padding:26px 24px 30px;background:var(--fj-paper);color:var(--fj-ink);border:2.5px solid var(--fj-navy);border-radius:24px 24px 0 0;box-shadow:0 -4px 0 var(--fj-navy)}
+    #fj-onboarding .fj-sheet h3{font:400 34px var(--fj-display);margin:0}
+    #fj-onboarding .fj-sheet p{font-size:14px;margin:12px 0 23px}
+    #fj-onboarding .fj-screen.fj-enter .fj-copy{animation:fj-content-in var(--fj-entry) var(--fj-ease) both}
+    #fj-onboarding .fj-screen.fj-enter .fj-actions{animation:fj-content-in var(--fj-entry) var(--fj-ease) 180ms both}
+    #fj-onboarding .fj-screen.fj-enter{animation:fj-screen-in 380ms var(--fj-ease) both}
+    #fj-onboarding .fj-pop{animation:fj-goal-pop 260ms var(--fj-ease)}
+    #fj-onboarding.fj-reduced *,#fj-onboarding.fj-reduced *:before,#fj-onboarding.fj-reduced *:after{animation:none!important;transition:none!important}
+    #fj-onboarding.fj-reduced .fj-deliberation{display:none}
+    #fj-onboarding.fj-reduced .fj-confetti{display:none}
+    @keyframes fj-content-in{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fj-screen-in{from{opacity:.25;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes fj-counter-in{from{opacity:0;translate:0 27px;scale:.94}to{opacity:1;translate:0 0;scale:1}}
+    @keyframes fj-slide-in{from{opacity:0;translate:0 -34px;rotate:-12deg}to{opacity:1;translate:0 0;rotate:0deg}}
+    @keyframes fj-ticket-in{from{opacity:0;translate:0 80px;rotate:9deg}to{opacity:1;translate:0 0;rotate:0deg}}
+    @keyframes fj-stamp{0%{opacity:0;scale:1.65}70%{opacity:1;scale:.94}100%{opacity:1;scale:1}}
+    @keyframes fj-deliberation-out{to{opacity:0;visibility:hidden}}
+    @keyframes fj-goal-pop{50%{transform:translateY(-3px) rotate(-2deg)}}
+    @keyframes fj-confetti{0%{opacity:0;translate:0 -25px;rotate:0deg}10%{opacity:1}90%{opacity:1}100%{opacity:0;translate:var(--drift) 280px;rotate:380deg}}
+    @media(prefers-reduced-motion:reduce){#fj-onboarding *,#fj-onboarding *:before,#fj-onboarding *:after{animation:none!important;transition:none!important}#fj-onboarding .fj-deliberation,#fj-onboarding .fj-confetti{display:none}}
+    @media(max-width:370px){#fj-onboarding{padding:12px 5px;--fj-inset:17px}#fj-onboarding h2{font-size:42px}#fj-onboarding .fj-copy{padding-top:22px}#fj-onboarding .fj-logo{width:153px}#fj-onboarding .fj-nav{grid-template-columns:44px 1fr 44px}#fj-onboarding .fj-scene{min-height:306px}#fj-onboarding .fj-counter-label{bottom:52px;font-size:20px}#fj-onboarding .fj-intro .fj-bubble{top:9px}#fj-onboarding .fj-hero-counter{bottom:7px}#fj-onboarding .fj-mini-food{width:83px}#fj-onboarding .fj-mini-food.left{top:64px}#fj-onboarding .fj-mini-food.right{top:91px}#fj-onboarding .fj-paywall h2{font-size:39px}#fj-onboarding .fj-member-ticket{right:57px}#fj-onboarding .fj-member-ticket b{font-size:27px}#fj-onboarding .fj-price strong{font-size:25px}#fj-onboarding .fj-mood .fj-scene{min-height:238px}#fj-onboarding .fj-welcome h2{font-size:46px}}
+    /* Onboarding scenes use separate copy, illustration and action zones. */
+    #fj-onboarding .fj-copy{padding-top:22px}
+    #fj-onboarding .fj-screen h2{font-size:44px}
+    #fj-onboarding .fj-progress{gap:6px}
+    #fj-onboarding .fj-progress span{width:11px}
+    #fj-onboarding .fj-progress span.active{width:26px}
+    #fj-onboarding .fj-lineup .fj-scene{min-height:291px;margin-top:18px}
+    #fj-onboarding .fj-food-card{height:177px;width:42%;padding-top:10px}
+    #fj-onboarding .fj-food-card img{height:120px}
+    #fj-onboarding .fj-food-card.fj-pizza{left:3%;top:35px;--tilt:-8deg}
+    #fj-onboarding .fj-food-card.fj-salad{right:3%;top:35px;--tilt:8deg}
+    #fj-onboarding .fj-food-card.fj-tacos{left:29%;top:104px;--tilt:-2deg}
+    #fj-onboarding .fj-lineup-stamp{left:12px;bottom:-2px;font-size:20px;padding:6px 9px;transform:rotate(-5deg)}
+    #fj-onboarding .fj-case-file{top:20px;bottom:18px}
+    #fj-onboarding .fj-evidence{margin-top:21px}
+    #fj-onboarding .fj-mood .fj-scene{min-height:225px}
+    #fj-onboarding .fj-mood-judge{height:220px;bottom:-4px}
+    #fj-onboarding .fj-mood-caption{min-height:27px;margin-top:12px}
+    #fj-onboarding .fj-mood .fj-actions{margin-top:auto}
+    #fj-onboarding .fj-verdict .fj-scene{min-height:347px;flex:0;margin-top:16px}
+    #fj-onboarding .fj-verdict-paper{width:85%;margin-top:0;padding-bottom:18px;align-self:start;animation-delay:180ms}
+    #fj-onboarding .fj-winner-food{height:126px;margin-top:7px}
+    #fj-onboarding .fj-winner-name{font-size:40px}
+    #fj-onboarding .fj-approved{top:131px;right:-9px;font-size:20px;padding:6px 9px;animation-delay:1000ms}
+    #fj-onboarding .fj-verdict-judge{width:25%;left:5px;bottom:-5px;animation-delay:700ms}
+    #fj-onboarding .fj-verdict-sub{margin-top:12px}
+    #fj-onboarding .fj-verdict .fj-deliberation{display:none}
+    #fj-onboarding .fj-verdict .fj-actions{margin-top:auto}
+    #fj-onboarding .fj-paywall h2{font-size:38px}
+    #fj-onboarding .fj-plus-pill{margin-bottom:9px;padding:5px 9px}
+    #fj-onboarding .fj-membership-stage{height:auto;min-height:165px;margin:15px 20px 0;display:flex;align-items:center;padding:15px 0 18px;overflow:hidden}
+    #fj-onboarding .fj-member-ticket{position:relative;left:4px;right:auto;bottom:auto;width:calc(100% - 16px);padding:12px 104px 14px 13px;transform:rotate(-4deg)}
+    #fj-onboarding .fj-member-ticket b{font-size:29px;margin-top:6px}
+    #fj-onboarding .fj-member-ticket span{display:block;font-size:8px;line-height:1.3;letter-spacing:.9px}
+    #fj-onboarding .fj-member-ticket small{font-size:9px;line-height:1.25;letter-spacing:0}
+    #fj-onboarding .fj-membership-judge{width:38%;right:0;top:auto;bottom:20px;transform:rotate(5deg)}
+    #fj-onboarding .fj-perks{margin-top:9px;margin-bottom:10px;gap:7px}
+    #fj-onboarding .fj-perks li{font-size:12px}
+    #fj-onboarding .fj-shared-label{font-size:9px;font-weight:900;letter-spacing:1px;margin:0 var(--fj-inset) 7px}
+    #fj-onboarding .fj-plan{min-height:63px;padding:10px 12px}
+    #fj-onboarding .fj-paywall .fj-actions{padding-top:13px;padding-bottom:13px}
+    #fj-onboarding .fj-paywall .fj-billing{margin-top:10px}
+    #fj-onboarding .fj-legal button{min-height:44px}
+    #fj-onboarding .fj-welcome .fj-scene{min-height:304px}
+    #fj-onboarding .fj-welcome-ticket{margin-top:14px;font-size:12px;padding:11px 12px}
+    #fj-onboarding .fj-welcome-premium h2,#fj-onboarding .fj-welcome-free h2{font-size:48px}
+    #fj-onboarding .fj-proof-scene{height:330px;flex:none;position:relative;margin:15px 12px 0;isolation:isolate}
+    #fj-onboarding .fj-proof-photo{position:absolute;width:53%;left:4%;top:23px;background:var(--fj-cream);color:var(--fj-navy);border:2.5px solid var(--fj-navy);padding:11px;transform:rotate(-7deg);box-shadow:4px 5px 0 var(--fj-navy);z-index:2;animation:fj-slide-in 650ms var(--fj-ease) 100ms both}
+    #fj-onboarding .fj-proof-photo strong{font-size:10px;letter-spacing:1.5px;font-weight:900;display:block}
+    #fj-onboarding .fj-proof-photo img{height:137px;width:100%;object-fit:contain;display:block;background:var(--fj-gold);border:1.5px solid var(--fj-navy);margin-top:9px}
+    #fj-onboarding .fj-proof-photo small{font-size:10px;display:block;text-align:center;font-weight:900;margin-top:7px}
+    #fj-onboarding .fj-proof-judge{position:absolute;right:-5%;top:78px;width:64%;height:236px;object-fit:contain;z-index:3;animation:fj-counter-in 620ms var(--fj-ease) 330ms both}
+    #fj-onboarding .fj-proof-note{position:absolute;left:6%;right:14%;bottom:0;background:var(--fj-gold);color:var(--fj-navy);padding:12px 14px;transform:rotate(3deg);border:2.5px solid var(--fj-navy);border-radius:4px;z-index:4;box-shadow:3px 3px 0 var(--fj-navy);animation:fj-ticket-in 550ms var(--fj-ease) 500ms both}
+    #fj-onboarding .fj-proof-note b{font:400 22px var(--fj-display);display:block;margin-bottom:4px}
+    #fj-onboarding .fj-proof-note span{font-size:12px;font-weight:800;line-height:1.35;display:block}
+    #fj-onboarding .fj-proof .fj-actions{margin-top:auto}
+    #fj-onboarding .fj-demo-options{display:flex;gap:10px;margin:23px var(--fj-inset) 0}
+    #fj-onboarding .fj-demo-options button{flex:1;background:var(--fj-cream);color:var(--fj-navy);border:2px solid var(--fj-navy);border-radius:10px;min-height:45px;font-size:12px;font-weight:900}
+    #fj-onboarding .fj-demo-options button[aria-pressed=true]{background:var(--fj-gold);box-shadow:2px 2px 0 var(--fj-navy)}
+    #fj-onboarding .fj-proof[data-example=note] .fj-proof-note{animation:fj-goal-pop 400ms var(--fj-ease)}
+    #fj-onboarding .fj-proof[data-example=photo] .fj-proof-photo{animation:fj-goal-pop 400ms var(--fj-ease)}
+    #fj-onboarding .fj-personality-scene{height:266px;margin:13px 16px 0;position:relative;isolation:isolate}
+    #fj-onboarding .fj-personality-art{display:block;width:70%;height:231px;object-fit:contain;margin:0 auto;animation:fj-counter-in 500ms var(--fj-ease) both}
+    #fj-onboarding .fj-tone-quote{position:absolute;bottom:0;left:8%;right:8%;border:2px solid var(--fj-navy);border-radius:9px;background:var(--fj-cream);color:var(--fj-navy);padding:9px 12px;text-align:center;font:400 21px/1.1 var(--fj-display);box-shadow:3px 3px 0 var(--fj-navy);transform:rotate(-3deg)}
+    #fj-onboarding .fj-personality .fj-choices{margin-top:22px}
+    #fj-onboarding .fj-personality .fj-choice{font-size:13px}
+    #fj-onboarding .fj-personality .fj-footnote{margin-top:15px;font-size:11px;letter-spacing:0}
+    #fj-onboarding .fj-personality .fj-actions{margin-top:auto}
+    #fj-onboarding .fj-hearing{background:var(--fj-navy);color:var(--fj-cream)}
+    #fj-onboarding .fj-hearing h2{color:var(--fj-gold)}
+    #fj-onboarding .fj-hearing-scene{height:340px;position:relative;margin:14px 14px 0;isolation:isolate}
+    #fj-onboarding .fj-hearing-scene .fj-rays{inset:0;opacity:.5}
+    #fj-onboarding .fj-hearing-counter{width:88%;position:absolute;bottom:0;left:6%;z-index:3;transform-origin:50% 100%}
+    #fj-onboarding .fj-hearing-foods{position:absolute;left:12%;right:12%;top:0;display:flex;justify-content:space-between;gap:12px;z-index:1}
+    #fj-onboarding .fj-hearing-foods span{width:65px;height:65px;display:grid;place-items:center;background:var(--fj-cream);border:2px solid var(--fj-gold);border-radius:50%;transform:rotate(-9deg)}
+    #fj-onboarding .fj-hearing-foods span:nth-child(2){transform:translateY(-5px) rotate(4deg)}
+    #fj-onboarding .fj-hearing-foods img{width:80%;height:80%;object-fit:contain}
+    #fj-onboarding .fj-hearing-label{position:absolute;left:25%;right:25%;bottom:62px;color:var(--fj-navy);text-align:center;font:400 21px var(--fj-display);z-index:4}
+    #fj-onboarding .fj-hearing-status{font-size:13px;font-weight:800;text-align:center;min-height:39px;margin:17px 25px 0;line-height:1.45}
+    #fj-onboarding .fj-hearing .fj-actions{margin-top:auto}
+    #fj-onboarding .fj-hearing .fj-button{box-shadow:0 5px 0 var(--fj-orange)}
+    #fj-onboarding .fj-hearing .fj-progress span{background:rgba(255,248,240,.25)}
+    #fj-onboarding .fj-hearing .fj-progress span.active{background:var(--fj-gold)}
+    #fj-onboarding .fj-running .fj-hearing-foods span{animation:fj-evidence-orbit 1500ms var(--fj-ease) both}
+    #fj-onboarding .fj-running .fj-hearing-foods span:nth-child(2){animation-delay:140ms}
+    #fj-onboarding .fj-running .fj-hearing-foods span:nth-child(3){animation-delay:270ms}
+    #fj-onboarding .fj-counter-wrap{position:absolute;width:92%;left:4%;bottom:0;z-index:3;animation:fj-counter-in 640ms var(--fj-ease) both}
+    #fj-onboarding .fj-counter-wrap .fj-hero-counter{position:static;width:100%;animation:none}
+    #fj-onboarding .fj-counter-wrap .fj-counter-label{bottom:19%}
+    #fj-onboarding .fj-hearing-counter-wrap{position:absolute;width:88%;left:6%;bottom:0;z-index:3;transform-origin:50% 100%}
+    #fj-onboarding .fj-hearing-counter-wrap .fj-hearing-counter{position:static;width:100%;display:block}
+    #fj-onboarding .fj-hearing-counter-wrap .fj-hearing-label{bottom:20%}
+    #fj-onboarding .fj-running .fj-hearing-counter-wrap{animation:fj-judge-slam 1750ms var(--fj-ease) both}
+    #fj-onboarding .fj-running .fj-hearing-scene .fj-rays{animation:fj-spotlight 1750ms ease-out both}
+    #fj-onboarding .fj-sr-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    #fj-onboarding .fj-preview-toolbar{display:flex;justify-content:center;align-items:center;gap:8px;max-width:390px;margin:18px auto 0;flex-wrap:wrap}
+    #fj-onboarding .fj-preview-toolbar button{border:1px solid var(--fj-ink);background:var(--fj-paper);color:var(--fj-ink);border-radius:8px;padding:10px 12px;min-height:44px;font-size:11px;font-weight:800}
+    #fj-onboarding .fj-preview-toolbar button[aria-pressed=true]{background:var(--fj-navy);color:var(--fj-cream)}
+    @keyframes fj-evidence-orbit{0%{translate:0 0;rotate:0deg}35%{translate:0 -13px;rotate:11deg}65%{translate:0 12px;rotate:-8deg}100%{translate:0 0;rotate:0deg}}
+    @keyframes fj-judge-slam{0%,64%{transform:rotate(0deg) translateY(0)}74%{transform:rotate(-7deg) translateY(-13px)}83%{transform:rotate(3deg) translateY(6px)}90%{transform:rotate(-1deg) translateY(-3px)}100%{transform:rotate(0deg) translateY(0)}}
+    @keyframes fj-spotlight{0%{scale:.7;opacity:.2}65%{scale:1.1;opacity:.55}83%{scale:1.15;opacity:.8}100%{scale:1;opacity:.5}}
+    @media(max-width:370px){#fj-onboarding .fj-screen h2{font-size:39px}#fj-onboarding .fj-paywall h2{font-size:34px}#fj-onboarding .fj-member-ticket{padding-right:83px}#fj-onboarding .fj-member-ticket b{font-size:26px}#fj-onboarding .fj-membership-stage{margin-left:17px;margin-right:17px}#fj-onboarding .fj-member-ticket span{font-size:7px}#fj-onboarding .fj-proof-scene{height:321px}#fj-onboarding .fj-proof-photo{width:54%;padding:9px}#fj-onboarding .fj-proof-photo img{height:116px}#fj-onboarding .fj-proof-photo strong{font-size:9px;letter-spacing:.7px}#fj-onboarding .fj-proof-judge{top:81px;height:213px}#fj-onboarding .fj-proof-note{left:4%;right:6%;bottom:8px}#fj-onboarding .fj-hearing-scene{height:316px}#fj-onboarding .fj-hearing-foods{left:7%;right:7%}#fj-onboarding .fj-hearing-label{bottom:49px;font-size:19px}#fj-onboarding .fj-lineup-stamp{font-size:18px;left:4px}#fj-onboarding .fj-approved{right:-6px;font-size:18px}#fj-onboarding .fj-verdict-paper{padding:14px 12px 16px}#fj-onboarding .fj-winner-name{font-size:36px}#fj-onboarding .fj-personality-art{height:225px}#fj-onboarding .fj-tone-quote{font-size:19px;left:4%;right:4%}}
+  </style>
+  <div class="fj-phone" aria-label="FoodJury mobile onboarding">
+    <div class="fj-app-content">
+      <header class="fj-top">
+        <div class="fj-status" aria-hidden="true"><span>9:41</span><span class="fj-status-mark">●●● ▰</span></div>
+        <div class="fj-nav">
+          <button type="button" class="fj-back cursor-interaction" data-action="back" aria-label="Previous onboarding screen">‹</button>
+          <img data-asset="wordmark" class="fj-logo" alt="FoodJury">
+          <button type="button" class="fj-skip cursor-interaction" data-action="skip">Skip</button>
+        </div>
+        <div class="fj-checker" aria-hidden="true"></div>
+      </header>
+      <main>
+        <section class="fj-screen fj-intro fj-enter" data-screen="intro" aria-label="Meet Judge Bite">
+          <div class="fj-copy"><div class="fj-eyebrow">Welcome to the food court</div><h2>DINNER'S<br><span class="fj-orange-word">ON TRIAL.</span></h2><p>Your AI judge for the daily<br>“what should I eat?” debate.</p></div>
+          <div class="fj-scene" aria-label="A stern Judge Bite presides over pizza and tacos at a retro diner counter" role="img">
+            <div class="fj-rays"></div><i class="fj-star a"></i><i class="fj-star b"></i>
+            <div class="fj-mini-food left"><img data-asset="pizza" alt=""></div>
+            <div class="fj-mini-food right"><img data-asset="tacos" alt=""></div>
+            <div class="fj-bubble">“You choose”<br>is overruled.</div>
+            <div class="fj-counter-wrap"><img class="fj-hero-counter" data-asset="counter" alt=""><span class="fj-counter-label">JUDGE BITE</span></div>
+          </div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="next">LET'S OPEN A CASE <span aria-hidden="true">→</span></button><div class="fj-progress" aria-label="Step 1 of 4"><span class="active"></span><span></span><span></span><span></span></div></div>
+        </section>
+        <section class="fj-screen fj-lineup" data-screen="lineup" aria-label="Add food contenders" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">Exhibit A · Your options</div><h2>CALL YOUR<br>CONTENDERS.</h2><p>Add 2–5 food options.<br>Everything gets a fair hearing.</p></div>
+          <div class="fj-scene" role="img" aria-label="Pizza, tacos and salad illustrated on overlapping evidence cards">
+            <div class="fj-case-file"></div>
+            <div class="fj-food-card fj-pizza"><strong>PIZZA</strong><img data-asset="pizza" alt=""></div>
+            <div class="fj-food-card fj-salad"><strong>SALAD</strong><img data-asset="salad" alt=""></div>
+            <div class="fj-food-card fj-tacos"><strong>TACOS</strong><img data-asset="tacos" alt=""></div>
+            <span class="fj-lineup-stamp">ALL SUSPECTS LOOK DELICIOUS.</span>
+          </div>
+          <div class="fj-evidence"><i aria-hidden="true">+ EVIDENCE</i><span>Your photos and notes?<br>Optional. Always welcome.</span></div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="next">BUILD MY CASE <span aria-hidden="true">→</span></button><div class="fj-progress" aria-label="Step 2 of 4"><span></span><span class="active"></span><span></span><span></span></div></div>
+        </section>
+        <section class="fj-screen fj-proof" data-screen="evidence" aria-label="Optional photo and note evidence" data-example="photo" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">Exhibit B · The little details</div><h2>GOT EVIDENCE?<br>LET'S SEE IT.</h2><p>A food name is enough.<br>Your photos and notes add context.</p></div>
+          <div class="fj-proof-scene" aria-label="Judge Bite examines an illustrated photo card and an attached note" role="img"><div class="fj-rays"></div><div class="fj-proof-photo"><strong>YOUR PHOTO GOES HERE</strong><img data-asset="burger" alt=""><small>ILLUSTRATED EXAMPLE</small></div><img class="fj-proof-judge" data-asset="detective" alt=""><div class="fj-proof-note"><b>A LITTLE CONTEXT HELPS.</b><span>“Extra pickles. Close by.<br>I've got twenty minutes.”</span></div></div>
+          <div class="fj-demo-options" role="group" aria-label="Explore evidence examples"><button type="button" class="cursor-interaction" data-evidence="photo" aria-pressed="true">Photo example</button><button type="button" class="cursor-interaction" data-evidence="note" aria-pressed="false">Note example</button></div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="next">EVIDENCE ACCEPTED <span aria-hidden="true">→</span></button><div class="fj-progress"></div></div>
+        </section>
+        <section class="fj-screen fj-mood" data-screen="mood" aria-label="Choose your goal" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">Exhibit C · Your cravings</div><h2>STATE YOUR<br>CRAVINGS.</h2><p>Tell the court what matters tonight.</p></div>
+          <div class="fj-scene" aria-hidden="true"><div class="fj-rays"></div><i class="fj-star a"></i><img class="fj-mood-judge" data-asset="stern" alt=""><div class="fj-bubble">“Anything” is<br>not an answer.</div></div>
+          <div class="fj-choices" role="group" aria-label="Your goal">
+            <button type="button" class="fj-choice cursor-interaction" data-mood="Fun" aria-pressed="false"><span>Fun</span><span class="fj-choice-mark" aria-hidden="true">○</span></button>
+            <button type="button" class="fj-choice cursor-interaction" data-mood="Healthy" aria-pressed="false"><span>Healthy</span><span class="fj-choice-mark" aria-hidden="true">○</span></button>
+            <button type="button" class="fj-choice cursor-interaction" data-mood="Fit" aria-pressed="false"><span>Fit</span><span class="fj-choice-mark" aria-hidden="true">○</span></button>
+            <button type="button" class="fj-choice cursor-interaction" data-mood="Quick" aria-pressed="true"><span>Quick</span><span class="fj-choice-mark" aria-hidden="true">✓</span></button>
+          </div>
+          <div class="fj-mood-caption" aria-live="polite">Dinner waits for no one. Quick it is.</div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="next">THAT'S MY CRAVING <span aria-hidden="true">→</span></button><div class="fj-progress"></div></div>
+        </section>
+        <section class="fj-screen fj-personality" data-screen="personality" aria-label="Choose Judge Bite's personality" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">Same judge · Different energy</div><h2>A LITTLE SASS?<br>OR ALL BUSINESS?</h2><p>You choose how Judge Bite talks.</p></div>
+          <div class="fj-personality-scene"><div class="fj-rays" aria-hidden="true"></div><img class="fj-personality-art" data-asset="stern" alt="Judge Bite with a stern expression"><div class="fj-tone-quote" aria-live="polite">No excuses. Only evidence.</div></div>
+          <div class="fj-choices" role="group" aria-label="Judge personality"><button class="fj-choice cursor-interaction" type="button" data-tone="Stern" aria-pressed="true"><span>Stern</span><span class="fj-choice-mark" aria-hidden="true">✓</span></button><button class="fj-choice cursor-interaction" type="button" data-tone="Sassy" aria-pressed="false"><span>Sassy</span><span class="fj-choice-mark" aria-hidden="true">○</span></button><button class="fj-choice cursor-interaction" type="button" data-tone="Enthusiastic" aria-pressed="false"><span>Enthusiastic</span><span class="fj-choice-mark" aria-hidden="true">○</span></button><button class="fj-choice cursor-interaction" type="button" data-tone="Chill" aria-pressed="false"><span>Chill</span><span class="fj-choice-mark" aria-hidden="true">○</span></button></div>
+          <div class="fj-footnote">A fair ruling. With your kind of personality.</div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="next">THAT'S MY JUDGE <span aria-hidden="true">→</span></button><div class="fj-progress"></div></div>
+        </section>
+        <section class="fj-screen fj-hearing" data-screen="hearing" aria-label="The court is in session" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">All rise · The hearing begins</div><h2>ORDER IN<br>THE FOOD COURT!</h2><p>No bribing the judge with fries.</p></div>
+          <div class="fj-hearing-scene" aria-hidden="true"><div class="fj-rays"></div><div class="fj-hearing-foods"><span><img data-asset="pizza" alt=""></span><span><img data-asset="tacos" alt=""></span><span><img data-asset="salad" alt=""></span></div><div class="fj-hearing-counter-wrap"><img class="fj-hearing-counter" data-asset="counter" alt=""><div class="fj-hearing-label">COURT IN SESSION</div></div></div>
+          <div class="fj-hearing-status" aria-live="polite">Your options. Your goal. Your notes.<br>One delicious decision.</div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="hear">CALL FOR A VERDICT <span aria-hidden="true">→</span></button><div class="fj-progress"></div></div>
+        </section>
+        <section class="fj-screen fj-verdict" data-screen="verdict" aria-label="Example verdict" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">A ruling. With reasons.</div><h2>CASE CLOSED.<br>CRAVING SOLVED.</h2></div>
+          <div class="fj-scene">
+            <div class="fj-rays" aria-hidden="true"></div><i class="fj-star a" aria-hidden="true"></i>
+            <div class="fj-verdict-paper"><div class="fj-receipt-top"><span>FOODJURY</span><span>DEMO CASE #001</span></div><img class="fj-winner-food" data-asset="tacos" alt="Illustrated tacos"><div class="fj-winner-name">TACOS WIN!</div><div class="fj-reason">Quick was the brief. Grab-and-go tacos take this round.</div><div class="fj-approved">APPROVED!</div></div>
+            <img class="fj-verdict-judge" data-asset="celebrating" alt="Judge Bite celebrates the ruling">
+            <div class="fj-confetti" aria-hidden="true"></div>
+            <div class="fj-deliberation" aria-hidden="true"><img data-asset="thinking" alt=""><strong>WEIGHING THE EVIDENCE…</strong><span>No bribing the judge with fries.</span></div>
+          </div>
+          <div class="fj-verdict-sub">Get the why, compare your options,<br>and save the verdict for later.</div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="next">LESS DEBATE. LET'S EAT. <span aria-hidden="true">→</span></button><button class="fj-text-button cursor-interaction" type="button" data-action="replay">Replay the ruling</button><div class="fj-progress" aria-label="Step 4 of 4"><span></span><span></span><span></span><span class="active"></span></div></div>
+        </section>
+        <section class="fj-screen fj-paywall" data-screen="paywall" aria-label="FoodJury Plus membership" hidden>
+          <div class="fj-copy"><span class="fj-plus-pill">★ FOODJURY PLUS</span><h2>LESS “YOU CHOOSE.”<br>MORE <span class="fj-orange-word">LET'S EAT.</span></h2></div>
+          <div class="fj-membership-stage"><div class="fj-rays"></div><div class="fj-member-ticket"><span>YOUR UNLIMITED PASS</span><b>UNLIMITED<br>DECISIONS.</b><small>ONE VERY OPINIONATED JUDGE.</small></div><img class="fj-membership-judge" data-asset="pointing" alt=""></div>
+          <div class="fj-shared-label">ALL THE FOODJURY FEATURES YOU LOVE</div>
+          <ul class="fj-perks" aria-label="Features included with both Free and Plus"><li>Photos, notes, 4 goals & judge personalities</li><li>Reasoned verdicts, saved for later</li></ul>
+          <fieldset class="fj-plans" aria-label="Choose a subscription">
+            <label class="fj-plan cursor-interaction"><input type="radio" name="fj-plan" value="year" checked><span><span class="fj-plan-name">Yearly</span><small>Billed yearly</small></span><span class="fj-price"><strong>$24.99</strong><span>/year</span></span><span class="fj-best">BEST VALUE</span></label>
+            <label class="fj-plan cursor-interaction"><input type="radio" name="fj-plan" value="month"><span><span class="fj-plan-name">Monthly</span><small>Billed monthly</small></span><span class="fj-price"><strong>$5.99</strong><span>/month</span></span></label>
+          </fieldset>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="subscribe">GET FOODJURY PLUS <span aria-hidden="true">→</span></button><div class="fj-billing">$24.99 USD per year. Auto-renews. Cancel anytime.</div><button class="fj-text-button cursor-interaction" type="button" data-action="free">Continue with free access</button><div class="fj-legal"><button type="button" class="cursor-interaction" data-action="restore">Restore purchases</button><button type="button" class="cursor-interaction" data-action="terms">Terms</button><button type="button" class="cursor-interaction" data-action="privacy">Privacy</button></div></div>
+        </section>
+        <section class="fj-screen fj-welcome fj-welcome-premium" data-screen="premium" aria-label="Welcome to FoodJury Plus" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">FoodJury Plus · You're in</div><h2>THE COURT<br>IS YOURS.</h2><p>Unlimited decisions.<br>One less thing to argue about.</p></div>
+          <div class="fj-scene" aria-hidden="true"><div class="fj-rays"></div><i class="fj-star a"></i><i class="fj-star b"></i><img class="fj-welcome-art" data-asset="celebrating" alt=""><div class="fj-bubble">Excellent taste.<br>Obviously.</div><div class="fj-welcome-stamp">PLUS MEMBER. CASE OPEN.</div><div class="fj-confetti"></div></div>
+          <div class="fj-welcome-ticket">Your next craving has a court date.<br>Let's hear the contenders.</div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="finish">OPEN MY FIRST CASE <span aria-hidden="true">→</span></button><div class="fj-footnote">UNLIMITED CASES. SAME TOUGH JUDGE.</div></div>
+        </section>
+        <section class="fj-screen fj-welcome fj-welcome-free" data-screen="free" aria-label="Welcome to FoodJury" hidden>
+          <div class="fj-copy"><div class="fj-eyebrow">Pull up a seat</div><h2>YOU'RE IN.<br>COURT'S OPEN.</h2><p>Your cravings are welcome here.<br>Let's settle the first debate.</p></div>
+          <div class="fj-scene" aria-hidden="true"><div class="fj-rays"></div><i class="fj-star a"></i><i class="fj-star b"></i><img class="fj-welcome-art" data-asset="waving" alt=""><div class="fj-bubble">No pressure.<br>Just dinner.</div><div class="fj-welcome-stamp">FIRST CASE? RIGHT THIS WAY.</div></div>
+          <div class="fj-welcome-ticket">Photos, notes, goals & saved verdicts included.<br>Go Plus for unlimited decisions.</div>
+          <div class="fj-actions"><button class="fj-button cursor-interaction" type="button" data-action="finish">OPEN MY FIRST CASE <span aria-hidden="true">→</span></button><div class="fj-footnote">YOUR TABLE IS READY.</div></div>
+        </section>
+      </main>
+    </div>
+    <div class="fj-sheet-backdrop" hidden><section class="fj-sheet" role="dialog" aria-modal="true" aria-labelledby="fj-sheet-title"><h3 id="fj-sheet-title"></h3><p class="fj-sheet-copy"></p><button type="button" class="fj-button cursor-interaction" data-action="sheet-close">GOT IT</button></section></div>
+  </div>
+  <div class="fj-preview-caption">Interactive design concept · No purchases</div>
+  <div class="fj-sr-status" aria-live="polite" aria-atomic="true"></div>
+  <script type="application/json" id="fj-onboarding-assets">__ASSET_DATA__</script>
+  <script>
+    (() => {
+      const root = document.getElementById('fj-onboarding');
+      const assets = JSON.parse(document.getElementById('fj-onboarding-assets').textContent);
+      root.querySelectorAll('[data-asset]').forEach(el => el.src = assets[el.dataset.asset]);
+      const route = ['intro','lineup','evidence','mood','personality','hearing','verdict','paywall'];
+      const screens = [...root.querySelectorAll('[data-screen]')];
+      const validScreens = screens.map(el => el.dataset.screen);
+      const captions = {Fun:'Flavor first. The court approves of a good time.',Healthy:'Something balanced? The court is listening.',Fit:'Fuel for your plans. Let’s weigh the options.',Quick:'Dinner waits for no one. Quick it is.'};
+      const examples = {Fun:{food:'pizza',name:'PIZZA WINS!',reason:'Fun was the brief. A shareable pizza wins this delicious debate.'},Healthy:{food:'salad',name:'SALAD WINS!',reason:'You asked for balance. The salad gets the nod in this example case.'},Fit:{food:'salad',name:'SALAD WINS!',reason:'In this demo, a protein-topped salad fits the brief. Your notes help make the call.'},Quick:{food:'tacos',name:'TACOS WIN!',reason:'Quick was the brief. Grab-and-go tacos take this round.'}};
+      const tones = {Stern:{pose:'stern',quote:'No excuses. Only evidence.'},Sassy:{pose:'pointing',quote:'Another dinner debate? Groundbreaking.'},Enthusiastic:{pose:'excited',quote:'A delicious case! Let’s do this!'},Chill:{pose:'idle',quote:'Take a seat. We’ll figure it out.'}};
+      const state = {screen:'intro',goal:'Quick',tone:'Stern',evidence:'photo',plan:'year',reduceMotion:false,revision:0};
+      const media = matchMedia('(prefers-reduced-motion: reduce)');
+      let lastTrigger = null;
+      let sheetAction = null;
+      let hearingRunning = false;
+      const hearingTimers = new Set();
+      function cancelHearing() {
+        hearingTimers.forEach(clearTimeout);hearingTimers.clear();hearingRunning=false;
+        root.querySelector('.fj-hearing').classList.remove('fj-running');
+        const button=root.querySelector('[data-action="hear"]');button.disabled=false;button.innerHTML='CALL FOR A VERDICT <span aria-hidden="true">→</span>';
+        root.querySelector('.fj-hearing-status').innerHTML='Your options. Your goal. Your notes.<br>One delicious decision.';
+      }
+      function later(callback,delay){const id=setTimeout(()=>{hearingTimers.delete(id);callback();},delay);hearingTimers.add(id);}
+      screens.forEach((screen,index)=>{
+        const heading=screen.querySelector('h2');heading.id=`fj-heading-${screen.dataset.screen}`;
+        const action=screen.querySelector('.fj-actions .fj-button');action?.setAttribute('aria-describedby',heading.id);
+        const progress=screen.querySelector('.fj-progress');
+        if(progress){progress.replaceChildren(...Array.from({length:7},(_,i)=>{const mark=document.createElement('span');if(i===index)mark.className='active';return mark;}));progress.setAttribute('aria-label',`Step ${index+1} of 7`);}
+      });
+      function restore(saved) {
+        const source = saved?.privateContent;
+        if (!source) return false;
+        const revision=Number.isSafeInteger(source.revision)?source.revision:0;
+        if(revision<state.revision)return false;
+        state.revision=revision;
+        if (validScreens.includes(source.screen)) state.screen=source.screen;
+        if (captions[source.goal]) state.goal=source.goal;
+        if (tones[source.tone]) state.tone=source.tone;
+        if (['photo','note'].includes(source.evidence)) state.evidence=source.evidence;
+        if (['year','month'].includes(source.plan)) state.plan=source.plan;
+        if (typeof source.reduceMotion==='boolean') state.reduceMotion=source.reduceMotion;
+        return true;
+      }
+      restore(window.openai?.widgetState);
+      function persist() {
+        state.revision=Math.max(state.revision+1,Date.now());
+        window.openai?.setWidgetState?.({modelContent:{onboardingScreen:state.screen,goal:state.goal,judgeTone:state.tone,plan:state.plan},privateContent:{...state}})?.catch(()=>{});
+      }
+      function closeSheet() {
+        root.querySelector('.fj-sheet-backdrop').hidden=true;
+        root.querySelector('.fj-app-content').inert=false;
+        if (sheetAction) {const action=sheetAction;sheetAction=null;action();}
+        else if(lastTrigger?.isConnected&&!lastTrigger.closest('[hidden]')) lastTrigger.focus();
+      }
+      function sheet(title,copy,button='GOT IT',action=null) {
+        lastTrigger=document.activeElement;
+        sheetAction=action;
+        root.querySelector('#fj-sheet-title').textContent=title;
+        root.querySelector('.fj-sheet-copy').textContent=copy;
+        root.querySelector('[data-action="sheet-close"]').textContent=button;
+        root.querySelector('.fj-app-content').inert=true;
+        root.querySelector('.fj-sheet-backdrop').hidden=false;
+        root.querySelector('[data-action="sheet-close"]').focus();
+      }
+      function update() {
+        const reduce = state.reduceMotion || media.matches;
+        root.classList.toggle('fj-reduced',reduce);
+        screens.forEach(el => {const active=el.dataset.screen===state.screen;el.hidden=!active;el.classList.toggle('fj-enter',active);});
+        const back = root.querySelector('[data-action="back"]');
+        back.style.visibility=state.screen==='intro'?'hidden':'visible';
+        root.querySelector('[data-action="skip"]').hidden=['paywall','premium','free'].includes(state.screen);
+        root.querySelector('[data-action="replay"]').hidden=reduce;
+        root.querySelectorAll('[data-mood]').forEach(el=>{const active=el.dataset.mood===state.goal;el.setAttribute('aria-pressed',String(active));el.querySelector('.fj-choice-mark').textContent=active?'✓':'○';});
+        root.querySelector('.fj-mood-caption').textContent=captions[state.goal];
+        root.querySelectorAll('[data-tone]').forEach(el=>{const active=el.dataset.tone===state.tone;el.setAttribute('aria-pressed',String(active));el.querySelector('.fj-choice-mark').textContent=active?'✓':'○';});
+        const tone=tones[state.tone];const portrait=root.querySelector('.fj-personality-art');portrait.src=assets[tone.pose];portrait.alt=`Judge Bite with a ${state.tone.toLowerCase()} expression`;
+        root.querySelector('.fj-tone-quote').textContent=tone.quote;
+        root.querySelector('.fj-proof').dataset.example=state.evidence;
+        root.querySelectorAll('[data-evidence]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.evidence===state.evidence)));
+        root.querySelector('.fj-proof-note b').textContent=state.evidence==='note'?'THE DETAILS MAKE THE CASE.':'A LITTLE CONTEXT HELPS.';
+        root.querySelector('.fj-proof-note span').textContent=state.evidence==='note'?'“Extra pickles. Close by. I’ve got twenty minutes.”':'Add your own photo, or keep it simple with a food name.';
+        const example=examples[state.goal];
+        const food=root.querySelector('.fj-winner-food');food.src=assets[example.food];food.alt=`Illustrated ${example.food}`;
+        root.querySelector('.fj-winner-name').textContent=example.name;
+        root.querySelector('.fj-reason').textContent=example.reason;
+        root.querySelectorAll('[name="fj-plan"]').forEach(el=>el.checked=el.value===state.plan);
+        root.querySelector('.fj-billing').textContent=state.plan==='year'?'$24.99 USD per year. Auto-renews. Cancel anytime.':'$5.99 USD per month. Auto-renews. Cancel anytime.';
+      }
+      function go(screen) {
+        if(!validScreens.includes(screen))return;
+        cancelHearing();
+        state.screen=screen;
+        update();persist();
+        const current=root.querySelector(`[data-screen="${screen}"]`);
+        root.querySelector('.fj-sr-status').textContent=current.getAttribute('aria-label');
+        current.querySelector('.fj-actions .fj-button')?.focus({preventScroll:true});
+        root.querySelector('.fj-phone').scrollIntoView({block:'start',behavior:'instant'});
+      }
+      root.addEventListener('click',event=>{
+        const mood=event.target.closest('[data-mood]');
+        if(mood){state.goal=mood.dataset.mood;update();mood.classList.remove('fj-pop');void mood.offsetWidth;mood.classList.add('fj-pop');persist();return;}
+        const tone=event.target.closest('[data-tone]');if(tone){state.tone=tone.dataset.tone;update();const portrait=root.querySelector('.fj-personality-art');portrait.classList.remove('fj-pop');void portrait.offsetWidth;portrait.classList.add('fj-pop');persist();return;}
+        const evidence=event.target.closest('[data-evidence]');if(evidence){state.evidence=evidence.dataset.evidence;update();persist();return;}
+        const el=event.target.closest('[data-action]');if(!el)return;
+        switch(el.dataset.action){
+          case 'next':go(route[Math.min(route.indexOf(state.screen)+1,route.length-1)]);break;
+          case 'hear':{
+            if(hearingRunning)break;
+            if(state.reduceMotion||media.matches){go('verdict');break;}
+            hearingRunning=true;el.disabled=true;el.textContent='THE COURT IS DELIBERATING…';root.querySelector('.fj-hearing').classList.add('fj-running');
+            root.querySelector('.fj-hearing-status').textContent='Reviewing the contenders…';
+            later(()=>root.querySelector('.fj-hearing-status').textContent=`Considering your goal: ${state.goal.toLowerCase()}…`,650);
+            later(()=>root.querySelector('.fj-hearing-status').textContent='The court has reached a verdict.',1550);
+            later(()=>go('verdict'),2050);break;
+          }
+          case 'back':go(['premium','free'].includes(state.screen)?'paywall':route[Math.max(route.indexOf(state.screen)-1,0)]);break;
+          case 'skip':go('paywall');break;
+          case 'free':go('free');break;
+          case 'subscribe':sheet('PREVIEW YOUR MEMBERSHIP',`This is a design preview. No payment will be taken. The selected plan is ${state.plan==='year'?'$24.99 USD per year':'$5.99 USD per month'}.`,'SHOW MY PLUS WELCOME',()=>go('premium'));break;
+          case 'replay':{const scene=root.querySelector('[data-screen="verdict"]');scene.classList.remove('fj-enter');scene.hidden=true;void scene.offsetWidth;requestAnimationFrame(()=>{scene.hidden=false;scene.classList.add('fj-enter');scene.querySelector('[data-action="replay"]').focus({preventScroll:true});});break;}
+          case 'restore':sheet('RESTORE PURCHASES','In the app, this will check your App Store or Google Play subscription. Preview a successful restoration below.','PREVIEW RESTORED WELCOME',()=>go('premium'));break;
+          case 'terms':sheet('SUBSCRIPTION TERMS','Design placeholder: production opens the app’s subscription terms. Annual: $24.99 USD/year. Monthly: $5.99 USD/month. Auto-renews until canceled.');break;
+          case 'privacy':sheet('PRIVACY','Design placeholder: production opens FoodJury’s published privacy policy. No photos, notes or payment details are collected by this preview.');break;
+          case 'finish':sheet('YOUR FIRST CASE AWAITS','This is where onboarding hands off to the existing case builder, with your photos, notes, goals and judge personality.','REPLAY ONBOARDING',()=>go('intro'));break;
+          case 'sheet-close':closeSheet();break;
+        }
+      });
+      root.addEventListener('change',event=>{if(event.target.name==='fj-plan'){state.plan=event.target.value;update();persist();}});
+      root.addEventListener('keydown',event=>{
+        if(root.querySelector('.fj-sheet-backdrop').hidden)return;
+        if(event.key==='Escape'){sheetAction=null;closeSheet();}
+        if(event.key==='Tab'){event.preventDefault();root.querySelector('[data-action="sheet-close"]').focus();}
+      });
+      root.querySelectorAll('.fj-confetti').forEach(confetti=>{
+        const verdict=!!confetti.closest('.fj-verdict');
+        for(let n=0;n<16;n++){const bit=document.createElement('i');bit.style.cssText=`--x:${5+(n*37)%90}%;--c:${['var(--fj-gold)','var(--fj-cream)','var(--fj-orange)'][n%3]};--d:${(verdict?1000:0)+n*35}ms;--drift:${(n%2?1:-1)*(22+n*3)}px`;confetti.appendChild(bit);}
+      });
+      media.addEventListener('change',()=>{if(media.matches&&hearingRunning)go('verdict');else update();});
+      window.addEventListener('pagehide',cancelHearing);
+      window.addEventListener('openai:set_globals',event=>{if(event.detail?.globals?.widgetState){const prior=state.screen;if(!restore(event.detail.globals.widgetState))return;if(prior!==state.screen)cancelHearing();update();if(state.reduceMotion&&hearingRunning)go('verdict');}});
+      update();
+      if(globalThis.Tweak){const tweak=new Tweak({container:root,onChange:()=>{if(hearingRunning)cancelHearing();update();persist();}});tweak.addSelect(state,'screen',{label:'Preview screen',options:[{label:'Meet the judge',value:'intro'},{label:'Food lineup',value:'lineup'},{label:'Photo & note evidence',value:'evidence'},{label:'Your cravings',value:'mood'},{label:'Judge personality',value:'personality'},{label:'The hearing',value:'hearing'},{label:'The verdict',value:'verdict'},{label:'Membership',value:'paywall'},{label:'Plus welcome',value:'premium'},{label:'Free welcome',value:'free'}]});tweak.addToggle(state,'reduceMotion',{label:'Reduced motion'});}
+    })();
+  </script>
+</div>

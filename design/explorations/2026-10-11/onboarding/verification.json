@@ -1,0 +1,302 @@
+{
+  "scope": "Interactive onboarding design concept, not production Flutter or billing",
+  "layout": {
+    "errors": [],
+    "layout": [
+      {
+        "width": 736,
+        "screen": "intro",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 161
+      },
+      {
+        "width": 736,
+        "screen": "lineup",
+        "appHeight": 812.578125,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 225
+      },
+      {
+        "width": 736,
+        "screen": "evidence",
+        "appHeight": 835.984375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 286
+      },
+      {
+        "width": 736,
+        "screen": "mood",
+        "appHeight": 801.234375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 202
+      },
+      {
+        "width": 736,
+        "screen": "personality",
+        "appHeight": 852.625,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 226
+      },
+      {
+        "width": 736,
+        "screen": "hearing",
+        "appHeight": 811.234375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 188
+      },
+      {
+        "width": 736,
+        "screen": "verdict",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 246
+      },
+      {
+        "width": 736,
+        "screen": "paywall",
+        "appHeight": 848,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 443
+      },
+      {
+        "width": 736,
+        "screen": "premium",
+        "appHeight": 812.09375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 270
+      },
+      {
+        "width": 736,
+        "screen": "free",
+        "appHeight": 812.09375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 281
+      },
+      {
+        "width": 390,
+        "screen": "intro",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 161
+      },
+      {
+        "width": 390,
+        "screen": "lineup",
+        "appHeight": 802.703125,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 225
+      },
+      {
+        "width": 390,
+        "screen": "evidence",
+        "appHeight": 817.109375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 286
+      },
+      {
+        "width": 390,
+        "screen": "mood",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 202
+      },
+      {
+        "width": 390,
+        "screen": "personality",
+        "appHeight": 842.75,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 226
+      },
+      {
+        "width": 390,
+        "screen": "hearing",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 188
+      },
+      {
+        "width": 390,
+        "screen": "verdict",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 246
+      },
+      {
+        "width": 390,
+        "screen": "paywall",
+        "appHeight": 840.09375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 443
+      },
+      {
+        "width": 390,
+        "screen": "premium",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 270
+      },
+      {
+        "width": 390,
+        "screen": "free",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 281
+      },
+      {
+        "width": 320,
+        "screen": "intro",
+        "appHeight": 796,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 161
+      },
+      {
+        "width": 320,
+        "screen": "lineup",
+        "appHeight": 836.296875,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 225
+      },
+      {
+        "width": 320,
+        "screen": "evidence",
+        "appHeight": 863.859375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 286
+      },
+      {
+        "width": 320,
+        "screen": "mood",
+        "appHeight": 838.109375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 202
+      },
+      {
+        "width": 320,
+        "screen": "personality",
+        "appHeight": 918.5,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 226
+      },
+      {
+        "width": 320,
+        "screen": "hearing",
+        "appHeight": 802.359375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 188
+      },
+      {
+        "width": 320,
+        "screen": "verdict",
+        "appHeight": 816.140625,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 246
+      },
+      {
+        "width": 320,
+        "screen": "paywall",
+        "appHeight": 907.4375,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 443
+      },
+      {
+        "width": 320,
+        "screen": "premium",
+        "appHeight": 819.28125,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 270
+      },
+      {
+        "width": 320,
+        "screen": "free",
+        "appHeight": 836.671875,
+        "overflow": false,
+        "brokenImages": 0,
+        "font": true,
+        "visibleText": 281
+      }
+    ]
+  },
+  "interactions": {
+    "checks": [
+      "Seven-step navigation, focus transfer, evidence examples, all four judge personalities and goal selection",
+      "Timed hearing, selected-goal verdict, replay animation",
+      "Monthly/yearly pricing, accessible Plus benefit, simulated subscribe/restore, modal focus and separate free/Plus welcomes",
+      "Hearing cancellation on skip; changing OS motion preference mid-hearing; immediate reduced-motion result",
+      "Dark appearance render"
+    ],
+    "errors": []
+  },
+  "review": "Sol 6.1 high, no outstanding actionable findings",
+  "newArtwork": [
+    {
+      "path": "assets/judge-at-counter.png",
+      "bytes": 1248244,
+      "sha256": "af45b7f7c61303ae23b7c2fde89ba125b04e1941ab02291d3028c7726b0bdb16"
+    },
+    {
+      "path": "assets/judge-inspecting-evidence.png",
+      "bytes": 1017770,
+      "sha256": "ed1964650e0cb33cb476a5abb21d04b99713d182dffa62cfbe60192d030025da"
+    }
+  ],
+  "inlineBytes": 636727
+}

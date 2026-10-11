@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/theme/theme.dart';
+import '../../core/utils/l10n_extensions.dart';
+import '../../core/widgets/widgets.dart';
 import '../../features/decision/data/models/verdict.dart';
 import '../../features/decision/presentation/new_decision_screen.dart';
 import '../../features/decision/presentation/verdict_screen.dart';
@@ -14,6 +17,7 @@ import '../../features/splash/presentation/splash_screen.dart';
 /// App navigation routes using GoRouter.
 ///
 /// Routes are defined with animations and proper nesting.
+/// Includes global error handling for navigation failures.
 class AppRouter {
   /// Route path constants
   static const String splash = '/';
@@ -29,12 +33,17 @@ class AppRouter {
   static GoRouter? _router;
 
   /// Returns the cached GoRouter instance, creating it if needed.
-  static GoRouter get router => _router ??= _createRouter();
+  static GoRouter get router => _router ??= createRouter();
 
   /// Creates the GoRouter instance with all route definitions.
-  static GoRouter _createRouter() {
+  static GoRouter createRouter({
+    String initialLocation = splash,
+    Object? initialExtra,
+  }) {
     return GoRouter(
-      initialLocation: splash,
+      initialLocation: initialLocation,
+      initialExtra: initialExtra,
+      errorBuilder: (context, state) => const _ErrorScreen(),
       routes: [
         // Splash Screen
         GoRoute(
@@ -77,9 +86,14 @@ class AppRouter {
             if (extra is VerdictRouteData) {
               verdictData = extra.verdict;
               showAnimation = extra.showRevealAnimation;
-            } else {
-              verdictData = extra as Verdict;
+            } else if (extra is Verdict) {
+              verdictData = extra;
               showAnimation = true;
+            } else {
+              return _buildPageWithTransition(
+                child: const _ErrorScreen(),
+                state: state,
+              );
             }
             return _buildPageWithTransition(
               child: VerdictScreen(
@@ -147,10 +161,13 @@ class AppRouter {
   }) {
     return CustomTransitionPage(
       key: state.pageKey,
+      transitionDuration: DinerTokens.route,
+      reverseTransitionDuration: DinerTokens.route,
       child: child,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        if (reduceDinerMotion(context)) return child;
         return _getTransition(
-          animation: animation,
+          animation: animation.drive(CurveTween(curve: DinerTokens.enterCurve)),
           child: child,
           type: transitionType,
         );
@@ -169,7 +186,7 @@ class AppRouter {
         return FadeTransition(opacity: animation, child: child);
 
       case _TransitionType.slideUp:
-        const begin = Offset(0.0, 1.0);
+        const begin = Offset(0.0, .06);
         const end = Offset.zero;
         final tween = Tween(begin: begin, end: end);
         final offsetAnimation = animation.drive(tween);
@@ -180,12 +197,15 @@ class AppRouter {
         );
 
       case _TransitionType.slideLeft:
-        const begin = Offset(1.0, 0.0);
+        const begin = Offset(.06, 0.0);
         const end = Offset.zero;
         final tween = Tween(begin: begin, end: end);
         final offsetAnimation = animation.drive(tween);
 
-        return SlideTransition(position: offsetAnimation, child: child);
+        return SlideTransition(
+          position: offsetAnimation,
+          child: FadeTransition(opacity: animation, child: child),
+        );
     }
   }
 }
@@ -202,4 +222,34 @@ class VerdictRouteData {
 
   final Verdict verdict;
   final bool showRevealAnimation;
+}
+
+/// Error screen displayed when navigation fails.
+///
+/// Shows confused Judge Bite and a button to go home.
+class _ErrorScreen extends StatelessWidget {
+  const _ErrorScreen();
+
+  @override
+  Widget build(BuildContext context) => DinerScaffold(
+    showLogo: true,
+    showBack: false,
+    maxWidth: DinerTokens.readingWidth,
+    child: Column(
+      children: [
+        const JudgeBite(
+          pose: JudgeBitePose.confused,
+          size: JudgeBiteSize.xlarge,
+        ),
+        const SizedBox(height: AppDimensions.spaceLg),
+        DinerHeading(context.l10n.diner_routeError),
+        const SizedBox(height: AppDimensions.spaceLg),
+        DinerButton(
+          label: context.l10n.diner_goHome,
+          icon: Icons.home_rounded,
+          onPressed: () => context.go(AppRouter.home),
+        ),
+      ],
+    ),
+  );
 }

@@ -193,6 +193,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get history_thisWeek => 'This Week';
 
   @override
+  String get history_earlier => 'Earlier';
+
+  @override
   String get history_deleteConfirmTitle => 'Delete Decision?';
 
   @override
@@ -397,6 +400,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_genericMessage => 'Something went wrong. Please try again.';
 
   @override
+  String get error_networkError =>
+      'Unable to connect. Please check your internet connection.';
+
+  @override
+  String get error_networkErrorTitle => 'No Connection';
+
+  @override
+  String get error_aiServiceError =>
+      'Judge Bite is taking a break. Please try again in a moment.';
+
+  @override
+  String get error_timeoutError =>
+      'The request took too long. Please try again.';
+
+  @override
+  String get common_retry => 'Retry';
+
+  @override
   String get onboarding_skip => 'Skip';
 
   @override
@@ -557,4 +578,245 @@ class AppLocalizationsEn extends AppLocalizations {
   String a11y_photoOf(String name) {
     return 'Photo of $name';
   }
+
+  @override
+  String get diner_court => 'Court';
+
+  @override
+  String get diner_history => 'History';
+
+  @override
+  String get diner_homeTitle => 'Hungry?\nCourt’s in session.';
+
+  @override
+  String get diner_homeSubtitle =>
+      'Bring your options. Judge Bite will settle it.';
+
+  @override
+  String get diner_startCase => 'Start a food case';
+
+  @override
+  String get diner_recent => 'Recent verdicts';
+
+  @override
+  String get diner_viewAll => 'View all';
+
+  @override
+  String get diner_newCase => 'New case';
+
+  @override
+  String get diner_menuTitle => 'What’s on the menu?';
+
+  @override
+  String get diner_menuHint => 'Add 2–5 contenders. Photos are optional.';
+
+  @override
+  String get diner_addAnother => 'Add another option';
+
+  @override
+  String get diner_mood => 'Tonight’s mood';
+
+  @override
+  String get diner_caseClosed => 'Case closed';
+
+  @override
+  String get diner_approved => 'Approved';
+
+  @override
+  String get diner_ruling => 'Judge Bite’s ruling';
+
+  @override
+  String get diner_otherOptions => 'See the other options';
+
+  @override
+  String get diner_share => 'Share verdict';
+
+  @override
+  String get diner_anotherCase => 'Start another case';
+
+  @override
+  String get diner_deliberating => 'The jury is deliberating…';
+
+  @override
+  String get diner_weighing => 'Weighing the delicious evidence.';
+
+  @override
+  String get diner_reveal => 'The verdict is in!';
+
+  @override
+  String get diner_revealNow => 'Show my verdict';
+
+  @override
+  String get diner_replay => 'Replay the reveal';
+
+  @override
+  String get diner_editOption => 'Edit option';
+
+  @override
+  String get diner_saveOption => 'Save option';
+
+  @override
+  String get diner_deleteOption => 'Remove option';
+
+  @override
+  String get diner_emptyMenu => 'Every great case starts with two contenders.';
+
+  @override
+  String get diner_archiveTitle => 'The case files';
+
+  @override
+  String get diner_archiveSubtitle => 'Good taste. On the record.';
+
+  @override
+  String get diner_settingsTitle => 'House rules';
+
+  @override
+  String get diner_settingsSubtitle => 'Your court. Your kind of judge.';
+
+  @override
+  String get diner_personalityHint =>
+      'This is how Judge Bite will deliver your next verdict.';
+
+  @override
+  String get diner_aboutTitle => 'Made with appetite';
+
+  @override
+  String get diner_demo => 'Try a sample case';
+
+  @override
+  String get diner_demoHint =>
+      'A preview with sample options. Your next case starts fresh.';
+
+  @override
+  String get diner_noPhoto => 'No photo needed. Taste makes the case.';
+
+  @override
+  String get diner_maxOptions => 'Five contenders. One delicious verdict.';
+
+  @override
+  String get diner_routeError => 'Wrong courtroom!';
+
+  @override
+  String get diner_goHome => 'Back to court';
+
+  @override
+  String get diner_copied => 'Verdict copied. Ready to share!';
+
+  @override
+  String diner_wins(String food) {
+    return '$food wins!';
+  }
+
+  @override
+  String diner_bestFor(String goal) {
+    return 'Best for $goal';
+  }
+
+  @override
+  String diner_verdictCount(int count) {
+    return '$count cases on the record';
+  }
+
+  @override
+  String get diner_deleteCase => 'Delete this case?';
+
+  @override
+  String get diner_deleteCaseHint =>
+      'This verdict will be removed from your history.';
+
+  @override
+  String get diner_bonus => 'On the side';
+
+  @override
+  String get diner_nameLimit => 'Keep the name under 80 characters.';
+
+  @override
+  String get diner_notesLimit => 'Keep notes under 500 characters.';
+
+  @override
+  String get diner_emptyArchive => 'No cases on the record. Yet.';
+
+  @override
+  String get diner_archiveHint =>
+      'Your delicious decisions will be right here.';
+
+  @override
+  String get diner_welcome => 'Order in the kitchen!';
+
+  @override
+  String get diner_verdict => 'The verdict';
+
+  @override
+  String get diner_kitchen => 'Design kitchen';
+
+  @override
+  String get diner_cast => 'Meet Judge Bite';
+
+  @override
+  String get diner_demoActions => 'Try the details';
+
+  @override
+  String get diner_demoFood => 'Tacos al pastor';
+
+  @override
+  String get diner_demoReasoning =>
+      'A little smoky, a little spicy, and a whole lot of joy. These tacos take the crown. Case closed!';
+
+  @override
+  String get diner_demoDialog => 'Preview a dialog';
+
+  @override
+  String get diner_demoSheet => 'Preview a sheet';
+
+  @override
+  String get diner_poseIdle => 'In session';
+
+  @override
+  String get diner_poseThinking => 'Deliberating';
+
+  @override
+  String get diner_poseExcited => 'Ready to rule';
+
+  @override
+  String get diner_poseStern => 'Order in court';
+
+  @override
+  String get diner_poseConfused => 'Objection?';
+
+  @override
+  String get diner_poseCelebrating => 'Case closed!';
+
+  @override
+  String get diner_poseSleeping => 'Court recess';
+
+  @override
+  String get diner_poseEating => 'Taste test';
+
+  @override
+  String get diner_posePointing => 'Your evidence';
+
+  @override
+  String get diner_poseWaving => 'Welcome in';
+
+  @override
+  String get diner_behindCounter => 'Behind the counter';
+
+  @override
+  String get diner_moreFromKitchen => 'More from my kitchen';
+
+  @override
+  String get diner_makerStamp => 'Meet the maker';
+
+  @override
+  String get diner_houseRules => 'House rules';
+
+  @override
+  String get diner_houseStepOne => 'Bring 2–5 contenders. Photos are welcome.';
+
+  @override
+  String get diner_houseStepTwo =>
+      'Pick what matters: fun, healthy, fit, or quick.';
+
+  @override
+  String get diner_houseStepThree => 'The judge settles it. You enjoy it.';
 }

@@ -1,0 +1,10 @@
+Use case: style-transfer.
+Asset type: transparent illustrated developer portrait for FoodJury's About the Developer screen.
+Input image 1 is the identity and pose reference: Armando's existing Memoji, a brown-skinned man with short close-cropped dark hair, thick dark eyebrows and brown eyes looking upward over an open sticker-covered laptop, wearing a red shirt. Preserve this recognizable face, complexion, hairstyle, upward glance, laptop pose and playful developer personality.
+Input image 2 is the EXACT visual style reference: the app's orange gavel judge. Redraw the human Memoji in the same polished 1950s diner rubber-hose cartoon illustration language: heavy clean midnight navy outlines, cream eye whites and highlight accents, warm flat cel shading with subtle tonal depth, lively curves and expressive face. Human character, not a gavel head. He should feel like the human maker of that judge.
+Composition: one centered waist-up bust behind a laptop, large readable face, full laptop visible, balanced near-square silhouette, 5% clear padding around all edges. Laptop lid midnight navy/charcoal with a handful of simple clean recognizable developer stickers inspired by the original: cyan Flutter chevron, blue Swift bird, cream code brackets, a small orange gavel icon and a mustard star. Shirt remains warm red-orange. Keep eye direction and personality; slightly friendly smiling eyes. No text or letters, no tiny illegible labels.
+Scene/backdrop: genuinely transparent alpha background, no backdrop, no circle, no frame, no shadow cast beyond silhouette. Production app art, crisp at 250 px.
+Avoid: photorealism, 3D Memoji render, gradients in the background, duplicate facial features, extra fingers, an actual judge costume or gavel head, watermark, typography.
+
+Generated with the built-in image generation tool on 2026-10-11.
+Installed as assets/images/me-diner.png. Original Memoji: assets/images/me.png.

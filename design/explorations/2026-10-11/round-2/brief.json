@@ -1,0 +1,39 @@
+{
+  "round": 2,
+  "userFeedback": "The first round lost the retro and fun diner identity. It looked like a simple modern app.",
+  "direction": "Retain and strengthen Retro Diner Courtroom. Improve polish through composition, consistent type hierarchy and spacing.",
+  "mascots": [
+    {
+      "name": "D / The Diner Judge",
+      "concept": "Redraw the gavel as a vintage diner advertising character with expressive face, bendy limbs, cream gloves and navy judicial robe."
+    },
+    {
+      "name": "E / Judge Patty",
+      "concept": "A bold cheeseburger judge using the same retro visual language."
+    }
+  ],
+  "ui": {
+    "colors": {
+      "orange": "#FF6B35",
+      "navy": "#1A1A2E",
+      "cream": "#FFF8F0",
+      "mustard": "#FFD23F"
+    },
+    "type": "Slanted diner wordmark, condensed comic headlines, friendly readable rounded body text.",
+    "details": [
+      "Checkerboard header trim",
+      "Chunky navy outlines",
+      "Hard offset shadows",
+      "Menu and order-ticket cues",
+      "Playful mascot",
+      "Stamped verdict"
+    ],
+    "flow": [
+      "Home",
+      "Build a case",
+      "Verdict"
+    ]
+  },
+  "status": "Exploration. Mascot and final app icon selection remain open.",
+  "generator": "Built-in image_gen"
+}

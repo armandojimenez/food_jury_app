@@ -81,68 +81,75 @@ class _ObjectiveChipState extends State<ObjectiveChip>
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          return Transform.scale(scale: _scale, child: child);
-        },
-        child: AnimatedContainer(
-          duration: AppDimensions.durationFast,
-          curve: AppDimensions.curveSnappy,
-          height: 44,
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppDimensions.spaceMd,
-            vertical: AppDimensions.spaceSm,
-          ),
-          decoration: BoxDecoration(
-            color: widget.isSelected
-                ? colorScheme.primary
-                : colorScheme.surface,
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(
-              color: widget.isSelected
-                  ? colorScheme.secondary
-                  : colorScheme.outline,
-              width: widget.isSelected
-                  ? AppDimensions.borderThick
-                  : AppDimensions.borderMedium,
+    return Semantics(
+      button: true,
+      selected: widget.isSelected,
+      label: '${widget.icon} ${widget.label}',
+      hint: widget.isSelected ? 'Selected' : 'Double tap to select',
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return Transform.scale(scale: _scale, child: child);
+          },
+          child: AnimatedContainer(
+            duration: AppDimensions.durationFast,
+            curve: AppDimensions.curveSnappy,
+            // Minimum 44dp height for accessibility tap target
+            height: 44,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimensions.spaceMd,
+              vertical: AppDimensions.spaceSm,
             ),
-            boxShadow: widget.isSelected
-                ? [
-                    // Retro shadow when selected
-                    BoxShadow(
-                      color: colorScheme.secondary,
-                      blurRadius: 0,
-                      offset: const Offset(2, 2),
-                    ),
-                    // Subtle glow
-                    BoxShadow(
-                      color: colorScheme.primary.withValues(alpha: 0.3),
-                      blurRadius: 8,
-                      spreadRadius: 0,
-                    ),
-                  ]
-                : null,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(widget.icon, style: const TextStyle(fontSize: 18)),
-              const SizedBox(width: AppDimensions.spaceXs),
-              Text(
-                widget.label,
-                style: AppTypography.labelMedium.copyWith(
-                  color: widget.isSelected
-                      ? AppColors.textInverse
-                      : colorScheme.onSurface,
-                  fontWeight: widget.isSelected
-                      ? FontWeight.w700
-                      : FontWeight.w500,
-                ),
+            decoration: BoxDecoration(
+              color: widget.isSelected
+                  ? colorScheme.primary
+                  : colorScheme.surface,
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(
+                color: widget.isSelected
+                    ? colorScheme.secondary
+                    : colorScheme.outline,
+                width: widget.isSelected
+                    ? AppDimensions.borderThick
+                    : AppDimensions.borderMedium,
               ),
-            ],
+              boxShadow: widget.isSelected
+                  ? [
+                      // Retro shadow when selected
+                      BoxShadow(
+                        color: colorScheme.secondary,
+                        blurRadius: 0,
+                        offset: const Offset(2, 2),
+                      ),
+                      // Subtle glow
+                      BoxShadow(
+                        color: colorScheme.primary.withValues(alpha: 0.3),
+                        blurRadius: 8,
+                        spreadRadius: 0,
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(widget.icon, style: const TextStyle(fontSize: 18)),
+                const SizedBox(width: AppDimensions.spaceXs),
+                Text(
+                  widget.label,
+                  style: AppTypography.labelMedium.copyWith(
+                    color: widget.isSelected
+                        ? AppColors.textInverse
+                        : colorScheme.onSurface,
+                    fontWeight: widget.isSelected
+                        ? FontWeight.w700
+                        : FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
