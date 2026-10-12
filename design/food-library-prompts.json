@@ -82,5 +82,273 @@
     "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-d65b1e3b-443e-482c-a8b0-43c386d24ea4.png",
     "asset": "assets/images/food_illustrations/fries.png",
     "tool": "built-in imagegen"
+  },
+  {
+    "id": "burrito",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw one big toasted flour-tortilla burrito cut diagonally into two halves, showing rice, black beans, tomato, lettuce and golden filling. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-8f3eb2cd-f20a-4660-8096-516ef3a4ce07.png",
+    "asset": "assets/images/food_illustrations/burrito.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "quesadilla",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw three golden toasted quesadilla triangles fanned on a little cream plate, melted cheese visible at the edges, tiny red salsa cup. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-3b9d1dac-2fde-4a6e-b1d7-dfe4068a8e67.png",
+    "asset": "assets/images/food_illustrations/quesadilla.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "nachos",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a little cream plate piled with crisp triangular corn chips, golden melted cheese, red salsa, a few green jalapeño rings and guacamole. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-7bc01102-02e1-41a0-8dde-77a5b3f2a792.png",
+    "asset": "assets/images/food_illustrations/nachos.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "hotdog",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw one classic hot dog in a plump golden bun, simple zigzag of yellow mustard, a little red relish, absolutely no extra floating pieces. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-30abcfce-fd87-44d2-b512-e57db0635ab5.png",
+    "asset": "assets/images/food_illustrations/hotdog.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "wings",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw four crisp golden chicken wings in a cream diner basket with a little round cream dip cup. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-9f07b4af-8516-4dcf-bad0-4d85690746ac.png",
+    "asset": "assets/images/food_illustrations/wings.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "dumplings",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw five golden pan-fried crescent dumplings with folded tops on a cream plate, tiny cup of dark dipping sauce. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-bd74bb6a-00fa-4d4d-91af-fd0e3142960f.png",
+    "asset": "assets/images/food_illustrations/dumplings.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "curry",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a shallow cream bowl with warm orange curry and chunky vegetables on one side and fluffy cream rice on the other. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-b37e5b73-478d-43b5-9a86-4f2407a9c658.png",
+    "asset": "assets/images/food_illustrations/curry.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "lasagna",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a tall square portion of layered lasagna, clearly visible pasta and red tomato filling, golden melted cheese and two little basil leaves on a cream plate. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-6ac55336-5a03-4921-9d29-507a26afbff6.png",
+    "asset": "assets/images/food_illustrations/lasagna.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "ramen",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a cream bowl of ramen in orange broth with looping noodles, two egg halves with golden yolks, green scallions and a dark nori square. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-da898441-5084-4f99-8ba7-be31fb756437.png",
+    "asset": "assets/images/food_illustrations/ramen.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "eggs",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a small cream diner plate with two sunny-side-up eggs with bright golden yolks and two overlapping triangles of golden toast. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-f900e3eb-e854-453c-b63e-8c44fe3338a8.png",
+    "asset": "assets/images/food_illustrations/eggs.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "waffles",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw two thick golden square waffles stacked on a cream plate, clear deep waffle grid, pat of butter and amber syrup. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-6ebacd0e-a7ae-4e9f-accd-6be34332abfe.png",
+    "asset": "assets/images/food_illustrations/waffles.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "bagel",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a golden sesame bagel sliced horizontally and slightly offset with a thick visible layer of cream cheese. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-8ea4b438-874e-48b3-9a38-7ad3357b3659.png",
+    "asset": "assets/images/food_illustrations/bagel.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "avocado_toast",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw two thick slices of golden toast topped with neatly fanned green avocado slices and little red chili flakes. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-b33f853e-967a-45da-81db-ebed71287d5f.png",
+    "asset": "assets/images/food_illustrations/avocado_toast.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "fruit",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a little cream bowl of fruit with orange wedges, strawberry halves, banana slices, grapes and melon cubes, bright simple distinct shapes. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-d24df29c-5ab1-415b-861a-c5073e34f741.png",
+    "asset": "assets/images/food_illustrations/fruit.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "icecream",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a crisp golden waffle cone holding three round scoops of vanilla, strawberry and chocolate ice cream, one red cherry. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-ea7f0111-c783-48f2-a801-748eb58a01e3.png",
+    "asset": "assets/images/food_illustrations/icecream.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "donut",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw one thick round ring doughnut with shiny pink icing and a few colorful sprinkles, its center hole clearly visible. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-526c1d0e-c2b8-4618-9140-342aa11de7d6.png",
+    "asset": "assets/images/food_illustrations/donut.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "cookies",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw three chunky golden chocolate chip cookies stacked loosely, big dark chocolate chunks, one cookie leaning against the stack. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-9a921edf-c5dd-4e8d-bff9-e2dc73626772.png",
+    "asset": "assets/images/food_illustrations/cookies.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "coffee",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a sturdy cream diner coffee cup with an orange stripe on a cream saucer, dark coffee with a small cream swirl and two simple little curls of steam. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-9acf204a-fa95-4945-b742-72ec008cfbdf.png",
+    "asset": "assets/images/food_illustrations/coffee.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "empanadas",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw three golden half-moon empanadas with crimped edges on a cream plate, one cut open to show savory brown filling. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-9abeb766-9378-4318-b9a1-309860ab2165.png",
+    "asset": "assets/images/food_illustrations/empanadas.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "arepas",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw two thick round golden cornmeal arepas, one split and stuffed with white cheese and bright green avocado, the second behind it. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-449d2596-e6fb-406b-8e9f-29e3f39e0950.png",
+    "asset": "assets/images/food_illustrations/arepas.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "mofongo",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a golden molded dome of mashed fried green plantain with little crispy pork bits and parsley, served on a cream plate beside a tiny cup of warm broth; the plantain mound is the hero, no rice. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-1c57b6b0-8a26-49a8-a062-42913c2e6982.png",
+    "asset": "assets/images/food_illustrations/mofongo.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ],
+    "refinement": {
+      "prompt": "Use case: precise-object-edit. Fix only the texture of the golden mofongo mound in this transparent FoodJury illustration. It must look like a firmly molded dome of COARSELY MASHED fried green plantain, with a rough dense mashed surface, small crispy pork flecks embedded inside, and a few tiny garnish leaves. Remove every large recognizable round plantain slice; there should be NO sliced banana rounds or discs anywhere. Preserve the mound silhouette, cream plate with red stripes, broth cup at right, chunky deep-navy outline, bold warm cel-shaded cartoon style, framing, colors, and true transparent background. Keep the dish clean and readable as a small app illustration.",
+      "sourceReference": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-18348970-b0bb-49cb-82d1-1073d06472dc.png"
+    }
+  },
+  {
+    "id": "tostones",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a cream plate with six golden twice-fried green plantain rounds, flattened irregular ridged coins, with a tiny red dipping sauce cup. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-3e964185-2a7b-4361-a332-f4e725303533.png",
+    "asset": "assets/images/food_illustrations/tostones.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "fish",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a cream plate holding a single grilled orange salmon fillet with clear grill stripes, a lemon wedge and small green garnish; only fish, no shrimp. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-8ef5f4f9-56f6-4e9c-81b3-39dbd49b0db8.png",
+    "asset": "assets/images/food_illustrations/fish.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
+  },
+  {
+    "id": "shrimp",
+    "prompt": "Use case: illustration-story. Asset type: a single transparent food-library cutout for the FoodJury retro diner app. Reinterpret the reference food cutout into this new dish while preserving the exact illustration style. Primary request: draw a cream plate with five plump curled orange cooked shrimp, a lemon wedge and parsley; only shrimp, no fish fillet. Match the references' thick deep-navy outlines, bold warm saturated orange/golden/cream colors with food-specific green and red accents, lively dimensional vector-like cel shading, simple appetizing shapes and small cream highlights. Three-quarter perspective, centered isolated object filling 80% of square canvas with generous clear padding. No characters, faces, hands, lettering, text, frame, backdrop, cast shadow outside object, or photorealistic texture. Clean true transparent background. Digital cartoon food in Judge Bite's world, never a photograph. Preserve only the illustration style from the reference, replace the food completely.",
+    "source": "/Users/armandojimenez/.codex/generated_images/01a12b44-cd8a-7ba1-9f58-c96e7c85ee7b/exec-57ed48cf-f980-41a9-b0f0-da76fa06e108.png",
+    "asset": "assets/images/food_illustrations/shrimp.png",
+    "tool": "built-in imagegen",
+    "reference_assets": [
+      "assets/images/food_illustrations/tacos.png",
+      "assets/images/food_illustrations/pasta.png"
+    ]
   }
 ]

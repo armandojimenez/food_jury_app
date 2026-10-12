@@ -208,9 +208,11 @@ A Lucky verdict uses a finite 1400ms celebration, an accessible result announcem
 
 ### Illustrated food menu
 
-`features/food_library/data/food_catalog.dart` contains 20 common-food entries plus 13 broad categories using 19 illustrations. The 12 new transparent assets cover seafood, chicken, steak, sandwich, pasta, breakfast, soup, rice, dessert, drinks, vegetables, and fries. [Generation prompts and source paths](design/food-library-prompts.json) preserve provenance.
+`features/food_library/data/food_catalog.dart` contains 41 specific food entries plus 13 broad categories using 43 illustrations. The expanded menu adds burritos, quesadillas, nachos, hot dogs, wings, dumplings, curry, lasagna, eggs and toast, waffles, bagels, avocado toast, fruit, ice cream, donuts, cookies, coffee, empanadas, arepas, mofongo, and tostones. Ramen, fish, and shrimp now have distinct artwork. [Generation prompts and source paths](design/food-library-prompts.json) preserve provenance; the [24-image expansion board](design/production/food-library-expansion.html) displays the actual production PNGs.
 
 Search accepts English/Spanish labels and keywords. If there is no match, show the broad categories. Selecting a specific dish fills an empty name only. Selecting a category such as seafood preserves the user’s exact dish name and notes. The illustration ID is separate metadata, never converted into food evidence. Adding/changing art does not remove the user’s photo. Artwork travels with the frozen case through Smart rulings, Lucky draws, history, and replay.
+
+For future menu additions, create one transparent PNG per recognizable dish in `assets/images/food_illustrations/`, with deep navy outlines, warm cel shading, and a clear three-quarter silhouette. Use the existing tacos and pasta as style references. Keep stable catalog IDs, provide both English and Spanish labels and useful search aliases, and keep generic categories separate. Add matching prompts, source paths and image metadata to the generation and production manifests. Name-based decoration uses whole food names with specific dishes before ingredients; an explicitly selected illustration always wins. Check the artwork at thumbnail size on cream and navy, plus phone, tablet and large-text layouts.
 
 ### Data and entitlement contract
 

@@ -6,7 +6,7 @@ A food decision app set in a retro diner courtroom. Bring 2–5 contenders, add 
 
 The October 2026 redesign includes all app screens, twelve expressive judge poses, illustrated food fallbacks, a new app icon, the developer's illustrated portrait, tablet/landscape layouts, English/Spanish, dark mode, and a replayable verdict reveal with reduced-motion support.
 
-Lucky Court adds four free animated rituals, 44 bilingual judge sayings, explicit save/replay, and a searchable illustrated food menu. Three welcome Smart rulings are tracked separately from history deletion.
+Lucky Court adds four free animated rituals, 44 bilingual judge sayings, explicit save/replay, and a searchable 54-choice food menu backed by 43 illustrations, including breakfast, takeout, sweets, and Latin favorites. Three welcome Smart rulings are tracked separately from history deletion.
 
 The existing camera/gallery and reasoned photo-analysis flow remains intact. App illustrations are decorative; they never become AI evidence. User photos take precedence wherever a food option appears.
 

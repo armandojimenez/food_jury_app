@@ -1,4 +1,4 @@
-# Redesign verification · 2026-10-11
+# Redesign verification · 2026-10-11 / 2026-10-12
 
 These images are renders of the implemented Flutter app. Generated concept artwork is stored separately in `../explorations/`. Screenshots use sample cases through the isolated preview entry point or the test harness; production history is never seeded.
 
@@ -7,11 +7,11 @@ These images are renders of the implemented Flutter app. Generated concept artwo
 | Check | Result |
 | --- | --- |
 | Flutter analyzer | No issues |
-| Automated suite | 148 tests passed |
+| Automated suite | 152 tests passed, including the food-menu expansion |
 | iOS simulator build | Passed on Xcode 26.6 / Flutter 3.41.7 |
 | Android debug APK | Passed |
 | GPT-6.1 Sol, xhigh reviewer | Final Lucky Court read-only pass found no remaining blockers after fixes |
-| Production asset audit | 34 images inspected; 33 cutouts have alpha, icon master is opaque |
+| Production asset audit | 58 images inspected; 57 cutouts have alpha, icon master is opaque |
 | iPhone 17 Pro / iOS 26.5 | Native home/case rendering checked |
 | iPad Pro 11-inch / iOS 26.2 | Native home, verdict, developer page and launcher icon checked |
 | iPad native share sheet | Opens at the share-button anchor and dismisses without navigation changes |
@@ -21,6 +21,12 @@ The automated suite renders home, case builder, verdict, history, settings, deve
 Behavioral tests cover 2–5 options, an explicitly selected goal, editing/removal, camera/gallery selection, replacing/removing photos, preserving notes and exact user photo bytes, saved tone/mock preference readiness, locale forwarding, AI failure, storage failure, and saving before navigation. Reveal tests cover completion, replay, leaving during animation, and enabling reduced motion during a reveal.
 
 A [native recording of the verdict reveal](native-verdict-reveal.mp4) shows the actual animation. It is trimmed from the simulator recording and resized for sharing; the animation timing is unchanged. This capture preceded the final native status-bar contrast fix; re-recording that small system-chrome change was deferred because the Mac locked.
+
+## Food menu expansion · 2026-10-12
+
+24 new transparent food PNGs expand the library to 43 illustrations and 54 menu choices (41 specific foods and 13 generic categories). The [artwork board](food-library-expansion.png) displays the shipped assets. Generation prompts, style references, one mofongo refinement, source paths, and image metadata are recorded in the design manifests. Generated alpha is preserved unchanged; the audit records both raw alpha bounds and visible bounds above alpha 16 to distinguish faint edge noise from clipped food.
+
+All 152 tests passed and the analyzer reported no issues. Seven updated library renders cover small phone, phone, 125% text, tablet, landscape, Spanish at 200% text, and dark mode. New matching tests cover dish-before-ingredient precedence, Spanish accents, whole-word boundaries, and formerly shared artwork. Existing photo/name/notes preservation and generic fallback flow tests still pass. The native simulator captures and build results below are from the preceding Lucky Court implementation; this asset expansion was checked with Flutter renders and regression tests.
 
 ## Lucky Court native verification
 

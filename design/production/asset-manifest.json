@@ -37,6 +37,75 @@
       "sha256": "bed6cf0cfe5ca7f5aff45abffd70a10372feb4fe57a2b52f8524a9dbbd7fdd83"
     },
     {
+      "path": "assets/images/food_illustrations/arepas.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        55,
+        29,
+        1232,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        57,
+        168,
+        1210,
+        1119
+      ],
+      "bytes": 1212614,
+      "sha256": "ce4967fc2242b2239ee465409addf922375020a315ec0aca43115714a89f8828"
+    },
+    {
+      "path": "assets/images/food_illustrations/avocado_toast.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        41,
+        1208,
+        1228
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        54,
+        162,
+        1205,
+        1137
+      ],
+      "bytes": 1217411,
+      "sha256": "c679a3f14b57e851e2ababf7fbd190b03512220808fffb3989efdc19838e3348"
+    },
+    {
+      "path": "assets/images/food_illustrations/bagel.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        31,
+        1210,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        59,
+        133,
+        1207,
+        1146
+      ],
+      "bytes": 1412049,
+      "sha256": "ce7f696b19093c15a4a7433d42d33d20bc9f6c04693ff42694607c9b57931480"
+    },
+    {
       "path": "assets/images/food_illustrations/bowl.png",
       "pixels": [
         1254,
@@ -88,6 +157,29 @@
       "sha256": "d7b7fcf7d2f619f5b02fb07e9411d4da53cd601f19a5364fd0e699eb2a1f362c"
     },
     {
+      "path": "assets/images/food_illustrations/burrito.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        33,
+        22,
+        1213,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        65,
+        135,
+        1210,
+        1149
+      ],
+      "bytes": 1538721,
+      "sha256": "bfdc0ef36f8cddc90d0e68208adf0bf0d6c927f3cb33a8db6febcee07a332cf0"
+    },
+    {
       "path": "assets/images/food_illustrations/chicken.png",
       "pixels": [
         1254,
@@ -103,6 +195,75 @@
       ],
       "bytes": 1145342,
       "sha256": "6688007bcdd5eacb9aa26d053345fc9d1bf737653b86c6cf0cf1011484a0da98"
+    },
+    {
+      "path": "assets/images/food_illustrations/coffee.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        43,
+        1220,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        50,
+        62,
+        1214,
+        1175
+      ],
+      "bytes": 1173115,
+      "sha256": "a18a056c80e37fb10fa760a64239033fbd1429894cd4c5bd3355cc91f9e11557"
+    },
+    {
+      "path": "assets/images/food_illustrations/cookies.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        27,
+        24,
+        1232,
+        1238
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        46,
+        168,
+        1218,
+        1102
+      ],
+      "bytes": 1218674,
+      "sha256": "056ebcc2fb2abf59dd175396047ee7e84c6efcfc957867bc7cbea76d63dddbf3"
+    },
+    {
+      "path": "assets/images/food_illustrations/curry.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        33,
+        81,
+        1214,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        51,
+        217,
+        1206,
+        1119
+      ],
+      "bytes": 1218793,
+      "sha256": "2bd33ec812f4c2141f92a6524a9ae81536dd40feedabd7311b48f943ac7afd0b"
     },
     {
       "path": "assets/images/food_illustrations/dessert.png",
@@ -122,6 +283,29 @@
       "sha256": "29bfab41e5cf4d4087e543b0961d55959af0333234c7976a701dff4c65cae098"
     },
     {
+      "path": "assets/images/food_illustrations/donut.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        21,
+        1204,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        55,
+        157,
+        1201,
+        1105
+      ],
+      "bytes": 1194751,
+      "sha256": "f91c4bfa4c8892536ab8e8ec79089632e4482f1a9c00c49055e9c73734f5d12b"
+    },
+    {
       "path": "assets/images/food_illustrations/drink.png",
       "pixels": [
         1254,
@@ -137,6 +321,98 @@
       ],
       "bytes": 819058,
       "sha256": "ea6ec3dd417b854619f0f1af4cbb6cd82eb1b96c5911f3f66ec57edc0b4a3c15"
+    },
+    {
+      "path": "assets/images/food_illustrations/dumplings.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        25,
+        1235,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        28,
+        150,
+        1229,
+        1107
+      ],
+      "bytes": 1445345,
+      "sha256": "b55dedc3bf15d926192f2f8893627640240ff3f40e5b2f9c245c58d5027b2907"
+    },
+    {
+      "path": "assets/images/food_illustrations/eggs.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        23,
+        1238,
+        1228
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        22,
+        195,
+        1233,
+        1073
+      ],
+      "bytes": 1205359,
+      "sha256": "94fdce71a46779002cd0a08b102ffb15e910e42ff0e89f1438528109163107f1"
+    },
+    {
+      "path": "assets/images/food_illustrations/empanadas.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        45,
+        1234,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        26,
+        153,
+        1229,
+        1122
+      ],
+      "bytes": 1284567,
+      "sha256": "4cac8bf57584fcc834212ecd5fc74f71bed1688558b0abfe3af0d0ab41b2cd57"
+    },
+    {
+      "path": "assets/images/food_illustrations/fish.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        53,
+        1240,
+        1214
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        18,
+        216,
+        1237,
+        1045
+      ],
+      "bytes": 1159651,
+      "sha256": "22addc1f2760e2b3850a5e4e7722bc3d2947a73fcd77b8e39d5e698c6985e149"
     },
     {
       "path": "assets/images/food_illustrations/fries.png",
@@ -156,6 +432,98 @@
       "sha256": "d01066440ac3868a640b5d7791fe3eba10fb04b7790086a4bee21553eeb0de14"
     },
     {
+      "path": "assets/images/food_illustrations/fruit.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        23,
+        1238,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        67,
+        136,
+        1187,
+        1155
+      ],
+      "bytes": 1244661,
+      "sha256": "68e2e7187a6232ca4fa0a31d5a3e8f8d326378fc51d088b236abc68e22d56171"
+    },
+    {
+      "path": "assets/images/food_illustrations/hotdog.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        83,
+        1240,
+        1198
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        53,
+        213,
+        1232,
+        1079
+      ],
+      "bytes": 1016468,
+      "sha256": "baa61ea500f44a79c77e2b1ff60159e1b391b90bb615e2cc801cb467be3c6297"
+    },
+    {
+      "path": "assets/images/food_illustrations/icecream.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        49,
+        20,
+        1206,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        276,
+        23,
+        1017,
+        1223
+      ],
+      "bytes": 826189,
+      "sha256": "e59fab0c348c78ae4525b8a8124687a9075e4cd883020e35fbb0f692fbf3c8e8"
+    },
+    {
+      "path": "assets/images/food_illustrations/lasagna.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        12,
+        39,
+        1241,
+        1238
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        15,
+        181,
+        1239,
+        1094
+      ],
+      "bytes": 1324497,
+      "sha256": "51d9a72c794a8080e90dc6aefd748dd5df6bf9f851d63c046984d1888a1f57e5"
+    },
+    {
       "path": "assets/images/food_illustrations/meal.png",
       "pixels": [
         1254,
@@ -171,6 +539,52 @@
       ],
       "bytes": 744834,
       "sha256": "efd2f8837ba3b4f7f128733e306afa459dd41e6870da691ac21c8892ac0ed7e8"
+    },
+    {
+      "path": "assets/images/food_illustrations/mofongo.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        15,
+        37,
+        1240,
+        1230
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        18,
+        208,
+        1237,
+        1065
+      ],
+      "bytes": 1384837,
+      "sha256": "dbe4d166c405f6b1e61ad2e2e6fc73835a59c5f87e443b8e445c868a1d11d183"
+    },
+    {
+      "path": "assets/images/food_illustrations/nachos.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        41,
+        27,
+        1216,
+        1218
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        44,
+        162,
+        1210,
+        1077
+      ],
+      "bytes": 1224355,
+      "sha256": "03ccf652789dc82e61d22ef08df01c7efb78bd453c4a91fe468930962188805b"
     },
     {
       "path": "assets/images/food_illustrations/pasta.png",
@@ -205,6 +619,52 @@
       ],
       "bytes": 869502,
       "sha256": "494b74fe4654db95a252f48ab6ff77d22fc99e09c409f3f5624b759c48305162"
+    },
+    {
+      "path": "assets/images/food_illustrations/quesadilla.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        33,
+        33,
+        1224,
+        1230
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        37,
+        149,
+        1221,
+        1054
+      ],
+      "bytes": 1355945,
+      "sha256": "1216a413f4ada24bd0f8b154a749d2fd02a2456f9ca3338fb3469da22c5179e4"
+    },
+    {
+      "path": "assets/images/food_illustrations/ramen.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        41,
+        49,
+        1234,
+        1188
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        48,
+        103,
+        1206,
+        1162
+      ],
+      "bytes": 1357668,
+      "sha256": "87a867950d8e4bc0408f1137330c20714f8cb2ec9d0f85254cd3d085b2586412"
     },
     {
       "path": "assets/images/food_illustrations/rice.png",
@@ -275,6 +735,29 @@
       "sha256": "09338e2b37050253f812c74594e0e7ca7737fd5839d13368a9cd09050fff5767"
     },
     {
+      "path": "assets/images/food_illustrations/shrimp.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        39,
+        1231,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        28,
+        128,
+        1228,
+        1085
+      ],
+      "bytes": 1395688,
+      "sha256": "91be582cf550764cdec087e877915e8647314067d253d192b753b5a1c9b14962"
+    },
+    {
       "path": "assets/images/food_illustrations/soup.png",
       "pixels": [
         1254,
@@ -343,6 +826,29 @@
       "sha256": "f3f109e73bf3c167f1b43fc06e202016744c84eac8e69dd28f402e8fb5137308"
     },
     {
+      "path": "assets/images/food_illustrations/tostones.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        17,
+        19,
+        1238,
+        1239
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        20,
+        157,
+        1234,
+        1069
+      ],
+      "bytes": 1434782,
+      "sha256": "597b7d793b0c32e82829f7d5562ff75a1455ed7b3c3c85acd05654a2598d4fe8"
+    },
+    {
       "path": "assets/images/food_illustrations/vegetables.png",
       "pixels": [
         1254,
@@ -358,6 +864,52 @@
       ],
       "bytes": 1422403,
       "sha256": "4a403c18af0fceaaa3dbea40b4741e855d64b184a0574f2b3555553f73fb2e7f"
+    },
+    {
+      "path": "assets/images/food_illustrations/waffles.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        38,
+        1253,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        10,
+        132,
+        1243,
+        1116
+      ],
+      "bytes": 1381476,
+      "sha256": "f796f15fbd22ce6feb5546ac17fdf43998374cb9bd2c9dba0c12466329eae1f4"
+    },
+    {
+      "path": "assets/images/food_illustrations/wings.png",
+      "pixels": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "transparent": true,
+      "content_bounds": [
+        0,
+        0,
+        1238,
+        1254
+      ],
+      "visible_content_bounds_alpha_above_16": [
+        26,
+        144,
+        1234,
+        1127
+      ],
+      "bytes": 1337957,
+      "sha256": "c88ab0e16748ad7a0d6f488461f136ce816170758af2649cd9b6544768fc0afe"
     },
     {
       "path": "assets/images/judge_bite_v2/celebrating.png",
@@ -580,5 +1132,6 @@
       "bytes": 1106725,
       "sha256": "168195ee319f39e0c61b96dfb099a22353e33fb8791ce80e0c15a9e9e9b583c5"
     }
-  ]
+  ],
+  "updated_on": "2026-10-12"
 }

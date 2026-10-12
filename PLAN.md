@@ -4,7 +4,7 @@ The retro diner redesign is implemented across splash, home, case builder and op
 
 Use [DESIGN.md](DESIGN.md) and [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md) as the current visual contracts. [Verification](design/verification/README.md) records tested behavior and remaining device/service limits. The roadmap below is historical; its original palette, fonts, phase status and package versions have been superseded by the implementation and lockfile.
 
-Lucky Court is implemented: four animated offline methods, immutable saved results, a 44-line bilingual sayings library, three welcome Smart rulings, and the 33-entry illustrated food menu with custom category fallback and photo precedence. Product copy uses Smart rulings and Lucky Court.
+Lucky Court is implemented: four animated offline methods, immutable saved results, a 44-line bilingual sayings library, three welcome Smart rulings, and the 54-entry illustrated food menu with custom category fallback and photo precedence. Product copy uses Smart rulings and Lucky Court.
 
 Before launch: connect verified subscriptions (current $24.99/year and $5.99/month screens are clearly labeled price previews), account/server lifetime enforcement, restore/purchase lifecycle and legal/store disclosures. Integrate the approved onboarding prototype separately. Perform physical-device camera/permission, accessibility and live Firebase acceptance checks. See the explicit remaining-work table in DESIGN.md.
 
