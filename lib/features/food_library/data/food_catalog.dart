@@ -1,0 +1,236 @@
+/// Decorative library entry. Artwork is intentionally separate from dish identity.
+class FoodArt {
+  const FoodArt(
+    this.id,
+    this.en,
+    this.es,
+    this.asset,
+    this.group, {
+    this.generic = false,
+    this.keywords = '',
+  });
+  final String id, en, es, asset, group, keywords;
+  final bool generic;
+  String label(String language) => language == 'es' ? es : en;
+  bool matches(String query) =>
+      '$en $es $keywords'.toLowerCase().contains(query.toLowerCase().trim());
+}
+
+/// Common dishes plus broad categories for anything outside the menu.
+const foodCatalog = <FoodArt>[
+  FoodArt('pizza', 'Pizza', 'Pizza', 'pizza', 'favorites'),
+  FoodArt('tacos', 'Tacos', 'Tacos', 'tacos', 'favorites'),
+  FoodArt('burger', 'Burger', 'Hamburguesa', 'burger', 'favorites'),
+  FoodArt('sushi', 'Sushi', 'Sushi', 'sushi', 'favorites'),
+  FoodArt('salad', 'Salad', 'Ensalada', 'salad', 'lighter'),
+  FoodArt(
+    'pasta',
+    'Pasta',
+    'Pasta',
+    'pasta',
+    'comfort',
+    keywords: 'spaghetti espagueti penne lasagna lasaña',
+  ),
+  FoodArt('noodles', 'Noodles', 'Fideos', 'bowl', 'comfort'),
+  FoodArt('ramen', 'Ramen', 'Ramen', 'bowl', 'comfort'),
+  FoodArt(
+    'sandwich',
+    'Sandwich',
+    'Sándwich',
+    'sandwich',
+    'favorites',
+    keywords: 'club sub grilled cheese tostado',
+  ),
+  FoodArt(
+    'chicken',
+    'Chicken',
+    'Pollo',
+    'chicken',
+    'comfort',
+    keywords: 'wings alitas roast fried frito',
+  ),
+  FoodArt('steak', 'Steak', 'Bistec', 'steak', 'comfort'),
+  FoodArt(
+    'fish',
+    'Fish',
+    'Pescado',
+    'seafood',
+    'lighter',
+    keywords: 'salmon salmón tuna atún',
+  ),
+  FoodArt('shrimp', 'Shrimp', 'Camarones', 'seafood', 'lighter'),
+  FoodArt(
+    'rice',
+    'Rice bowl',
+    'Bowl de arroz',
+    'rice',
+    'comfort',
+    keywords: 'arroz rice beans habichuelas poke',
+  ),
+  FoodArt(
+    'soup',
+    'Soup',
+    'Sopa',
+    'soup',
+    'lighter',
+    keywords: 'stew caldo guiso',
+  ),
+  FoodArt(
+    'veggies',
+    'Veggie plate',
+    'Plato de vegetales',
+    'vegetables',
+    'lighter',
+    keywords: 'tofu verduras vegetarian vegan',
+  ),
+  FoodArt(
+    'pancakes',
+    'Pancakes',
+    'Panqueques',
+    'breakfast',
+    'breakfast',
+    keywords: 'waffle hotcakes',
+  ),
+  FoodArt(
+    'fries',
+    'Fries',
+    'Papas fritas',
+    'fries',
+    'favorites',
+    keywords: 'chips potatoes patatas',
+  ),
+  FoodArt(
+    'dessert',
+    'Something sweet',
+    'Algo dulce',
+    'dessert',
+    'sweet',
+    keywords: 'cake pastel bizcocho helado ice cream brownie pie',
+  ),
+  FoodArt(
+    'drink',
+    'A drink',
+    'Una bebida',
+    'drink',
+    'sweet',
+    keywords: 'coffee café smoothie batido milkshake jugo juice',
+  ),
+  FoodArt(
+    'category-seafood',
+    'Seafood',
+    'Mariscos y pescado',
+    'seafood',
+    'categories',
+    generic: true,
+    keywords: 'fish pescado shellfish pulpo octopus lobster langosta',
+  ),
+  FoodArt(
+    'category-meat',
+    'Meat',
+    'Carnes',
+    'steak',
+    'categories',
+    generic: true,
+    keywords: 'beef pork cerdo res lamb cordero',
+  ),
+  FoodArt(
+    'category-poultry',
+    'Poultry',
+    'Aves',
+    'chicken',
+    'categories',
+    generic: true,
+    keywords: 'chicken turkey duck pavo pato pollo',
+  ),
+  FoodArt(
+    'category-veggie',
+    'Plant based',
+    'Vegetal',
+    'vegetables',
+    'categories',
+    generic: true,
+    keywords: 'vegetarian vegano tofu',
+  ),
+  FoodArt(
+    'category-bowl',
+    'Bowls & rice',
+    'Bowls y arroz',
+    'rice',
+    'categories',
+    generic: true,
+  ),
+  FoodArt(
+    'category-noodles',
+    'Pasta & noodles',
+    'Pasta y fideos',
+    'bowl',
+    'categories',
+    generic: true,
+  ),
+  FoodArt(
+    'category-handheld',
+    'Sandwiches & wraps',
+    'Sándwiches y wraps',
+    'sandwich',
+    'categories',
+    generic: true,
+    keywords: 'burrito quesadilla',
+  ),
+  FoodArt(
+    'category-breakfast',
+    'Breakfast',
+    'Desayuno',
+    'breakfast',
+    'categories',
+    generic: true,
+    keywords: 'eggs huevos oatmeal avena',
+  ),
+  FoodArt(
+    'category-soup',
+    'Soups & stews',
+    'Sopas y guisos',
+    'soup',
+    'categories',
+    generic: true,
+  ),
+  FoodArt(
+    'category-snack',
+    'Sides & snacks',
+    'Acompañantes y meriendas',
+    'fries',
+    'categories',
+    generic: true,
+  ),
+  FoodArt(
+    'category-sweet',
+    'Desserts',
+    'Postres',
+    'dessert',
+    'categories',
+    generic: true,
+  ),
+  FoodArt(
+    'category-drink',
+    'Drinks',
+    'Bebidas',
+    'drink',
+    'categories',
+    generic: true,
+  ),
+  FoodArt(
+    'category-any',
+    'Something else',
+    'Algo diferente',
+    'meal',
+    'categories',
+    generic: true,
+    keywords: 'other otro anything cualquiera',
+  ),
+];
+
+FoodArt? foodArtById(String? id) {
+  for (final art in foodCatalog) {
+    if (art.id == id) return art;
+  }
+  return null;
+}

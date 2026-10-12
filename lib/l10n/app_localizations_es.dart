@@ -260,7 +260,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get about_foodJuryDescription =>
-      'FoodJury es tu compañero de decisiones alimenticias potenciado por IA. Cuando no puedas decidir qué comer, ¡deja que Judge Bite dicte el veredicto final! Construido con Flutter, impulsado por Gemini AI, y diseñado con una estética retro de diner.';
+      '¿No sabes qué comer? Lleva tus antojos al tribunal. El juez sirve veredictos inteligentes y divertidos sorteos, con todo el encanto de un diner retro.';
 
   @override
   String get about_connect => 'Conectemos';
@@ -831,4 +831,265 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get diner_houseStepThree => 'El juez decide. Tú disfrutas.';
+
+  @override
+  String get library_title => 'El menú';
+
+  @override
+  String get library_hint => 'Elige tu plato.';
+
+  @override
+  String get library_search => 'Busca comida o categoría';
+
+  @override
+  String get library_all => 'Todos los platos';
+
+  @override
+  String get library_favorites => 'Favoritos';
+
+  @override
+  String get library_lighter => 'Opciones frescas';
+
+  @override
+  String get library_comfort => 'Comida reconfortante';
+
+  @override
+  String get library_breakfast => 'Desayuno';
+
+  @override
+  String get library_sweet => 'Dulces y bebidas';
+
+  @override
+  String get library_categories => 'Cualquier plato';
+
+  @override
+  String get library_empty => '¿Fuera del menú? El juez lo permite.';
+
+  @override
+  String get library_genericHint =>
+      'Elige una categoría y escribe el nombre y los detalles de tu plato.';
+
+  @override
+  String get library_choose => 'Elige una ilustración';
+
+  @override
+  String get library_change => 'Cambiar ilustración';
+
+  @override
+  String get library_artNote =>
+      'La ilustración pone el estilo. El nombre, los detalles y tu foto cuentan la historia.';
+
+  @override
+  String get library_photoFirst =>
+      'Tu foto es la protagonista. Guardamos la ilustración como alternativa.';
+
+  @override
+  String get library_categoryBadge => 'Añade el nombre del plato';
+
+  @override
+  String get lucky_title => 'Tribunal de la suerte';
+
+  @override
+  String get lucky_chooseTitle => 'Un poco de sabiduría.\nO un poco de suerte.';
+
+  @override
+  String get lucky_chooseHint =>
+      'Tu caso está listo. ¿Cómo decidirá el tribunal?';
+
+  @override
+  String get lucky_continue => 'Elige cómo decidir';
+
+  @override
+  String get lucky_ai => 'Veredictos inteligentes';
+
+  @override
+  String get lucky_aiHint =>
+      'El juez evalúa tu objetivo, detalles y fotos. Un veredicto con sus razones.';
+
+  @override
+  String get lucky_aiButton => 'Que el juez delibere';
+
+  @override
+  String get lucky_freeTitle => 'QUE DECIDA LA SUERTE';
+
+  @override
+  String get lucky_freeHint => 'Diversión ilimitada. Invita la casa.';
+
+  @override
+  String get lucky_wheel => 'Gira el plato';
+
+  @override
+  String get lucky_wheelHint => 'La ruleta que resuelve la cena.';
+
+  @override
+  String get lucky_ticket => 'Saca un boleto';
+
+  @override
+  String get lucky_ticketHint => 'Una orden. Directa de la caja.';
+
+  @override
+  String get lucky_cloche => 'Levanta la tapa';
+
+  @override
+  String get lucky_clocheHint => 'Un poco de suspenso. Un gran final.';
+
+  @override
+  String get lucky_coin => 'Lanza la moneda';
+
+  @override
+  String get lucky_coinHint => 'Dos opciones. Un lanzamiento final.';
+
+  @override
+  String get lucky_coinNeedsTwo =>
+      'Necesita exactamente 2 opciones. Edita tu caso para usar la moneda.';
+
+  @override
+  String get lucky_editCase => 'Editar este caso';
+
+  @override
+  String get lucky_start => 'Que decida la suerte';
+
+  @override
+  String get lucky_equalOdds => 'Un sorteo justo. Un destino delicioso.';
+
+  @override
+  String get lucky_goalNote =>
+      'La suerte da la misma oportunidad a cada plato. ¿Quieres que el juez evalúe los detalles? Elige un veredicto inteligente.';
+
+  @override
+  String get lucky_ready => 'Comienza la sesión.';
+
+  @override
+  String get lucky_drawing => 'Sin objeciones. Solo suspenso.';
+
+  @override
+  String get lucky_skip => 'Revelar ahora';
+
+  @override
+  String get lucky_cancel => 'Volver a los métodos';
+
+  @override
+  String get lucky_winner => '¡SERÁ!';
+
+  @override
+  String get lucky_closed => 'CASO CERRADO';
+
+  @override
+  String get lucky_quoteLabel => 'PALABRAS DEL JUEZ';
+
+  @override
+  String get lucky_save => 'Guardar este veredicto';
+
+  @override
+  String get lucky_saved => 'Guardado en tu historial';
+
+  @override
+  String get lucky_reroll => 'Otro sorteo';
+
+  @override
+  String get lucky_otherMethod => 'Probar otro método';
+
+  @override
+  String get lucky_replay => 'Repetir la revelación';
+
+  @override
+  String get lucky_rerollNote =>
+      'Cada sorteo tiene las mismas probabilidades. El mismo plato puede ganar otra vez.';
+
+  @override
+  String get lucky_caseDetails => 'EL CASO ORIGINAL';
+
+  @override
+  String get lucky_sameJudge => 'Mismo juez.\nNuevos trucos.';
+
+  @override
+  String get lucky_exhausted =>
+      'Ya disfrutaste tus 3 veredictos inteligentes de bienvenida. Sigue con sorteos ilimitados o elige Plus para más deliberaciones.';
+
+  @override
+  String get lucky_aiError =>
+      'El juez necesita un momento. Conservas tu veredicto. Reintenta o prueba la suerte.';
+
+  @override
+  String get lucky_saveError =>
+      'No pudimos guardar el veredicto. Tu resultado sigue aquí. Intenta guardarlo de nuevo.';
+
+  @override
+  String get lucky_drawError =>
+      'No se pudo iniciar el sorteo. Tu caso está a salvo. Inténtalo de nuevo.';
+
+  @override
+  String get lucky_lastAi =>
+      'Tu último veredicto de bienvenida. ¡Que sea delicioso!';
+
+  @override
+  String get lucky_aiLabel => 'Veredicto inteligente';
+
+  @override
+  String get lucky_randomLabel => 'El veredicto de la suerte';
+
+  @override
+  String get lucky_newCase => 'Abrir otro caso';
+
+  @override
+  String get plus_title => 'Tu lugar en la mesa del juez.';
+
+  @override
+  String get plus_hint => 'FoodJury Plus';
+
+  @override
+  String get plus_unlimited => 'Veredictos inteligentes ilimitados';
+
+  @override
+  String get plus_details =>
+      'Dale a tus antojos un juez ingenioso. Veredictos según tu objetivo, detalles y fotos, con razones que vale la pena escuchar. Cuatro personalidades y todos los sorteos.';
+
+  @override
+  String get plus_year => '\$24.99 / año';
+
+  @override
+  String get plus_month => '\$5.99 / mes';
+
+  @override
+  String get plus_value => 'MEJOR PRECIO';
+
+  @override
+  String get plus_preview => 'Vista previa de suscripción';
+
+  @override
+  String get plus_notConnected =>
+      'Las compras aún no están disponibles. Estos son los precios previstos. No se realizará ningún cobro.';
+
+  @override
+  String get plus_continueFree => 'Seguir gratis';
+
+  @override
+  String get plus_explore => 'Conoce Plus';
+
+  @override
+  String lucky_remaining(int count) {
+    return 'Te quedan $count de 3 veredictos inteligentes de bienvenida';
+  }
+
+  @override
+  String get lucky_heads => 'Cara';
+
+  @override
+  String get lucky_tails => 'Cruz';
+
+  @override
+  String get lucky_orderUp => '¡ORDEN LISTA!';
+
+  @override
+  String get lucky_useLast => 'Usar mi veredicto inteligente';
+
+  @override
+  String get lucky_useFree => 'Mejor que decida la suerte';
+
+  @override
+  String get lucky_lastConfirm =>
+      'Este es tu último veredicto inteligente de bienvenida. Los sorteos siempre son gratis. Con Plus, el juez sigue deliberando sin límites.';
+
+  @override
+  String get lucky_stageHint => 'Cada plato tiene la misma oportunidad.';
 }

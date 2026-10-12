@@ -1,11 +1,13 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../env/env.dart';
-part 'mock_ai_provider.g.dart';
+
+final mockAiNotifierProvider = NotifierProvider<MockAiNotifier, bool>(
+  MockAiNotifier.new,
+);
 
 /// Developer-only AI choice, loaded before the first request is resolved.
-@riverpod
-class MockAiNotifier extends _$MockAiNotifier {
+class MockAiNotifier extends Notifier<bool> {
   bool _disposed = false;
   int _revision = 0;
 

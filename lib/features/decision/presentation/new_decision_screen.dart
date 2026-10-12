@@ -6,26 +6,29 @@ import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../config/routes/app_router.dart';
-import '../../../core/providers/ai_service_provider.dart';
+import '../../food_library/data/food_catalog.dart';
+import '../../food_library/presentation/food_library_screen.dart';
+import '../../lucky/data/decision_case.dart';
+import '../../lucky/presentation/method_picker_screen.dart';
 import '../../../core/providers/judge_tone_provider.dart';
 import '../../../core/providers/mock_ai_provider.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
-import '../../../data/providers/verdict_provider.dart';
 import '../data/models/food_option.dart';
 import '../data/models/objective.dart';
 
 /// Build a case from two to five food options with an explicit objective.
 class NewDecisionScreen extends ConsumerStatefulWidget {
-  const NewDecisionScreen({super.key});
+  const NewDecisionScreen({super.key, this.initialCase});
+  final DecisionCase? initialCase;
   @override
   ConsumerState<NewDecisionScreen> createState() => _NewDecisionScreenState();
 }
 
 class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
-  final List<FoodOption> _options = [];
-  Objective? _objective;
+  late final List<FoodOption> _options = [...?widget.initialCase?.options];
+  late Objective? _objective = widget.initialCase?.objective;
   bool _submitting = false;
   bool get _ready => _options.length >= 2 && _objective != null && !_submitting;
 
@@ -54,30 +57,14 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
   Future<void> _submit() async {
     if (!_ready) return;
     setState(() => _submitting = true);
-    try {
-      await ref.read(judgeToneProvider.notifier).ready;
-      await ref.read(mockAiNotifierProvider.notifier).ready;
-      if (!mounted) return;
-      final service = ref.read(aiServiceProvider);
-      final verdict = await service.generateVerdict(
-        options: List.unmodifiable(_options),
-        objective: _objective!,
-        tone: ref.read(judgeToneProvider),
-        locale: Localizations.localeOf(context),
-      );
-      if (!mounted) return;
-      await ref.read(verdictNotifierProvider.notifier).saveVerdict(verdict);
-      if (!mounted) return;
-      setState(() => _submitting = false);
-      await context.push(AppRouter.verdict, extra: verdict);
-    } catch (error) {
-      if (!mounted) return;
-      setState(() => _submitting = false);
-      AppSnackbar.showError(
-        context,
-        message: context.l10n.error_genericMessage,
-      );
-    }
+    await context.push(
+      AppRouter.methods,
+      extra: MethodRouteData(
+        DecisionCase(options: _options, objective: _objective!),
+        returnToEditor: true,
+      ),
+    );
+    if (mounted) setState(() => _submitting = false);
   }
 
   @override
@@ -231,7 +218,7 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                       const SizedBox(height: AppDimensions.spaceMd),
                       DinerButton(
                         key: const Key('submit-case'),
-                        label: context.l10n.decision_letJudgeDecide,
+                        label: context.l10n.lucky_continue,
                         icon: Icons.gavel_rounded,
                         onPressed: _ready ? _submit : null,
                       ),
@@ -265,7 +252,6 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
               ),
             ),
           ),
-          if (_submitting) const Positioned.fill(child: DinerDeliberation()),
         ],
       ),
     );
@@ -294,6 +280,7 @@ class _OptionCard extends StatelessWidget {
               DinerFoodImage(
                 bytes: option.imageBytes,
                 foodName: option.name,
+                illustrationId: option.illustrationId,
                 label: context.l10n.a11y_photoOf(option.name),
                 size: MediaQuery.textScalerOf(context).scale(1) >= 1.7
                     ? DinerTokens.touchTarget
@@ -373,6 +360,24 @@ class _OptionEditorState extends State<_OptionEditor> {
   late final _name = TextEditingController(text: widget.original?.name);
   late final _notes = TextEditingController(text: widget.original?.notes);
   late Uint8List? _bytes = widget.original?.imageBytes;
+  late String? _illustrationId = widget.original?.illustrationId;
+
+  Future<void> _chooseIllustration() async {
+    final art = await Navigator.of(context).push<FoodArt>(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (_) => FoodLibraryScreen(selectedId: _illustrationId),
+      ),
+    );
+    if (!mounted || art == null) return;
+    setState(() {
+      _illustrationId = art.id;
+      if (_name.text.trim().isEmpty && !art.generic) {
+        _name.text = art.label(Localizations.localeOf(context).languageCode);
+      }
+    });
+  }
+
   @override
   void dispose() {
     _name.dispose();
@@ -389,6 +394,7 @@ class _OptionEditorState extends State<_OptionEditor> {
         name: _name.text.trim(),
         notes: _notes.text.trim().isEmpty ? null : _notes.text.trim(),
         imageBytes: _bytes,
+        illustrationId: _illustrationId,
       ),
     );
   }
@@ -422,6 +428,36 @@ class _OptionEditorState extends State<_OptionEditor> {
                 icon: const Icon(Icons.close_rounded),
               ),
             ],
+          ),
+          const SizedBox(height: AppDimensions.spaceMd),
+          DinerTicket(
+            child: Column(
+              children: [
+                FoodIllustration(
+                  name: _name.text,
+                  illustrationId: _illustrationId,
+                  size: DinerTokens.rulingJudge,
+                ),
+                const SizedBox(height: AppDimensions.spaceSm),
+                DinerButton(
+                  key: const Key('choose-food-art'),
+                  label: _illustrationId == null
+                      ? context.l10n.library_choose
+                      : context.l10n.library_change,
+                  icon: Icons.restaurant_menu_rounded,
+                  style: DinerButtonStyle.mustard,
+                  onPressed: _chooseIllustration,
+                ),
+                const SizedBox(height: AppDimensions.spaceSm),
+                Text(
+                  _bytes == null
+                      ? context.l10n.library_artNote
+                      : context.l10n.library_photoFirst,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: AppDimensions.spaceMd),
           FoodImagePicker(
@@ -498,7 +534,7 @@ class DinerDeliberation extends StatelessWidget {
                   dimension: DinerTokens.heroJudge,
                 ),
                 const SizedBox(height: AppDimensions.spaceLg),
-                DinerSignText(context.l10n.diner_deliberating),
+                DinerArcSign(context.l10n.diner_deliberating),
                 const SizedBox(height: AppDimensions.spaceMd),
                 Semantics(
                   liveRegion: true,

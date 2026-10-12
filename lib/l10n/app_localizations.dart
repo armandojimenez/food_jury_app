@@ -593,7 +593,7 @@ abstract class AppLocalizations {
   /// Description of the FoodJury app
   ///
   /// In en, this message translates to:
-  /// **'FoodJury is your AI-powered food decision companion. When you can\'t decide what to eat, let Judge Bite render the final verdict! Built with Flutter, powered by Gemini AI, and designed with a playful retro diner aesthetic.'**
+  /// **'Can’t decide what to eat? Bring your cravings to court. Judge Bite serves thoughtful Smart rulings and wildly fun Lucky Court rituals, all in a playful retro diner.'**
   String get about_foodJuryDescription;
 
   /// Section header for contact links
@@ -1633,6 +1633,492 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The judge settles it. You enjoy it.'**
   String get diner_houseStepThree;
+
+  /// No description provided for @library_title.
+  ///
+  /// In en, this message translates to:
+  /// **'The food menu'**
+  String get library_title;
+
+  /// No description provided for @library_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick your plate.'**
+  String get library_hint;
+
+  /// No description provided for @library_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a food or category'**
+  String get library_search;
+
+  /// No description provided for @library_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All dishes'**
+  String get library_all;
+
+  /// No description provided for @library_favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Diner favorites'**
+  String get library_favorites;
+
+  /// No description provided for @library_lighter.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresh picks'**
+  String get library_lighter;
+
+  /// No description provided for @library_comfort.
+  ///
+  /// In en, this message translates to:
+  /// **'Comfort food'**
+  String get library_comfort;
+
+  /// No description provided for @library_breakfast.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get library_breakfast;
+
+  /// No description provided for @library_sweet.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweet & sips'**
+  String get library_sweet;
+
+  /// No description provided for @library_categories.
+  ///
+  /// In en, this message translates to:
+  /// **'Any dish'**
+  String get library_categories;
+
+  /// No description provided for @library_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Off-menu? The court allows it.'**
+  String get library_empty;
+
+  /// No description provided for @library_genericHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a broad category below, then enter your exact dish and details.'**
+  String get library_genericHint;
+
+  /// No description provided for @library_choose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose an illustration'**
+  String get library_choose;
+
+  /// No description provided for @library_change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change illustration'**
+  String get library_change;
+
+  /// No description provided for @library_artNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Artwork sets the scene. Your name, notes and own photo tell the real story.'**
+  String get library_artNote;
+
+  /// No description provided for @library_photoFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photo gets the spotlight. The illustration stays as a backup.'**
+  String get library_photoFirst;
+
+  /// No description provided for @library_categoryBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your dish name'**
+  String get library_categoryBadge;
+
+  /// No description provided for @lucky_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Lucky Court'**
+  String get lucky_title;
+
+  /// No description provided for @lucky_chooseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A little wisdom.\nOr a little luck.'**
+  String get lucky_chooseTitle;
+
+  /// No description provided for @lucky_chooseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your case is ready. How should the court decide?'**
+  String get lucky_chooseHint;
+
+  /// No description provided for @lucky_continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how to decide'**
+  String get lucky_continue;
+
+  /// No description provided for @lucky_ai.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart rulings'**
+  String get lucky_ai;
+
+  /// No description provided for @lucky_aiHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Judge Bite weighs your goal, details and photos. A verdict with a reason.'**
+  String get lucky_aiHint;
+
+  /// No description provided for @lucky_aiButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Let the judge deliberate'**
+  String get lucky_aiButton;
+
+  /// No description provided for @lucky_freeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'LET LUCK COOK'**
+  String get lucky_freeTitle;
+
+  /// No description provided for @lucky_freeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited fun. Always on the house.'**
+  String get lucky_freeHint;
+
+  /// No description provided for @lucky_wheel.
+  ///
+  /// In en, this message translates to:
+  /// **'Spin the plate'**
+  String get lucky_wheel;
+
+  /// No description provided for @lucky_wheelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A dinner-sized wheel of destiny.'**
+  String get lucky_wheelHint;
+
+  /// No description provided for @lucky_ticket.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw a ticket'**
+  String get lucky_ticket;
+
+  /// No description provided for @lucky_ticketHint.
+  ///
+  /// In en, this message translates to:
+  /// **'One order. Straight from the box.'**
+  String get lucky_ticketHint;
+
+  /// No description provided for @lucky_cloche.
+  ///
+  /// In en, this message translates to:
+  /// **'Lift the lid'**
+  String get lucky_cloche;
+
+  /// No description provided for @lucky_clocheHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A little suspense. A grand reveal.'**
+  String get lucky_clocheHint;
+
+  /// No description provided for @lucky_coin.
+  ///
+  /// In en, this message translates to:
+  /// **'Flip the coin'**
+  String get lucky_coin;
+
+  /// No description provided for @lucky_coinHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Two contenders. One final flip.'**
+  String get lucky_coinHint;
+
+  /// No description provided for @lucky_coinNeedsTwo.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs exactly 2 options. Edit your case to use the coin.'**
+  String get lucky_coinNeedsTwo;
+
+  /// No description provided for @lucky_editCase.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit this case'**
+  String get lucky_editCase;
+
+  /// No description provided for @lucky_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Let luck decide'**
+  String get lucky_start;
+
+  /// No description provided for @lucky_equalOdds.
+  ///
+  /// In en, this message translates to:
+  /// **'A fair draw. A delicious destiny.'**
+  String get lucky_equalOdds;
+
+  /// No description provided for @lucky_goalNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Lucky Court gives every dish an equal chance. Want the judge to weigh your details? Choose a Smart ruling.'**
+  String get lucky_goalNote;
+
+  /// No description provided for @lucky_ready.
+  ///
+  /// In en, this message translates to:
+  /// **'Court is in session.'**
+  String get lucky_ready;
+
+  /// No description provided for @lucky_drawing.
+  ///
+  /// In en, this message translates to:
+  /// **'No objections. Just suspense.'**
+  String get lucky_drawing;
+
+  /// No description provided for @lucky_skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal now'**
+  String get lucky_skip;
+
+  /// No description provided for @lucky_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to methods'**
+  String get lucky_cancel;
+
+  /// No description provided for @lucky_winner.
+  ///
+  /// In en, this message translates to:
+  /// **'IT IS!'**
+  String get lucky_winner;
+
+  /// No description provided for @lucky_closed.
+  ///
+  /// In en, this message translates to:
+  /// **'CASE CLOSED'**
+  String get lucky_closed;
+
+  /// No description provided for @lucky_quoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'A WORD FROM THE JUDGE'**
+  String get lucky_quoteLabel;
+
+  /// No description provided for @lucky_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep this verdict'**
+  String get lucky_save;
+
+  /// No description provided for @lucky_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Filed in your case book'**
+  String get lucky_saved;
+
+  /// No description provided for @lucky_reroll.
+  ///
+  /// In en, this message translates to:
+  /// **'Another draw'**
+  String get lucky_reroll;
+
+  /// No description provided for @lucky_otherMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another method'**
+  String get lucky_otherMethod;
+
+  /// No description provided for @lucky_replay.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay the reveal'**
+  String get lucky_replay;
+
+  /// No description provided for @lucky_rerollNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Every new draw has the same odds. The same dish can win again.'**
+  String get lucky_rerollNote;
+
+  /// No description provided for @lucky_caseDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'THE ORIGINAL CASE'**
+  String get lucky_caseDetails;
+
+  /// No description provided for @lucky_sameJudge.
+  ///
+  /// In en, this message translates to:
+  /// **'Same judge.\nNew tricks.'**
+  String get lucky_sameJudge;
+
+  /// No description provided for @lucky_exhausted.
+  ///
+  /// In en, this message translates to:
+  /// **'You’ve enjoyed your 3 welcome Smart rulings. Keep the fun going with unlimited Lucky Court, or get Plus for more deliberation.'**
+  String get lucky_exhausted;
+
+  /// No description provided for @lucky_aiError.
+  ///
+  /// In en, this message translates to:
+  /// **'The judge needs a moment. Your ruling is still yours to use. Try again or take a chance in Lucky Court.'**
+  String get lucky_aiError;
+
+  /// No description provided for @lucky_saveError.
+  ///
+  /// In en, this message translates to:
+  /// **'The court could not file this verdict. Your result is still here. Try saving again.'**
+  String get lucky_saveError;
+
+  /// No description provided for @lucky_drawError.
+  ///
+  /// In en, this message translates to:
+  /// **'The draw could not start. Your case is safe. Try again.'**
+  String get lucky_drawError;
+
+  /// No description provided for @lucky_lastAi.
+  ///
+  /// In en, this message translates to:
+  /// **'One last welcome ruling. Make it delicious.'**
+  String get lucky_lastAi;
+
+  /// No description provided for @lucky_aiLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart ruling'**
+  String get lucky_aiLabel;
+
+  /// No description provided for @lucky_randomLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Lucky verdict'**
+  String get lucky_randomLabel;
+
+  /// No description provided for @lucky_newCase.
+  ///
+  /// In en, this message translates to:
+  /// **'Start another case'**
+  String get lucky_newCase;
+
+  /// No description provided for @plus_title.
+  ///
+  /// In en, this message translates to:
+  /// **'A seat at the judge’s table.'**
+  String get plus_title;
+
+  /// No description provided for @plus_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'FoodJury Plus'**
+  String get plus_hint;
+
+  /// No description provided for @plus_unlimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited Smart rulings'**
+  String get plus_unlimited;
+
+  /// No description provided for @plus_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Give your cravings a clever judge. Thoughtful verdicts based on your goal, dish details and photos, with reasons worth hearing. Four judge personalities. Every Lucky Court ritual.'**
+  String get plus_details;
+
+  /// No description provided for @plus_year.
+  ///
+  /// In en, this message translates to:
+  /// **'\$24.99 / year'**
+  String get plus_year;
+
+  /// No description provided for @plus_month.
+  ///
+  /// In en, this message translates to:
+  /// **'\$5.99 / month'**
+  String get plus_month;
+
+  /// No description provided for @plus_value.
+  ///
+  /// In en, this message translates to:
+  /// **'BEST VALUE'**
+  String get plus_value;
+
+  /// No description provided for @plus_preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription preview'**
+  String get plus_preview;
+
+  /// No description provided for @plus_notConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases are not available yet. These are the planned prices. No payment will be taken.'**
+  String get plus_notConnected;
+
+  /// No description provided for @plus_continueFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep cooking for free'**
+  String get plus_continueFree;
+
+  /// No description provided for @plus_explore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Plus'**
+  String get plus_explore;
+
+  /// No description provided for @lucky_remaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of 3 welcome Smart rulings left'**
+  String lucky_remaining(int count);
+
+  /// No description provided for @lucky_heads.
+  ///
+  /// In en, this message translates to:
+  /// **'Heads'**
+  String get lucky_heads;
+
+  /// No description provided for @lucky_tails.
+  ///
+  /// In en, this message translates to:
+  /// **'Tails'**
+  String get lucky_tails;
+
+  /// No description provided for @lucky_orderUp.
+  ///
+  /// In en, this message translates to:
+  /// **'ORDER UP!'**
+  String get lucky_orderUp;
+
+  /// No description provided for @lucky_useLast.
+  ///
+  /// In en, this message translates to:
+  /// **'Use my Smart ruling'**
+  String get lucky_useLast;
+
+  /// No description provided for @lucky_useFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Let luck decide instead'**
+  String get lucky_useFree;
+
+  /// No description provided for @lucky_lastConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'This is your last welcome Smart ruling. Lucky Court is always on the house. Plus keeps the judge deliberating, without limits.'**
+  String get lucky_lastConfirm;
+
+  /// No description provided for @lucky_stageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every contender gets an equal chance.'**
+  String get lucky_stageHint;
 }
 
 class _AppLocalizationsDelegate

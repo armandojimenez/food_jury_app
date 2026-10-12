@@ -4,9 +4,11 @@ A food decision app set in a retro diner courtroom. Bring 2–5 contenders, add 
 
 ## Current app
 
-The October 2026 redesign includes all app screens, ten expressive judge poses, illustrated food fallbacks, a new app icon, the developer's illustrated portrait, tablet/landscape layouts, English/Spanish, dark mode, and a replayable verdict reveal with reduced-motion support.
+The October 2026 redesign includes all app screens, twelve expressive judge poses, illustrated food fallbacks, a new app icon, the developer's illustrated portrait, tablet/landscape layouts, English/Spanish, dark mode, and a replayable verdict reveal with reduced-motion support.
 
-The existing camera/gallery and AI photo-analysis flow remains intact. App illustrations are decorative; they never become AI evidence. User photos take precedence wherever a food option appears.
+Lucky Court adds four free animated rituals, 44 bilingual judge sayings, explicit save/replay, and a searchable illustrated food menu. Three welcome Smart rulings are tracked separately from history deletion.
+
+The existing camera/gallery and reasoned photo-analysis flow remains intact. App illustrations are decorative; they never become AI evidence. User photos take precedence wherever a food option appears.
 
 ## Run
 
@@ -20,6 +22,8 @@ flutter run -t lib/main_preview.dart
 # Open a specific preview screen.
 flutter run -t lib/main_preview.dart --dart-define=PREVIEW_ROUTE=/decision/verdict
 ```
+
+Preview routes also accept `methods`, `library`, `lucky`, `wheel`, `ticket`, `cloche`, `coin`, `plus`, and `new`. The preview defaults to English; `--dart-define=PREVIEW_LOCALE=es` selects Spanish. Debug-only `ext.foodjury.preview` navigation is registered only by this preview entry point.
 
 Normal app entry points retain Firebase and the existing persistent database. The preview entry point never writes to real case history.
 
@@ -46,8 +50,12 @@ The tests cover all screens on phone, tablet, landscape, dark mode, and a small 
 
 The living component and pose gallery is **Settings → Developer options → Design kitchen** in development mode. New screens should compose the shared `Diner*` widgets from `lib/core/widgets/` and use tokens from `lib/core/theme/`.
 
+## Deliberately pending
+
+Billing is a **price preview**, as requested: $24.99/year or $5.99/month. There are no real purchases, restore flow, or verified premium entitlements yet. The three welcome Smart rulings are enforced locally; account/server enforcement across reinstalls and devices remains to be connected. The approved onboarding is still a design prototype. See the exact integration checklist in [DESIGN.md](DESIGN.md#billing-intentionally-unfinished).
+
 ## Stack
 
-Flutter / Dart, Riverpod 2.6 with Notifier/code generation, GoRouter, Drift/SQLite, Firebase AI Logic, image_picker, and share_plus. This redesign was validated with Flutter 3.41.7 and Dart 3.11.5; `pubspec.lock` records the resolved dependencies.
+Flutter / Dart, Riverpod 2.6 with Notifier providers, GoRouter, Drift/SQLite, Firebase AI Logic, image_picker, and share_plus. This redesign was validated with Flutter 3.41.7 and Dart 3.11.5; `pubspec.lock` records the resolved dependencies.
 
 The app is private and not yet live. Historical phase documents describe earlier milestones and are not the current design specification.

@@ -9,6 +9,9 @@ import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/providers/verdict_provider.dart';
 import '../../decision/data/models/verdict.dart';
+import '../../lucky/data/court_providers.dart';
+import '../../lucky/presentation/court_components.dart';
+import '../../lucky/presentation/ai_allowance_ticket.dart';
 
 /// The diner counter: one clear next action and the user's real recent cases.
 class HomeScreen extends ConsumerWidget {
@@ -79,46 +82,57 @@ class HomeScreen extends ConsumerWidget {
   );
 }
 
-class _Welcome extends StatelessWidget {
+class _Welcome extends ConsumerWidget {
   const _Welcome({required this.wide});
   final bool wide;
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      DinerEntrance(
-        child: DinerHeading(
-          context.l10n.diner_homeTitle,
-          center: true,
-          large: wide,
-        ),
-      ),
-      const SizedBox(height: AppDimensions.spaceSm),
-      DinerEntrance(
-        order: 1,
-        child: Text(
-          context.l10n.diner_homeSubtitle,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-      ),
-      const SizedBox(height: AppDimensions.spaceMd),
-      DinerEntrance(
-        order: 1,
-        child: DinerCharacterStage(
-          pose: JudgeBitePose.idle,
-          large: wide,
-          bubble: context.l10n.diner_welcome,
-          footer: DinerButton(
-            label: context.l10n.diner_startCase,
-            icon: Icons.gavel_rounded,
-            style: DinerButtonStyle.mustard,
-            onPressed: () => context.push(AppRouter.newDecision),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final exhausted =
+        !ref.watch(premiumAccessProvider) &&
+        ref.watch(aiAllowanceProvider).asData?.value == 0;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        DinerEntrance(
+          child: DinerPosterHeading(
+            exhausted
+                ? context.l10n.lucky_sameJudge
+                : context.l10n.diner_homeTitle,
+            center: true,
+            large: wide,
           ),
         ),
-      ),
-    ],
-  );
+        const SizedBox(height: AppDimensions.spaceSm),
+        DinerEntrance(
+          order: 1,
+          child: Text(
+            exhausted
+                ? context.l10n.lucky_exhausted
+                : context.l10n.diner_homeSubtitle,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
+        const SizedBox(height: AppDimensions.spaceMd),
+        DinerEntrance(
+          order: 1,
+          child: DinerCharacterStage(
+            pose: exhausted ? JudgeBitePose.plate : JudgeBitePose.idle,
+            large: wide,
+            bubble: context.l10n.diner_welcome,
+            footer: DinerButton(
+              label: context.l10n.diner_startCase,
+              icon: Icons.gavel_rounded,
+              style: DinerButtonStyle.mustard,
+              onPressed: () => context.push(AppRouter.newDecision),
+            ),
+          ),
+        ),
+        const SizedBox(height: AppDimensions.spaceLg),
+        const AiAllowanceTicket(),
+      ],
+    );
+  }
 }
 
 class _HouseRules extends StatelessWidget {
@@ -282,6 +296,7 @@ class VerdictHistoryRow extends StatelessWidget {
             extra: VerdictRouteData(
               verdict: verdict,
               showRevealAnimation: false,
+              saved: true,
             ),
           ),
           child: Padding(
@@ -293,6 +308,7 @@ class VerdictHistoryRow extends StatelessWidget {
                 DinerFoodImage(
                   bytes: verdict.winner.imageBytes,
                   foodName: verdict.winner.name,
+                  illustrationId: verdict.winner.illustrationId,
                   label: context.l10n.a11y_photoOf(verdict.winner.name),
                   size: DinerTokens.historyThumbnail,
                 ),
@@ -307,7 +323,7 @@ class VerdictHistoryRow extends StatelessWidget {
                       ),
                       const SizedBox(height: AppDimensions.spaceXs),
                       Text(
-                        '${verdict.objective.getLabel(context)} · $date',
+                        '${verdict.isRandom ? verdict.random!.method.title(context) : context.l10n.lucky_aiLabel} · $date',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),

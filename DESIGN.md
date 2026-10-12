@@ -114,7 +114,7 @@ For growing collections, use `DinerScaffold(scrollable: false, child: ListView.b
 
 ## Character and food assets
 
-The new production character directory is `assets/images/judge_bite_v2/`. It contains ten transparent full-body poses. See [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md) for anatomy, emotional direction and placement rules.
+The new production character directory is `assets/images/judge_bite_v2/`. It contains twelve transparent full-body poses. See [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md) for anatomy, emotional direction and placement rules.
 
 | Pose | Intended context |
 | --- | --- |
@@ -128,6 +128,8 @@ The new production character directory is `assets/images/judge_bite_v2/`. It con
 | sleeping | Empty archive / court recess |
 | eating | Food enjoyment / design gallery; one cream mouth interior, no extra red tongue |
 | pointing | Instructional illustration / design gallery |
+| plate | Lucky Court host, balancing a plate with a stern expression |
+| ticket | Ticket draw, holding the winning receipt |
 
 The About Developer poster uses `assets/images/me-diner.png`, redrawn from the original `me.png` in the judge’s illustration style. Keep the original source. The face breaks above a mustard sunburst panel, and a live localized maker stamp crosses the bottom edge. The biography, published apps and contact destinations remain real content. The [portrait prompt](design/production/developer-portrait-prompt.txt) records identity constraints.
 
@@ -181,3 +183,53 @@ flutter build ios --simulator --debug --no-codesign
 The responsive suite covers 390×844 phone, 834×1194 tablet, 1194×834 landscape, 320×568 Spanish at 200%, and dark mode. Behavioral tests cover case editing/limits, optional photo evidence, saved preferences, AI arguments, save ordering, recoverable errors, reveal/replay, and disposal. Inspect the generated previews as well as test results; clean layout constraints alone do not guarantee a good composition.
 
 See the [verification record](design/verification/README.md) for concrete build/test results and the [asset manifest](design/production/asset-manifest.json) for image dimensions, alpha and checksums.
+
+## Lucky Court and Smart rulings · native implementation
+
+Use **Smart rulings** for Judge Bite’s reasoned decisions. The judge weighs the user’s goal, names, notes, and optional photographs. Use **Lucky Court** for the four free rituals. Copy should sound like the court: “A little wisdom. Or a little luck.” and “Unlimited fun. Always on the house.” Explain that every contender has an equal chance; do not characterize the free experience as “no AI,” suggest its result is a nutritional/taste judgment, or present implementation jargon in product copy. Plus offers unlimited Smart rulings. Technical service and database identifiers may still use `Ai`.
+
+### Lettering and composition
+
+- `DinerArcSign` paints localized Bangers lettering along a gentle arch, with navy outline and extrusion on orange mastheads. It honors the requested text scale. If the label does not fit, use wrapping live lettering; never shrink a heading to force a fit.
+- `DinerPosterHeading` adds a slight tilt, curved mustard underline, and stars with reserved space. Use it for one main statement per composition, not every label. Decoration must not collide with text, photos, or touch targets.
+- `DinerVoucher` is the double-bordered notched paper ticket for quotes and contender dockets. Keep its inset clear. `DinerStamp` remains the tilted case-status badge.
+- `WinnerHero` gives the winning dish a large outlined mustard burst and lets the judge overlap the art’s outer margin. User photos use a tilted cream print frame, bounded decoding, and the same judge composition. The source photo takes precedence over library art in every context.
+- The plate stage uses cream porcelain rims and depth, equal wedges, a fixed navy pointer, large illustrations, and a fully visible stern judge. Numbered segments map to the exact original contender order in the docket, including custom/long dish names.
+- `DinerScaffold.bottomAction` keeps the main action visible in ordinary portrait layouts. At large text or under 600dp window height it joins the scroll flow. Large-text mastheads put the title below the navigation controls at full content width. Do not take the entire viewport with a header/footer.
+- Minimum pair width for method cards is 304dp of available content; smaller windows use one column. Wide layouts use four methods and two-column ritual/verdict compositions. New layouts must check actual available width, localization, and text scaling.
+
+`AppColors` adds `signHighlight`, `signShade`, `porcelainShadow`, `porcelainRim`, `sage`, `peach`, and `oat`. `CourtTokens` in `features/lucky/presentation/court_components.dart` owns stage geometry and finite ritual timing. Illustration-local proportions belong to each painter; shared spacing, typography, responsive thresholds, and colors belong to the token system.
+
+### Motion and behavior
+
+The four rituals run for 3300ms: five plate turns with deceleration; a shaking ticket box and rising numbered receipt; a lid lift that hides the food until opening; and a four-turn coin with explicit heads/tails. The winner is selected once before animation. Skip, replay, and reduced-motion completion reveal that same result. Cancel never files a result or opens a verdict after leaving. Replay does not use another decision; draw-again creates a new unsaved case and may legitimately select the same winner.
+
+A Lucky verdict uses a finite 1400ms celebration, an accessible result announcement, explicit durable save, replay, draw-again, sharing, original case details, and edit/alternate-method actions. Reduced motion removes transforms, loops, and haptics and goes directly to the chosen result. Test the animation’s intermediate state, completion, cancellation, and disposal, not only the final screenshot.
+
+### Illustrated food menu
+
+`features/food_library/data/food_catalog.dart` contains 20 common-food entries plus 13 broad categories using 19 illustrations. The 12 new transparent assets cover seafood, chicken, steak, sandwich, pasta, breakfast, soup, rice, dessert, drinks, vegetables, and fries. [Generation prompts and source paths](design/food-library-prompts.json) preserve provenance.
+
+Search accepts English/Spanish labels and keywords. If there is no match, show the broad categories. Selecting a specific dish fills an empty name only. Selecting a category such as seafood preserves the user’s exact dish name and notes. The illustration ID is separate metadata, never converted into food evidence. Adding/changing art does not remove the user’s photo. Artwork travels with the frozen case through Smart rulings, Lucky draws, history, and replay.
+
+### Data and entitlement contract
+
+- `DecisionCase` snapshots 2–5 distinct named contenders, goal, illustration IDs and photo bytes. Accepted `Verdict` snapshots are immutable; saved results never reroll or regenerate their quote.
+- Random results carry method, quote ID, exact localized quote, catalog version and original contenders. They have no fabricated ranking or reasoning. The bundled 44-line EN/ES catalog uses persistent shuffle bags per tone/method/language and avoids immediate cycle-boundary repeats.
+- Drift schema 3 adds original contenders and random metadata, plus a separate Smart-use ledger. Successful free Smart rulings are saved and charged atomically. Failed/cancelled requests do not spend a use; retry after a save failure reuses the cached generated result and operation ID. History deletion does not replenish uses. Plus usage does not spend remaining welcome uses.
+- Three welcome Smart rulings are enforced **per local installation** today. Existing pre-migration Smart verdicts are backfilled as consumed uses. True lifetime enforcement across reinstalls/devices needs an authenticated account and server ledger before launch.
+
+### Billing intentionally unfinished
+
+The user approved price mocks and will connect purchases later. `/plus` is explicitly a subscription preview showing **$24.99 USD/year** and **$5.99 USD/month**. Selecting a plan never charges, starts a trial, or unlocks Plus. `premiumAccessProvider` defaults to false and is an integration seam, not a trusted entitlement.
+
+| Remaining connection | Required before selling Plus |
+| --- | --- |
+| Store products | Create App Store / Play products, subscription group/base plans, availability, and tax configuration. No product or entitlement IDs have been invented. |
+| Purchase provider | Wire StoreKit/Play Billing or RevenueCat; use actual localized products/prices and verified entitlements. |
+| Purchase lifecycle | Purchase, restore, pending/declined/cancelled states, renewal/expiry, refunds, account changes, and offline entitlement policy. |
+| Lifetime Smart allowance | Authenticated server-side ledger and atomic idempotent request enforcement across installs/devices. The local ledger is not abuse protection. |
+| Store disclosures | Working terms/privacy links, renewal/cancellation disclosure, restore action, and store sandbox acceptance checks. |
+| Onboarding | The approved onboarding remains a separate design prototype; its educational flow and premium/free welcome are not integrated into Flutter yet. |
+
+The [original Lucky Court concept and prototype](design/explorations/2026-10-11/random-court/LUCKY_COURT.md) are retained as design references. Actual native verification belongs in [the verification record](design/verification/README.md), not in generated mockups.

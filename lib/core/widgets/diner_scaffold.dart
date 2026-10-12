@@ -6,6 +6,7 @@ import '../../config/routes/app_router.dart';
 import '../theme/theme.dart';
 import '../utils/l10n_extensions.dart';
 import 'diner_components.dart';
+import 'diner_display.dart';
 
 /// Navy full-screen stage with legible native status and navigation icons.
 class DinerNightSurface extends StatelessWidget {
@@ -35,6 +36,7 @@ class DinerScaffold extends StatelessWidget {
     this.showBack = true,
     this.showLogo = false,
     this.trailing,
+    this.bottomAction,
     this.navigationIndex,
     this.scrollable = true,
     this.maxWidth = DinerTokens.contentWidth,
@@ -57,6 +59,9 @@ class DinerScaffold extends StatelessWidget {
   /// Optional action at the end of the masthead.
   final Widget? trailing;
 
+  /// Optional safe-area action outside the scrolling content.
+  final Widget? bottomAction;
+
   /// Court (0) or history (1); null omits bottom navigation.
   final int? navigationIndex;
 
@@ -71,14 +76,33 @@ class DinerScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final inlineAction =
+        bottomAction != null &&
+        (MediaQuery.textScalerOf(context).scale(1) >=
+                DinerTokens.largeTextBreakpoint ||
+            MediaQuery.sizeOf(context).height <
+                DinerTokens.compactWindowHeight);
     final body = Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: maxWidth),
         child: SafeArea(
           top: false,
-          bottom: navigationIndex == null,
+          bottom:
+              navigationIndex == null && (bottomAction == null || inlineAction),
           minimum: padding,
-          child: SizedBox(width: double.infinity, child: child),
+          child: SizedBox(
+            width: double.infinity,
+            child: inlineAction
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      child,
+                      const SizedBox(height: AppDimensions.spaceLg),
+                      bottomAction!,
+                    ],
+                  )
+                : child,
+          ),
         ),
       ),
     );
@@ -111,7 +135,30 @@ class DinerScaffold extends StatelessWidget {
             ),
           ],
         ),
-        bottomNavigationBar: navigationIndex == null
+        bottomNavigationBar: bottomAction != null && !inlineAction
+            ? SafeArea(
+                top: false,
+                minimum: const EdgeInsets.fromLTRB(
+                  DinerTokens.pageInset,
+                  AppDimensions.spaceSm,
+                  DinerTokens.pageInset,
+                  AppDimensions.spaceMd,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: DinerTokens.readingWidth,
+                        ),
+                        child: bottomAction!,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : navigationIndex == null
             ? null
             : DinerNavigation(selectedIndex: navigationIndex!),
       ),
@@ -144,8 +191,18 @@ class DinerMasthead extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppColors.primary,
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            AppColors.signHighlight,
+            AppColors.primary,
+            AppColors.signShade,
+          ],
+        ),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -162,33 +219,62 @@ class DinerMasthead extends StatelessWidget {
                     horizontal: DinerTokens.pageInset,
                     vertical: AppDimensions.spaceSm,
                   ),
-                  child: Row(
-                    children: [
-                      if (showBack) ...[
-                        DinerIconButton(
-                          icon: Icons.arrow_back_rounded,
-                          label: context.l10n.common_back,
-                          onPressed: () => context.canPop()
-                              ? context.pop()
-                              : context.go(AppRouter.home),
-                        ),
-                        const SizedBox(width: AppDimensions.spaceMd),
-                      ],
-                      Expanded(
-                        child: showLogo
-                            ? const DinerWordmark()
-                            : DinerSignText(
-                                title ?? '',
-                                size: DinerTokens.signSize,
+                  child:
+                      MediaQuery.textScalerOf(context).scale(1) >=
+                              DinerTokens.largeTextBreakpoint &&
+                          !showLogo
+                      ? Column(
+                          children: [
+                            Row(
+                              children: [
+                                if (showBack)
+                                  DinerIconButton(
+                                    icon: Icons.arrow_back_rounded,
+                                    label: context.l10n.common_back,
+                                    onPressed: () => context.canPop()
+                                        ? context.pop()
+                                        : context.go(AppRouter.home),
+                                  ),
+                                const Spacer(),
+                                if (trailing != null) trailing!,
+                              ],
+                            ),
+                            DinerSignText(
+                              title ?? '',
+                              size: DinerTokens.buttonType,
+                            ),
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            if (showBack) ...[
+                              DinerIconButton(
+                                icon: Icons.arrow_back_rounded,
+                                label: context.l10n.common_back,
+                                onPressed: () => context.canPop()
+                                    ? context.pop()
+                                    : context.go(AppRouter.home),
                               ),
-                      ),
-                      if (trailing != null) ...[
-                        const SizedBox(width: AppDimensions.spaceMd),
-                        trailing!,
-                      ] else if (showBack)
-                        const SizedBox(width: DinerTokens.touchTarget),
-                    ],
-                  ),
+                              const SizedBox(width: AppDimensions.spaceMd),
+                            ],
+                            Expanded(
+                              child: showLogo
+                                  ? const DinerWordmark()
+                                  : DinerArcSign(
+                                      title ?? '',
+                                      size: DinerTokens.signSize,
+                                    ),
+                            ),
+                            if (trailing != null) ...[
+                              const SizedBox(width: AppDimensions.spaceMd),
+                              trailing!,
+                            ] else if (showBack)
+                              const SizedBox(
+                                width: DinerTokens.touchTarget,
+                                child: Center(child: DinerStar(size: 27)),
+                              ),
+                          ],
+                        ),
                 ),
               ),
             ),

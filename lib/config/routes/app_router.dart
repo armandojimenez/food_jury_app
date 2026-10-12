@@ -5,6 +5,12 @@ import '../../core/theme/theme.dart';
 import '../../core/utils/l10n_extensions.dart';
 import '../../core/widgets/widgets.dart';
 import '../../features/decision/data/models/verdict.dart';
+import '../../features/lucky/data/decision_case.dart';
+import '../../features/lucky/presentation/method_picker_screen.dart';
+import '../../features/lucky/presentation/lucky_draw_screen.dart';
+import '../../features/lucky/presentation/lucky_verdict_screen.dart';
+import '../../features/lucky/presentation/plus_preview_screen.dart';
+import '../../features/food_library/presentation/food_library_screen.dart';
 import '../../features/decision/presentation/new_decision_screen.dart';
 import '../../features/decision/presentation/verdict_screen.dart';
 import '../../features/history/presentation/history_screen.dart';
@@ -24,6 +30,10 @@ class AppRouter {
   static const String home = '/home';
   static const String newDecision = '/decision/new';
   static const String verdict = '/decision/verdict';
+  static const String methods = '/decision/methods';
+  static const String draw = '/decision/draw';
+  static const String plus = '/plus';
+  static const String foodLibrary = '/food-library';
   static const String history = '/history';
   static const String settings = '/settings';
   static const String aboutDeveloper = '/about-developer';
@@ -68,9 +78,55 @@ class AppRouter {
           path: newDecision,
           name: 'newDecision',
           pageBuilder: (context, state) => _buildPageWithTransition(
-            child: const NewDecisionScreen(),
+            child: NewDecisionScreen(
+              key: ValueKey(state.extra ?? state.pageKey),
+              initialCase: state.extra is DecisionCase
+                  ? state.extra as DecisionCase
+                  : null,
+            ),
             state: state,
             transitionType: _TransitionType.slideUp,
+          ),
+        ),
+
+        GoRoute(
+          path: methods,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            child: state.extra is MethodRouteData
+                ? MethodPickerScreen(
+                    caseData: (state.extra as MethodRouteData).caseData,
+                    returnToEditor:
+                        (state.extra as MethodRouteData).returnToEditor,
+                  )
+                : state.extra is DecisionCase
+                ? MethodPickerScreen(caseData: state.extra as DecisionCase)
+                : const _ErrorScreen(),
+            state: state,
+          ),
+        ),
+        GoRoute(
+          path: draw,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            child:
+                state.extra is DrawRouteData &&
+                    (state.extra as DrawRouteData).verdict.isRandom
+                ? LuckyDrawScreen(data: state.extra as DrawRouteData)
+                : const _ErrorScreen(),
+            state: state,
+          ),
+        ),
+        GoRoute(
+          path: plus,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            child: const PlusPreviewScreen(),
+            state: state,
+          ),
+        ),
+        GoRoute(
+          path: foodLibrary,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            child: const FoodLibraryScreen(),
+            state: state,
           ),
         ),
 
@@ -96,10 +152,16 @@ class AppRouter {
               );
             }
             return _buildPageWithTransition(
-              child: VerdictScreen(
-                verdict: verdictData,
-                showRevealAnimation: showAnimation,
-              ),
+              child: verdictData.isRandom
+                  ? LuckyVerdictScreen(
+                      verdict: verdictData,
+                      animate: showAnimation,
+                      saved: extra is VerdictRouteData && extra.saved,
+                    )
+                  : VerdictScreen(
+                      verdict: verdictData,
+                      showRevealAnimation: showAnimation,
+                    ),
               state: state,
               transitionType: _TransitionType.fade,
             );
@@ -218,10 +280,12 @@ class VerdictRouteData {
   const VerdictRouteData({
     required this.verdict,
     this.showRevealAnimation = true,
+    this.saved = false,
   });
 
   final Verdict verdict;
   final bool showRevealAnimation;
+  final bool saved;
 }
 
 /// Error screen displayed when navigation fails.

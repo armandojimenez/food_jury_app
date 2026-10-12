@@ -518,6 +518,7 @@ class DinerFoodImage extends StatelessWidget {
     this.bytes,
     this.label,
     this.foodName = '',
+    this.illustrationId,
     this.size = DinerTokens.thumbnail,
     super.key,
   });
@@ -527,6 +528,7 @@ class DinerFoodImage extends StatelessWidget {
 
   /// Food name used to select a decorative fallback when no photo exists.
   final String foodName;
+  final String? illustrationId;
 
   /// Localized visible label and accessible action name.
   final String? label;
@@ -547,22 +549,23 @@ class DinerFoodImage extends StatelessWidget {
                   .ceil(),
               semanticLabel: label,
               errorBuilder: (context, error, stack) =>
-                  _FoodPlaceholder(foodName),
+                  _FoodPlaceholder(foodName, illustrationId),
             )
-          : _FoodPlaceholder(foodName),
+          : _FoodPlaceholder(foodName, illustrationId),
     ),
   );
 }
 
 class _FoodPlaceholder extends StatelessWidget {
-  const _FoodPlaceholder(this.name);
+  const _FoodPlaceholder(this.name, this.illustrationId);
+  final String? illustrationId;
   final String name;
   @override
   Widget build(BuildContext context) => ColoredBox(
     color: AppColors.pop.withValues(alpha: .24),
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.spaceXs),
-      child: FoodIllustration(name: name),
+      child: FoodIllustration(name: name, illustrationId: illustrationId),
     ),
   );
 }

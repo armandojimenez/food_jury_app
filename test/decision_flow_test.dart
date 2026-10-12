@@ -18,6 +18,7 @@ import 'package:food_jury/features/decision/data/models/food_option.dart';
 import 'package:food_jury/features/decision/data/models/objective.dart';
 import 'package:food_jury/features/decision/data/models/verdict.dart';
 import 'package:food_jury/features/decision/presentation/new_decision_screen.dart';
+import 'package:food_jury/features/lucky/presentation/method_picker_screen.dart';
 import 'package:food_jury/features/decision/presentation/verdict_screen.dart';
 import 'support/diner_harness.dart';
 
@@ -139,6 +140,9 @@ Future<void> chooseFunAndSubmit(
   final submit = find.byKey(const Key('submit-case'));
   await scrollTo(tester, submit);
   await tester.tap(submit);
+  await drain(tester);
+  await scrollTo(tester, find.byKey(const Key('ask-ai')));
+  await tester.tap(find.byKey(const Key('ask-ai')));
   await drain(tester);
 }
 
@@ -359,6 +363,11 @@ void main() {
       ai.result.completeError(const AiServiceException('Offline'));
       await drain(tester);
       expect(find.byType(DinerDeliberation), findsNothing);
+      expect(find.byType(MethodPickerScreen), findsOneWidget);
+      final edit = find.widgetWithText(DinerButton, 'EDIT THIS CASE');
+      await scrollTo(tester, edit);
+      await tester.tap(edit);
+      await tester.pumpAndSettle();
       expect(find.byType(NewDecisionScreen), findsOneWidget);
       expect(find.text('Pizza'), findsOneWidget);
       expect(
@@ -393,9 +402,7 @@ void main() {
     expect(find.byType(VerdictScreen), findsNothing);
     expect(find.byType(DinerDeliberation), findsNothing);
     expect(
-      tester
-          .widget<DinerButton>(find.byKey(const Key('submit-case')))
-          .onPressed,
+      tester.widget<DinerButton>(find.byKey(const Key('ask-ai'))).onPressed,
       isNotNull,
     );
   });

@@ -104,6 +104,29 @@ class $VerdictsTable extends Verdicts
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _contendersJsonMeta = const VerificationMeta(
+    'contendersJson',
+  );
+  @override
+  late final GeneratedColumn<String> contendersJson = GeneratedColumn<String>(
+    'contenders_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('[]'),
+  );
+  static const VerificationMeta _randomJsonMeta = const VerificationMeta(
+    'randomJson',
+  );
+  @override
+  late final GeneratedColumn<String> randomJson = GeneratedColumn<String>(
+    'random_json',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -115,6 +138,8 @@ class $VerdictsTable extends Verdicts
     createdAt,
     bonus,
     bonusType,
+    contendersJson,
+    randomJson,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -196,6 +221,21 @@ class $VerdictsTable extends Verdicts
         bonusType.isAcceptableOrUnknown(data['bonus_type']!, _bonusTypeMeta),
       );
     }
+    if (data.containsKey('contenders_json')) {
+      context.handle(
+        _contendersJsonMeta,
+        contendersJson.isAcceptableOrUnknown(
+          data['contenders_json']!,
+          _contendersJsonMeta,
+        ),
+      );
+    }
+    if (data.containsKey('random_json')) {
+      context.handle(
+        _randomJsonMeta,
+        randomJson.isAcceptableOrUnknown(data['random_json']!, _randomJsonMeta),
+      );
+    }
     return context;
   }
 
@@ -241,6 +281,14 @@ class $VerdictsTable extends Verdicts
         DriftSqlType.string,
         data['${effectivePrefix}bonus_type'],
       ),
+      contendersJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}contenders_json'],
+      )!,
+      randomJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}random_json'],
+      ),
     );
   }
 
@@ -277,6 +325,12 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
 
   /// Bonus type enum name (joke, funFact, tip, story).
   final String? bonusType;
+
+  /// Original case order; old rows fall back to their stored AI ranking.
+  final String contendersJson;
+
+  /// Null means an AI verdict. Otherwise stores method and the exact offline quote.
+  final String? randomJson;
   const VerdictRow({
     required this.id,
     required this.winnerJson,
@@ -287,6 +341,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     required this.createdAt,
     this.bonus,
     this.bonusType,
+    required this.contendersJson,
+    this.randomJson,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -303,6 +359,10 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     }
     if (!nullToAbsent || bonusType != null) {
       map['bonus_type'] = Variable<String>(bonusType);
+    }
+    map['contenders_json'] = Variable<String>(contendersJson);
+    if (!nullToAbsent || randomJson != null) {
+      map['random_json'] = Variable<String>(randomJson);
     }
     return map;
   }
@@ -322,6 +382,10 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       bonusType: bonusType == null && nullToAbsent
           ? const Value.absent()
           : Value(bonusType),
+      contendersJson: Value(contendersJson),
+      randomJson: randomJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(randomJson),
     );
   }
 
@@ -340,6 +404,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
       bonus: serializer.fromJson<String?>(json['bonus']),
       bonusType: serializer.fromJson<String?>(json['bonusType']),
+      contendersJson: serializer.fromJson<String>(json['contendersJson']),
+      randomJson: serializer.fromJson<String?>(json['randomJson']),
     );
   }
   @override
@@ -355,6 +421,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       'createdAt': serializer.toJson<DateTime>(createdAt),
       'bonus': serializer.toJson<String?>(bonus),
       'bonusType': serializer.toJson<String?>(bonusType),
+      'contendersJson': serializer.toJson<String>(contendersJson),
+      'randomJson': serializer.toJson<String?>(randomJson),
     };
   }
 
@@ -368,6 +436,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     DateTime? createdAt,
     Value<String?> bonus = const Value.absent(),
     Value<String?> bonusType = const Value.absent(),
+    String? contendersJson,
+    Value<String?> randomJson = const Value.absent(),
   }) => VerdictRow(
     id: id ?? this.id,
     winnerJson: winnerJson ?? this.winnerJson,
@@ -378,6 +448,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     createdAt: createdAt ?? this.createdAt,
     bonus: bonus.present ? bonus.value : this.bonus,
     bonusType: bonusType.present ? bonusType.value : this.bonusType,
+    contendersJson: contendersJson ?? this.contendersJson,
+    randomJson: randomJson.present ? randomJson.value : this.randomJson,
   );
   VerdictRow copyWithCompanion(VerdictsCompanion data) {
     return VerdictRow(
@@ -394,6 +466,12 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       bonus: data.bonus.present ? data.bonus.value : this.bonus,
       bonusType: data.bonusType.present ? data.bonusType.value : this.bonusType,
+      contendersJson: data.contendersJson.present
+          ? data.contendersJson.value
+          : this.contendersJson,
+      randomJson: data.randomJson.present
+          ? data.randomJson.value
+          : this.randomJson,
     );
   }
 
@@ -408,7 +486,9 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
           ..write('judgeTone: $judgeTone, ')
           ..write('createdAt: $createdAt, ')
           ..write('bonus: $bonus, ')
-          ..write('bonusType: $bonusType')
+          ..write('bonusType: $bonusType, ')
+          ..write('contendersJson: $contendersJson, ')
+          ..write('randomJson: $randomJson')
           ..write(')'))
         .toString();
   }
@@ -424,6 +504,8 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
     createdAt,
     bonus,
     bonusType,
+    contendersJson,
+    randomJson,
   );
   @override
   bool operator ==(Object other) =>
@@ -437,7 +519,9 @@ class VerdictRow extends DataClass implements Insertable<VerdictRow> {
           other.judgeTone == this.judgeTone &&
           other.createdAt == this.createdAt &&
           other.bonus == this.bonus &&
-          other.bonusType == this.bonusType);
+          other.bonusType == this.bonusType &&
+          other.contendersJson == this.contendersJson &&
+          other.randomJson == this.randomJson);
 }
 
 class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
@@ -450,6 +534,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
   final Value<DateTime> createdAt;
   final Value<String?> bonus;
   final Value<String?> bonusType;
+  final Value<String> contendersJson;
+  final Value<String?> randomJson;
   final Value<int> rowid;
   const VerdictsCompanion({
     this.id = const Value.absent(),
@@ -461,6 +547,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     this.createdAt = const Value.absent(),
     this.bonus = const Value.absent(),
     this.bonusType = const Value.absent(),
+    this.contendersJson = const Value.absent(),
+    this.randomJson = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   VerdictsCompanion.insert({
@@ -473,6 +561,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     required DateTime createdAt,
     this.bonus = const Value.absent(),
     this.bonusType = const Value.absent(),
+    this.contendersJson = const Value.absent(),
+    this.randomJson = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        winnerJson = Value(winnerJson),
@@ -491,6 +581,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     Expression<DateTime>? createdAt,
     Expression<String>? bonus,
     Expression<String>? bonusType,
+    Expression<String>? contendersJson,
+    Expression<String>? randomJson,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -503,6 +595,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
       if (createdAt != null) 'created_at': createdAt,
       if (bonus != null) 'bonus': bonus,
       if (bonusType != null) 'bonus_type': bonusType,
+      if (contendersJson != null) 'contenders_json': contendersJson,
+      if (randomJson != null) 'random_json': randomJson,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -517,6 +611,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     Value<DateTime>? createdAt,
     Value<String?>? bonus,
     Value<String?>? bonusType,
+    Value<String>? contendersJson,
+    Value<String?>? randomJson,
     Value<int>? rowid,
   }) {
     return VerdictsCompanion(
@@ -529,6 +625,8 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
       createdAt: createdAt ?? this.createdAt,
       bonus: bonus ?? this.bonus,
       bonusType: bonusType ?? this.bonusType,
+      contendersJson: contendersJson ?? this.contendersJson,
+      randomJson: randomJson ?? this.randomJson,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -563,6 +661,12 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
     if (bonusType.present) {
       map['bonus_type'] = Variable<String>(bonusType.value);
     }
+    if (contendersJson.present) {
+      map['contenders_json'] = Variable<String>(contendersJson.value);
+    }
+    if (randomJson.present) {
+      map['random_json'] = Variable<String>(randomJson.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -581,6 +685,235 @@ class VerdictsCompanion extends UpdateCompanion<VerdictRow> {
           ..write('createdAt: $createdAt, ')
           ..write('bonus: $bonus, ')
           ..write('bonusType: $bonusType, ')
+          ..write('contendersJson: $contendersJson, ')
+          ..write('randomJson: $randomJson, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $AiUsesTable extends AiUses with TableInfo<$AiUsesTable, AiUse> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AiUsesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _operationIdMeta = const VerificationMeta(
+    'operationId',
+  );
+  @override
+  late final GeneratedColumn<String> operationId = GeneratedColumn<String>(
+    'operation_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _chargedFreeMeta = const VerificationMeta(
+    'chargedFree',
+  );
+  @override
+  late final GeneratedColumn<bool> chargedFree = GeneratedColumn<bool>(
+    'charged_free',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("charged_free" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [operationId, chargedFree];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'ai_uses';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<AiUse> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('operation_id')) {
+      context.handle(
+        _operationIdMeta,
+        operationId.isAcceptableOrUnknown(
+          data['operation_id']!,
+          _operationIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_operationIdMeta);
+    }
+    if (data.containsKey('charged_free')) {
+      context.handle(
+        _chargedFreeMeta,
+        chargedFree.isAcceptableOrUnknown(
+          data['charged_free']!,
+          _chargedFreeMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {operationId};
+  @override
+  AiUse map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AiUse(
+      operationId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}operation_id'],
+      )!,
+      chargedFree: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}charged_free'],
+      )!,
+    );
+  }
+
+  @override
+  $AiUsesTable createAlias(String alias) {
+    return $AiUsesTable(attachedDatabase, alias);
+  }
+}
+
+class AiUse extends DataClass implements Insertable<AiUse> {
+  final String operationId;
+  final bool chargedFree;
+  const AiUse({required this.operationId, required this.chargedFree});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['operation_id'] = Variable<String>(operationId);
+    map['charged_free'] = Variable<bool>(chargedFree);
+    return map;
+  }
+
+  AiUsesCompanion toCompanion(bool nullToAbsent) {
+    return AiUsesCompanion(
+      operationId: Value(operationId),
+      chargedFree: Value(chargedFree),
+    );
+  }
+
+  factory AiUse.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AiUse(
+      operationId: serializer.fromJson<String>(json['operationId']),
+      chargedFree: serializer.fromJson<bool>(json['chargedFree']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'operationId': serializer.toJson<String>(operationId),
+      'chargedFree': serializer.toJson<bool>(chargedFree),
+    };
+  }
+
+  AiUse copyWith({String? operationId, bool? chargedFree}) => AiUse(
+    operationId: operationId ?? this.operationId,
+    chargedFree: chargedFree ?? this.chargedFree,
+  );
+  AiUse copyWithCompanion(AiUsesCompanion data) {
+    return AiUse(
+      operationId: data.operationId.present
+          ? data.operationId.value
+          : this.operationId,
+      chargedFree: data.chargedFree.present
+          ? data.chargedFree.value
+          : this.chargedFree,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AiUse(')
+          ..write('operationId: $operationId, ')
+          ..write('chargedFree: $chargedFree')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(operationId, chargedFree);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AiUse &&
+          other.operationId == this.operationId &&
+          other.chargedFree == this.chargedFree);
+}
+
+class AiUsesCompanion extends UpdateCompanion<AiUse> {
+  final Value<String> operationId;
+  final Value<bool> chargedFree;
+  final Value<int> rowid;
+  const AiUsesCompanion({
+    this.operationId = const Value.absent(),
+    this.chargedFree = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  AiUsesCompanion.insert({
+    required String operationId,
+    this.chargedFree = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : operationId = Value(operationId);
+  static Insertable<AiUse> custom({
+    Expression<String>? operationId,
+    Expression<bool>? chargedFree,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (operationId != null) 'operation_id': operationId,
+      if (chargedFree != null) 'charged_free': chargedFree,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  AiUsesCompanion copyWith({
+    Value<String>? operationId,
+    Value<bool>? chargedFree,
+    Value<int>? rowid,
+  }) {
+    return AiUsesCompanion(
+      operationId: operationId ?? this.operationId,
+      chargedFree: chargedFree ?? this.chargedFree,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (operationId.present) {
+      map['operation_id'] = Variable<String>(operationId.value);
+    }
+    if (chargedFree.present) {
+      map['charged_free'] = Variable<bool>(chargedFree.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AiUsesCompanion(')
+          ..write('operationId: $operationId, ')
+          ..write('chargedFree: $chargedFree, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -591,11 +924,12 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $VerdictsTable verdicts = $VerdictsTable(this);
+  late final $AiUsesTable aiUses = $AiUsesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [verdicts];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [verdicts, aiUses];
 }
 
 typedef $$VerdictsTableCreateCompanionBuilder =
@@ -609,6 +943,8 @@ typedef $$VerdictsTableCreateCompanionBuilder =
       required DateTime createdAt,
       Value<String?> bonus,
       Value<String?> bonusType,
+      Value<String> contendersJson,
+      Value<String?> randomJson,
       Value<int> rowid,
     });
 typedef $$VerdictsTableUpdateCompanionBuilder =
@@ -622,6 +958,8 @@ typedef $$VerdictsTableUpdateCompanionBuilder =
       Value<DateTime> createdAt,
       Value<String?> bonus,
       Value<String?> bonusType,
+      Value<String> contendersJson,
+      Value<String?> randomJson,
       Value<int> rowid,
     });
 
@@ -676,6 +1014,16 @@ class $$VerdictsTableFilterComposer
 
   ColumnFilters<String> get bonusType => $composableBuilder(
     column: $table.bonusType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get contendersJson => $composableBuilder(
+    column: $table.contendersJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get randomJson => $composableBuilder(
+    column: $table.randomJson,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -733,6 +1081,16 @@ class $$VerdictsTableOrderingComposer
     column: $table.bonusType,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get contendersJson => $composableBuilder(
+    column: $table.contendersJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get randomJson => $composableBuilder(
+    column: $table.randomJson,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$VerdictsTableAnnotationComposer
@@ -774,6 +1132,16 @@ class $$VerdictsTableAnnotationComposer
 
   GeneratedColumn<String> get bonusType =>
       $composableBuilder(column: $table.bonusType, builder: (column) => column);
+
+  GeneratedColumn<String> get contendersJson => $composableBuilder(
+    column: $table.contendersJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get randomJson => $composableBuilder(
+    column: $table.randomJson,
+    builder: (column) => column,
+  );
 }
 
 class $$VerdictsTableTableManager
@@ -816,6 +1184,8 @@ class $$VerdictsTableTableManager
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<String?> bonus = const Value.absent(),
                 Value<String?> bonusType = const Value.absent(),
+                Value<String> contendersJson = const Value.absent(),
+                Value<String?> randomJson = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => VerdictsCompanion(
                 id: id,
@@ -827,6 +1197,8 @@ class $$VerdictsTableTableManager
                 createdAt: createdAt,
                 bonus: bonus,
                 bonusType: bonusType,
+                contendersJson: contendersJson,
+                randomJson: randomJson,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -840,6 +1212,8 @@ class $$VerdictsTableTableManager
                 required DateTime createdAt,
                 Value<String?> bonus = const Value.absent(),
                 Value<String?> bonusType = const Value.absent(),
+                Value<String> contendersJson = const Value.absent(),
+                Value<String?> randomJson = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => VerdictsCompanion.insert(
                 id: id,
@@ -851,6 +1225,8 @@ class $$VerdictsTableTableManager
                 createdAt: createdAt,
                 bonus: bonus,
                 bonusType: bonusType,
+                contendersJson: contendersJson,
+                randomJson: randomJson,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
@@ -875,10 +1251,153 @@ typedef $$VerdictsTableProcessedTableManager =
       VerdictRow,
       PrefetchHooks Function()
     >;
+typedef $$AiUsesTableCreateCompanionBuilder =
+    AiUsesCompanion Function({
+      required String operationId,
+      Value<bool> chargedFree,
+      Value<int> rowid,
+    });
+typedef $$AiUsesTableUpdateCompanionBuilder =
+    AiUsesCompanion Function({
+      Value<String> operationId,
+      Value<bool> chargedFree,
+      Value<int> rowid,
+    });
+
+class $$AiUsesTableFilterComposer
+    extends Composer<_$AppDatabase, $AiUsesTable> {
+  $$AiUsesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get operationId => $composableBuilder(
+    column: $table.operationId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get chargedFree => $composableBuilder(
+    column: $table.chargedFree,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$AiUsesTableOrderingComposer
+    extends Composer<_$AppDatabase, $AiUsesTable> {
+  $$AiUsesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get operationId => $composableBuilder(
+    column: $table.operationId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get chargedFree => $composableBuilder(
+    column: $table.chargedFree,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$AiUsesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $AiUsesTable> {
+  $$AiUsesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get operationId => $composableBuilder(
+    column: $table.operationId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get chargedFree => $composableBuilder(
+    column: $table.chargedFree,
+    builder: (column) => column,
+  );
+}
+
+class $$AiUsesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $AiUsesTable,
+          AiUse,
+          $$AiUsesTableFilterComposer,
+          $$AiUsesTableOrderingComposer,
+          $$AiUsesTableAnnotationComposer,
+          $$AiUsesTableCreateCompanionBuilder,
+          $$AiUsesTableUpdateCompanionBuilder,
+          (AiUse, BaseReferences<_$AppDatabase, $AiUsesTable, AiUse>),
+          AiUse,
+          PrefetchHooks Function()
+        > {
+  $$AiUsesTableTableManager(_$AppDatabase db, $AiUsesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$AiUsesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AiUsesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AiUsesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> operationId = const Value.absent(),
+                Value<bool> chargedFree = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => AiUsesCompanion(
+                operationId: operationId,
+                chargedFree: chargedFree,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String operationId,
+                Value<bool> chargedFree = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => AiUsesCompanion.insert(
+                operationId: operationId,
+                chargedFree: chargedFree,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$AiUsesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $AiUsesTable,
+      AiUse,
+      $$AiUsesTableFilterComposer,
+      $$AiUsesTableOrderingComposer,
+      $$AiUsesTableAnnotationComposer,
+      $$AiUsesTableCreateCompanionBuilder,
+      $$AiUsesTableUpdateCompanionBuilder,
+      (AiUse, BaseReferences<_$AppDatabase, $AiUsesTable, AiUse>),
+      AiUse,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
   $$VerdictsTableTableManager get verdicts =>
       $$VerdictsTableTableManager(_db, _db.verdicts);
+  $$AiUsesTableTableManager get aiUses =>
+      $$AiUsesTableTableManager(_db, _db.aiUses);
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:uuid/uuid.dart';
 import 'dart:ui';
 
 import 'package:firebase_ai/firebase_ai.dart';
@@ -313,6 +314,13 @@ Ejemplo para 3 opciones donde la opcion 2 gana:
         rankings.add(options[index]);
       }
 
+      if (rankings.length != options.length ||
+          rankings.map((o) => o.id).toSet().length != options.length ||
+          rankings.first.id != options[winnerIndex].id ||
+          verdict.trim().isEmpty) {
+        throw const AiServiceException('Incomplete or inconsistent AI ranking');
+      }
+
       // Parse optional bonus content
       final bonusTypeStr = json['bonus_type'] as String?;
       final bonus = json['bonus'] as String?;
@@ -323,7 +331,8 @@ Ejemplo para 3 opciones donde la opcion 2 gana:
       }
 
       return Verdict(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        id: const Uuid().v4(),
+        contenders: List.unmodifiable(options),
         winner: options[winnerIndex],
         rankings: rankings,
         reasoning: verdict,

@@ -24,6 +24,17 @@ abstract final class AppColors {
   // ACCENT - Sharp Contrast
   // ============================================
 
+  /// Diner sign gradient endpoints, shared by native mastheads.
+  static const Color signHighlight = Color(0xFFFF803D);
+  static const Color signShade = Color(0xFFFA642E);
+
+  /// Porcelain depth and equal-chance wheel segment colors.
+  static const Color porcelainShadow = Color(0xFFE3D8BF);
+  static const Color porcelainRim = Color(0xFFE7DAC0);
+  static const Color sage = Color(0xFFA9C27D);
+  static const Color peach = Color(0xFFF3B7A5);
+  static const Color oat = Color(0xFFECE3CD);
+
   /// Deep Navy - Almost black, provides PUNCH
   /// Think: Judge's robe, serious authority, text
   static const Color accent = Color(0xFF1A1A2E);

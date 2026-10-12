@@ -1,0 +1,587 @@
+{
+  "version": 1,
+  "purpose": "Offline random verdict banter; never presented as AI reasoning or food analysis.",
+  "selection": "Shuffle bag per tone + method + locale; no repeats until every eligible line is used, and no immediate boundary repeat.",
+  "entries": [
+    {
+      "id": "stern-01",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The court has ruled. Please direct all objections to your napkin.",
+        "es": "El tribunal ha decidido. Dirige tus objeciones a la servilleta."
+      }
+    },
+    {
+      "id": "stern-02",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A fair draw. A final ruling. Dinner may proceed.",
+        "es": "Sorteo justo. Veredicto final. Pueden empezar a comer."
+      }
+    },
+    {
+      "id": "stern-03",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Deliberation is over. Dinner is now in session.",
+        "es": "Terminó la deliberación. Comienza la cena."
+      }
+    },
+    {
+      "id": "stern-04",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "This court recognizes your right to eat already.",
+        "es": "Este tribunal reconoce tu derecho a comer de una vez."
+      }
+    },
+    {
+      "id": "stern-05",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The record will show: indecision has been dismissed.",
+        "es": "Que conste en acta: la indecisión queda desestimada."
+      }
+    },
+    {
+      "id": "stern-06",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A verdict has been reached. Kindly alert the cutlery.",
+        "es": "Ya hay veredicto. Notifiquen a los cubiertos."
+      }
+    },
+    {
+      "id": "stern-07",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Chance chose. I made it official.",
+        "es": "El azar eligió. Yo lo hice oficial."
+      }
+    },
+    {
+      "id": "stern-08",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "No further scrolling is required by this court.",
+        "es": "Este tribunal no exige seguir mirando el menú."
+      }
+    },
+    {
+      "id": "sassy-01",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "You brought the options. I brought the dramatic pause.",
+        "es": "Tú trajiste las opciones. Yo, la pausa dramática."
+      }
+    },
+    {
+      "id": "sassy-02",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The hardest part is over. Now find a fork.",
+        "es": "Lo más difícil ya pasó. Ahora busca un tenedor."
+      }
+    },
+    {
+      "id": "sassy-03",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Another menu debate, expertly interrupted.",
+        "es": "Otro debate sobre el menú, interrumpido con estilo."
+      }
+    },
+    {
+      "id": "sassy-04",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A very official way to say: let's eat.",
+        "es": "Una forma muy oficial de decir: a comer."
+      }
+    },
+    {
+      "id": "sassy-05",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "My robe says judge. My schedule says dinner.",
+        "es": "Mi toga dice juez. Mi agenda dice cena."
+      }
+    },
+    {
+      "id": "sassy-06",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Dinner picked. Group chat spared.",
+        "es": "Cena elegida. Chat de grupo a salvo."
+      }
+    },
+    {
+      "id": "sassy-07",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "I accept thank-you notes written on napkins.",
+        "es": "Acepto notas de agradecimiento en servilletas."
+      }
+    },
+    {
+      "id": "sassy-08",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The plot twist is that we finally picked something.",
+        "es": "El giro de la trama: por fin elegimos algo."
+      }
+    },
+    {
+      "id": "enthusiastic-01",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "We have a winner! Give that dinner a tiny standing ovation.",
+        "es": "¡Tenemos ganador! Esa cena merece una ovación."
+      }
+    },
+    {
+      "id": "enthusiastic-02",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Order up! Your dinner adventure starts right here.",
+        "es": "¡Orden lista! Aquí empieza tu aventura de hoy."
+      }
+    },
+    {
+      "id": "enthusiastic-03",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Case closed, table open. Let's celebrate the little wins!",
+        "es": "Caso cerrado, mesa lista. ¡Celebremos esta pequeña victoria!"
+      }
+    },
+    {
+      "id": "enthusiastic-04",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "One lucky pick. One less thing to decide. Hooray!",
+        "es": "Una elección al azar. Una decisión menos. ¡Qué bien!"
+      }
+    },
+    {
+      "id": "enthusiastic-05",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Sound the dinner bell! We made a decision!",
+        "es": "¡Que suene la campana! ¡Ya decidimos!"
+      }
+    },
+    {
+      "id": "enthusiastic-06",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A round of applause for finally choosing dinner!",
+        "es": "¡Un aplauso por haber elegido la cena!"
+      }
+    },
+    {
+      "id": "enthusiastic-07",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "That's our pick! The court is positively delighted.",
+        "es": "¡Esa es la elección! El tribunal está encantado."
+      }
+    },
+    {
+      "id": "enthusiastic-08",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The menu mystery is solved. On to the eating part!",
+        "es": "Misterio del menú resuelto. ¡Ahora toca comer!"
+      }
+    },
+    {
+      "id": "chill-01",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "There we go. One less thing on your plate.",
+        "es": "Listo. Una decisión menos de qué preocuparse."
+      }
+    },
+    {
+      "id": "chill-02",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Let chance do the choosing. You can do the eating.",
+        "es": "Que el azar elija. Tú encárgate de comer."
+      }
+    },
+    {
+      "id": "chill-03",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A little luck, a little lunch. Works for me.",
+        "es": "Un poco de suerte y algo de comer. Me parece bien."
+      }
+    },
+    {
+      "id": "chill-04",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "No more menu loops. Take it from here.",
+        "es": "Se acabaron las vueltas al menú. Te toca disfrutar."
+      }
+    },
+    {
+      "id": "chill-05",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Easy does it. Your pick is ready.",
+        "es": "Con calma. Tu elección está lista."
+      }
+    },
+    {
+      "id": "chill-06",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "That's settled. Take your time and enjoy.",
+        "es": "Asunto resuelto. Disfruta sin prisa."
+      }
+    },
+    {
+      "id": "chill-07",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The decision part is done. Nice.",
+        "es": "Ya terminamos de decidir. Qué bien."
+      }
+    },
+    {
+      "id": "chill-08",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "We kept it simple. Sometimes that's the whole plan.",
+        "es": "Lo hicimos sencillo. A veces, ese es todo el plan."
+      }
+    },
+    {
+      "id": "wheel-01",
+      "tone": "any",
+      "methods": [
+        "wheel"
+      ],
+      "text": {
+        "en": "The plate has spoken. The court will hear no hangry objections.",
+        "es": "El plato ha hablado. El tribunal no admite objeciones con hambre."
+      }
+    },
+    {
+      "id": "wheel-02",
+      "tone": "any",
+      "methods": [
+        "wheel"
+      ],
+      "text": {
+        "en": "Round and round we went. Dinner is where we landed.",
+        "es": "Dimos unas cuantas vueltas. Y aterrizamos en la cena."
+      }
+    },
+    {
+      "id": "wheel-03",
+      "tone": "any",
+      "methods": [
+        "wheel"
+      ],
+      "text": {
+        "en": "Equal slices of luck. One very official dinner.",
+        "es": "Porciones iguales de suerte. Una cena muy oficial."
+      }
+    },
+    {
+      "id": "ticket-01",
+      "tone": "any",
+      "methods": [
+        "ticket"
+      ],
+      "text": {
+        "en": "Your number is up. In the deliciously ordinary dinner sense.",
+        "es": "Salió tu número. Y esta vez solo significa que hay cena."
+      }
+    },
+    {
+      "id": "ticket-02",
+      "tone": "any",
+      "methods": [
+        "ticket"
+      ],
+      "text": {
+        "en": "One ticket pulled. One menu debate retired.",
+        "es": "Un boleto elegido. Un debate del menú jubilado."
+      }
+    },
+    {
+      "id": "ticket-03",
+      "tone": "any",
+      "methods": [
+        "ticket"
+      ],
+      "text": {
+        "en": "Order up! This little ticket has big dinner energy.",
+        "es": "¡Orden lista! Este boleto viene con ganas de cenar."
+      }
+    },
+    {
+      "id": "cloche-01",
+      "tone": "any",
+      "methods": [
+        "cloche"
+      ],
+      "text": {
+        "en": "A little suspense. A very official reveal.",
+        "es": "Un poco de suspenso. Una revelación muy oficial."
+      }
+    },
+    {
+      "id": "cloche-02",
+      "tone": "any",
+      "methods": [
+        "cloche"
+      ],
+      "text": {
+        "en": "The lid is lifted. The dinner mystery is over.",
+        "es": "Levantamos la tapa. Terminó el misterio de la cena."
+      }
+    },
+    {
+      "id": "cloche-03",
+      "tone": "any",
+      "methods": [
+        "cloche"
+      ],
+      "text": {
+        "en": "Consider this the court's grand ta-da.",
+        "es": "Este es el gran ¡tachán! del tribunal."
+      }
+    },
+    {
+      "id": "coin-01",
+      "tone": "any",
+      "methods": [
+        "coin"
+      ],
+      "text": {
+        "en": "Two sides. One answer. The coin has done its duty.",
+        "es": "Dos caras. Una respuesta. La moneda cumplió su deber."
+      }
+    },
+    {
+      "id": "coin-02",
+      "tone": "any",
+      "methods": [
+        "coin"
+      ],
+      "text": {
+        "en": "A small flip for the court. A big relief for dinner.",
+        "es": "Un lanzamiento para el tribunal. Un alivio para la cena."
+      }
+    },
+    {
+      "id": "coin-03",
+      "tone": "any",
+      "methods": [
+        "coin"
+      ],
+      "text": {
+        "en": "The coin landed. The menu debate did too.",
+        "es": "La moneda cayó. Y el debate del menú también."
+      }
+    }
+  ]
+}

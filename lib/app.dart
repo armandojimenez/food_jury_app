@@ -15,7 +15,10 @@ import 'l10n/app_localizations.dart';
 /// - Localization (English & Spanish)
 /// - Retro diner courtroom theme with dark mode support
 class FoodJuryApp extends ConsumerWidget {
-  const FoodJuryApp({super.key});
+  const FoodJuryApp({this.locale, super.key});
+
+  /// Optional locale for isolated previews; production follows the device.
+  final Locale? locale;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,6 +42,7 @@ class FoodJuryApp extends ConsumerWidget {
         Locale('en', ''), // English
         Locale('es', ''), // Spanish
       ],
+      locale: locale,
       localeResolutionCallback: (locale, supportedLocales) {
         // Check if the current device locale is supported
         if (locale != null) {

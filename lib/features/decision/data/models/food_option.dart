@@ -12,6 +12,7 @@ class FoodOption extends Equatable {
     required this.name,
     this.notes,
     this.imageBytes,
+    this.illustrationId,
   });
 
   /// Unique identifier for this option.
@@ -27,11 +28,25 @@ class FoodOption extends Equatable {
   /// Used for display and AI analysis.
   final Uint8List? imageBytes;
 
+  /// User-selected decorative artwork, never submitted as photo evidence.
+  final String? illustrationId;
+
+  /// An independent, immutable copy for a draw or a saved case.
+  FoodOption snapshot() => FoodOption(
+    id: id,
+    name: name,
+    notes: notes,
+    illustrationId: illustrationId,
+    imageBytes: imageBytes == null
+        ? null
+        : Uint8List.fromList(imageBytes!).asUnmodifiableView(),
+  );
+
   /// Whether this option has an image.
   bool get hasImage => imageBytes != null && imageBytes!.isNotEmpty;
 
   @override
-  List<Object?> get props => [id, name, notes, imageBytes];
+  List<Object?> get props => [id, name, notes, imageBytes, illustrationId];
 
   /// Creates a copy with updated fields.
   FoodOption copyWith({
@@ -40,12 +55,14 @@ class FoodOption extends Equatable {
     String? notes,
     Uint8List? imageBytes,
     bool clearImage = false,
+    String? illustrationId,
   }) {
     return FoodOption(
       id: id ?? this.id,
       name: name ?? this.name,
       notes: notes ?? this.notes,
       imageBytes: clearImage ? null : (imageBytes ?? this.imageBytes),
+      illustrationId: illustrationId ?? this.illustrationId,
     );
   }
 }

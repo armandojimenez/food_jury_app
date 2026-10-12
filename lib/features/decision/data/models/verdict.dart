@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import 'food_option.dart';
 import 'objective.dart';
+import '../../../lucky/data/decision_case.dart';
 
 /// Represents the result of a food decision verdict.
 ///
@@ -18,7 +19,24 @@ class Verdict extends Equatable {
     required this.createdAt,
     this.bonus,
     this.bonusType,
+    this.contenders = const [],
+    this.random,
   });
+
+  /// Random verdicts contain recorded draw facts, never AI rankings/reasoning.
+  final RandomRuling? random;
+  final List<FoodOption> contenders;
+  bool get isRandom => random != null;
+  List<FoodOption> get caseOptions =>
+      contenders.isEmpty ? rankings : contenders;
+  String get displayRuling => random?.quote ?? reasoning;
+
+  /// Freeze nested collections and photo buffers at the persistence boundary.
+  Verdict snapshot() => copyWith(
+    winner: winner.snapshot(),
+    rankings: List.unmodifiable(rankings.map((o) => o.snapshot())),
+    contenders: List.unmodifiable(caseOptions.map((o) => o.snapshot())),
+  );
 
   /// Unique identifier for this verdict.
   final String id;
@@ -58,6 +76,8 @@ class Verdict extends Equatable {
     createdAt,
     bonus,
     bonusType,
+    contenders,
+    random,
   ];
 
   /// Creates a copy with optional overrides.
@@ -71,6 +91,8 @@ class Verdict extends Equatable {
     DateTime? createdAt,
     String? bonus,
     BonusType? bonusType,
+    List<FoodOption>? contenders,
+    RandomRuling? random,
   }) {
     return Verdict(
       id: id ?? this.id,
@@ -82,6 +104,8 @@ class Verdict extends Equatable {
       createdAt: createdAt ?? this.createdAt,
       bonus: bonus ?? this.bonus,
       bonusType: bonusType ?? this.bonusType,
+      contenders: contenders ?? this.contenders,
+      random: random ?? this.random,
     );
   }
 }
@@ -190,4 +214,36 @@ extension JudgeToneExtension on JudgeTone {
         return 'So like, here\'s the deal...';
     }
   }
+}
+
+/// Immutable offline wording and method captured when the draw takes place.
+class RandomRuling extends Equatable {
+  const RandomRuling({
+    required this.method,
+    required this.quoteId,
+    required this.quote,
+    required this.locale,
+    required this.catalogVersion,
+  });
+  final RandomMethod method;
+  final String quoteId;
+  final String quote;
+  final String locale;
+  final int catalogVersion;
+  Map<String, Object> toJson() => {
+    'method': method.name,
+    'quoteId': quoteId,
+    'quote': quote,
+    'locale': locale,
+    'catalogVersion': catalogVersion,
+  };
+  factory RandomRuling.fromJson(Map<String, dynamic> json) => RandomRuling(
+    method: RandomMethod.values.byName(json['method'] as String),
+    quoteId: json['quoteId'] as String,
+    quote: json['quote'] as String,
+    locale: json['locale'] as String,
+    catalogVersion: json['catalogVersion'] as int,
+  );
+  @override
+  List<Object?> get props => [method, quoteId, quote, locale, catalogVersion];
 }

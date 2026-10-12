@@ -1,0 +1,364 @@
+{
+  "scope": "Interactive design exploration; no native AI quota, billing, or random integration in this turn.",
+  "approvedSnapshot": {
+    "branch": "main",
+    "commit": "df64ce5e09dae110e9fa30b6c62c122f44f0ed10",
+    "remoteVerified": true,
+    "flutterAnalyze": "No issues",
+    "flutterTests": 50
+  },
+  "layout": {
+    "errors": [],
+    "layout": [
+      {
+        "width": 736,
+        "name": "entrance",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 900.15625,
+        "text": "Same judge.New tricks."
+      },
+      {
+        "width": 736,
+        "name": "case",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 935.421875,
+        "text": "Who’s on the menu?"
+      },
+      {
+        "width": 736,
+        "name": "methods",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 1008.453125,
+        "text": "A little wisdom.Or a little luck."
+      },
+      {
+        "width": 736,
+        "name": "plate",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 927.75,
+        "text": "Dinner goesround and round."
+      },
+      {
+        "width": 736,
+        "name": "ticket",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 927.75,
+        "text": "Your orderis in the bag."
+      },
+      {
+        "width": 736,
+        "name": "cloche",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 927.75,
+        "text": "A little dinnerdrama."
+      },
+      {
+        "width": 736,
+        "name": "coin",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 891.75,
+        "text": "Let the cointake the stand."
+      },
+      {
+        "width": 736,
+        "name": "verdict",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 984.734375,
+        "text": "Tacosit is!"
+      },
+      {
+        "width": 736,
+        "name": "history",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 846,
+        "text": "Dinner, on record."
+      },
+      {
+        "width": 736,
+        "name": "last-ai",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 871.359375,
+        "text": "Your last freeAI ruling."
+      },
+      {
+        "width": 736,
+        "name": "plus",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 963.515625,
+        "text": "For the tough calls."
+      },
+      {
+        "width": 736,
+        "name": "new-free",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 900.15625,
+        "text": "Same judge.New tricks."
+      },
+      {
+        "width": 390,
+        "name": "entrance",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 849.4375,
+        "text": "Same judge.New tricks."
+      },
+      {
+        "width": 390,
+        "name": "case",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 925.5625,
+        "text": "Who’s on the menu?"
+      },
+      {
+        "width": 390,
+        "name": "methods",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 964.734375,
+        "text": "A little wisdom.Or a little luck."
+      },
+      {
+        "width": 390,
+        "name": "plate",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 865.03125,
+        "text": "Dinner goesround and round."
+      },
+      {
+        "width": 390,
+        "name": "ticket",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 865.03125,
+        "text": "Your orderis in the bag."
+      },
+      {
+        "width": 390,
+        "name": "cloche",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 865.03125,
+        "text": "A little dinnerdrama."
+      },
+      {
+        "width": 390,
+        "name": "coin",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 849.328125,
+        "text": "Let the cointake the stand."
+      },
+      {
+        "width": 390,
+        "name": "verdict",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 930.140625,
+        "text": "Tacosit is!"
+      },
+      {
+        "width": 390,
+        "name": "history",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 846,
+        "text": "Dinner, on record."
+      },
+      {
+        "width": 390,
+        "name": "last-ai",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 888.4375,
+        "text": "Your last freeAI ruling."
+      },
+      {
+        "width": 390,
+        "name": "plus",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 1027.125,
+        "text": "For the tough calls."
+      },
+      {
+        "width": 390,
+        "name": "new-free",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 849.4375,
+        "text": "Same judge.New tricks."
+      },
+      {
+        "width": 320,
+        "name": "entrance",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 895.734375,
+        "text": "Same judge.New tricks."
+      },
+      {
+        "width": 320,
+        "name": "case",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 1004.125,
+        "text": "Who’s on the menu?"
+      },
+      {
+        "width": 320,
+        "name": "methods",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 1134.421875,
+        "text": "A little wisdom.Or a little luck."
+      },
+      {
+        "width": 320,
+        "name": "plate",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 955.890625,
+        "text": "Dinner goesround and round."
+      },
+      {
+        "width": 320,
+        "name": "ticket",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 902.71875,
+        "text": "Your orderis in the bag."
+      },
+      {
+        "width": 320,
+        "name": "cloche",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 902.71875,
+        "text": "A little dinnerdrama."
+      },
+      {
+        "width": 320,
+        "name": "coin",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 866.71875,
+        "text": "Let the cointake the stand."
+      },
+      {
+        "width": 320,
+        "name": "verdict",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 981.6875,
+        "text": "Tacosit is!"
+      },
+      {
+        "width": 320,
+        "name": "history",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 859,
+        "text": "Dinner, on record."
+      },
+      {
+        "width": 320,
+        "name": "last-ai",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 914.4375,
+        "text": "Your last freeAI ruling."
+      },
+      {
+        "width": 320,
+        "name": "plus",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 1108.921875,
+        "text": "For the tough calls."
+      },
+      {
+        "width": 320,
+        "name": "new-free",
+        "overflow": false,
+        "brokenImages": 0,
+        "height": 875.4375,
+        "text": "Same judge.New tricks."
+      }
+    ]
+  },
+  "interaction": {
+    "checks": [
+      "Primary flow; unavailable coin explains two-contender requirement",
+      "wheel: full animated draw ends in a valid winner; replay retains winner and quote",
+      "ticket: full animated draw ends in a valid winner; replay retains winner and quote",
+      "cloche: full animated draw ends in a valid winner; replay retains winner and quote",
+      "coin: full animated draw ends in a valid winner; replay retains winner and quote",
+      "Changing OS reduced motion during a spin reveals immediately",
+      "Leaving a running animation cancels its timers and avoids surprise navigation",
+      "All 11 eligible stern/wheel sayings occur once before a repeat",
+      "Last AI warning and safe simulated AI boundary do not consume credits",
+      "Depleted AI leads to optional Plus; both prices correct and Lucky remains accessible",
+      "Lucky rulings leave lifetime AI balance unchanged",
+      "Saved photo evidence is immutable; another method from history restores that case",
+      "Saving more than eight verdicts preserves full session history",
+      "Delayed photo read preserves intervening typed edits and keyboard focus",
+      "Offline sayings support Spanish",
+      "Reveal now skips theatrics without changing the chosen result",
+      "Tablet splits the stage and case/actions without horizontal overflow",
+      "Rejection sampler rejects biased tail; wheel center aligns for every winner at 2–5 options"
+    ],
+    "errors": []
+  },
+  "edgeCases": {
+    "checks": [
+      "All three multi-option methods execute at 2, 3, 4 and 5 contenders at 320px",
+      "Cloche remains opaque during suspense; lid reveals only during its lift",
+      "Long names/notes wrap; whitespace-only names fail; Enter saves without blocked form submission",
+      "Late photo read error after cancellation does not mutate or navigate the case",
+      "Host snapshot stays below 16 KiB with maximum-length multibyte case text (9377 bytes)",
+      "Equal-revision host echo cannot cancel a running draw",
+      "Tablet entrance, picker, and stage reflow at 834px"
+    ],
+    "errors": []
+  },
+  "review": {
+    "reviewer": "gpt-6.1-sol",
+    "reasoningEffort": "high",
+    "findingsFixed": [
+      "Immutable photo version snapshots",
+      "Restore original case when choosing another method from history",
+      "Guard asynchronous photo reads and preserve edits/focus",
+      "Keep complete session history",
+      "Precisely describe host-state persistence"
+    ],
+    "additionalQAFixes": [
+      "Sandbox-compatible Save button and Enter handling",
+      "Spanish font glyph coverage",
+      "Opaque cloche suspense before lifting",
+      "Ignore equal-revision host echoes during a draw"
+    ]
+  },
+  "assets": "asset-manifest.json",
+  "prototypeSHA256": "6f44c3e3e8135d785042dcf7637c66bf592f863b045fe8cb38a5400068ad8a7e",
+  "inlineBytes": 553049,
+  "notValidatedHere": [
+    "Live purchase and restore APIs",
+    "Server AI lifetime ledger",
+    "Real native offline boot and camera permissions",
+    "Physical-device haptics and screen readers"
+  ]
+}

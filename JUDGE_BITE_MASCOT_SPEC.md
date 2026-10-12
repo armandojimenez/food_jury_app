@@ -25,12 +25,14 @@ The source of truth is `assets/images/judge_bite_v2/idle.png`, derived from the 
 | `sleeping.png` | Closed eyes and restful posture |
 | `eating.png` | Pizza in one hand and thumbs-up in the other; a single cream mouth interior. The duplicate red tongue was corrected. |
 | `pointing.png` | Clear directional presenting gesture |
+| `plate.png` | Stern host balancing a porcelain plate, grounded full-body stance |
+| `ticket.png` | Stern receipt draw with the numbered ticket held clear of the face |
 
 ## Export and QA
 
 Each pose is a separate square true-alpha PNG with the entire head, gloves and shoes inside the frame. Do not stretch/crop the silhouette or bake a checkerboard/background into the asset. Keep the navy contour clean against cream, orange, yellow and dark surfaces. Inspect expression, finger count, collar, teeth/mouth, limb attachment, edge clipping and alpha before installation.
 
-The original generation prompts and facial corrections are in [design/production/prompts.json](design/production/prompts.json). Use a current production pose as an image-generation reference for every new pose. Do not reinterpret the identity from prose alone.
+The original generation prompts and facial corrections are in [design/production/prompts.json](design/production/prompts.json). Lucky Court pose provenance is recorded in [the exploration prompts](design/explorations/2026-10-11/random-court/prompts.json). Use a current production pose as an image-generation reference for every new pose. Do not reinterpret the identity from prose alone.
 
 ## In-app usage
 

@@ -17,3 +17,5 @@ export 'diner_scaffold.dart';
 export 'diner_illustrations.dart';
 
 export 'food_illustration.dart';
+
+export 'diner_display.dart';

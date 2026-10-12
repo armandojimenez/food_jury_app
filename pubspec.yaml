@@ -19,7 +19,6 @@ dependencies:
 
   # State Management
   flutter_riverpod: ^2.6.1
-  riverpod_annotation: ^2.6.1
 
   # Navigation
   go_router: ^15.1.2
@@ -53,14 +52,13 @@ dev_dependencies:
 
   # Code Generation
   build_runner: ^2.4.14
-  riverpod_generator: ^2.6.4
   drift_dev: ^2.26.0
-  json_serializable: ^6.9.3
 
 flutter:
   uses-material-design: true
 
   assets:
+    - assets/data/
     - assets/images/
     - assets/images/judge_bite_v2/
     - assets/images/brand/

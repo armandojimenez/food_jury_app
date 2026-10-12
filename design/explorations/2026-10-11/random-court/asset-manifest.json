@@ -1,0 +1,32 @@
+{
+  "generator": "Built-in image_gen",
+  "sources": {
+    "lucky-court-concept.png": "exec-72f93d99-b44b-4db5-8cb6-b68cec5b0e7f.png",
+    "assets/judge-plate.png": "exec-81dcbd32-c498-495e-87aa-219e5f21476d.png",
+    "assets/judge-ticket.png": "exec-bb09d6c7-2528-4092-8e54-7cdeb89620c1.png"
+  },
+  "assets": [
+    {
+      "path": "design/explorations/2026-10-11/random-court/lucky-court-concept.png",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "8beb8adc98086ee7a348d80f51c1d235084371d39a50c86fda1c58f2ed95535f",
+      "pngColorType": 2
+    },
+    {
+      "path": "design/explorations/2026-10-11/random-court/assets/judge-plate.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d61ba768d37711b91c95579942b14db6d8d1b0525ff94dda9e680a248ecd0fa4",
+      "pngColorType": 6
+    },
+    {
+      "path": "design/explorations/2026-10-11/random-court/assets/judge-ticket.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "73da8ebd1f9b4472b6d2430de074df13798688bbf91b86dc5b60d31a7c5310f4",
+      "pngColorType": 6
+    }
+  ],
+  "exports": "WebP exports retain original alpha; UI props and all live labels are code-native."
+}

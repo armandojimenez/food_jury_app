@@ -47,6 +47,8 @@ class DevSettingsScreen extends StatelessWidget {
               context.l10n.diner_poseEating,
               context.l10n.diner_posePointing,
               context.l10n.diner_poseWaving,
+              context.l10n.lucky_wheel,
+              context.l10n.lucky_ticket,
             ];
             return Wrap(
               spacing: AppDimensions.spaceMd,

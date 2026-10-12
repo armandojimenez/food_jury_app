@@ -258,7 +258,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get about_foodJuryDescription =>
-      'FoodJury is your AI-powered food decision companion. When you can\'t decide what to eat, let Judge Bite render the final verdict! Built with Flutter, powered by Gemini AI, and designed with a playful retro diner aesthetic.';
+      'Can’t decide what to eat? Bring your cravings to court. Judge Bite serves thoughtful Smart rulings and wildly fun Lucky Court rituals, all in a playful retro diner.';
 
   @override
   String get about_connect => 'Let\'s Connect';
@@ -819,4 +819,264 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get diner_houseStepThree => 'The judge settles it. You enjoy it.';
+
+  @override
+  String get library_title => 'The food menu';
+
+  @override
+  String get library_hint => 'Pick your plate.';
+
+  @override
+  String get library_search => 'Find a food or category';
+
+  @override
+  String get library_all => 'All dishes';
+
+  @override
+  String get library_favorites => 'Diner favorites';
+
+  @override
+  String get library_lighter => 'Fresh picks';
+
+  @override
+  String get library_comfort => 'Comfort food';
+
+  @override
+  String get library_breakfast => 'Breakfast';
+
+  @override
+  String get library_sweet => 'Sweet & sips';
+
+  @override
+  String get library_categories => 'Any dish';
+
+  @override
+  String get library_empty => 'Off-menu? The court allows it.';
+
+  @override
+  String get library_genericHint =>
+      'Choose a broad category below, then enter your exact dish and details.';
+
+  @override
+  String get library_choose => 'Choose an illustration';
+
+  @override
+  String get library_change => 'Change illustration';
+
+  @override
+  String get library_artNote =>
+      'Artwork sets the scene. Your name, notes and own photo tell the real story.';
+
+  @override
+  String get library_photoFirst =>
+      'Your photo gets the spotlight. The illustration stays as a backup.';
+
+  @override
+  String get library_categoryBadge => 'Add your dish name';
+
+  @override
+  String get lucky_title => 'Lucky Court';
+
+  @override
+  String get lucky_chooseTitle => 'A little wisdom.\nOr a little luck.';
+
+  @override
+  String get lucky_chooseHint =>
+      'Your case is ready. How should the court decide?';
+
+  @override
+  String get lucky_continue => 'Choose how to decide';
+
+  @override
+  String get lucky_ai => 'Smart rulings';
+
+  @override
+  String get lucky_aiHint =>
+      'Judge Bite weighs your goal, details and photos. A verdict with a reason.';
+
+  @override
+  String get lucky_aiButton => 'Let the judge deliberate';
+
+  @override
+  String get lucky_freeTitle => 'LET LUCK COOK';
+
+  @override
+  String get lucky_freeHint => 'Unlimited fun. Always on the house.';
+
+  @override
+  String get lucky_wheel => 'Spin the plate';
+
+  @override
+  String get lucky_wheelHint => 'A dinner-sized wheel of destiny.';
+
+  @override
+  String get lucky_ticket => 'Draw a ticket';
+
+  @override
+  String get lucky_ticketHint => 'One order. Straight from the box.';
+
+  @override
+  String get lucky_cloche => 'Lift the lid';
+
+  @override
+  String get lucky_clocheHint => 'A little suspense. A grand reveal.';
+
+  @override
+  String get lucky_coin => 'Flip the coin';
+
+  @override
+  String get lucky_coinHint => 'Two contenders. One final flip.';
+
+  @override
+  String get lucky_coinNeedsTwo =>
+      'Needs exactly 2 options. Edit your case to use the coin.';
+
+  @override
+  String get lucky_editCase => 'Edit this case';
+
+  @override
+  String get lucky_start => 'Let luck decide';
+
+  @override
+  String get lucky_equalOdds => 'A fair draw. A delicious destiny.';
+
+  @override
+  String get lucky_goalNote =>
+      'Lucky Court gives every dish an equal chance. Want the judge to weigh your details? Choose a Smart ruling.';
+
+  @override
+  String get lucky_ready => 'Court is in session.';
+
+  @override
+  String get lucky_drawing => 'No objections. Just suspense.';
+
+  @override
+  String get lucky_skip => 'Reveal now';
+
+  @override
+  String get lucky_cancel => 'Back to methods';
+
+  @override
+  String get lucky_winner => 'IT IS!';
+
+  @override
+  String get lucky_closed => 'CASE CLOSED';
+
+  @override
+  String get lucky_quoteLabel => 'A WORD FROM THE JUDGE';
+
+  @override
+  String get lucky_save => 'Keep this verdict';
+
+  @override
+  String get lucky_saved => 'Filed in your case book';
+
+  @override
+  String get lucky_reroll => 'Another draw';
+
+  @override
+  String get lucky_otherMethod => 'Try another method';
+
+  @override
+  String get lucky_replay => 'Replay the reveal';
+
+  @override
+  String get lucky_rerollNote =>
+      'Every new draw has the same odds. The same dish can win again.';
+
+  @override
+  String get lucky_caseDetails => 'THE ORIGINAL CASE';
+
+  @override
+  String get lucky_sameJudge => 'Same judge.\nNew tricks.';
+
+  @override
+  String get lucky_exhausted =>
+      'You’ve enjoyed your 3 welcome Smart rulings. Keep the fun going with unlimited Lucky Court, or get Plus for more deliberation.';
+
+  @override
+  String get lucky_aiError =>
+      'The judge needs a moment. Your ruling is still yours to use. Try again or take a chance in Lucky Court.';
+
+  @override
+  String get lucky_saveError =>
+      'The court could not file this verdict. Your result is still here. Try saving again.';
+
+  @override
+  String get lucky_drawError =>
+      'The draw could not start. Your case is safe. Try again.';
+
+  @override
+  String get lucky_lastAi => 'One last welcome ruling. Make it delicious.';
+
+  @override
+  String get lucky_aiLabel => 'Smart ruling';
+
+  @override
+  String get lucky_randomLabel => 'Lucky verdict';
+
+  @override
+  String get lucky_newCase => 'Start another case';
+
+  @override
+  String get plus_title => 'A seat at the judge’s table.';
+
+  @override
+  String get plus_hint => 'FoodJury Plus';
+
+  @override
+  String get plus_unlimited => 'Unlimited Smart rulings';
+
+  @override
+  String get plus_details =>
+      'Give your cravings a clever judge. Thoughtful verdicts based on your goal, dish details and photos, with reasons worth hearing. Four judge personalities. Every Lucky Court ritual.';
+
+  @override
+  String get plus_year => '\$24.99 / year';
+
+  @override
+  String get plus_month => '\$5.99 / month';
+
+  @override
+  String get plus_value => 'BEST VALUE';
+
+  @override
+  String get plus_preview => 'Subscription preview';
+
+  @override
+  String get plus_notConnected =>
+      'Purchases are not available yet. These are the planned prices. No payment will be taken.';
+
+  @override
+  String get plus_continueFree => 'Keep cooking for free';
+
+  @override
+  String get plus_explore => 'Explore Plus';
+
+  @override
+  String lucky_remaining(int count) {
+    return '$count of 3 welcome Smart rulings left';
+  }
+
+  @override
+  String get lucky_heads => 'Heads';
+
+  @override
+  String get lucky_tails => 'Tails';
+
+  @override
+  String get lucky_orderUp => 'ORDER UP!';
+
+  @override
+  String get lucky_useLast => 'Use my Smart ruling';
+
+  @override
+  String get lucky_useFree => 'Let luck decide instead';
+
+  @override
+  String get lucky_lastConfirm =>
+      'This is your last welcome Smart ruling. Lucky Court is always on the house. Plus keeps the judge deliberating, without limits.';
+
+  @override
+  String get lucky_stageHint => 'Every contender gets an equal chance.';
 }

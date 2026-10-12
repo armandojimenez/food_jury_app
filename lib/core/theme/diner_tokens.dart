@@ -14,6 +14,9 @@ abstract final class DinerTokens {
   /// Text scale where decorative overlap and columns simplify.
   static const double largeTextBreakpoint = 1.5;
 
+  /// Short windows keep primary actions in the scroll flow.
+  static const double compactWindowHeight = 600;
+
   /// Horizontal and vertical inset of a diner page.
   static const double pageInset = 20;
 

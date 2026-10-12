@@ -1,4 +1,7 @@
 import 'dart:io';
+import 'package:drift/native.dart';
+import 'package:food_jury/data/database/app_database.dart';
+import 'package:food_jury/data/providers/database_provider.dart';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -100,8 +103,11 @@ class DinerHarness {
       initialLocation: route,
       initialExtra: extra,
     );
+    final db = AppDatabase.forTesting(NativeDatabase.memory());
+    addTearDown(db.close);
     container = ProviderContainer(
       overrides: [
+        databaseProvider.overrideWithValue(db),
         recentVerdictsProvider.overrideWith(
           (ref) async => history ?? sampleHistory,
         ),

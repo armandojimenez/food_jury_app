@@ -11,6 +11,7 @@ import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../decision/data/models/verdict.dart';
+import '../../lucky/presentation/ai_allowance_ticket.dart';
 
 /// Personalization lives in the same diner system as the food case flow.
 class SettingsScreen extends ConsumerWidget {
@@ -72,6 +73,8 @@ class SettingsScreen extends ConsumerWidget {
           final controls = Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const AiAllowanceTicket(),
+              const SizedBox(height: AppDimensions.spaceLg),
               DinerSection(l.settings_judgePersonality),
               const SizedBox(height: AppDimensions.spaceSm),
               Text(l.diner_personalityHint),

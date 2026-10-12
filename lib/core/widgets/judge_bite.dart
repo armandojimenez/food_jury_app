@@ -61,6 +61,8 @@ enum JudgeBitePose {
   eating,
   pointing,
   waving,
+  plate,
+  ticket,
 }
 
 /// Standard sizes; larger hero placements may supply an explicit token value.

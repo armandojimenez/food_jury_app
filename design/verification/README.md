@@ -7,11 +7,11 @@ These images are renders of the implemented Flutter app. Generated concept artwo
 | Check | Result |
 | --- | --- |
 | Flutter analyzer | No issues |
-| Automated suite | 50 tests passed |
+| Automated suite | 148 tests passed |
 | iOS simulator build | Passed on Xcode 26.6 / Flutter 3.41.7 |
 | Android debug APK | Passed |
-| GPT-6.1 Sol, high reviewer | Final read-only pass found no remaining actionable issues |
-| Production asset audit | 20 images validated; cutouts have alpha, icon master is opaque |
+| GPT-6.1 Sol, xhigh reviewer | Final Lucky Court read-only pass found no remaining blockers after fixes |
+| Production asset audit | 34 images inspected; 33 cutouts have alpha, icon master is opaque |
 | iPhone 17 Pro / iOS 26.5 | Native home/case rendering checked |
 | iPad Pro 11-inch / iOS 26.2 | Native home, verdict, developer page and launcher icon checked |
 | iPad native share sheet | Opens at the share-button anchor and dismisses without navigation changes |
@@ -21,6 +21,26 @@ The automated suite renders home, case builder, verdict, history, settings, deve
 Behavioral tests cover 2–5 options, an explicitly selected goal, editing/removal, camera/gallery selection, replacing/removing photos, preserving notes and exact user photo bytes, saved tone/mock preference readiness, locale forwarding, AI failure, storage failure, and saving before navigation. Reveal tests cover completion, replay, leaving during animation, and enabling reduced motion during a reveal.
 
 A [native recording of the verdict reveal](native-verdict-reveal.mp4) shows the actual animation. It is trimmed from the simulator recording and resized for sharing; the animation timing is unchanged. This capture preceded the final native status-bar contrast fix; re-recording that small system-chrome change was deferred because the Mac locked.
+
+## Lucky Court native verification
+
+The feature suite adds 25 data tests and 73 UI checks: all four methods, winner-index reachability, two-contender coin guard, immutable photo/case snapshots, persisted sayings shuffle bags, migration from schema 2, three-use allowance, idempotent saves, history deletion, premium usage, concurrent Smart-request protection, malformed rankings, storage-failure retry, explicit save, identical replay, new-ID redraw, last-use confirmation, edit restoration, fresh cases and cancellation near completion.
+
+Lucky Court layouts also cover 320×568 at 100% and 390×844 at 125% text. The reviewer caught and we fixed header/footer overflow at 200%, ignored intermediate text scaling, and narrow method-card overflow. All prior screen/flow tests continue to pass. The photo fixture in widget tests is intentionally synthetic; it validates framing and byte precedence, not physical camera quality.
+
+[Native Lucky Court walkthrough](native-lucky-court.mp4) records the actual four animated rituals, food menu, populated case and winning-food scene on iPhone 17 Pro. The same source renders natively on iPad Pro 11-inch. Preview navigation selects fixed sample verdicts for repeatable recording; production randomness is tested separately. The clip is resized to 720px width without changing animation timing.
+
+| New screen | Native phone | Native tablet |
+| --- | --- | --- |
+| Methods | [Phone](native-lucky-methods-phone.png) | [Tablet](native-lucky-methods-tablet.png) |
+| Plate | [Phone](native-lucky-wheel-phone.png) | [Tablet](native-lucky-wheel-tablet.png) |
+| Verdict | [Phone](native-lucky-verdict-phone.png) | [Tablet](native-lucky-lucky-tablet.png) |
+| Food library | [Phone](native-lucky-library-phone.png) | [Tablet](native-lucky-library-tablet.png) |
+| Ticket | [Phone](native-lucky-ticket-phone.png) | Covered by tablet render/animation checks |
+| Lid | [Phone](native-lucky-cloche-phone.png) | Covered by tablet render/animation checks |
+| Coin | [Phone](native-lucky-coin-phone.png) | Covered by tablet render/animation checks |
+
+Billing is deliberately a labeled price preview, as requested. No payment or verified entitlement is implemented. True lifetime allowance across reinstalls/devices and onboarding integration remain documented in [DESIGN.md](../../DESIGN.md#billing-intentionally-unfinished).
 
 ## Actual app captures
 

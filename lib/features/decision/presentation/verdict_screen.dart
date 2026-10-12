@@ -10,6 +10,7 @@ import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../data/models/verdict.dart';
+import '../../lucky/presentation/winner_hero.dart';
 
 /// A staged courtroom reveal followed by an immediately useful verdict ticket.
 class VerdictScreen extends StatefulWidget {
@@ -176,6 +177,8 @@ class _VerdictScreenState extends State<VerdictScreen>
                                                 DinerFoodImage(
                                                   bytes: option.imageBytes,
                                                   foodName: option.name,
+                                                  illustrationId:
+                                                      option.illustrationId,
                                                   size: AppDimensions
                                                       .avatarSizeMd,
                                                 ),
@@ -210,7 +213,10 @@ class _VerdictScreenState extends State<VerdictScreen>
                         ),
                         const SizedBox(height: AppDimensions.spaceSm),
                         TextButton(
-                          onPressed: () => context.go(AppRouter.newDecision),
+                          onPressed: () => context.go(
+                            AppRouter.newDecision,
+                            extra: UniqueKey(),
+                          ),
                           child: Text(context.l10n.diner_anotherCase),
                         ),
                         if (!reduceDinerMotion(context))
@@ -362,65 +368,13 @@ class _Winner extends StatelessWidget {
         child: DinerStamp(context.l10n.diner_caseClosed),
       ),
       const SizedBox(height: AppDimensions.spaceMd),
-      DinerHeading(context.l10n.diner_wins(verdict.winner.name), large: wide),
-      const SizedBox(height: AppDimensions.spaceMd),
-      Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: AppDimensions.borderRadiusMd,
-              border: Border.all(
-                color: Theme.of(context).colorScheme.onSurface,
-                width: DinerTokens.border,
-              ),
-            ),
-            child: ClipRRect(
-              borderRadius: AppDimensions.borderRadiusMd,
-              child: AspectRatio(
-                aspectRatio: 1.45,
-                child: verdict.winner.hasImage
-                    ? Image.memory(
-                        verdict.winner.imageBytes!,
-                        fit: BoxFit.cover,
-                        semanticLabel: context.l10n.a11y_photoOf(
-                          verdict.winner.name,
-                        ),
-                        errorBuilder: (context, error, stack) =>
-                            _WinnerPlaceholder(name: verdict.winner.name),
-                      )
-                    : _WinnerPlaceholder(name: verdict.winner.name),
-              ),
-            ),
-          ),
-          Positioned(
-            right: AppDimensions.spaceSm,
-            bottom: -AppDimensions.spaceSm,
-            child: DinerStamp(context.l10n.diner_approved, orange: true),
-          ),
-        ],
+      DinerPosterHeading(
+        context.l10n.diner_wins(verdict.winner.name),
+        large: wide,
       ),
+      const SizedBox(height: AppDimensions.spaceMd),
+      WinnerHero(option: verdict.winner),
     ],
-  );
-}
-
-class _WinnerPlaceholder extends StatelessWidget {
-  const _WinnerPlaceholder({required this.name});
-  final String name;
-  @override
-  Widget build(BuildContext context) => ColoredBox(
-    color: AppColors.pop,
-    child: Stack(
-      children: [
-        const Positioned.fill(child: DinerSunburst()),
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.all(AppDimensions.spaceMd),
-            child: FoodIllustration(name: name, size: DinerTokens.tabletJudge),
-          ),
-        ),
-      ],
-    ),
   );
 }
 

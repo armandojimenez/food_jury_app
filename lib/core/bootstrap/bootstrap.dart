@@ -60,7 +60,14 @@ Future<void> _configureErrorHandling() async {
 
 Future<void> _initializeServices() async {
   // Initialize Firebase
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ).timeout(const Duration(seconds: 5));
+  } catch (error) {
+    // Offline features must launch even when cloud configuration is unavailable.
+    debugPrint('Cloud services unavailable; local court remains open.');
+  }
 
   // TODO: Initialize local storage (Drift)
   // await LocalDatabase.initialize();

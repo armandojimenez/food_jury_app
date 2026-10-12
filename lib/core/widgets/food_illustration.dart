@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/theme.dart';
+import '../../features/food_library/data/food_catalog.dart';
 
 /// Name-matched decorative food art. Unknown foods use a neutral covered dish;
 /// illustrations never replace, describe or get sent as user photo evidence.
@@ -23,19 +24,21 @@ class FoodIllustration extends StatelessWidget {
   /// Creates a decorative food cutout that is never AI evidence.
   const FoodIllustration({
     required this.name,
+    this.illustrationId,
     this.size = DinerTokens.thumbnail,
     super.key,
   });
 
   /// User-entered food name used for the decorative category fallback.
   final String name;
+  final String? illustrationId;
 
   /// Logical extent of the artwork or lettering before text scaling.
   final double size;
   @override
   Widget build(BuildContext context) => ExcludeSemantics(
     child: Image.asset(
-      'assets/images/food_illustrations/${foodIllustrationFor(name)}.png',
+      'assets/images/food_illustrations/${foodArtById(illustrationId)?.asset ?? foodIllustrationFor(name)}.png',
       width: size,
       height: size,
       fit: BoxFit.contain,

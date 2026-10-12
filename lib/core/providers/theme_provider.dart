@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-part 'theme_provider.g.dart';
+final themeNotifierProvider = NotifierProvider<ThemeNotifier, ThemeMode>(
+  ThemeNotifier.new,
+);
 
 /// Key for storing theme preference in SharedPreferences.
 const _themePreferenceKey = 'theme_mode';
@@ -10,8 +12,7 @@ const _themePreferenceKey = 'theme_mode';
 /// Provider for managing app theme mode (light, dark, system).
 ///
 /// Persists user preference using SharedPreferences.
-@riverpod
-class ThemeNotifier extends _$ThemeNotifier {
+class ThemeNotifier extends Notifier<ThemeMode> {
   bool _disposed = false;
   int _revision = 0;
   @override

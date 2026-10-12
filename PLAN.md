@@ -1,10 +1,12 @@
 # Current status · October 2026
 
-The retro diner redesign is implemented across splash, home, case builder and option/photo sheets, deliberation, verdict, archive, settings, developer profile, errors, and the design gallery. Ten judge poses, illustrated food, the app icon and Armando’s illustrated Memoji are installed. User camera/gallery, photo analysis, notes, 2–5 options, goals, tone, durable saving, history and sharing remain available.
+The retro diner redesign is implemented across splash, home, case builder and option/photo sheets, deliberation, verdict, archive, settings, developer profile, errors, and the design gallery. Twelve judge poses, illustrated food, the app icon and Armando’s illustrated Memoji are installed. User camera/gallery, photo analysis, notes, 2–5 options, goals, tone, durable saving, history and sharing remain available.
 
 Use [DESIGN.md](DESIGN.md) and [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md) as the current visual contracts. [Verification](design/verification/README.md) records tested behavior and remaining device/service limits. The roadmap below is historical; its original palette, fonts, phase status and package versions have been superseded by the implementation and lockfile.
 
-Before launch: perform real-device camera/permission and live Firebase acceptance checks, then complete store/release configuration. RevenueCat, subscriptions and other future roadmap ideas below were not part of this redesign.
+Lucky Court is implemented: four animated offline methods, immutable saved results, a 44-line bilingual sayings library, three welcome Smart rulings, and the 33-entry illustrated food menu with custom category fallback and photo precedence. Product copy uses Smart rulings and Lucky Court.
+
+Before launch: connect verified subscriptions (current $24.99/year and $5.99/month screens are clearly labeled price previews), account/server lifetime enforcement, restore/purchase lifecycle and legal/store disclosures. Integrate the approved onboarding prototype separately. Perform physical-device camera/permission, accessibility and live Firebase acceptance checks. See the explicit remaining-work table in DESIGN.md.
 
 ---
 
