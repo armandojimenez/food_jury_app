@@ -109,6 +109,9 @@ Future<void> addOption(
   if (notes != null) {
     await tester.enterText(find.byKey(const Key('option-notes')), notes);
   }
+  // Let text editing and the live illustration finish relayout and focus scroll
+  // before scrolling the lower action into view, especially at 200% text size.
+  await tester.pumpAndSettle();
   if (photo) {
     await scrollTo(tester, find.byType(FoodImagePicker));
     await tester.tap(find.byType(FoodImagePicker));
@@ -123,6 +126,7 @@ Future<void> addOption(
   }
   final save = find.byKey(const Key('save-option'));
   await scrollTo(tester, save);
+  expect(save.hitTestable(), findsOneWidget);
   await tester.tap(save);
   await tester.pumpAndSettle();
 }
@@ -455,14 +459,22 @@ void main() {
         reducedMotion: false,
       );
       expect(
-        tester.widget<DinerBusyBoundary>(find.byType(DinerBusyBoundary)).busy,
+        tester
+            .widget<DinerBusyBoundary>(
+              find.byKey(const Key('smart-verdict-busy')),
+            )
+            .busy,
         isTrue,
       );
       await app.screenshot(tester, 'verdict-reveal-phone');
       await tester.pump(const Duration(seconds: 3));
       await tester.pump();
       expect(
-        tester.widget<DinerBusyBoundary>(find.byType(DinerBusyBoundary)).busy,
+        tester
+            .widget<DinerBusyBoundary>(
+              find.byKey(const Key('smart-verdict-busy')),
+            )
+            .busy,
         isFalse,
       );
       final replay = find.text('Replay the reveal');
@@ -470,7 +482,11 @@ void main() {
       await tester.tap(replay);
       await tester.pump();
       expect(
-        tester.widget<DinerBusyBoundary>(find.byType(DinerBusyBoundary)).busy,
+        tester
+            .widget<DinerBusyBoundary>(
+              find.byKey(const Key('smart-verdict-busy')),
+            )
+            .busy,
         isTrue,
       );
       app.router.go(AppRouter.home);
@@ -490,14 +506,22 @@ void main() {
         reducedMotion: false,
       );
       expect(
-        tester.widget<DinerBusyBoundary>(find.byType(DinerBusyBoundary)).busy,
+        tester
+            .widget<DinerBusyBoundary>(
+              find.byKey(const Key('smart-verdict-busy')),
+            )
+            .busy,
         isTrue,
       );
       app.motionDisabled.value = true;
       await tester.pump();
       await tester.pump();
       expect(
-        tester.widget<DinerBusyBoundary>(find.byType(DinerBusyBoundary)).busy,
+        tester
+            .widget<DinerBusyBoundary>(
+              find.byKey(const Key('smart-verdict-busy')),
+            )
+            .busy,
         isFalse,
       );
       expect(tester.binding.transientCallbackCount, 0);
@@ -511,7 +535,11 @@ void main() {
       final app = DinerHarness();
       await app.pump(tester, route: AppRouter.verdict, extra: sampleVerdict);
       expect(
-        tester.widget<DinerBusyBoundary>(find.byType(DinerBusyBoundary)).busy,
+        tester
+            .widget<DinerBusyBoundary>(
+              find.byKey(const Key('smart-verdict-busy')),
+            )
+            .busy,
         isFalse,
       );
       expect(find.text('Replay the reveal'), findsNothing);

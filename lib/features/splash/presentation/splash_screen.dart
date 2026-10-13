@@ -7,6 +7,7 @@ import '../../../config/routes/app_router.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../onboarding/data/onboarding_store.dart';
 
 /// A brief branded welcome, skipped immediately when reduced motion is enabled.
 class SplashScreen extends StatefulWidget {
@@ -27,8 +28,16 @@ class _SplashScreenState extends State<SplashScreen> {
       reduceDinerMotion(context)
           ? Duration.zero
           : const Duration(milliseconds: 1100),
-      () {
-        if (mounted) context.go(AppRouter.home);
+      () async {
+        var completed = false;
+        try {
+          completed = await OnboardingStore.isComplete();
+        } catch (_) {
+          // A read failure should still leave a useful, skippable introduction.
+        }
+        if (mounted) {
+          context.go(completed ? AppRouter.home : AppRouter.onboarding);
+        }
       },
     );
   }

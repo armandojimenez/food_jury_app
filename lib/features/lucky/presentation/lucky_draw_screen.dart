@@ -1,35 +1,60 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../config/routes/app_router.dart';
 import '../../../core/theme/theme.dart';
+import '../../../core/services/court_feedback.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../decision/data/models/food_option.dart';
 import '../../decision/data/models/verdict.dart';
 import '../data/decision_case.dart';
 import 'court_components.dart';
+import 'winner_hero.dart';
 
 /// A draw is chosen before this route opens. Replays never call an RNG or AI.
 class DrawRouteData {
-  const DrawRouteData({required this.verdict, this.replay = false});
+  const DrawRouteData({
+    required this.verdict,
+    this.replay = false,
+    this.repeat = false,
+    this.previousWinnerId,
+  });
   final Verdict verdict;
-  final bool replay;
+  final bool replay, repeat;
+  final String? previousWinnerId;
 }
 
-class LuckyDrawScreen extends StatefulWidget {
+/// A short coin toss and a slower wheel get their own dramatic pacing.
+Duration ritualDuration(RandomMethod method, {bool repeat = false}) {
+  final milliseconds = switch (method) {
+    RandomMethod.wheel => 3300,
+    RandomMethod.ticket => 2700,
+    RandomMethod.cloche => 2400,
+    RandomMethod.coin => 2100,
+  };
+  return Duration(
+    milliseconds: repeat ? (milliseconds * .65).round() : milliseconds,
+  );
+}
+
+class LuckyDrawScreen extends ConsumerStatefulWidget {
   const LuckyDrawScreen({required this.data, super.key});
   final DrawRouteData data;
   @override
-  State<LuckyDrawScreen> createState() => _LuckyDrawScreenState();
+  ConsumerState<LuckyDrawScreen> createState() => _LuckyDrawScreenState();
 }
 
-class _LuckyDrawScreenState extends State<LuckyDrawScreen>
+class _LuckyDrawScreenState extends ConsumerState<LuckyDrawScreen>
     with SingleTickerProviderStateMixin {
   late final _controller = AnimationController(
     vsync: this,
-    duration: CourtTokens.ritual,
+    duration: ritualDuration(
+      widget.data.verdict.random!.method,
+      repeat: widget.data.repeat || widget.data.replay,
+    ),
   );
   bool _started = false, _finished = false;
   @override
@@ -59,7 +84,7 @@ class _LuckyDrawScreenState extends State<LuckyDrawScreen>
       return;
     }
     _finished = true;
-    if (!reduceDinerMotion(context)) HapticFeedback.mediumImpact();
+    CourtFeedback.play(context, ref, CourtCue.verdict);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || ModalRoute.of(context)?.isCurrent != true) return;
       if (widget.data.replay) {
@@ -70,6 +95,7 @@ class _LuckyDrawScreenState extends State<LuckyDrawScreen>
           extra: VerdictRouteData(
             verdict: widget.data.verdict,
             showRevealAnimation: true,
+            previousWinnerId: widget.data.previousWinnerId,
           ),
         );
       }
@@ -131,10 +157,40 @@ class _LuckyDrawScreenState extends State<LuckyDrawScreen>
                       aspectRatio: 1,
                       child: AnimatedBuilder(
                         animation: _controller,
-                        builder: (context, _) => RitualStage(
-                          verdict: widget.data.verdict,
-                          progress: _controller.value,
-                        ),
+                        builder: (context, _) {
+                          final arrival = ((_controller.value - .84) / .13)
+                              .clamp(0.0, 1.0);
+                          return Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Opacity(
+                                opacity: 1 - arrival,
+                                child: RitualStage(
+                                  verdict: widget.data.verdict,
+                                  progress: _controller.value,
+                                ),
+                              ),
+                              if (arrival > 0)
+                                Opacity(
+                                  opacity: arrival,
+                                  child: Transform.scale(
+                                    scale:
+                                        .88 +
+                                        .12 *
+                                            Curves.easeOutCubic.transform(
+                                              arrival,
+                                            ),
+                                    child: Hero(
+                                      tag: 'winner-${widget.data.verdict.id}',
+                                      child: WinnerHero(
+                                        option: widget.data.verdict.winner,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -283,11 +339,15 @@ class RitualStage extends StatelessWidget {
                       ? math.sin((progress - .65) * math.pi * 5) * .05
                       : 0,
                   child: JudgeBite(
-                    pose: progress > .87
+                    pose: progress > .80
                         ? JudgeBitePose.celebrating
+                        : progress > .60
+                        ? JudgeBitePose.excited
                         : method == RandomMethod.ticket
                         ? JudgeBitePose.ticket
-                        : JudgeBitePose.stern,
+                        : method == RandomMethod.cloche
+                        ? JudgeBitePose.whispering
+                        : JudgeBitePose.inspecting,
                     dimension: side * .32,
                   ),
                 ),

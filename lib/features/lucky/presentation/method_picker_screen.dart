@@ -4,7 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../config/routes/app_router.dart';
 import '../../../core/providers/judge_tone_provider.dart';
+import '../../../core/providers/ai_consent_provider.dart';
+import '../../../core/services/ai_gateway_service.dart';
+import '../../../core/widgets/ai_consent_sheet.dart';
 import '../../../core/theme/theme.dart';
+import '../../../core/services/court_feedback.dart';
+import '../../moments/presentation/smart_error_copy.dart';
+import '../../case_shelf/data/case_shelf_models.dart';
+import '../../case_shelf/presentation/case_shelf_widgets.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/database/app_database.dart';
@@ -40,6 +47,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
   bool _busy = false, _selectionTouched = false, _aiBusy = false;
   AiAttempt? _attempt;
   String? _error;
+  bool _failedSmart = false;
   @override
   void initState() {
     super.initState();
@@ -65,8 +73,13 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
       _selectionTouched = true;
       _method = m;
     });
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('lucky_method', m.name);
+    CourtFeedback.play(context, ref, CourtCue.selection);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('lucky_method', m.name);
+    } catch (_) {
+      // The selection remains usable if persisting this preference fails.
+    }
   }
 
   Future<void> _draw() async {
@@ -74,6 +87,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
     setState(() {
       _busy = true;
       _error = null;
+      _failedSmart = false;
     });
     try {
       await ref.read(judgeToneProvider.notifier).ready;
@@ -107,7 +121,14 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
     setState(() {
       _busy = true;
       _error = null;
+      _failedSmart = false;
     });
+    final permitted = await ensureAiDataConsent(context, ref);
+    if (!mounted) return;
+    if (!permitted) {
+      setState(() => _busy = false);
+      return;
+    }
     if (!ref.read(premiumAccessProvider) &&
         ref.read(aiAllowanceProvider).asData?.value == 1) {
       final confirmed = await AppDialog.showConfirmation(
@@ -142,12 +163,26 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
           _aiBusy = false;
         });
       }
-    } catch (_) {
+    } catch (error) {
+      final needsConsent =
+          error is AiGatewayException &&
+          (error.code == AiGatewayError.consentRequired ||
+              error.code == AiGatewayError.consentOutdated);
+      if (needsConsent && mounted) {
+        try {
+          await ref.read(aiConsentProvider.notifier).revoke();
+        } catch (_) {
+          // The notifier still blocks new requests; the next sheet can retry.
+        }
+      }
       if (mounted) {
         setState(() {
           _busy = false;
           _aiBusy = false;
-          _error = context.l10n.lucky_aiError;
+          _failedSmart = true;
+          _error = needsConsent
+              ? context.l10n.consent_updated
+              : smartRulingError(context.l10n, error);
         });
       }
     }
@@ -159,7 +194,11 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
     final allowance = ref.watch(aiAllowanceProvider);
     final premium = ref.watch(premiumAccessProvider);
     final remaining = allowance.asData?.value;
-    final exhausted = !premium && remaining == 0;
+    // A result may already be saved while its secure usage mirror needs repair.
+    // Retrying that operation stays available; AiCourt still checks quota before
+    // generating anything new and returns an existing result without charging.
+    final retryAttempt = _failedSmart && _attempt != null;
+    final exhausted = !premium && remaining == 0 && !retryAttempt;
     return PopScope(
       canPop: !_busy,
       child: Stack(
@@ -180,7 +219,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                 children: [
                   DinerEntrance(child: DinerPosterHeading(l.lucky_chooseTitle)),
                   const SizedBox(height: AppDimensions.spaceSm),
-                  Text(l.lucky_chooseHint),
+                  Text(l.moments_chooseHint),
                   const SizedBox(height: AppDimensions.spaceLg),
                   DinerEntrance(
                     order: 1,
@@ -203,7 +242,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      l.lucky_ai,
+                                      l.moments_smartHeading,
                                       style: Theme.of(
                                         context,
                                       ).textTheme.titleLarge,
@@ -211,7 +250,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                                     Text(
                                       exhausted
                                           ? l.lucky_exhausted
-                                          : l.lucky_aiHint,
+                                          : l.moments_smartHint,
                                     ),
                                     if (!premium && remaining != null)
                                       Padding(
@@ -233,17 +272,23 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                             ],
                           ),
                           const SizedBox(height: AppDimensions.spaceMd),
-                          if (allowance.hasError)
+                          if (!premium &&
+                              allowance.hasError &&
+                              !retryAttempt) ...[
+                            Text(l.moments_allowanceUnavailable),
+                            const SizedBox(height: AppDimensions.spaceSm),
                             DinerButton(
                               label: l.common_retry,
                               style: DinerButtonStyle.outline,
                               onPressed: () =>
                                   ref.invalidate(aiAllowanceProvider),
-                            )
-                          else
+                            ),
+                          ] else
                             DinerButton(
                               key: const Key('ask-ai'),
-                              label: exhausted
+                              label: retryAttempt
+                                  ? l.common_retry
+                                  : exhausted
                                   ? l.plus_explore
                                   : l.lucky_aiButton,
                               icon: exhausted
@@ -252,10 +297,23 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                               style: DinerButtonStyle.outline,
                               onPressed: exhausted
                                   ? () => context.push(AppRouter.plus)
-                                  : (premium || remaining != null)
+                                  : (retryAttempt ||
+                                        premium ||
+                                        remaining != null)
                                   ? _askAi
                                   : null,
                             ),
+                          if (_failedSmart && _error != null) ...[
+                            const SizedBox(height: AppDimensions.spaceMd),
+                            Semantics(liveRegion: true, child: Text(_error!)),
+                            const SizedBox(height: AppDimensions.spaceSm),
+                            DinerButton(
+                              key: const Key('recover-lucky'),
+                              label: l.moments_recoverLucky,
+                              style: DinerButtonStyle.mustard,
+                              onPressed: _draw,
+                            ),
+                          ],
                         ],
                       ),
                     ),
@@ -264,7 +322,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                   DinerSection(l.lucky_freeTitle),
                   const SizedBox(height: AppDimensions.spaceSm),
                   Text(
-                    l.lucky_freeHint,
+                    l.moments_luckyHint,
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontWeight: FontWeight.w800),
                   ),
@@ -320,7 +378,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                                           children: [
                                             Row(
                                               children: [
-                                                MethodEmblem(method),
+                                                MethodEmblem(method, size: 48),
                                                 const Spacer(),
                                                 if (_method == method)
                                                   const Icon(
@@ -330,7 +388,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                                               ],
                                             ),
                                             const SizedBox(
-                                              height: AppDimensions.spaceMd,
+                                              height: AppDimensions.spaceSm,
                                             ),
                                             Text(
                                               method.title(context),
@@ -348,7 +406,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                                             ),
                                             Text(
                                               _available(method)
-                                                  ? method.hint(context)
+                                                  ? _methodHint(context, method)
                                                   : l.lucky_coinNeedsTwo,
                                             ),
                                           ],
@@ -388,7 +446,7 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                     l.lucky_goalNote,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
-                  if (_error != null)
+                  if (_error != null && !_failedSmart)
                     Padding(
                       padding: const EdgeInsets.only(
                         top: AppDimensions.spaceMd,
@@ -401,9 +459,10 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
                     style: DinerButtonStyle.outline,
                     onPressed: () => widget.returnToEditor && context.canPop()
                         ? context.pop()
-                        : context.pushReplacement(
-                            AppRouter.newDecision,
-                            extra: widget.caseData,
+                        : openShelfCase(
+                            context,
+                            ref,
+                            draft: CaseDraft.fromCase(widget.caseData),
                           ),
                   ),
                 ],
@@ -416,13 +475,21 @@ class _MethodPickerScreenState extends ConsumerState<MethodPickerScreen> {
     );
   }
 
+  String _methodHint(BuildContext context, RandomMethod method) =>
+      switch (method) {
+        RandomMethod.wheel => context.l10n.moments_wheelHint,
+        RandomMethod.ticket => context.l10n.moments_ticketHint,
+        RandomMethod.cloche => context.l10n.moments_clocheHint,
+        RandomMethod.coin => context.l10n.moments_coinHint,
+      };
+
   String _toneName(BuildContext context, JudgeTone tone) {
-    final es = Localizations.localeOf(context).languageCode == 'es';
+    final l = context.l10n;
     return switch (tone) {
-      JudgeTone.stern => es ? 'Serio y justo' : 'Stern & fair',
-      JudgeTone.sassy => es ? 'Sarcástico' : 'Sassy',
-      JudgeTone.enthusiastic => es ? 'Entusiasta' : 'Enthusiastic',
-      JudgeTone.chill => es ? 'Relajado' : 'Chill',
+      JudgeTone.stern => l.tone_stern,
+      JudgeTone.sassy => l.tone_sassy,
+      JudgeTone.enthusiastic => l.tone_enthusiastic,
+      JudgeTone.chill => l.tone_chill,
     };
   }
 }

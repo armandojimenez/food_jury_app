@@ -1,4 +1,4 @@
-# Firebase requires iOS 15.0 minimum
+# Keep the app's established minimum supported iOS version.
 platform :ios, '15.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.

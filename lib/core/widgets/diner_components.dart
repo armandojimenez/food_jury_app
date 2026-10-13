@@ -1,8 +1,10 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../services/court_feedback.dart';
 import '../theme/theme.dart';
 import 'diner_motion.dart';
 import 'food_illustration.dart';
@@ -11,7 +13,7 @@ import 'food_illustration.dart';
 enum DinerButtonStyle { orange, mustard, outline }
 
 /// Accessible native ink action with a tactile, animated hard shadow.
-class DinerButton extends StatefulWidget {
+class DinerButton extends ConsumerStatefulWidget {
   /// Creates a raised diner action with native focus and ink feedback.
   const DinerButton({
     required this.label,
@@ -38,10 +40,10 @@ class DinerButton extends StatefulWidget {
   final bool loading;
 
   @override
-  State<DinerButton> createState() => _DinerButtonState();
+  ConsumerState<DinerButton> createState() => _DinerButtonState();
 }
 
-class _DinerButtonState extends State<DinerButton> {
+class _DinerButtonState extends ConsumerState<DinerButton> {
   bool _pressed = false;
 
   @override
@@ -94,12 +96,13 @@ class _DinerButtonState extends State<DinerButton> {
             ),
             clipBehavior: Clip.antiAlias,
             child: InkWell(
+              // CourtFeedback owns sound and haptics so saved preferences and
+              // reduced motion also suppress the platform's default tap cue.
+              enableFeedback: false,
               onTap: !enabled
                   ? null
                   : () {
-                      if (!reduceDinerMotion(context)) {
-                        HapticFeedback.selectionClick();
-                      }
+                      CourtFeedback.play(context, ref, CourtCue.selection);
                       widget.onPressed?.call();
                     },
               onHighlightChanged: (value) => setState(() => _pressed = value),
@@ -159,7 +162,7 @@ class _DinerButtonState extends State<DinerButton> {
 }
 
 /// Compact utility action with a minimum 48dp hit area.
-class DinerIconButton extends StatelessWidget {
+class DinerIconButton extends ConsumerWidget {
   /// Creates a full-size utility target with a localized tooltip.
   const DinerIconButton({
     required this.icon,
@@ -178,9 +181,15 @@ class DinerIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   @override
-  Widget build(BuildContext context) => IconButton(
+  Widget build(BuildContext context, WidgetRef ref) => IconButton(
     tooltip: label,
-    onPressed: onPressed,
+    enableFeedback: false,
+    onPressed: onPressed == null
+        ? null
+        : () {
+            CourtFeedback.play(context, ref, CourtCue.selection);
+            onPressed!();
+          },
     icon: Icon(icon),
     style: IconButton.styleFrom(
       foregroundColor: AppColors.accent,
@@ -287,15 +296,24 @@ class DinerHeading extends StatelessWidget {
   /// Uses the larger dimensions intended for a wide composition.
   final bool large;
   @override
-  Widget build(BuildContext context) => Text(
-    text.toUpperCase(),
-    textAlign: center ? TextAlign.center : TextAlign.start,
-    style: TextStyle(
-      fontFamily: AppTypography.displayFont,
-      fontSize: large ? DinerTokens.tabletHeadline : DinerTokens.headline,
-      height: 1.02,
-      letterSpacing: .5,
-      color: Theme.of(context).colorScheme.onSurface,
+  Widget build(BuildContext context) => Semantics(
+    header: true,
+    child: Text(
+      text.toUpperCase(),
+      textAlign: center ? TextAlign.center : TextAlign.start,
+      style: TextStyle(
+        fontFamily: AppTypography.displayFont,
+        fontSize:
+            MediaQuery.textScalerOf(context).scale(1) >=
+                DinerTokens.largeTextBreakpoint
+            ? DinerTokens.accessibleHeadline
+            : large
+            ? DinerTokens.tabletHeadline
+            : DinerTokens.headline,
+        height: 1.08,
+        letterSpacing: .5,
+        color: Theme.of(context).colorScheme.onSurface,
+      ),
     ),
   );
 }
@@ -397,7 +415,7 @@ class DinerTicket extends StatelessWidget {
 }
 
 /// Clear selection chip that wraps text instead of clipping at large text sizes.
-class DinerChoice extends StatelessWidget {
+class DinerChoice extends ConsumerWidget {
   /// Creates a selectable option with explicit selected semantics.
   const DinerChoice({
     required this.label,
@@ -419,7 +437,7 @@ class DinerChoice extends StatelessWidget {
   /// Optional leading icon accompanying the label.
   final IconData? icon;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final ink = selected
         ? AppColors.accent
         : Theme.of(context).colorScheme.onSurface;
@@ -435,7 +453,11 @@ class DinerChoice extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: onTap,
+          enableFeedback: false,
+          onTap: () {
+            CourtFeedback.play(context, ref, CourtCue.selection);
+            onTap();
+          },
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               minHeight: DinerTokens.touchTarget,

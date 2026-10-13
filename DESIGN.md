@@ -62,7 +62,7 @@ Portrait phones use one scrollable column. Home, case builder, verdict, settings
 3. Layer the character, speech bubble, accent rays and action. The character's boots may cross the top edge of the action; decorative layers ignore pointers.
 4. Break a ticket's border with a mascot or stamp. Keep copy and tappable targets clear; overlap the **surfaces**, not readable text.
 5. Use asymmetric stars and short hand-drawn rays sparingly. One composed scene is stronger than decoration on every card.
-6. Let the approval stamp sit across the winning image's lower edge. Use a dashed ruling ticket with the celebrating judge emerging from its upper-left edge.
+6. Let the winning image and its celebrating judge lead the result. Use a full-width dashed ruling ticket beneath it; avoid repeating the same mascot beside the reasoning.
 7. At large text sizes, simplify overlap and stack content. Accessibility is part of the composition, not a scaled-down afterthought.
 
 ## Component reference
@@ -114,7 +114,7 @@ For growing collections, use `DinerScaffold(scrollable: false, child: ListView.b
 
 ## Character and food assets
 
-The new production character directory is `assets/images/judge_bite_v2/`. It contains twelve transparent full-body poses. See [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md) for anatomy, emotional direction and placement rules.
+The new production character directory is `assets/images/judge_bite_v2/`. It contains eighteen transparent poses. See [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md) for anatomy, emotional direction and placement rules.
 
 | Pose | Intended context |
 | --- | --- |
@@ -130,6 +130,12 @@ The new production character directory is `assets/images/judge_bite_v2/`. It con
 | pointing | Instructional illustration / design gallery |
 | plate | Lucky Court host, balancing a plate with a stern expression |
 | ticket | Ticket draw, holding the winning receipt |
+| inspecting | Examining evidence and anticipating a ruling |
+| bench | Welcoming the court and introducing a case |
+| objection | Reviewing an objection or reopening a case |
+| filing | Confirming a successfully saved result |
+| bell | Calling attention to the next court action |
+| whispering | A quiet aside or suspense before the reveal |
 
 The About Developer poster uses `assets/images/me-diner.png`, redrawn from the original `me.png` in the judge’s illustration style. Keep the original source. The face breaks above a mustard sunburst panel, and a live localized maker stamp crosses the bottom edge. The biography, published apps and contact destinations remain real content. The [portrait prompt](design/production/developer-portrait-prompt.txt) records identity constraints.
 
@@ -155,6 +161,8 @@ Use `reduceDinerMotion(context)` consistently. Either `disableAnimations` or `ac
 
 During AI work, use the route-owned `DinerDeliberation`; do not dismiss a loading state by blindly popping the navigator. `DinerBusyBoundary` keeps background actions inaccessible while busy. Save the verdict successfully before navigating and preserve entered options after a network/storage failure. Load persisted tone and dev mock settings before choosing the service and request arguments.
 
+A successful explicit save adds a finite 740ms filing stamp. Failed writes never show it. The winner remains the visual lead on result pages and image receipts. `JudgeAside` chooses one of 55 bilingual, tone-aware contextual lines per event; parent rebuilds do not reroll it, and the saved verdict quote never changes. Sound is off by default and haptics are on; Settings controls both. Reduced motion suppresses both cues as well as visual motion.
+
 ## Accessibility and localization
 
 - All English and Spanish UI copy belongs in the ARB files; run `flutter gen-l10n` after edits.
@@ -167,9 +175,9 @@ During AI work, use the route-owned `DinerDeliberation`; do not dismiss a loadin
 
 ## Working preview and validation
 
-The proposed onboarding experience is documented in [Your first case at the food court](design/explorations/2026-10-11/onboarding/ONBOARDING.md). Its animated concept covers seven educational steps, a Plus offer, and separate free/Plus welcomes. It is a design prototype, not an integrated Flutter or billing flow. Follow its copy/art/action safe zones when extending layered compositions.
+The native onboarding condenses [the approved concept](design/explorations/2026-10-11/onboarding/ONBOARDING.md) into three interactive education steps: try a practice verdict, see optional evidence, and choose Judge Bite’s personality. The practice does not create history or spend a Smart use. **Before the final offer, do not mention free access, Plus, prices, quotas or plan comparisons.** The final offer reuses the truthful price-preview screen; only verified entitlement may bypass it. Settings can replay education without selling. Preserve the existing draft when continuing into a real case. Follow the concept’s separate copy, artwork and action safe zones.
 
-`flutter run -t lib/main_preview.dart` launches an explicitly separate offline design entry point, with in-memory sample cases and mock AI. It does not initialize Firebase or modify the real history database. `--dart-define=PREVIEW_ROUTE=/decision/verdict` opens the reveal. Normal `main.dart`, `main_dev.dart`, and `main_prod.dart` retain the existing production flow.
+`flutter run -t lib/main_preview.dart` launches an explicitly separate offline design entry point, with in-memory sample cases, allowance and permission stores, and mock AI. It never writes real history or consumes real Smart uses. `--dart-define=PREVIEW_ROUTE=/decision/verdict` opens the reveal. Normal `main.dart` defaults to development; `main_dev.dart` and `main_prod.dart` select explicit gateway environments. Run them with the matching ignored `config/dev.local.json` or `config/prod.local.json` through `--dart-define-from-file`. Firebase initialization and its AI adapter have been removed. Configuration generation and the actual routing contract live in [tool/gateway/README.md](tool/gateway/README.md).
 
 Settings → developer options → **Design kitchen** is the living pose/component gallery. It includes all expressions, a replayable verdict, and dialog/sheet examples. This route is for development review.
 
@@ -186,7 +194,7 @@ See the [verification record](design/verification/README.md) for concrete build/
 
 ## Lucky Court and Smart rulings · native implementation
 
-Use **Smart rulings** for Judge Bite’s reasoned decisions. The judge weighs the user’s goal, names, notes, and optional photographs. Use **Lucky Court** for the four free rituals. Copy should sound like the court: “A little wisdom. Or a little luck.” and “Unlimited fun. Always on the house.” Explain that every contender has an equal chance; do not characterize the free experience as “no AI,” suggest its result is a nutritional/taste judgment, or present implementation jargon in product copy. Plus offers unlimited Smart rulings. Technical service and database identifiers may still use `Ai`.
+Use **Smart rulings** for Judge Bite’s reasoned decisions. The judge weighs the user’s goal, names, notes, and optional photographs. Use **Lucky Court** for the four unlimited, free rituals. Copy should sound like the court: “A little wisdom. Or a little luck.” and “Unlimited fun. Always on the house.” Explain that every contender has an equal chance; do not characterize the free experience as “no AI,” suggest its result is a nutritional/taste judgment, or present implementation jargon in product copy. The Plus price preview presents the intended unlimited Smart plan; it does not grant an entitlement. Technical service and database identifiers may still use `Ai`.
 
 ### Lettering and composition
 
@@ -202,7 +210,7 @@ Use **Smart rulings** for Judge Bite’s reasoned decisions. The judge weighs th
 
 ### Motion and behavior
 
-The four rituals run for 3300ms: five plate turns with deceleration; a shaking ticket box and rising numbered receipt; a lid lift that hides the food until opening; and a four-turn coin with explicit heads/tails. The winner is selected once before animation. Skip, replay, and reduced-motion completion reveal that same result. Cancel never files a result or opens a verdict after leaving. Replay does not use another decision; draw-again creates a new unsaved case and may legitimately select the same winner.
+Each ritual has its own pace: the plate runs 3300ms, ticket 2700ms, lid 2400ms and coin 2100ms. Explicit replay and repeat draws run at 65% of their first duration. The scenes use: five plate turns with deceleration; a shaking ticket box and rising numbered receipt; a lid lift that hides the food until opening; and a four-turn coin with explicit heads/tails. The winner is selected once before animation. Skip, replay, and reduced-motion completion reveal that same result. Cancel never files a result or opens a verdict after leaving. Replay does not use another decision; draw-again creates a new unsaved case and may legitimately select the same winner.
 
 A Lucky verdict uses a finite 1400ms celebration, an accessible result announcement, explicit durable save, replay, draw-again, sharing, original case details, and edit/alternate-method actions. Reduced motion removes transforms, loops, and haptics and goes directly to the chosen result. Test the animation’s intermediate state, completion, cancellation, and disposal, not only the final screenshot.
 
@@ -217,9 +225,29 @@ For future menu additions, create one transparent PNG per recognizable dish in `
 ### Data and entitlement contract
 
 - `DecisionCase` snapshots 2–5 distinct named contenders, goal, illustration IDs and photo bytes. Accepted `Verdict` snapshots are immutable; saved results never reroll or regenerate their quote.
-- Random results carry method, quote ID, exact localized quote, catalog version and original contenders. They have no fabricated ranking or reasoning. The bundled 44-line EN/ES catalog uses persistent shuffle bags per tone/method/language and avoids immediate cycle-boundary repeats.
-- Drift schema 3 adds original contenders and random metadata, plus a separate Smart-use ledger. Successful free Smart rulings are saved and charged atomically. Failed/cancelled requests do not spend a use; retry after a save failure reuses the cached generated result and operation ID. History deletion does not replenish uses. Plus usage does not spend remaining welcome uses.
-- Three welcome Smart rulings are enforced **per local installation** today. Existing pre-migration Smart verdicts are backfilled as consumed uses. True lifetime enforcement across reinstalls/devices needs an authenticated account and server ledger before launch.
+- Random results carry method, quote ID, exact localized quote, catalog version and original contenders. They have no fabricated ranking or reasoning. The bundled 68-line EN/ES catalog uses persistent shuffle bags per tone/method/language and avoids immediate cycle-boundary repeats.
+- Drift schema 3 added original contenders and random metadata, plus a separate Smart-use ledger. Successful free Smart rulings are saved and charged in one SQLite transaction. Failed AI or database saves do not spend a use; retry after a save failure reuses the cached generated result and operation ID. History deletion does not replenish uses. Verified Plus usage, when connected, must not spend remaining welcome uses.
+- The allowance remains **three welcome Smart rulings**. `SmartAllowanceService` reconciles charged operation IDs from SQLite and a versioned platform record before each request and after a successful free save. The record contains a random UUID, never a hardware/advertising ID, and operation IDs only. Apple stores it in Keychain; Android uses backup-eligible preferences (DataStore). Existing pre-migration Smart verdicts remain consumed uses. Reconciliation only adds recorded uses, never subtracts them or invents history rows.
+- Requests sharing the same persistent store are serialized through generation and save. A failed post-commit mirror leaves the saved result intact; retry repairs the mirror before returning that result without another generation or charge. Corrupt/unreadable state is not treated as fresh allowance: Smart shows a retry message and Lucky remains available. Preview/test databases use isolated in-memory records.
+- This is reinstall resistance, not tamper-proof or account-level enforcement. Android restore depends on OS/user backup. Device reset or loss of both stores can reset local state, and the SQLite/platform mirror is not a cross-store transaction. A normal interrupted mirror reconciles on the next access while SQLite survives. Gateway request/device limits are separate from lifetime allowance; server-authoritative lifetime enforcement and verified subscription access remain launch work.
+
+### Smart gateway, permission and evidence
+
+`AiGatewayService` replaces Firebase AI. The client sends a single indexed food-case message and each actual photo to the configured Cloudflare gateway. It does not supply a system prompt or choose a provider model. The server-owned Judge Bite prompt, deployed dev/prod routing policy, payload limits and configuration workflow are documented in [the gateway contract](tool/gateway/README.md). That configuration requires zero-data-retention providers, denies data collection and disables reasoning. Both remote configs were independently read back and accepted live requests; see the dated verification record for evidence and limits.
+
+Before the first real request, obtain explicit permission for the current disclosure version. The sheet names the data, recipients and random app identity; Settings can review or withdraw it. The adapter rechecks persisted permission immediately before HTTP. Missing, outdated or unreadable permission cannot imply agreement. Canceling permission retains the case and keeps Lucky available. Decorative artwork, private meal feedback and archived cases are not added to the request.
+
+Preserve original contender IDs, names, notes and photo bytes. Reject unsupported/oversized evidence rather than silently dropping it. Accept only a complete, distinct ranking with the winner first and bounded response text; invalid responses cannot consume a local Smart use. Localized failures distinguish network/timeout, rate limits, filtered or invalid evidence, oversized cases and unavailable service configuration. Offer explicit retry, case editing or Lucky Court with the existing evidence; do not automatically reroll a saved result. Never log credentials, request bodies or photos.
+
+### Returning diners, groups and recovery
+
+- `CaseDraft` preserves incomplete names/options/goal locally. Draft writes are serialized, Continue waits for persistence, and a save clears only the matching case. Opening a different case asks before replacing an unfinished draft.
+- Named case sets preserve exact options, optional photos, art and goal. Quick menu selection adds several contenders in one visit while respecting the 2–5 limit.
+- Jury Duty is a local pass-the-phone flow for 2–5 people. Each nominates one dish and votes behind a handoff screen. Results expose totals, never voter-to-choice associations. A tie sends only leaders into Lucky Court. Nothing is submitted to AI.
+- Objection offers edit, alternate method, and acceptance while preserving the saved result. Offline/timeout errors explain what happened and offer Lucky Court with the same evidence.
+- Saved-case meal feedback is optional and editable: whether the winner was chosen and whether the user would order it again. History can search names/notes, filter Smart/Lucky, and show feedback.
+- Receipt sharing previews the actual PNG before opening native sharing, keeps a text alternative, and anchors the share sheet on iPad. It includes the winner, quote, method, goal and contender names; private notes are omitted. User photos remain first priority.
+- Drift schema 4 adds the case shelf and meal feedback. Removing history removes its feedback but retains the shelf and independent usage ledger.
 
 ### Billing intentionally unfinished
 
@@ -230,8 +258,8 @@ The user approved price mocks and will connect purchases later. `/plus` is expli
 | Store products | Create App Store / Play products, subscription group/base plans, availability, and tax configuration. No product or entitlement IDs have been invented. |
 | Purchase provider | Wire StoreKit/Play Billing or RevenueCat; use actual localized products/prices and verified entitlements. |
 | Purchase lifecycle | Purchase, restore, pending/declined/cancelled states, renewal/expiry, refunds, account changes, and offline entitlement policy. |
-| Lifetime Smart allowance | Authenticated server-side ledger and atomic idempotent request enforcement across installs/devices. The local ledger is not abuse protection. |
+| Lifetime Smart allowance | Authenticated server-side ledger and atomic idempotent request enforcement across installs/devices. Persistent local identity/usage and gateway rate limits do not establish trusted lifetime entitlement. |
 | Store disclosures | Working terms/privacy links, renewal/cancellation disclosure, restore action, and store sandbox acceptance checks. |
-| Onboarding | The approved onboarding remains a separate design prototype; its educational flow and premium/free welcome are not integrated into Flutter yet. |
+| Onboarding offer | The education and final preview offer are integrated. Connect the offer to verified purchase/restore outcomes before selling; never simulate premium access. |
 
 The [original Lucky Court concept and prototype](design/explorations/2026-10-11/random-court/LUCKY_COURT.md) are retained as design references. Actual native verification belongs in [the verification record](design/verification/README.md), not in generated mockups.

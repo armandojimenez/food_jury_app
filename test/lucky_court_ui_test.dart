@@ -455,6 +455,7 @@ void main() {
       app.router.push(AppRouter.verdict, extra: luckyVerdict());
       await tester.pumpAndSettle();
       await tapButton(tester, 'START ANOTHER CASE');
+      await tapButton(tester, 'REPLACE DRAFT');
       expect(find.byType(NewDecisionScreen), findsOneWidget);
       expect(find.text('Old dish $i'), findsNothing);
       expect(

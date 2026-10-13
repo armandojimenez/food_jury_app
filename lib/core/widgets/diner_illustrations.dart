@@ -144,7 +144,11 @@ class DinerCharacterStage extends StatelessWidget {
           DinerTokens.largeTextBreakpoint;
       final judge = math.min(
         box.maxWidth * (accessible ? .9 : .8),
-        large ? DinerTokens.wideSceneJudge : DinerTokens.sceneJudge,
+        accessible
+            ? DinerTokens.rulingJudge
+            : large
+            ? DinerTokens.wideSceneJudge
+            : DinerTokens.sceneJudge,
       );
       return Stack(
         clipBehavior: Clip.none,

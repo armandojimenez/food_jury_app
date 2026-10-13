@@ -34,6 +34,7 @@ class DinerScaffold extends StatelessWidget {
     required this.child,
     this.title,
     this.showBack = true,
+    this.onBack,
     this.showLogo = false,
     this.trailing,
     this.bottomAction,
@@ -52,6 +53,9 @@ class DinerScaffold extends StatelessWidget {
 
   /// Shows a back action that safely falls back to the court.
   final bool showBack;
+
+  /// Overrides back navigation when a screen must protect unfinished work.
+  final VoidCallback? onBack;
 
   /// Uses the FoodJury wordmark in place of the text title.
   final bool showLogo;
@@ -121,6 +125,7 @@ class DinerScaffold extends StatelessWidget {
             DinerMasthead(
               title: title,
               showBack: showBack,
+              onBack: onBack,
               showLogo: showLogo,
               trailing: trailing,
             ),
@@ -172,6 +177,7 @@ class DinerMasthead extends StatelessWidget {
   const DinerMasthead({
     this.title,
     this.showBack = true,
+    this.onBack,
     this.showLogo = false,
     this.trailing,
     super.key,
@@ -182,6 +188,9 @@ class DinerMasthead extends StatelessWidget {
 
   /// Shows a back action that safely falls back to the court.
   final bool showBack;
+
+  /// Overrides back navigation when a screen must protect unfinished work.
+  final VoidCallback? onBack;
 
   /// Uses the FoodJury wordmark in place of the text title.
   final bool showLogo;
@@ -231,9 +240,11 @@ class DinerMasthead extends StatelessWidget {
                                   DinerIconButton(
                                     icon: Icons.arrow_back_rounded,
                                     label: context.l10n.common_back,
-                                    onPressed: () => context.canPop()
-                                        ? context.pop()
-                                        : context.go(AppRouter.home),
+                                    onPressed:
+                                        onBack ??
+                                        () => context.canPop()
+                                            ? context.pop()
+                                            : context.go(AppRouter.home),
                                   ),
                                 const Spacer(),
                                 if (trailing != null) trailing!,
@@ -251,9 +262,11 @@ class DinerMasthead extends StatelessWidget {
                               DinerIconButton(
                                 icon: Icons.arrow_back_rounded,
                                 label: context.l10n.common_back,
-                                onPressed: () => context.canPop()
-                                    ? context.pop()
-                                    : context.go(AppRouter.home),
+                                onPressed:
+                                    onBack ??
+                                    () => context.canPop()
+                                        ? context.pop()
+                                        : context.go(AppRouter.home),
                               ),
                               const SizedBox(width: AppDimensions.spaceMd),
                             ],

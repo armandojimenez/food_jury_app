@@ -49,6 +49,12 @@ class DevSettingsScreen extends StatelessWidget {
               context.l10n.diner_poseWaving,
               context.l10n.lucky_wheel,
               context.l10n.lucky_ticket,
+              context.l10n.judge_poseInspecting,
+              context.l10n.judge_poseBench,
+              context.l10n.judge_poseObjection,
+              context.l10n.judge_poseFiling,
+              context.l10n.judge_poseBell,
+              context.l10n.judge_poseWhispering,
             ];
             return Wrap(
               spacing: AppDimensions.spaceMd,

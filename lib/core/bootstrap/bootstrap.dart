@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../firebase_options.dart';
 import '../env/env.dart';
 import '../../app.dart';
 
@@ -22,9 +20,6 @@ Future<void> bootstrap(Environment environment) async {
 
   // Let the responsive diner layout adapt to tablets and landscape windows.
   await SystemChrome.setPreferredOrientations([]);
-
-  // Initialize services
-  await _initializeServices();
 
   // Log environment info
   _logEnvironmentInfo();
@@ -58,21 +53,6 @@ Future<void> _configureErrorHandling() async {
   };
 }
 
-Future<void> _initializeServices() async {
-  // Initialize Firebase
-  try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    ).timeout(const Duration(seconds: 5));
-  } catch (error) {
-    // Offline features must launch even when cloud configuration is unavailable.
-    debugPrint('Cloud services unavailable; local court remains open.');
-  }
-
-  // TODO: Initialize local storage (Drift)
-  // await LocalDatabase.initialize();
-}
-
 void _logEnvironmentInfo() {
   if (Env.enableLogging) {
     debugPrint('╔══════════════════════════════════════════════════════════╗');
@@ -82,9 +62,6 @@ void _logEnvironmentInfo() {
     debugPrint('║ App Name: ${Env.appName.padRight(47)}║');
     debugPrint(
       '║ Logging: ${(Env.enableLogging ? 'Enabled' : 'Disabled').padRight(48)}║',
-    );
-    debugPrint(
-      '║ Analytics: ${(Env.enableAnalytics ? 'Enabled' : 'Disabled').padRight(46)}║',
     );
     debugPrint('╚══════════════════════════════════════════════════════════╝');
   }

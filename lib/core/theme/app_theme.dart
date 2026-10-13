@@ -80,6 +80,7 @@ abstract final class AppTheme {
       iconTheme: IconThemeData(color: ink),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
+          enableFeedback: false,
           foregroundColor: ink,
           minimumSize: const Size(
             DinerTokens.touchTarget,

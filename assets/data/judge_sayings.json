@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "purpose": "Offline random verdict banter; never presented as AI reasoning or food analysis.",
   "selection": "Shuffle bag per tone + method + locale; no repeats until every eligible line is used, and no immediate boundary repeat.",
   "entries": [
@@ -581,6 +581,342 @@
       "text": {
         "en": "The coin landed. The menu debate did too.",
         "es": "La moneda cayó. Y el debate del menú también."
+      }
+    },
+    {
+      "id": "stern-09",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The menu dispute is hereby settled. Napkins may be unfolded.",
+        "es": "La disputa del menú queda resuelta. Pueden abrir las servilletas."
+      }
+    },
+    {
+      "id": "stern-10",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The court has reached the eating portion of the proceedings.",
+        "es": "El tribunal pasa a la etapa de comer."
+      }
+    },
+    {
+      "id": "stern-11",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Your next appointment is with a plate.",
+        "es": "Tu próxima cita es con un plato."
+      }
+    },
+    {
+      "id": "stern-12",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The only remaining question concerns extra sauce.",
+        "es": "Solo queda resolver lo de la salsa extra."
+      }
+    },
+    {
+      "id": "stern-13",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A duly selected dish. A well-earned break from choosing.",
+        "es": "Un plato elegido. Un merecido descanso de decidir."
+      }
+    },
+    {
+      "id": "stern-14",
+      "tone": "stern",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Indecision is excused from the table.",
+        "es": "La indecisión queda excusada de la mesa."
+      }
+    },
+    {
+      "id": "sassy-09",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "I settled dinner. You can settle who does the dishes.",
+        "es": "Yo resolví la cena. Ustedes resuelvan quién friega."
+      }
+    },
+    {
+      "id": "sassy-10",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Your group chat just lost its longest-running debate.",
+        "es": "Tu chat acaba de perder su debate más largo."
+      }
+    },
+    {
+      "id": "sassy-11",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The menu can stop auditioning now.",
+        "es": "El menú ya puede dejar de hacer audiciones."
+      }
+    },
+    {
+      "id": "sassy-12",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A tiny courtroom. An impressively dramatic dinner.",
+        "es": "Un tribunal pequeño. Una cena con mucho drama."
+      }
+    },
+    {
+      "id": "sassy-13",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Decision delivered. Dramatic sigh optional.",
+        "es": "Decisión entregada. Suspiro dramático opcional."
+      }
+    },
+    {
+      "id": "sassy-14",
+      "tone": "sassy",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "If anyone asks, this was extremely official.",
+        "es": "Si preguntan, esto fue sumamente oficial."
+      }
+    },
+    {
+      "id": "enthusiastic-09",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "This calls for a tiny parade of forks!",
+        "es": "¡Esto merece un pequeño desfile de tenedores!"
+      }
+    },
+    {
+      "id": "enthusiastic-10",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Dinner has a lead actor. Take a bow!",
+        "es": "La cena ya tiene protagonista. ¡Que salude!"
+      }
+    },
+    {
+      "id": "enthusiastic-11",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "A little court magic for your next meal!",
+        "es": "¡Un poquito de magia del tribunal para tu comida!"
+      }
+    },
+    {
+      "id": "enthusiastic-12",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The table is cheering. I’m sure of it.",
+        "es": "La mesa está aplaudiendo. Estoy seguro."
+      }
+    },
+    {
+      "id": "enthusiastic-13",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "One less dilemma. More room for the good stuff!",
+        "es": "¡Un dilema menos! Más espacio para disfrutar."
+      }
+    },
+    {
+      "id": "enthusiastic-14",
+      "tone": "enthusiastic",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Put the menu down. Pick the adventure up!",
+        "es": "¡Suelta el menú! Empieza la aventura."
+      }
+    },
+    {
+      "id": "chill-09",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "That’s one decision you can put down now.",
+        "es": "Ya puedes soltar esa decisión."
+      }
+    },
+    {
+      "id": "chill-10",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "The menu can take the rest of the evening off.",
+        "es": "El menú puede descansar el resto de la noche."
+      }
+    },
+    {
+      "id": "chill-11",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "One small choice. A little more room to relax.",
+        "es": "Una decisión pequeña. Un poco más de calma."
+      }
+    },
+    {
+      "id": "chill-12",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "No rush from me. Your pick’s right here.",
+        "es": "Por mí, sin prisa. Tu elección está aquí."
+      }
+    },
+    {
+      "id": "chill-13",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "We found a stopping point in the menu scroll.",
+        "es": "Encontramos dónde parar de mirar el menú."
+      }
+    },
+    {
+      "id": "chill-14",
+      "tone": "chill",
+      "methods": [
+        "wheel",
+        "ticket",
+        "cloche",
+        "coin"
+      ],
+      "text": {
+        "en": "Nice. Now the table talk can be about something else.",
+        "es": "Bien. Ahora la conversación puede cambiar de tema."
       }
     }
   ]

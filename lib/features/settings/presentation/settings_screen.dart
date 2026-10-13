@@ -5,13 +5,17 @@ import 'package:go_router/go_router.dart';
 import '../../../config/routes/app_router.dart';
 import '../../../core/env/env.dart';
 import '../../../core/providers/judge_tone_provider.dart';
+import '../../../core/providers/ai_consent_provider.dart';
+import '../../../core/widgets/ai_consent_sheet.dart';
 import '../../../core/providers/mock_ai_provider.dart';
 import '../../../core/providers/theme_provider.dart';
+import '../../../core/services/court_feedback.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../decision/data/models/verdict.dart';
 import '../../lucky/presentation/ai_allowance_ticket.dart';
+import '../../onboarding/data/onboarding_store.dart';
 
 /// Personalization lives in the same diner system as the food case flow.
 class SettingsScreen extends ConsumerWidget {
@@ -20,6 +24,7 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tone = ref.watch(judgeToneProvider);
     final theme = ref.watch(themeNotifierProvider);
+    final feedback = ref.watch(courtFeedbackPreferencesProvider);
     final l = context.l10n;
     final labels = [
       l.tone_stern,
@@ -74,6 +79,28 @@ class SettingsScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const AiAllowanceTicket(),
+              const SizedBox(height: AppDimensions.spaceLg),
+              DinerSection(l.consent_settingsTitle),
+              const SizedBox(height: AppDimensions.spaceMd),
+              DinerTicket(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      ref.watch(aiConsentProvider) == aiConsentVersion
+                          ? l.consent_allowed
+                          : l.consent_notAllowed,
+                    ),
+                    const SizedBox(height: AppDimensions.spaceMd),
+                    DinerButton(
+                      key: const Key('settings-ai-consent'),
+                      label: l.consent_review,
+                      style: DinerButtonStyle.outline,
+                      onPressed: () => reviewAiDataConsent(context),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(height: AppDimensions.spaceLg),
               DinerSection(l.settings_judgePersonality),
               const SizedBox(height: AppDimensions.spaceSm),
@@ -143,6 +170,77 @@ class SettingsScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    DinerButton(
+                      key: const Key('settings-welcome'),
+                      label: l.welcome_replay,
+                      icon: Icons.school_outlined,
+                      style: DinerButtonStyle.outline,
+                      onPressed: () => context.push(
+                        AppRouter.onboarding,
+                        extra: const OnboardingReplayRouteData(),
+                      ),
+                    ),
+                    const SizedBox(height: AppDimensions.spaceSm),
+                    DinerButton(
+                      label: l.jury_title,
+                      icon: Icons.groups_rounded,
+                      style: DinerButtonStyle.outline,
+                      onPressed: () => context.push(AppRouter.jury),
+                    ),
+                    const SizedBox(height: AppDimensions.spaceMd),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(l.welcome_soundTitle),
+                      subtitle: Text(l.welcome_soundBody),
+                      value: feedback.sound,
+                      onChanged: (value) async {
+                        try {
+                          await ref
+                              .read(courtFeedbackPreferencesProvider.notifier)
+                              .setSound(value);
+                        } catch (_) {
+                          if (context.mounted) {
+                            AppSnackbar.showError(
+                              context,
+                              message: l.error_genericMessage,
+                            );
+                          }
+                        }
+                      },
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(l.welcome_hapticsTitle),
+                      value: feedback.haptics,
+                      onChanged: (value) async {
+                        try {
+                          await ref
+                              .read(courtFeedbackPreferencesProvider.notifier)
+                              .setHaptics(value);
+                        } catch (_) {
+                          if (context.mounted) {
+                            AppSnackbar.showError(
+                              context,
+                              message: l.error_genericMessage,
+                            );
+                          }
+                        }
+                      },
+                    ),
+                    ExpansionTile(
+                      key: const Key('settings-data-privacy'),
+                      tilePadding: EdgeInsets.zero,
+                      title: Text(l.welcome_privacyTitle),
+                      children: [
+                        Text(l.welcome_privacyLocal),
+                        const SizedBox(height: AppDimensions.spaceSm),
+                        Text(l.welcome_privacySmart),
+                        const SizedBox(height: AppDimensions.spaceSm),
+                        Text(l.welcome_privacyDelete),
+                        const SizedBox(height: AppDimensions.spaceMd),
+                      ],
+                    ),
+                    const SizedBox(height: AppDimensions.spaceMd),
                     Text(l.about_foodJuryDescription),
                     const SizedBox(height: AppDimensions.spaceMd),
                     DinerButton(

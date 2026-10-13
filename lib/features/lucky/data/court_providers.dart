@@ -11,9 +11,9 @@ import '../../../core/providers/ai_service_provider.dart';
 import '../../../core/providers/judge_tone_provider.dart';
 import '../../../core/providers/mock_ai_provider.dart';
 import '../../../core/services/ai_service.dart';
+import '../../../core/services/smart_allowance_service.dart';
 import '../../../data/providers/database_provider.dart';
 import '../../../data/providers/verdict_provider.dart';
-import '../../../data/database/app_database.dart';
 import '../../decision/data/models/verdict.dart';
 import 'decision_case.dart';
 
@@ -21,7 +21,11 @@ import 'decision_case.dart';
 /// Test/preview overrides can exercise Plus without pretending to buy it.
 final premiumAccessProvider = Provider<bool>((ref) => false);
 final aiAllowanceProvider = FutureProvider<int>(
-  (ref) => ref.watch(databaseProvider).remainingAiDecisions(),
+  (ref) async =>
+      (await ref
+              .watch(smartAllowanceServiceProvider)
+              .reconcile(ref.watch(databaseProvider)))
+          .remaining,
 );
 
 /// A retry keeps the operation ID and any successful generated result.
@@ -46,56 +50,66 @@ class AiCourt {
     _busy = true;
     try {
       final db = ref.read(databaseProvider);
-      final existing = await db.getVerdictById(attempt.id);
-      if (existing != null) return existing;
       final premium = ref.read(premiumAccessProvider);
-      if (!premium && await db.remainingAiDecisions() == 0) {
-        throw AiAllowanceExhausted();
-      }
-      await ref.read(judgeToneProvider.notifier).ready;
-      await ref.read(mockAiNotifierProvider.notifier).ready;
-      if (attempt._generated == null) {
-        final result = await ref
-            .read(aiServiceProvider)
-            .generateVerdict(
-              options: attempt.caseData.options,
-              objective: attempt.caseData.objective,
-              tone: ref.read(judgeToneProvider),
-              locale: attempt.locale,
-            )
-            .timeout(const Duration(seconds: 45));
-        final ids = attempt.caseData.options.map((o) => o.id).toSet();
-        if (result.isRandom ||
-            result.reasoning.trim().isEmpty ||
-            result.rankings.length != ids.length ||
-            result.rankings
-                .map((o) => o.id)
-                .toSet()
-                .difference(ids)
-                .isNotEmpty ||
-            result.rankings.map((o) => o.id).toSet().length != ids.length ||
-            result.rankings.first.id != result.winner.id) {
-          throw const AiServiceException('Invalid AI ruling');
-        }
-        // Keep exact original user evidence; AI controls only ordering and prose.
-        final originals = {for (final o in attempt.caseData.options) o.id: o};
-        attempt._generated = result
-            .copyWith(
-              id: attempt.id,
-              winner: originals[result.winner.id]!,
-              rankings: result.rankings.map((o) => originals[o.id]!).toList(),
-              contenders: attempt.caseData.options,
-              objective: attempt.caseData.objective,
-            )
-            .snapshot();
-      }
-      await db.saveAiVerdict(attempt._generated!, premium: premium);
-      ref.invalidate(aiAllowanceProvider);
-      ref.invalidate(verdictsProvider);
-      ref.invalidate(recentVerdictsProvider);
-      return attempt._generated!;
+      final verdict = await ref
+          .read(smartAllowanceServiceProvider)
+          .decide(
+            db,
+            operationId: attempt.id,
+            premium: premium,
+            generate: () async {
+              await ref.read(judgeToneProvider.notifier).ready;
+              await ref.read(mockAiNotifierProvider.notifier).ready;
+              if (attempt._generated == null) {
+                final result = await ref
+                    .read(aiServiceProvider)
+                    .generateVerdict(
+                      options: attempt.caseData.options,
+                      objective: attempt.caseData.objective,
+                      tone: ref.read(judgeToneProvider),
+                      locale: attempt.locale,
+                    )
+                    .timeout(const Duration(seconds: 45));
+                final ids = attempt.caseData.options.map((o) => o.id).toSet();
+                if (result.isRandom ||
+                    result.reasoning.trim().isEmpty ||
+                    result.rankings.length != ids.length ||
+                    result.rankings
+                        .map((o) => o.id)
+                        .toSet()
+                        .difference(ids)
+                        .isNotEmpty ||
+                    result.rankings.map((o) => o.id).toSet().length !=
+                        ids.length ||
+                    result.rankings.first.id != result.winner.id) {
+                  throw const AiServiceException('Invalid AI ruling');
+                }
+                // AI controls only ordering and prose, never original user evidence.
+                final originals = {
+                  for (final o in attempt.caseData.options) o.id: o,
+                };
+                attempt._generated = result
+                    .copyWith(
+                      id: attempt.id,
+                      winner: originals[result.winner.id]!,
+                      rankings: result.rankings
+                          .map((o) => originals[o.id]!)
+                          .toList(),
+                      contenders: attempt.caseData.options,
+                      objective: attempt.caseData.objective,
+                    )
+                    .snapshot();
+              }
+              return attempt._generated!;
+            },
+          );
+      return verdict;
     } finally {
       _busy = false;
+      ref.invalidate(aiAllowanceProvider);
+      // A verdict can commit before its persistent allowance mirror fails.
+      ref.invalidate(verdictsProvider);
+      ref.invalidate(recentVerdictsProvider);
     }
   }
 }

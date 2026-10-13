@@ -2,11 +2,16 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../../config/routes/app_router.dart';
 import '../../../core/theme/theme.dart';
+import '../../../core/services/court_feedback.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../moments/presentation/verdict_receipt.dart';
+import '../../moments/presentation/case_objection.dart';
+import '../../moments/presentation/saved_case_moment.dart';
+import '../../moments/presentation/meal_feedback_card.dart';
+import '../../case_shelf/presentation/case_shelf_widgets.dart';
 import '../../../data/providers/verdict_provider.dart';
 import '../../decision/data/models/verdict.dart';
 import '../data/court_providers.dart';
@@ -21,10 +26,12 @@ class LuckyVerdictScreen extends ConsumerStatefulWidget {
     required this.verdict,
     this.saved = false,
     this.animate = true,
+    this.previousWinnerId,
     super.key,
   });
   final Verdict verdict;
   final bool saved, animate;
+  final String? previousWinnerId;
   @override
   ConsumerState<LuckyVerdictScreen> createState() => _LuckyVerdictScreenState();
 }
@@ -33,6 +40,7 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
     with SingleTickerProviderStateMixin {
   late bool _saved = widget.saved;
   bool _busy = false, _sharing = false, _started = false;
+  bool _justSaved = false;
   String? _error;
   final _shareKey = GlobalKey();
   late final _celebration = AnimationController(
@@ -74,8 +82,10 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
       if (mounted) {
         setState(() {
           _saved = true;
+          _justSaved = true;
           _busy = false;
         });
+        CourtFeedback.play(context, ref, CourtCue.file);
       }
     } catch (_) {
       if (mounted) {
@@ -103,7 +113,11 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
       setState(() => _busy = false);
       context.pushReplacement(
         AppRouter.draw,
-        extra: DrawRouteData(verdict: verdict),
+        extra: DrawRouteData(
+          verdict: verdict,
+          repeat: true,
+          previousWinnerId: widget.verdict.winner.id,
+        ),
       );
     } catch (_) {
       if (mounted) {
@@ -118,25 +132,8 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
   Future<void> _share() async {
     if (_sharing) return;
     setState(() => _sharing = true);
-    final box = _shareKey.currentContext?.findRenderObject() as RenderBox?;
     try {
-      await SharePlus.instance.share(
-        ShareParams(
-          title: 'FoodJury',
-          text:
-              '${widget.verdict.winner.name} ${context.l10n.lucky_winner}\n\n${widget.verdict.displayRuling}\n\n${context.l10n.lucky_equalOdds}\nFoodJury · ${widget.verdict.random!.method.title(context)}',
-          sharePositionOrigin: box == null
-              ? null
-              : box.localToGlobal(Offset.zero) & box.size,
-        ),
-      );
-    } catch (_) {
-      if (mounted) {
-        AppSnackbar.showError(
-          context,
-          message: context.l10n.error_genericMessage,
-        );
-      }
+      await showVerdictReceipt(context, widget.verdict);
     } finally {
       if (mounted) setState(() => _sharing = false);
     }
@@ -153,15 +150,18 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
           children: [
             DinerScaffold(
               title: l.lucky_randomLabel,
-              bottomAction: DinerButton(
-                key: const Key('save-lucky'),
-                label: _saved ? l.lucky_saved : l.lucky_save,
-                style: DinerButtonStyle.mustard,
-                icon: _saved
-                    ? Icons.check_circle_outline
-                    : Icons.bookmark_add_outlined,
-                onPressed: _saved ? null : _save,
-              ),
+              bottomAction: _saved
+                  ? SavedCaseMoment(animate: _justSaved, compact: true)
+                  : DinerButton(
+                      key: const Key('save-lucky'),
+                      label: _saved ? l.lucky_saved : l.lucky_save,
+                      loading: _busy,
+                      style: DinerButtonStyle.mustard,
+                      icon: _saved
+                          ? Icons.check_circle_outline
+                          : Icons.bookmark_add_outlined,
+                      onPressed: _saved ? null : _save,
+                    ),
               child: LayoutBuilder(
                 builder: (context, box) {
                   final wide =
@@ -196,7 +196,10 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
                       const SizedBox(height: AppDimensions.spaceSm),
                       DinerEntrance(
                         order: 2,
-                        child: WinnerHero(option: verdict.winner),
+                        child: Hero(
+                          tag: 'winner-${verdict.id}',
+                          child: WinnerHero(option: verdict.winner),
+                        ),
                       ),
                       const SizedBox(height: AppDimensions.spaceMd),
                     ],
@@ -204,6 +207,14 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
                   final ruling = Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      if (widget.previousWinnerId == verdict.winner.id) ...[
+                        JudgeAside(
+                          moment: JudgeMoment.repeatWinner,
+                          eventId: verdict.id,
+                          compact: true,
+                        ),
+                        const SizedBox(height: AppDimensions.spaceMd),
+                      ],
                       DinerEntrance(
                         order: 3,
                         child: DinerVoucher(
@@ -273,6 +284,17 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
                       ),
                       const SizedBox(height: AppDimensions.spaceMd),
                       DinerButton(
+                        key: const Key('objection-lucky'),
+                        label: l.moments_objection,
+                        icon: Icons.gavel_rounded,
+                        style: DinerButtonStyle.outline,
+                        onPressed: () {
+                          CourtFeedback.play(context, ref, CourtCue.objection);
+                          showCaseObjection(context, ref, verdict);
+                        },
+                      ),
+                      const SizedBox(height: AppDimensions.spaceMd),
+                      DinerButton(
                         label: l.lucky_otherMethod,
                         style: DinerButtonStyle.outline,
                         onPressed: () =>
@@ -281,11 +303,12 @@ class _LuckyVerdictScreenState extends ConsumerState<LuckyVerdictScreen>
                       const SizedBox(height: AppDimensions.spaceMd),
                       DinerButton(
                         label: l.lucky_newCase,
-                        onPressed: () => context.go(
-                          AppRouter.newDecision,
-                          extra: UniqueKey(),
-                        ),
+                        onPressed: () => openShelfCase(context, ref),
                       ),
+                      if (_saved) ...[
+                        const SizedBox(height: AppDimensions.spaceLg),
+                        MealFeedbackCard(verdictId: verdict.id),
+                      ],
                       const SizedBox(height: AppDimensions.spaceLg),
                       DinerSection(l.lucky_caseDetails),
                       const SizedBox(height: AppDimensions.spaceMd),

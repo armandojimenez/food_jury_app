@@ -15,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:food_jury/config/routes/app_router.dart';
 import 'package:food_jury/core/env/env.dart';
+import 'package:food_jury/core/providers/ai_consent_provider.dart';
 import 'package:food_jury/core/theme/theme.dart';
 import 'package:food_jury/data/providers/verdict_provider.dart';
 import 'package:food_jury/features/decision/data/models/food_option.dart';
@@ -87,6 +88,7 @@ class DinerHarness {
     String locale = 'en',
     bool dark = false,
     bool reducedMotion = true,
+    bool aiConsent = true,
     List<Override> overrides = const [],
     List<Verdict>? history,
     Map<String, Object> preferences = const {},
@@ -94,7 +96,10 @@ class DinerHarness {
     motionDisabled.value = reducedMotion;
     addTearDown(motionDisabled.dispose);
     Env.current = Environment.dev;
-    SharedPreferences.setMockInitialValues(preferences);
+    SharedPreferences.setMockInitialValues({
+      if (aiConsent) aiConsentPreferenceKey: aiConsentVersion,
+      ...preferences,
+    });
     tester.view.devicePixelRatio = 2;
     tester.view.physicalSize = size * 2;
     addTearDown(tester.view.resetPhysicalSize);

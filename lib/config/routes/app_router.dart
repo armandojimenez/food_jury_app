@@ -19,6 +19,10 @@ import '../../features/settings/dev_settings_screen.dart';
 import '../../features/settings/presentation/about_developer_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/splash/presentation/splash_screen.dart';
+import '../../features/onboarding/presentation/onboarding_screen.dart';
+import '../../features/onboarding/data/onboarding_store.dart';
+import '../../features/jury/presentation/jury_screen.dart';
+import '../../features/case_shelf/data/case_shelf_models.dart';
 
 /// App navigation routes using GoRouter.
 ///
@@ -28,6 +32,8 @@ class AppRouter {
   /// Route path constants
   static const String splash = '/';
   static const String home = '/home';
+  static const String onboarding = '/welcome';
+  static const String jury = '/jury';
   static const String newDecision = '/decision/new';
   static const String verdict = '/decision/verdict';
   static const String methods = '/decision/methods';
@@ -67,6 +73,20 @@ class AppRouter {
 
         // Home Screen
         GoRoute(
+          path: onboarding,
+          pageBuilder: (context, state) => _buildPageWithTransition(
+            child: OnboardingScreen(
+              replay: state.extra is OnboardingReplayRouteData,
+            ),
+            state: state,
+          ),
+        ),
+        GoRoute(
+          path: jury,
+          pageBuilder: (context, state) =>
+              _buildPageWithTransition(child: const JuryScreen(), state: state),
+        ),
+        GoRoute(
           path: home,
           name: 'home',
           pageBuilder: (context, state) =>
@@ -79,9 +99,12 @@ class AppRouter {
           name: 'newDecision',
           pageBuilder: (context, state) => _buildPageWithTransition(
             child: NewDecisionScreen(
-              key: ValueKey(state.extra ?? state.pageKey),
+              key: ValueKey((state.pageKey, state.extra)),
               initialCase: state.extra is DecisionCase
                   ? state.extra as DecisionCase
+                  : null,
+              initialDraft: state.extra is CaseDraft
+                  ? state.extra as CaseDraft
                   : null,
             ),
             state: state,
@@ -118,7 +141,9 @@ class AppRouter {
         GoRoute(
           path: plus,
           pageBuilder: (context, state) => _buildPageWithTransition(
-            child: const PlusPreviewScreen(),
+            child: PlusPreviewScreen(
+              fromOnboarding: state.extra is OnboardingOfferRouteData,
+            ),
             state: state,
           ),
         ),
@@ -157,6 +182,9 @@ class AppRouter {
                       verdict: verdictData,
                       animate: showAnimation,
                       saved: extra is VerdictRouteData && extra.saved,
+                      previousWinnerId: extra is VerdictRouteData
+                          ? extra.previousWinnerId
+                          : null,
                     )
                   : VerdictScreen(
                       verdict: verdictData,
@@ -281,11 +309,15 @@ class VerdictRouteData {
     required this.verdict,
     this.showRevealAnimation = true,
     this.saved = false,
+    this.previousWinnerId,
   });
 
   final Verdict verdict;
   final bool showRevealAnimation;
   final bool saved;
+
+  /// Prior winner for a new draw, never for replaying saved history.
+  final String? previousWinnerId;
 }
 
 /// Error screen displayed when navigation fails.

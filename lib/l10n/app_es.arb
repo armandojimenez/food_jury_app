@@ -535,5 +535,279 @@
   "lucky_useLast": "Usar mi veredicto inteligente",
   "lucky_useFree": "Mejor que decida la suerte",
   "lucky_lastConfirm": "Este es tu último veredicto inteligente de bienvenida. Los sorteos siempre son gratis. Con Plus, el juez sigue deliberando sin límites.",
-  "lucky_stageHint": "Cada plato tiene la misma oportunidad."
+  "lucky_stageHint": "Cada plato tiene la misma oportunidad.",
+  "shelf_title": "Lo de siempre",
+  "shelf_hint": "Tus combinaciones favoritas, listas para otra ronda.",
+  "shelf_resume": "Continuar tu caso",
+  "shelf_draftHint": "Tus opciones y fotos siguen aquí.",
+  "shelf_discard": "Descartar borrador",
+  "shelf_discardTitle": "¿Descartar este caso pendiente?",
+  "shelf_discardHint": "Se borrará el caso pendiente con sus fotos. Los veredictos y las combinaciones guardadas se quedan en tus archivos.",
+  "shelf_replaceTitle": "Todavía hay un caso en el mostrador",
+  "shelf_replaceHint": "Al abrir este caso se reemplazará tu borrador pendiente. Tus veredictos y combinaciones guardadas se quedan.",
+  "shelf_replace": "Reemplazar borrador",
+  "shelf_new": "Empezar un caso nuevo",
+  "shelf_quickMenu": "Elegir del menú",
+  "shelf_quickHint": "Toca tus opciones. Puedes añadir detalles después.",
+  "shelf_menuLimit": "Elige de {minimum} a {maximum} platos.",
+  "@shelf_menuLimit": {
+    "placeholders": {
+      "minimum": {
+        "type": "int"
+      },
+      "maximum": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_addSelected": "{count, plural, one{Añadir 1 opción} other{Añadir {count} opciones}}",
+  "@shelf_addSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_selectedCount": "{count, plural, one{1 elegida} other{{count} elegidas}} · máximo {maximum}",
+  "@shelf_selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "maximum": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_noMenuMatch": "No hay platos que coincidan. Prueba otra búsqueda o añade tu propia opción.",
+  "shelf_custom": "Añadir tu propio plato",
+  "shelf_optionalEvidence": "Dale tu toque",
+  "shelf_optionalHint": "Las ilustraciones y las fotos son opcionales.",
+  "shelf_savedDraft": "Borrador guardado en este dispositivo",
+  "shelf_savingDraft": "Guardando tu caso…",
+  "shelf_draftError": "No se pudieron guardar los últimos cambios. Mantén este caso abierto e inténtalo de nuevo.",
+  "shelf_saveSet": "Guardar en lo de siempre",
+  "shelf_setName": "Ponle nombre a esta combinación",
+  "shelf_setHint": "Comida del viernes, almuerzo de oficina…",
+  "shelf_setSaved": "Tu combinación está lista para la próxima.",
+  "shelf_setDeleteTitle": "¿Eliminar esta combinación?",
+  "shelf_setDeleteHint": "Tus veredictos guardados y el caso abierto se quedan.",
+  "shelf_openSet": "Abrir combinación",
+  "shelf_reopen": "Reabrir caso",
+  "shelf_returnTitle": "¿Volviste por otro bocado?",
+  "shelf_returnHint": "Continúa donde lo dejaste o trae un caso nuevo.",
+  "shelf_jury": "Turno del jurado",
+  "shelf_juryHint": "Pasa el teléfono. Decidan juntos qué comer.",
+  "shelf_search": "Buscar platos y notas",
+  "shelf_all": "Todos los casos",
+  "shelf_smart": "Con criterio",
+  "shelf_lucky": "Al azar",
+  "shelf_noResults": "No hay casos que coincidan",
+  "shelf_clearFilters": "Quitar búsqueda y filtros",
+  "shelf_caseCount": "{count} opciones",
+  "@shelf_caseCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_nameRequired": "Ponle un nombre a esta combinación.",
+  "shelf_manage": "Gestionar combinaciones",
+  "moments_shareTitle": "Un veredicto para compartir",
+  "moments_shareHint": "Tu recibo incluye la foto o ilustración ganadora, el veredicto y los nombres de los platos. Revísalo antes de compartir.",
+  "moments_shareImage": "Compartir recibo",
+  "moments_shareText": "Compartir como texto",
+  "moments_shareError": "No se pudo compartir el recibo. Inténtalo de nuevo o compártelo como texto.",
+  "moments_receiptFooter": "La cena está decidida. Se levanta la sesión.",
+  "moments_objection": "¡Objeción!",
+  "moments_objectionTitle": "El tribunal te escuchará.",
+  "moments_objectionHint": "Conserva los platos y edita tu caso, o elige otro método. El veredicto original queda intacto. Un nuevo veredicto inteligente usa uno de bienvenida o Plus; el Tribunal de la Suerte siempre es gratis.",
+  "moments_objectionAccept": "Acepto el veredicto",
+  "moments_filed": "¡Archivado!",
+  "moments_filedHint": "La cena ya consta en acta.",
+  "moments_filedAnnouncement": "Veredicto guardado en tu archivo de casos.",
+  "moments_chooseHint": "Un veredicto razonado o un poco de suerte. Tú eliges.",
+  "moments_smartHeading": "Veredicto inteligente · con razones",
+  "moments_smartHint": "Tu objetivo, notas y fotos ayudan al Juez Bite a decidir.",
+  "moments_luckyHint": "Gratis, sin conexión y justo. Todos los platos tienen la misma oportunidad.",
+  "moments_wheelHint": "Dale una vuelta a la cena.",
+  "moments_ticketHint": "Un boleto. Un ganador.",
+  "moments_clocheHint": "La cena está bajo la tapa.",
+  "moments_coinHint": "Dos platos. Un lanzamiento.",
+  "moments_recoverLucky": "Decidir con el Tribunal de la Suerte",
+  "moments_offline": "El juez no pudo conectarse. Tu caso y tu veredicto de bienvenida siguen disponibles. Inténtalo de nuevo o elige el Tribunal de la Suerte.",
+  "moments_timeout": "El juez tardó demasiado. No se usó tu veredicto de bienvenida. Reintenta o deja decidir al Tribunal de la Suerte.",
+  "shelf_caseActions": "Acciones del caso",
+  "welcome_title": "Bienvenido al tribunal",
+  "welcome_skip": "Omitir",
+  "welcome_step": "Paso {step} de 3",
+  "@welcome_step": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "welcome_next": "Continuar",
+  "welcome_start": "Continuar",
+  "welcome_replay": "Repetir la bienvenida",
+  "welcome_methodsTitle": "Tu primer veredicto.",
+  "welcome_methodsBody": "Dos candidatos. Una decisión deliciosa.",
+  "welcome_lucky": "Suerte · Que decida el azar",
+  "welcome_smart": "Inteligente · Sigue tu objetivo",
+  "welcome_demo": "Caso de práctica",
+  "welcome_luckyDemo": "Un sorteo justo. ¡Aplausos para {food}!",
+  "@welcome_luckyDemo": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_smartDemo": "Los tacos ya están listos. Gana tu objetivo de comer rápido. ¡Caso cerrado!",
+  "welcome_demoGoal": "El objetivo: algo rápido.",
+  "welcome_tryDemo": "Probar un veredicto",
+  "welcome_demoWinner": "El veredicto: {food}",
+  "@welcome_demoWinner": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_evidenceTitle": "Prepara tu caso.",
+  "welcome_evidenceBody": "Trae de 2 a 5 platos y elige tu objetivo. Las notas y tus propias fotos son opcionales.",
+  "welcome_evidenceToggle": "Añadir una nota de práctica",
+  "welcome_evidenceExample": "Tacos · “Listos ahora, unos $10.” ¡Evidencia aceptada!",
+  "welcome_evidenceEmpty": "Tacos. Un nombre basta para entrar al tribunal.",
+  "welcome_photoPrivacy": "Inteligente pide permiso antes de enviar los detalles y fotos de tus platos mediante la pasarela de IA del desarrollador y sus proveedores. Los sorteos se quedan en tu dispositivo.",
+  "welcome_toneTitle": "Conoce a tu juez.",
+  "welcome_toneBody": "Elige tu tipo de humor judicial.",
+  "welcome_privacyTitle": "Tu comida, fotos y datos",
+  "welcome_privacyLocal": "Los casos, fotos y preferencias se guardan en este dispositivo y pueden incluirse en la copia de seguridad del sistema operativo. Los sorteos y el jurado funcionan localmente. Los votos son temporales; solo se conservan totales anónimos durante la sesión. Un identificador aleatorio de la app y un registro de uso ayudan a conservar el límite de Inteligente tras reinstalar; no son identificadores del hardware.",
+  "welcome_privacySmart": "Con tu permiso, Inteligente envía nombres, notas, fotos adjuntas, objetivo y personalidad por Cloudflare AI Gateway del desarrollador y OpenRouter hacia Azure, OpenAI o BaseTen. Estas rutas están configuradas para retención cero de datos y para denegar su recopilación. Las ilustraciones no son evidencia fotográfica. Una foto no verifica alérgenos, seguridad alimentaria ni cifras nutricionales.",
+  "welcome_privacyDelete": "Elimina un caso en Historial para borrar esa copia local. Descarta los borradores y elimina las combinaciones guardadas por separado en Inicio. Retira aquí el permiso de datos para IA para detener futuras solicitudes; esto no recupera los datos ya enviados a los proveedores.",
+  "welcome_soundTitle": "Sonidos del tribunal",
+  "welcome_soundBody": "Sonidos del sistema opcionales. Reducir movimiento desactiva los sonidos y la vibración.",
+  "welcome_hapticsTitle": "Vibración al interactuar",
+  "jury_title": "Turno de jurado",
+  "jury_introTitle": "Que decida toda la mesa.",
+  "jury_introBody": "De 2 a 5 comensales. Cada persona propone un plato distinto y emite un voto privado. Pasa el teléfono entre turnos. Un empate va al Tribunal de la Suerte.",
+  "jury_howMany": "¿Cuántos miembros del jurado?",
+  "jury_start": "Reunir al jurado",
+  "jury_localNote": "Un teléfono. Sin cuentas ni internet. La sesión desaparece al cerrar Turno de jurado. Mantén la pantalla privada al votar.",
+  "jury_distinctDish": "Escribe un plato que todavía no se haya propuesto.",
+  "jury_passTo": "Pásalo al miembro {number}.",
+  "@jury_passTo": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_ready": "Soy el miembro {number} · Listo",
+  "@jury_ready": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_nominateHint": "Te toca proponer un plato. Elige del menú o escribe el tuyo.",
+  "jury_votePrivacy": "Hora de votar. Los votos anteriores están ocultos. Toma el teléfono, elige y sella tu voto.",
+  "jury_nominateTitle": "Miembro {number}: ¿tu plato?",
+  "@jury_nominateTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_menu": "Elegir del menú",
+  "jury_dishName": "O escribe tu propio plato",
+  "jury_nominate": "Presentar mi plato",
+  "jury_ballot": "Miembro {number}: tu voto.",
+  "@jury_ballot": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_ballotHint": "Elige un plato. Solo se mostrarán los totales finales.",
+  "jury_seal": "Sellar mi voto",
+  "jury_winner": "¡El jurado elige {food}!",
+  "@jury_winner": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "jury_resultsHint": "Todos los votos están sellados. Este es el veredicto de la mesa.",
+  "jury_votes": "{count, plural, =0{0 votos} =1{1 voto} other{{count} votos}}",
+  "@jury_votes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_tie": "Un empate delicioso.",
+  "jury_tieHint": "Solo los platos empatados en primer lugar entran al sorteo. Dos usan la moneda; más usan el plato. No se usa ningún fallo inteligente.",
+  "jury_tieBreak": "Desempatar con la suerte",
+  "jury_again": "Reunir otro jurado",
+  "judge_poseInspecting": "Inspeccionando las pruebas",
+  "judge_poseBench": "Tribunal abierto",
+  "judge_poseObjection": "¿Objeción?",
+  "judge_poseFiling": "Archivado oficialmente",
+  "judge_poseBell": "¡Orden lista!",
+  "judge_poseWhispering": "Un comentario aparte",
+  "shelf_saveLineup": "Guardar combinación",
+  "moments_feedbackTitle": "Después de la cena · opcional",
+  "moments_feedbackChose": "¿Probaste este plato?",
+  "moments_feedbackOrderAgain": "¿Lo pedirías de nuevo?",
+  "moments_feedbackNotThisTime": "Esta vez no",
+  "moments_feedbackClear": "Borrar respuestas",
+  "moments_feedbackSaved": "Guardado en este dispositivo. Puedes cambiar tus respuestas cuando quieras.",
+  "moments_feedbackSaving": "Guardando tu respuesta…",
+  "moments_feedbackLoading": "Cargando tus respuestas…",
+  "moments_feedbackLoadError": "No se pudieron cargar tus respuestas.",
+  "moments_feedbackSaveError": "Tu respuesta no se guardó. Inténtalo de nuevo.",
+  "moments_feedbackTried": "Lo probé",
+  "moments_feedbackAgain": "Lo pediría de nuevo",
+  "welcome_readyNow": "Listos ahora",
+  "welcome_waitTime": "25 minutos de espera",
+  "welcome_deliberating": "Una decisión deliciosa…",
+  "welcome_replayDemo": "¡Otra vez!",
+  "welcome_changeMethod": "Probar otra forma",
+  "welcome_readyMessage": "Tu juez está listo. Trae tus propios candidatos.",
+  "shelf_unsavedTitle": "Hay cambios sin guardar",
+  "shelf_unsavedHint": "Quédate y vuelve a intentarlo para conservar los últimos cambios. Si sales ahora, al volver solo estarán los cambios que ya se guardaron.",
+  "shelf_leaveUnsaved": "Salir de todos modos",
+  "shelf_keepEditing": "Seguir editando",
+  "welcome_sternPreview": "El tribunal ha revisado el menú. Puede comenzar la cena.",
+  "welcome_sassyPreview": "Caso cerrado. Tu chat de grupo por fin puede descansar.",
+  "welcome_enthusiasticPreview": "¡Una decisión deliciosa! ¡Que alguien toque la campana!",
+  "welcome_chillPreview": "Buena comida, buena compañía. Ya estamos listos.",
+  "moments_allowanceUnavailable": "No se pudo verificar tu saldo de veredictos inteligentes. Inténtalo de nuevo o usa la Corte de la Suerte gratis.",
+  "consent_title": "¿Enviar al juez?",
+  "consent_data": "Inteligente envía los nombres de tus platos, notas, objetivo y personalidad del juez, además de las fotos que adjuntes. Las ilustraciones nunca se envían como evidencia fotográfica.",
+  "consent_recipients": "Las solicitudes pasan por Cloudflare AI Gateway del desarrollador y OpenRouter hacia Azure, OpenAI o BaseTen. Estas rutas están configuradas para retención cero de datos y para denegar su recopilación.",
+  "consent_identity": "Se envía un identificador aleatorio de la instalación para limitar las solicitudes. No es un identificador del hardware. La copia de seguridad del sistema operativo puede conservar las preferencias y la información de uso locales.",
+  "consent_control": "Puedes retirar el permiso en Ajustes para futuras solicitudes. Esto no recupera los datos ya enviados. Los sorteos y el jurado funcionan en tu dispositivo.",
+  "consent_send": "Enviar al juez",
+  "consent_notNow": "Ahora no",
+  "consent_settingsTitle": "Permiso de datos para IA",
+  "consent_allowed": "El permiso está activo para la política de datos actual.",
+  "consent_notAllowed": "Inteligente pedirá permiso antes de enviar tus datos.",
+  "consent_review": "Revisar permiso",
+  "consent_revoke": "Retirar permiso",
+  "consent_saveError": "No se pudo guardar el permiso. No se envió ninguna solicitud nueva. Vuelve a intentarlo.",
+  "consent_updated": "Hay que revisar de nuevo el permiso de datos para IA. Si el problema continúa, actualiza la app antes de usar Inteligente.",
+  "moments_gatewayBusy": "Los veredictos inteligentes están ocupados. Inténtalo en unos minutos o usa la Corte de la Suerte gratis.",
+  "moments_gatewayCaseReview": "Judge Bite no pudo usar este caso. Revisa los nombres, notas o fotos e inténtalo de nuevo, o usa la Corte de la Suerte.",
+  "moments_gatewayTooLarge": "Este caso es demasiado grande para enviarlo. Prueba con fotos más pequeñas o notas más cortas, o usa la Corte de la Suerte.",
+  "moments_gatewayUnavailable": "Los veredictos inteligentes no están disponibles ahora. Puedes seguir usando la Corte de la Suerte gratis."
 }

@@ -1,16 +1,26 @@
 # Current status · October 2026
 
-The retro diner redesign is implemented across splash, home, case builder and option/photo sheets, deliberation, verdict, archive, settings, developer profile, errors, and the design gallery. Twelve judge poses, illustrated food, the app icon and Armando’s illustrated Memoji are installed. User camera/gallery, photo analysis, notes, 2–5 options, goals, tone, durable saving, history and sharing remain available.
+The retro diner redesign is implemented across splash, home, case builder and option/photo sheets, deliberation, verdict, archive, settings, developer profile, errors, and the design gallery. Eighteen judge poses, illustrated food, the app icon and Armando’s illustrated Memoji are installed. User camera/gallery, photo analysis, notes, 2–5 options, goals, tone, durable saving, history and sharing remain available.
 
 Use [DESIGN.md](DESIGN.md) and [JUDGE_BITE_MASCOT_SPEC.md](JUDGE_BITE_MASCOT_SPEC.md) as the current visual contracts. [Verification](design/verification/README.md) records tested behavior and remaining device/service limits. The roadmap below is historical; its original palette, fonts, phase status and package versions have been superseded by the implementation and lockfile.
 
-Lucky Court is implemented: four animated offline methods, immutable saved results, a 44-line bilingual sayings library, three welcome Smart rulings, and the 54-entry illustrated food menu with custom category fallback and photo precedence. Product copy uses Smart rulings and Lucky Court.
+Lucky Court is implemented: four animated offline methods, immutable saved results, a 68-line bilingual sayings library, three welcome Smart rulings, and the 54-entry illustrated food menu with custom category fallback and photo precedence. Product copy uses Smart rulings and Lucky Court.
 
-Before launch: connect verified subscriptions (current $24.99/year and $5.99/month screens are clearly labeled price previews), account/server lifetime enforcement, restore/purchase lifecycle and legal/store disclosures. Integrate the approved onboarding prototype separately. Perform physical-device camera/permission, accessibility and live Firebase acceptance checks. See the explicit remaining-work table in DESIGN.md.
+The October 12–13 followup adds an interactive three-step welcome, Jury Duty, persistent case drafts and named sets, quick menu selection, history search/filtering, receipt image sharing, Objection recovery, optional meal feedback, 55 contextual asides, and preferences for sound/haptics. All additions preserve original photo evidence, immutable verdicts and the separate allowance ledger.
+
+Smart requests now use the HTTP Cloudflare AI gateway client, with a server-owned Judge Bite prompt and deployed dev/prod OpenRouter routing configured for zero data retention and reasoning disabled. Firebase AI and Firebase bootstrap are removed. Development and production use their corresponding entrypoints and ignored dart-define files; [tool/gateway/README.md](tool/gateway/README.md) documents configuration, model policy and request limits without exposing credentials. Live deployment/acceptance results are recorded separately from implementation.
+
+Versioned AI permission is required before sending a real case and is reviewable/revocable in Settings. Requests contain user evidence and a random app UUID, not a hardware identifier. The three-use welcome allowance is mirrored between SQLite and Apple Keychain or Android backup-eligible preferences. History deletion cannot refund uses; failed AI/database saves do not charge, and a failed mirror retries the same committed result. Corrupt/unreadable storage blocks Smart with a retry path while unlimited Lucky Court remains available. Preview history, allowance and permission are in-memory and isolated.
+
+Local persistence offers reinstall resistance, with Android recovery dependent on OS/user backup. Loss of both stores or a device reset can reset local state; SQLite and platform storage cannot commit together. Gateway daily/hourly limits do not replace account-level lifetime enforcement.
+
+Before launch: connect verified subscriptions (current $24.99/year and $5.99/month screens are clearly labeled price previews), account/server lifetime enforcement, restore/purchase lifecycle and legal/store disclosures. The native onboarding is integrated with a final price-preview offer. Keep all plan/free/price/quota copy off the educational steps. Perform physical-device camera/permission, accessibility, platform restore and live gateway acceptance checks. See the explicit remaining-work table in DESIGN.md. The verification record contains final totals, native builds, live dev/prod checks and the deferred Firebase delivery prerequisites.
 
 ---
 
-# FoodJury MVP - Phase 1 Design & Architecture Plan
+# Historical FoodJury MVP - Phase 1 Design & Architecture Plan
+
+The remainder preserves the original roadmap and milestone notes. Firebase/Gemini, five daily decisions, older package versions and unfinished-feature checkboxes below describe that historical plan, not the current app. The current implementation and launch work are summarized above and in [DESIGN.md](DESIGN.md).
 
 ## Overview
 FoodJury is a fun, AI-powered food decision app featuring "Judge Bite" - a gavel mascot who delivers authoritative verdicts on food choices. Users can compare 2-5 food options with images, notes, and objectives, and the Judge decides with personality.
@@ -918,7 +928,7 @@ Provide these 10 poses at 2x and 3x resolution (PNG with transparency):
 
 ---
 
-## Current Status
+## Historical milestone status
 
 ### Completed ✅
 1. **Design Phase**: Full design system documented (colors, typography, components)

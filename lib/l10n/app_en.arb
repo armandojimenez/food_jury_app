@@ -1095,5 +1095,279 @@
   "lucky_useLast": "Use my Smart ruling",
   "lucky_useFree": "Let luck decide instead",
   "lucky_lastConfirm": "This is your last welcome Smart ruling. Lucky Court is always on the house. Plus keeps the judge deliberating, without limits.",
-  "lucky_stageHint": "Every contender gets an equal chance."
+  "lucky_stageHint": "Every contender gets an equal chance.",
+  "shelf_title": "The usual",
+  "shelf_hint": "Your favorite lineups, ready for another round.",
+  "shelf_resume": "Resume your case",
+  "shelf_draftHint": "Your contenders and photos are safe here.",
+  "shelf_discard": "Discard draft",
+  "shelf_discardTitle": "Discard this unfinished case?",
+  "shelf_discardHint": "This removes the unfinished case and its photos. Saved verdicts and lineups stay in your files.",
+  "shelf_replaceTitle": "A case is still on the counter",
+  "shelf_replaceHint": "Opening this case will replace your unfinished draft. Your saved verdicts and lineups will stay.",
+  "shelf_replace": "Replace draft",
+  "shelf_new": "Start a fresh case",
+  "shelf_quickMenu": "Pick from the menu",
+  "shelf_quickHint": "Tap your contenders. Add details afterward.",
+  "shelf_menuLimit": "Choose {minimum}–{maximum} dishes.",
+  "@shelf_menuLimit": {
+    "placeholders": {
+      "minimum": {
+        "type": "int"
+      },
+      "maximum": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_addSelected": "{count, plural, one{Add 1 contender} other{Add {count} contenders}}",
+  "@shelf_addSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_selectedCount": "{count} selected · up to {maximum}",
+  "@shelf_selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "maximum": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_noMenuMatch": "No dishes match. Try another search, or add your own contender.",
+  "shelf_custom": "Add your own dish",
+  "shelf_optionalEvidence": "Make it your own",
+  "shelf_optionalHint": "Illustrations and photos are optional.",
+  "shelf_savedDraft": "Draft saved on this device",
+  "shelf_savingDraft": "Saving your case…",
+  "shelf_draftError": "Your latest changes could not be saved. Keep this case open and try again.",
+  "shelf_saveSet": "Save as the usual",
+  "shelf_setName": "Name this lineup",
+  "shelf_setHint": "Friday takeout, office lunch…",
+  "shelf_setSaved": "Your lineup is ready for next time.",
+  "shelf_setDeleteTitle": "Remove this lineup?",
+  "shelf_setDeleteHint": "Your saved verdicts and any open case will stay.",
+  "shelf_openSet": "Open lineup",
+  "shelf_reopen": "Reopen case",
+  "shelf_returnTitle": "Back for another bite?",
+  "shelf_returnHint": "Pick up where you left off, or bring a new case.",
+  "shelf_jury": "Jury duty",
+  "shelf_juryHint": "Pass the phone. Settle dinner together.",
+  "shelf_search": "Search dishes and notes",
+  "shelf_all": "All cases",
+  "shelf_smart": "Smart",
+  "shelf_lucky": "Lucky",
+  "shelf_noResults": "No cases match yet",
+  "shelf_clearFilters": "Clear search and filters",
+  "shelf_caseCount": "{count} contenders",
+  "@shelf_caseCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shelf_nameRequired": "Give this lineup a name.",
+  "shelf_manage": "Manage lineups",
+  "moments_shareTitle": "A ruling worth sharing",
+  "moments_shareHint": "Your receipt includes the winning photo or artwork, the ruling and dish names. Preview it before sharing.",
+  "moments_shareImage": "Share receipt",
+  "moments_shareText": "Share as text",
+  "moments_shareError": "The receipt could not be shared. Try again, or share it as text.",
+  "moments_receiptFooter": "Dinner is decided. Court is adjourned.",
+  "moments_objection": "Objection!",
+  "moments_objectionTitle": "The court will hear you.",
+  "moments_objectionHint": "Keep these dishes and edit your case, or choose another method. Your original verdict stays intact. A new Smart ruling uses a welcome ruling or Plus; Lucky Court is always free.",
+  "moments_objectionAccept": "I accept the verdict",
+  "moments_filed": "Filed!",
+  "moments_filedHint": "Dinner has entered the record.",
+  "moments_filedAnnouncement": "Verdict saved to your case archive.",
+  "moments_chooseHint": "A thoughtful ruling, or a little luck. You choose.",
+  "moments_smartHeading": "Smart ruling · with reasons",
+  "moments_smartHint": "Your goal, notes and photos help Judge Bite decide.",
+  "moments_luckyHint": "Free, offline, and fair. Every dish has an equal chance.",
+  "moments_wheelHint": "Give dinner a spin.",
+  "moments_ticketHint": "One ticket. One winner.",
+  "moments_clocheHint": "Dinner is under wraps.",
+  "moments_coinHint": "Two dishes. One toss.",
+  "moments_recoverLucky": "Decide with Lucky Court",
+  "moments_offline": "The judge could not connect. Your case and welcome ruling are safe. Try again or choose Lucky Court below.",
+  "moments_timeout": "The judge took too long. Your welcome ruling was not used. Retry, or let Lucky Court decide.",
+  "shelf_caseActions": "Case actions",
+  "welcome_title": "Welcome to court",
+  "welcome_skip": "Skip",
+  "welcome_step": "Step {step} of 3",
+  "@welcome_step": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "welcome_next": "Next",
+  "welcome_start": "Continue",
+  "welcome_replay": "Take the welcome tour",
+  "welcome_methodsTitle": "Your first verdict.",
+  "welcome_methodsBody": "Two contenders. One delicious decision.",
+  "welcome_lucky": "Lucky · Let chance decide",
+  "welcome_smart": "Smart · Follow your goal",
+  "welcome_demo": "Practice case",
+  "welcome_luckyDemo": "A fair draw. {food} gets the spotlight!",
+  "@welcome_luckyDemo": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_smartDemo": "Tacos are ready now. Your Quick goal wins the day. Case closed!",
+  "welcome_demoGoal": "The goal: something quick.",
+  "welcome_tryDemo": "Try a verdict",
+  "welcome_demoWinner": "The verdict: {food}",
+  "@welcome_demoWinner": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_evidenceTitle": "Build your case.",
+  "welcome_evidenceBody": "Bring 2–5 dishes and pick your mood. Notes and your own photos are optional.",
+  "welcome_evidenceToggle": "Add a practice note",
+  "welcome_evidenceExample": "Tacos · “Ready now, around $10.” Evidence accepted!",
+  "welcome_evidenceEmpty": "Tacos. A name is enough to enter the court.",
+  "welcome_photoPrivacy": "Smart asks permission before sending your dish details and attached photos through the developer’s AI gateway and its processing providers. Lucky draws stay on your device.",
+  "welcome_toneTitle": "Meet your judge.",
+  "welcome_toneBody": "Choose your kind of courtroom humor.",
+  "welcome_privacyTitle": "Your food, photos & data",
+  "welcome_privacyLocal": "Cases, attached photos and preferences are stored on this device and may be included in your operating system backup. Lucky draws and Jury Duty run locally. Jury ballots are temporary; only anonymous totals are kept during the session. A random app ID and usage record help preserve the Smart allowance across reinstalls; they are not hardware identifiers.",
+  "welcome_privacySmart": "With your permission, Smart sends names, notes, attached photos, your goal and judge personality through the developer’s Cloudflare AI Gateway and OpenRouter to Azure, OpenAI or BaseTen. These routes are configured for zero data retention and to deny data collection. Illustrations are not photo evidence. Photos cannot verify allergens, food safety or nutrition figures.",
+  "welcome_privacyDelete": "Delete a saved case in History to remove that local copy. Discard drafts and delete saved lineups separately on Home. Withdraw AI data permission here to stop future requests; it cannot recall data already sent to processing providers.",
+  "welcome_soundTitle": "Courtroom sounds",
+  "welcome_soundBody": "Optional system cues. Reduced motion turns off sound and haptics.",
+  "welcome_hapticsTitle": "Haptic feedback",
+  "jury_title": "Jury Duty",
+  "jury_introTitle": "Let the whole table decide.",
+  "jury_introBody": "2–5 diners. Each person nominates a different dish, then gets one private vote. Pass the phone between turns. A tie goes to Lucky Court.",
+  "jury_howMany": "How many jurors?",
+  "jury_start": "Seat the jury",
+  "jury_localNote": "One phone. No accounts or internet needed. The session disappears when you close Jury Duty. Keep the screen to yourself while voting.",
+  "jury_distinctDish": "Enter a dish that has not already been nominated.",
+  "jury_passTo": "Pass to juror {number}.",
+  "@jury_passTo": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_ready": "I’m juror {number} · Ready",
+  "@jury_ready": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_nominateHint": "Your turn to bring a contender. Choose from the food menu or enter your own dish.",
+  "jury_votePrivacy": "Voting time. Previous choices are hidden. Take the phone, make your pick, then seal your ballot.",
+  "jury_nominateTitle": "Juror {number}: your dish?",
+  "@jury_nominateTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_menu": "Choose from the food menu",
+  "jury_dishName": "Or name your own dish",
+  "jury_nominate": "Submit my contender",
+  "jury_ballot": "Juror {number}: your vote.",
+  "@jury_ballot": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_ballotHint": "Choose one dish. Only the final totals will be shown.",
+  "jury_seal": "Seal my ballot",
+  "jury_winner": "The jury chooses {food}!",
+  "@jury_winner": {
+    "placeholders": {
+      "food": {
+        "type": "String"
+      }
+    }
+  },
+  "jury_resultsHint": "All ballots are in. Here is the table’s verdict.",
+  "jury_votes": "{count, plural, =0{0 votes} =1{1 vote} other{{count} votes}}",
+  "@jury_votes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "jury_tie": "A delicious deadlock.",
+  "jury_tieHint": "Only the dishes tied for first enter the draw. Two contenders get a coin toss; more get the plate. No Smart ruling is used.",
+  "jury_tieBreak": "Let luck break the tie",
+  "jury_again": "Seat a new jury",
+  "judge_poseInspecting": "Inspecting the evidence",
+  "judge_poseBench": "Court is open",
+  "judge_poseObjection": "Objection?",
+  "judge_poseFiling": "Filed for the record",
+  "judge_poseBell": "Order up!",
+  "judge_poseWhispering": "A little aside",
+  "shelf_saveLineup": "Save lineup",
+  "moments_feedbackTitle": "Dinner check-in · optional",
+  "moments_feedbackChose": "Did you try this dish?",
+  "moments_feedbackOrderAgain": "Would you order it again?",
+  "moments_feedbackNotThisTime": "Not this time",
+  "moments_feedbackClear": "Clear answers",
+  "moments_feedbackSaved": "Saved on this device. Change your answers anytime.",
+  "moments_feedbackSaving": "Saving your answer…",
+  "moments_feedbackLoading": "Opening your check-in…",
+  "moments_feedbackLoadError": "Your check-in could not load.",
+  "moments_feedbackSaveError": "Your answer was not saved. Please try again.",
+  "moments_feedbackTried": "Tried it",
+  "moments_feedbackAgain": "Would order again",
+  "welcome_readyNow": "Ready now",
+  "welcome_waitTime": "25-minute wait",
+  "welcome_deliberating": "A tasty decision…",
+  "welcome_replayDemo": "Again!",
+  "welcome_changeMethod": "Try the other way",
+  "welcome_readyMessage": "Your judge is ready. Bring your own contenders.",
+  "shelf_unsavedTitle": "Latest changes are not saved",
+  "shelf_unsavedHint": "Stay and retry to keep your latest edits. If you leave now, only changes already saved will be here when you return.",
+  "shelf_leaveUnsaved": "Leave anyway",
+  "shelf_keepEditing": "Keep editing",
+  "welcome_sternPreview": "The court has reviewed the menu. Dinner may proceed.",
+  "welcome_sassyPreview": "Case closed. Your group chat can finally rest.",
+  "welcome_enthusiasticPreview": "A delicious decision! Somebody ring the dinner bell!",
+  "welcome_chillPreview": "Good food, good company. We’re all set.",
+  "moments_allowanceUnavailable": "Your Smart allowance could not be verified. Try again, or use Lucky Court for free.",
+  "consent_title": "Send to Judge?",
+  "consent_data": "Smart sends your dish names, notes, goal and judge personality, plus any photos you attach. Food illustrations are never sent as photo evidence.",
+  "consent_recipients": "Requests pass through the developer’s Cloudflare AI Gateway and OpenRouter to Azure, OpenAI or BaseTen. These routes are configured for zero data retention and to deny data collection.",
+  "consent_identity": "A random app installation ID is sent for rate limiting. It is not a hardware ID. Your operating system backup may retain local preferences and usage information.",
+  "consent_control": "You can withdraw permission in Settings for future requests. This cannot recall data already sent. Lucky draws and Jury Duty stay on your device.",
+  "consent_send": "Send to Judge",
+  "consent_notNow": "Not now",
+  "consent_settingsTitle": "AI data permission",
+  "consent_allowed": "Permission is on for the current data policy.",
+  "consent_notAllowed": "Smart will ask before sending your data.",
+  "consent_review": "Review permission",
+  "consent_revoke": "Withdraw permission",
+  "consent_saveError": "Permission could not be saved. No new request was sent. Please try again.",
+  "consent_updated": "AI data permission needs to be reviewed again. If the problem continues, update the app before using Smart.",
+  "moments_gatewayBusy": "Smart rulings are busy right now. Try again soon, or use Lucky Court for free.",
+  "moments_gatewayCaseReview": "Judge Bite could not use this case. Review the names, notes or photos and try again, or use Lucky Court.",
+  "moments_gatewayTooLarge": "This case is too large to send. Try smaller photos or shorter notes, or use Lucky Court.",
+  "moments_gatewayUnavailable": "Smart rulings are not available right now. You can still use Lucky Court for free."
 }

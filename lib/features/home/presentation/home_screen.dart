@@ -9,6 +9,8 @@ import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../data/providers/verdict_provider.dart';
 import '../../decision/data/models/verdict.dart';
+import '../../case_shelf/data/case_shelf_provider.dart';
+import '../../case_shelf/presentation/case_shelf_widgets.dart';
 import '../../lucky/data/court_providers.dart';
 import '../../lucky/presentation/court_components.dart';
 import '../../lucky/presentation/ai_allowance_ticket.dart';
@@ -33,9 +35,15 @@ class HomeScreen extends ConsumerWidget {
             constraints.maxWidth >= DinerTokens.tabletBreakpoint &&
             MediaQuery.textScalerOf(context).scale(1) <
                 DinerTokens.largeTextBreakpoint;
-        final welcome = _Welcome(wide: wide);
+        final recentValue = ref.watch(recentVerdictsProvider);
+        final shelf = ref.watch(caseShelfProvider).asData?.value;
+        final returning =
+            recentValue.asData?.value.isNotEmpty == true ||
+            shelf?.draft != null ||
+            shelf?.sets.isNotEmpty == true;
+        final welcome = _Welcome(wide: wide, returning: returning);
         final recent = _RecentCases(
-          value: ref.watch(recentVerdictsProvider),
+          value: recentValue,
           retry: () => ref.invalidate(recentVerdictsProvider),
         );
         if (wide) {
@@ -57,6 +65,7 @@ class HomeScreen extends ConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          const CaseShelfPanel(),
                           recent,
                           const SizedBox(height: AppDimensions.spaceXxl),
                           const _HouseRules(),
@@ -74,6 +83,7 @@ class HomeScreen extends ConsumerWidget {
           children: [
             welcome,
             const SizedBox(height: AppDimensions.spaceLg),
+            const CaseShelfPanel(),
             DinerEntrance(order: 2, child: recent),
           ],
         );
@@ -83,13 +93,57 @@ class HomeScreen extends ConsumerWidget {
 }
 
 class _Welcome extends ConsumerWidget {
-  const _Welcome({required this.wide});
+  const _Welcome({required this.wide, required this.returning});
   final bool wide;
+  final bool returning;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final exhausted =
         !ref.watch(premiumAccessProvider) &&
         ref.watch(aiAllowanceProvider).asData?.value == 0;
+    if (returning) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          DinerEntrance(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (MediaQuery.textScalerOf(context).scale(1) <
+                    DinerTokens.largeTextBreakpoint) ...[
+                  const JudgeBite(
+                    pose: JudgeBitePose.bench,
+                    dimension: DinerTokens.rulingJudge,
+                  ),
+                  const SizedBox(width: AppDimensions.spaceMd),
+                ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DinerHeading(context.l10n.shelf_returnTitle),
+                      const SizedBox(height: AppDimensions.spaceSm),
+                      Text(context.l10n.shelf_returnHint),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spaceMd),
+          DinerButton(
+            label: context.l10n.shelf_new,
+            icon: Icons.add_rounded,
+            style: DinerButtonStyle.mustard,
+            onPressed: () => openShelfCase(context, ref),
+          ),
+          const SizedBox(height: AppDimensions.spaceSm),
+          const _JuryEntry(),
+          const SizedBox(height: AppDimensions.spaceMd),
+          const AiAllowanceTicket(),
+        ],
+      );
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -124,15 +178,39 @@ class _Welcome extends ConsumerWidget {
               label: context.l10n.diner_startCase,
               icon: Icons.gavel_rounded,
               style: DinerButtonStyle.mustard,
-              onPressed: () => context.push(AppRouter.newDecision),
+              onPressed: () => openShelfCase(context, ref),
             ),
           ),
         ),
         const SizedBox(height: AppDimensions.spaceLg),
         const AiAllowanceTicket(),
+        const SizedBox(height: AppDimensions.spaceMd),
+        const _JuryEntry(),
       ],
     );
   }
+}
+
+class _JuryEntry extends StatelessWidget {
+  const _JuryEntry();
+  @override
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      DinerButton(
+        label: context.l10n.shelf_jury,
+        icon: Icons.groups_outlined,
+        style: DinerButtonStyle.outline,
+        onPressed: () => context.push('/jury'),
+      ),
+      const SizedBox(height: AppDimensions.spaceXs),
+      Text(
+        context.l10n.shelf_juryHint,
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
+    ],
+  );
 }
 
 class _HouseRules extends StatelessWidget {
@@ -278,9 +356,19 @@ class _RecentCases extends StatelessWidget {
 
 /// Shared actual-photo history row used by the counter and the archive.
 class VerdictHistoryRow extends StatelessWidget {
-  const VerdictHistoryRow({required this.verdict, this.onDelete, super.key});
+  const VerdictHistoryRow({
+    required this.verdict,
+    this.onDelete,
+    this.onReopen,
+    this.mealStatus,
+    super.key,
+  });
   final Verdict verdict;
   final VoidCallback? onDelete;
+  final VoidCallback? onReopen;
+
+  /// Optional user-reported meal experience, separate from the judge's ruling.
+  final String? mealStatus;
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context).toLanguageTag();
@@ -328,14 +416,47 @@ class VerdictHistoryRow extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
                       ),
+                      if (mealStatus != null) ...[
+                        const SizedBox(height: AppDimensions.spaceXs),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.check_circle_outline,
+                              size: AppDimensions.iconSizeSm,
+                            ),
+                            const SizedBox(width: AppDimensions.spaceXs),
+                            Expanded(
+                              child: Text(
+                                mealStatus!,
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ],
                   ),
                 ),
-                if (onDelete != null)
-                  IconButton(
-                    onPressed: onDelete,
-                    tooltip: context.l10n.common_delete,
-                    icon: const Icon(Icons.delete_outline_rounded),
+                if (onDelete != null || onReopen != null)
+                  PopupMenuButton<String>(
+                    tooltip: context.l10n.shelf_caseActions,
+                    onSelected: (action) {
+                      if (action == 'reopen') onReopen?.call();
+                      if (action == 'delete') onDelete?.call();
+                    },
+                    itemBuilder: (_) => [
+                      if (onReopen != null)
+                        PopupMenuItem(
+                          value: 'reopen',
+                          child: Text(context.l10n.shelf_reopen),
+                        ),
+                      if (onDelete != null)
+                        PopupMenuItem(
+                          value: 'delete',
+                          child: Text(context.l10n.common_delete),
+                        ),
+                    ],
+                    icon: const Icon(Icons.more_horiz_rounded),
                   )
                 else
                   const Icon(Icons.chevron_right_rounded),

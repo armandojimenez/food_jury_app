@@ -1092,4 +1092,638 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get lucky_stageHint => 'Cada plato tiene la misma oportunidad.';
+
+  @override
+  String get shelf_title => 'Lo de siempre';
+
+  @override
+  String get shelf_hint =>
+      'Tus combinaciones favoritas, listas para otra ronda.';
+
+  @override
+  String get shelf_resume => 'Continuar tu caso';
+
+  @override
+  String get shelf_draftHint => 'Tus opciones y fotos siguen aquí.';
+
+  @override
+  String get shelf_discard => 'Descartar borrador';
+
+  @override
+  String get shelf_discardTitle => '¿Descartar este caso pendiente?';
+
+  @override
+  String get shelf_discardHint =>
+      'Se borrará el caso pendiente con sus fotos. Los veredictos y las combinaciones guardadas se quedan en tus archivos.';
+
+  @override
+  String get shelf_replaceTitle => 'Todavía hay un caso en el mostrador';
+
+  @override
+  String get shelf_replaceHint =>
+      'Al abrir este caso se reemplazará tu borrador pendiente. Tus veredictos y combinaciones guardadas se quedan.';
+
+  @override
+  String get shelf_replace => 'Reemplazar borrador';
+
+  @override
+  String get shelf_new => 'Empezar un caso nuevo';
+
+  @override
+  String get shelf_quickMenu => 'Elegir del menú';
+
+  @override
+  String get shelf_quickHint =>
+      'Toca tus opciones. Puedes añadir detalles después.';
+
+  @override
+  String shelf_menuLimit(int minimum, int maximum) {
+    return 'Elige de $minimum a $maximum platos.';
+  }
+
+  @override
+  String shelf_addSelected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Añadir $count opciones',
+      one: 'Añadir 1 opción',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String shelf_selectedCount(int count, int maximum) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count elegidas',
+      one: '1 elegida',
+    );
+    return '$_temp0 · máximo $maximum';
+  }
+
+  @override
+  String get shelf_noMenuMatch =>
+      'No hay platos que coincidan. Prueba otra búsqueda o añade tu propia opción.';
+
+  @override
+  String get shelf_custom => 'Añadir tu propio plato';
+
+  @override
+  String get shelf_optionalEvidence => 'Dale tu toque';
+
+  @override
+  String get shelf_optionalHint =>
+      'Las ilustraciones y las fotos son opcionales.';
+
+  @override
+  String get shelf_savedDraft => 'Borrador guardado en este dispositivo';
+
+  @override
+  String get shelf_savingDraft => 'Guardando tu caso…';
+
+  @override
+  String get shelf_draftError =>
+      'No se pudieron guardar los últimos cambios. Mantén este caso abierto e inténtalo de nuevo.';
+
+  @override
+  String get shelf_saveSet => 'Guardar en lo de siempre';
+
+  @override
+  String get shelf_setName => 'Ponle nombre a esta combinación';
+
+  @override
+  String get shelf_setHint => 'Comida del viernes, almuerzo de oficina…';
+
+  @override
+  String get shelf_setSaved => 'Tu combinación está lista para la próxima.';
+
+  @override
+  String get shelf_setDeleteTitle => '¿Eliminar esta combinación?';
+
+  @override
+  String get shelf_setDeleteHint =>
+      'Tus veredictos guardados y el caso abierto se quedan.';
+
+  @override
+  String get shelf_openSet => 'Abrir combinación';
+
+  @override
+  String get shelf_reopen => 'Reabrir caso';
+
+  @override
+  String get shelf_returnTitle => '¿Volviste por otro bocado?';
+
+  @override
+  String get shelf_returnHint =>
+      'Continúa donde lo dejaste o trae un caso nuevo.';
+
+  @override
+  String get shelf_jury => 'Turno del jurado';
+
+  @override
+  String get shelf_juryHint => 'Pasa el teléfono. Decidan juntos qué comer.';
+
+  @override
+  String get shelf_search => 'Buscar platos y notas';
+
+  @override
+  String get shelf_all => 'Todos los casos';
+
+  @override
+  String get shelf_smart => 'Con criterio';
+
+  @override
+  String get shelf_lucky => 'Al azar';
+
+  @override
+  String get shelf_noResults => 'No hay casos que coincidan';
+
+  @override
+  String get shelf_clearFilters => 'Quitar búsqueda y filtros';
+
+  @override
+  String shelf_caseCount(int count) {
+    return '$count opciones';
+  }
+
+  @override
+  String get shelf_nameRequired => 'Ponle un nombre a esta combinación.';
+
+  @override
+  String get shelf_manage => 'Gestionar combinaciones';
+
+  @override
+  String get moments_shareTitle => 'Un veredicto para compartir';
+
+  @override
+  String get moments_shareHint =>
+      'Tu recibo incluye la foto o ilustración ganadora, el veredicto y los nombres de los platos. Revísalo antes de compartir.';
+
+  @override
+  String get moments_shareImage => 'Compartir recibo';
+
+  @override
+  String get moments_shareText => 'Compartir como texto';
+
+  @override
+  String get moments_shareError =>
+      'No se pudo compartir el recibo. Inténtalo de nuevo o compártelo como texto.';
+
+  @override
+  String get moments_receiptFooter =>
+      'La cena está decidida. Se levanta la sesión.';
+
+  @override
+  String get moments_objection => '¡Objeción!';
+
+  @override
+  String get moments_objectionTitle => 'El tribunal te escuchará.';
+
+  @override
+  String get moments_objectionHint =>
+      'Conserva los platos y edita tu caso, o elige otro método. El veredicto original queda intacto. Un nuevo veredicto inteligente usa uno de bienvenida o Plus; el Tribunal de la Suerte siempre es gratis.';
+
+  @override
+  String get moments_objectionAccept => 'Acepto el veredicto';
+
+  @override
+  String get moments_filed => '¡Archivado!';
+
+  @override
+  String get moments_filedHint => 'La cena ya consta en acta.';
+
+  @override
+  String get moments_filedAnnouncement =>
+      'Veredicto guardado en tu archivo de casos.';
+
+  @override
+  String get moments_chooseHint =>
+      'Un veredicto razonado o un poco de suerte. Tú eliges.';
+
+  @override
+  String get moments_smartHeading => 'Veredicto inteligente · con razones';
+
+  @override
+  String get moments_smartHint =>
+      'Tu objetivo, notas y fotos ayudan al Juez Bite a decidir.';
+
+  @override
+  String get moments_luckyHint =>
+      'Gratis, sin conexión y justo. Todos los platos tienen la misma oportunidad.';
+
+  @override
+  String get moments_wheelHint => 'Dale una vuelta a la cena.';
+
+  @override
+  String get moments_ticketHint => 'Un boleto. Un ganador.';
+
+  @override
+  String get moments_clocheHint => 'La cena está bajo la tapa.';
+
+  @override
+  String get moments_coinHint => 'Dos platos. Un lanzamiento.';
+
+  @override
+  String get moments_recoverLucky => 'Decidir con el Tribunal de la Suerte';
+
+  @override
+  String get moments_offline =>
+      'El juez no pudo conectarse. Tu caso y tu veredicto de bienvenida siguen disponibles. Inténtalo de nuevo o elige el Tribunal de la Suerte.';
+
+  @override
+  String get moments_timeout =>
+      'El juez tardó demasiado. No se usó tu veredicto de bienvenida. Reintenta o deja decidir al Tribunal de la Suerte.';
+
+  @override
+  String get shelf_caseActions => 'Acciones del caso';
+
+  @override
+  String get welcome_title => 'Bienvenido al tribunal';
+
+  @override
+  String get welcome_skip => 'Omitir';
+
+  @override
+  String welcome_step(int step) {
+    return 'Paso $step de 3';
+  }
+
+  @override
+  String get welcome_next => 'Continuar';
+
+  @override
+  String get welcome_start => 'Continuar';
+
+  @override
+  String get welcome_replay => 'Repetir la bienvenida';
+
+  @override
+  String get welcome_methodsTitle => 'Tu primer veredicto.';
+
+  @override
+  String get welcome_methodsBody => 'Dos candidatos. Una decisión deliciosa.';
+
+  @override
+  String get welcome_lucky => 'Suerte · Que decida el azar';
+
+  @override
+  String get welcome_smart => 'Inteligente · Sigue tu objetivo';
+
+  @override
+  String get welcome_demo => 'Caso de práctica';
+
+  @override
+  String welcome_luckyDemo(String food) {
+    return 'Un sorteo justo. ¡Aplausos para $food!';
+  }
+
+  @override
+  String get welcome_smartDemo =>
+      'Los tacos ya están listos. Gana tu objetivo de comer rápido. ¡Caso cerrado!';
+
+  @override
+  String get welcome_demoGoal => 'El objetivo: algo rápido.';
+
+  @override
+  String get welcome_tryDemo => 'Probar un veredicto';
+
+  @override
+  String welcome_demoWinner(String food) {
+    return 'El veredicto: $food';
+  }
+
+  @override
+  String get welcome_evidenceTitle => 'Prepara tu caso.';
+
+  @override
+  String get welcome_evidenceBody =>
+      'Trae de 2 a 5 platos y elige tu objetivo. Las notas y tus propias fotos son opcionales.';
+
+  @override
+  String get welcome_evidenceToggle => 'Añadir una nota de práctica';
+
+  @override
+  String get welcome_evidenceExample =>
+      'Tacos · “Listos ahora, unos \$10.” ¡Evidencia aceptada!';
+
+  @override
+  String get welcome_evidenceEmpty =>
+      'Tacos. Un nombre basta para entrar al tribunal.';
+
+  @override
+  String get welcome_photoPrivacy =>
+      'Inteligente pide permiso antes de enviar los detalles y fotos de tus platos mediante la pasarela de IA del desarrollador y sus proveedores. Los sorteos se quedan en tu dispositivo.';
+
+  @override
+  String get welcome_toneTitle => 'Conoce a tu juez.';
+
+  @override
+  String get welcome_toneBody => 'Elige tu tipo de humor judicial.';
+
+  @override
+  String get welcome_privacyTitle => 'Tu comida, fotos y datos';
+
+  @override
+  String get welcome_privacyLocal =>
+      'Los casos, fotos y preferencias se guardan en este dispositivo y pueden incluirse en la copia de seguridad del sistema operativo. Los sorteos y el jurado funcionan localmente. Los votos son temporales; solo se conservan totales anónimos durante la sesión. Un identificador aleatorio de la app y un registro de uso ayudan a conservar el límite de Inteligente tras reinstalar; no son identificadores del hardware.';
+
+  @override
+  String get welcome_privacySmart =>
+      'Con tu permiso, Inteligente envía nombres, notas, fotos adjuntas, objetivo y personalidad por Cloudflare AI Gateway del desarrollador y OpenRouter hacia Azure, OpenAI o BaseTen. Estas rutas están configuradas para retención cero de datos y para denegar su recopilación. Las ilustraciones no son evidencia fotográfica. Una foto no verifica alérgenos, seguridad alimentaria ni cifras nutricionales.';
+
+  @override
+  String get welcome_privacyDelete =>
+      'Elimina un caso en Historial para borrar esa copia local. Descarta los borradores y elimina las combinaciones guardadas por separado en Inicio. Retira aquí el permiso de datos para IA para detener futuras solicitudes; esto no recupera los datos ya enviados a los proveedores.';
+
+  @override
+  String get welcome_soundTitle => 'Sonidos del tribunal';
+
+  @override
+  String get welcome_soundBody =>
+      'Sonidos del sistema opcionales. Reducir movimiento desactiva los sonidos y la vibración.';
+
+  @override
+  String get welcome_hapticsTitle => 'Vibración al interactuar';
+
+  @override
+  String get jury_title => 'Turno de jurado';
+
+  @override
+  String get jury_introTitle => 'Que decida toda la mesa.';
+
+  @override
+  String get jury_introBody =>
+      'De 2 a 5 comensales. Cada persona propone un plato distinto y emite un voto privado. Pasa el teléfono entre turnos. Un empate va al Tribunal de la Suerte.';
+
+  @override
+  String get jury_howMany => '¿Cuántos miembros del jurado?';
+
+  @override
+  String get jury_start => 'Reunir al jurado';
+
+  @override
+  String get jury_localNote =>
+      'Un teléfono. Sin cuentas ni internet. La sesión desaparece al cerrar Turno de jurado. Mantén la pantalla privada al votar.';
+
+  @override
+  String get jury_distinctDish =>
+      'Escribe un plato que todavía no se haya propuesto.';
+
+  @override
+  String jury_passTo(int number) {
+    return 'Pásalo al miembro $number.';
+  }
+
+  @override
+  String jury_ready(int number) {
+    return 'Soy el miembro $number · Listo';
+  }
+
+  @override
+  String get jury_nominateHint =>
+      'Te toca proponer un plato. Elige del menú o escribe el tuyo.';
+
+  @override
+  String get jury_votePrivacy =>
+      'Hora de votar. Los votos anteriores están ocultos. Toma el teléfono, elige y sella tu voto.';
+
+  @override
+  String jury_nominateTitle(int number) {
+    return 'Miembro $number: ¿tu plato?';
+  }
+
+  @override
+  String get jury_menu => 'Elegir del menú';
+
+  @override
+  String get jury_dishName => 'O escribe tu propio plato';
+
+  @override
+  String get jury_nominate => 'Presentar mi plato';
+
+  @override
+  String jury_ballot(int number) {
+    return 'Miembro $number: tu voto.';
+  }
+
+  @override
+  String get jury_ballotHint =>
+      'Elige un plato. Solo se mostrarán los totales finales.';
+
+  @override
+  String get jury_seal => 'Sellar mi voto';
+
+  @override
+  String jury_winner(String food) {
+    return '¡El jurado elige $food!';
+  }
+
+  @override
+  String get jury_resultsHint =>
+      'Todos los votos están sellados. Este es el veredicto de la mesa.';
+
+  @override
+  String jury_votes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count votos',
+      one: '1 voto',
+      zero: '0 votos',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get jury_tie => 'Un empate delicioso.';
+
+  @override
+  String get jury_tieHint =>
+      'Solo los platos empatados en primer lugar entran al sorteo. Dos usan la moneda; más usan el plato. No se usa ningún fallo inteligente.';
+
+  @override
+  String get jury_tieBreak => 'Desempatar con la suerte';
+
+  @override
+  String get jury_again => 'Reunir otro jurado';
+
+  @override
+  String get judge_poseInspecting => 'Inspeccionando las pruebas';
+
+  @override
+  String get judge_poseBench => 'Tribunal abierto';
+
+  @override
+  String get judge_poseObjection => '¿Objeción?';
+
+  @override
+  String get judge_poseFiling => 'Archivado oficialmente';
+
+  @override
+  String get judge_poseBell => '¡Orden lista!';
+
+  @override
+  String get judge_poseWhispering => 'Un comentario aparte';
+
+  @override
+  String get shelf_saveLineup => 'Guardar combinación';
+
+  @override
+  String get moments_feedbackTitle => 'Después de la cena · opcional';
+
+  @override
+  String get moments_feedbackChose => '¿Probaste este plato?';
+
+  @override
+  String get moments_feedbackOrderAgain => '¿Lo pedirías de nuevo?';
+
+  @override
+  String get moments_feedbackNotThisTime => 'Esta vez no';
+
+  @override
+  String get moments_feedbackClear => 'Borrar respuestas';
+
+  @override
+  String get moments_feedbackSaved =>
+      'Guardado en este dispositivo. Puedes cambiar tus respuestas cuando quieras.';
+
+  @override
+  String get moments_feedbackSaving => 'Guardando tu respuesta…';
+
+  @override
+  String get moments_feedbackLoading => 'Cargando tus respuestas…';
+
+  @override
+  String get moments_feedbackLoadError =>
+      'No se pudieron cargar tus respuestas.';
+
+  @override
+  String get moments_feedbackSaveError =>
+      'Tu respuesta no se guardó. Inténtalo de nuevo.';
+
+  @override
+  String get moments_feedbackTried => 'Lo probé';
+
+  @override
+  String get moments_feedbackAgain => 'Lo pediría de nuevo';
+
+  @override
+  String get welcome_readyNow => 'Listos ahora';
+
+  @override
+  String get welcome_waitTime => '25 minutos de espera';
+
+  @override
+  String get welcome_deliberating => 'Una decisión deliciosa…';
+
+  @override
+  String get welcome_replayDemo => '¡Otra vez!';
+
+  @override
+  String get welcome_changeMethod => 'Probar otra forma';
+
+  @override
+  String get welcome_readyMessage =>
+      'Tu juez está listo. Trae tus propios candidatos.';
+
+  @override
+  String get shelf_unsavedTitle => 'Hay cambios sin guardar';
+
+  @override
+  String get shelf_unsavedHint =>
+      'Quédate y vuelve a intentarlo para conservar los últimos cambios. Si sales ahora, al volver solo estarán los cambios que ya se guardaron.';
+
+  @override
+  String get shelf_leaveUnsaved => 'Salir de todos modos';
+
+  @override
+  String get shelf_keepEditing => 'Seguir editando';
+
+  @override
+  String get welcome_sternPreview =>
+      'El tribunal ha revisado el menú. Puede comenzar la cena.';
+
+  @override
+  String get welcome_sassyPreview =>
+      'Caso cerrado. Tu chat de grupo por fin puede descansar.';
+
+  @override
+  String get welcome_enthusiasticPreview =>
+      '¡Una decisión deliciosa! ¡Que alguien toque la campana!';
+
+  @override
+  String get welcome_chillPreview =>
+      'Buena comida, buena compañía. Ya estamos listos.';
+
+  @override
+  String get moments_allowanceUnavailable =>
+      'No se pudo verificar tu saldo de veredictos inteligentes. Inténtalo de nuevo o usa la Corte de la Suerte gratis.';
+
+  @override
+  String get consent_title => '¿Enviar al juez?';
+
+  @override
+  String get consent_data =>
+      'Inteligente envía los nombres de tus platos, notas, objetivo y personalidad del juez, además de las fotos que adjuntes. Las ilustraciones nunca se envían como evidencia fotográfica.';
+
+  @override
+  String get consent_recipients =>
+      'Las solicitudes pasan por Cloudflare AI Gateway del desarrollador y OpenRouter hacia Azure, OpenAI o BaseTen. Estas rutas están configuradas para retención cero de datos y para denegar su recopilación.';
+
+  @override
+  String get consent_identity =>
+      'Se envía un identificador aleatorio de la instalación para limitar las solicitudes. No es un identificador del hardware. La copia de seguridad del sistema operativo puede conservar las preferencias y la información de uso locales.';
+
+  @override
+  String get consent_control =>
+      'Puedes retirar el permiso en Ajustes para futuras solicitudes. Esto no recupera los datos ya enviados. Los sorteos y el jurado funcionan en tu dispositivo.';
+
+  @override
+  String get consent_send => 'Enviar al juez';
+
+  @override
+  String get consent_notNow => 'Ahora no';
+
+  @override
+  String get consent_settingsTitle => 'Permiso de datos para IA';
+
+  @override
+  String get consent_allowed =>
+      'El permiso está activo para la política de datos actual.';
+
+  @override
+  String get consent_notAllowed =>
+      'Inteligente pedirá permiso antes de enviar tus datos.';
+
+  @override
+  String get consent_review => 'Revisar permiso';
+
+  @override
+  String get consent_revoke => 'Retirar permiso';
+
+  @override
+  String get consent_saveError =>
+      'No se pudo guardar el permiso. No se envió ninguna solicitud nueva. Vuelve a intentarlo.';
+
+  @override
+  String get consent_updated =>
+      'Hay que revisar de nuevo el permiso de datos para IA. Si el problema continúa, actualiza la app antes de usar Inteligente.';
+
+  @override
+  String get moments_gatewayBusy =>
+      'Los veredictos inteligentes están ocupados. Inténtalo en unos minutos o usa la Corte de la Suerte gratis.';
+
+  @override
+  String get moments_gatewayCaseReview =>
+      'Judge Bite no pudo usar este caso. Revisa los nombres, notas o fotos e inténtalo de nuevo, o usa la Corte de la Suerte.';
+
+  @override
+  String get moments_gatewayTooLarge =>
+      'Este caso es demasiado grande para enviarlo. Prueba con fotos más pequeñas o notas más cortas, o usa la Corte de la Suerte.';
+
+  @override
+  String get moments_gatewayUnavailable =>
+      'Los veredictos inteligentes no están disponibles ahora. Puedes seguir usando la Corte de la Suerte gratis.';
 }

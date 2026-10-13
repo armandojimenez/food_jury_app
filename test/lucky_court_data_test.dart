@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
-import 'dart:typed_data';
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -178,8 +179,20 @@ void main() {
   test(
     'quote bag does not repeat within a cycle or at a persisted cycle boundary',
     () async {
+      final catalog =
+          jsonDecode(
+                await rootBundle.loadString('assets/data/judge_sayings.json'),
+              )
+              as Map<String, dynamic>;
+      final count = (catalog['entries'] as List)
+          .where(
+            (entry) =>
+                (entry['tone'] == 'sassy' || entry['tone'] == 'any') &&
+                (entry['methods'] as List).contains('ticket'),
+          )
+          .length;
       final ids = <String>[];
-      for (var i = 0; i < 23; i++) {
+      for (var i = 0; i < count * 2 + 1; i++) {
         final result = await LuckyCourt(random: Random(i)).draw(
           caseData: makeCase(),
           method: RandomMethod.ticket,
@@ -190,10 +203,10 @@ void main() {
         expect(result.random!.locale, 'es');
         expect(result.random!.quote, isNotEmpty);
       }
-      expect(ids.take(11).toSet().length, 11);
-      expect(ids.skip(11).take(11).toSet().length, 11);
-      expect(ids[10], isNot(ids[11]));
-      expect(ids[21], isNot(ids[22]));
+      expect(ids.take(count).toSet().length, count);
+      expect(ids.skip(count).take(count).toSet().length, count);
+      expect(ids[count - 1], isNot(ids[count]));
+      expect(ids[count * 2 - 1], isNot(ids[count * 2]));
     },
   );
 

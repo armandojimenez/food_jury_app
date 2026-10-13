@@ -96,7 +96,11 @@ void main() {
   ) async {
     final app = DinerHarness();
     await app.pump(tester, history: []);
-    expect(find.byType(DinerButton), findsOneWidget);
+    expect(
+      find.widgetWithText(DinerButton, 'START A FOOD CASE'),
+      findsOneWidget,
+    );
+    expect(find.widgetWithText(DinerButton, 'JURY DUTY'), findsOneWidget);
     await app.screenshot(tester, 'home-empty-phone');
     app.router.go(AppRouter.history);
     await tester.pumpAndSettle();

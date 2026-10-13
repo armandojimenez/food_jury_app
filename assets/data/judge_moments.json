@@ -1,0 +1,501 @@
+{
+  "version": 1,
+  "purpose": "Contextual interaction banter. Never analysis, progress claims, or saved verdict text.",
+  "entries": [
+    {
+      "id": "welcome-1",
+      "moment": "welcome",
+      "tone": "any",
+      "text": {
+        "en": "Your table is ready. Bring the dilemma.",
+        "es": "Tu mesa está lista. Trae el dilema."
+      }
+    },
+    {
+      "id": "welcome-2",
+      "moment": "welcome",
+      "tone": "stern",
+      "text": {
+        "en": "The court accepts all cases involving lunch.",
+        "es": "El tribunal acepta todo caso relacionado con el almuerzo."
+      }
+    },
+    {
+      "id": "welcome-3",
+      "moment": "welcome",
+      "tone": "sassy",
+      "text": {
+        "en": "Back again? I saved you a seat and an opinion.",
+        "es": "¿De vuelta? Te guardé un asiento y una opinión."
+      }
+    },
+    {
+      "id": "welcome-4",
+      "moment": "welcome",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "A new case! Let’s make something delicious happen.",
+        "es": "¡Un caso nuevo! Vamos a resolver algo delicioso."
+      }
+    },
+    {
+      "id": "welcome-5",
+      "moment": "welcome",
+      "tone": "chill",
+      "text": {
+        "en": "Come on in. Dinner can be the easy part.",
+        "es": "Pasa. Decidir la cena puede ser lo más fácil del día."
+      }
+    },
+    {
+      "id": "firstContender-1",
+      "moment": "firstContender",
+      "tone": "any",
+      "text": {
+        "en": "One witness. We’ll need another.",
+        "es": "Un testigo. Nos falta otro."
+      }
+    },
+    {
+      "id": "firstContender-2",
+      "moment": "firstContender",
+      "tone": "stern",
+      "text": {
+        "en": "The court requires a second contender.",
+        "es": "El tribunal requiere un segundo candidato."
+      }
+    },
+    {
+      "id": "firstContender-3",
+      "moment": "firstContender",
+      "tone": "sassy",
+      "text": {
+        "en": "A one-dish debate? Even I can settle that.",
+        "es": "¿Un debate de un solo plato? Ese está fácil."
+      }
+    },
+    {
+      "id": "firstContender-4",
+      "moment": "firstContender",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "A strong start! Who’s joining the lineup?",
+        "es": "¡Buen comienzo! ¿Quién más entra al caso?"
+      }
+    },
+    {
+      "id": "firstContender-5",
+      "moment": "firstContender",
+      "tone": "chill",
+      "text": {
+        "en": "One option down. Add another when you’re ready.",
+        "es": "Ya hay una opción. Añade otra cuando quieras."
+      }
+    },
+    {
+      "id": "photoAdded-1",
+      "moment": "photoAdded",
+      "tone": "any",
+      "text": {
+        "en": "Exhibit A: suspiciously photogenic.",
+        "es": "Prueba A: sospechosamente fotogénica."
+      }
+    },
+    {
+      "id": "photoAdded-2",
+      "moment": "photoAdded",
+      "tone": "stern",
+      "text": {
+        "en": "Your photo has been entered into evidence.",
+        "es": "Tu foto queda registrada como prueba."
+      }
+    },
+    {
+      "id": "photoAdded-3",
+      "moment": "photoAdded",
+      "tone": "sassy",
+      "text": {
+        "en": "Oh, we brought visual aids. Fancy.",
+        "es": "Ah, trajimos pruebas visuales. Qué elegancia."
+      }
+    },
+    {
+      "id": "photoAdded-4",
+      "moment": "photoAdded",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "Now that’s a close-up! Photo added.",
+        "es": "¡Eso sí es un primer plano! Foto añadida."
+      }
+    },
+    {
+      "id": "photoAdded-5",
+      "moment": "photoAdded",
+      "tone": "chill",
+      "text": {
+        "en": "Photo’s in. A little more of the story.",
+        "es": "Foto lista. Ya tenemos un poco más de contexto."
+      }
+    },
+    {
+      "id": "caseReady-1",
+      "moment": "caseReady",
+      "tone": "any",
+      "text": {
+        "en": "I have everything. Except a lunch break.",
+        "es": "Ya tengo todo. Menos un descanso para comer."
+      }
+    },
+    {
+      "id": "caseReady-2",
+      "moment": "caseReady",
+      "tone": "stern",
+      "text": {
+        "en": "The case is complete. Let’s proceed.",
+        "es": "El caso está completo. Podemos continuar."
+      }
+    },
+    {
+      "id": "caseReady-3",
+      "moment": "caseReady",
+      "tone": "sassy",
+      "text": {
+        "en": "Good lineup. Terrible time to be indecisive.",
+        "es": "Buen menú. Mal momento para no decidirse."
+      }
+    },
+    {
+      "id": "caseReady-4",
+      "moment": "caseReady",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "Contenders assembled! Let’s find your dinner.",
+        "es": "¡Candidatos listos! Vamos a elegir tu comida."
+      }
+    },
+    {
+      "id": "caseReady-5",
+      "moment": "caseReady",
+      "tone": "chill",
+      "text": {
+        "en": "We’ve got options. The next bit is easy.",
+        "es": "Ya tenemos opciones. Lo que sigue es fácil."
+      }
+    },
+    {
+      "id": "objection-1",
+      "moment": "objection",
+      "tone": "any",
+      "text": {
+        "en": "New evidence? Now you have my attention.",
+        "es": "¿Nuevas pruebas? Ahora sí tienes mi atención."
+      }
+    },
+    {
+      "id": "objection-2",
+      "moment": "objection",
+      "tone": "stern",
+      "text": {
+        "en": "The court will hear your amendment.",
+        "es": "El tribunal escuchará tu propuesta."
+      }
+    },
+    {
+      "id": "objection-3",
+      "moment": "objection",
+      "tone": "sassy",
+      "text": {
+        "en": "I see that eyebrow. What are we changing?",
+        "es": "Veo esa ceja levantada. ¿Qué vamos a cambiar?"
+      }
+    },
+    {
+      "id": "objection-4",
+      "moment": "objection",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "A plot twist! Let’s hear it.",
+        "es": "¡Un giro inesperado! Te escucho."
+      }
+    },
+    {
+      "id": "objection-5",
+      "moment": "objection",
+      "tone": "chill",
+      "text": {
+        "en": "Changed your mind? We can work with that.",
+        "es": "¿Cambiaste de opinión? Lo podemos ajustar."
+      }
+    },
+    {
+      "id": "saved-1",
+      "moment": "saved",
+      "tone": "any",
+      "text": {
+        "en": "Filed under: finally decided.",
+        "es": "Archivado bajo: por fin decidimos."
+      }
+    },
+    {
+      "id": "saved-2",
+      "moment": "saved",
+      "tone": "stern",
+      "text": {
+        "en": "The verdict is now part of the record.",
+        "es": "El veredicto ya consta en el expediente."
+      }
+    },
+    {
+      "id": "saved-3",
+      "moment": "saved",
+      "tone": "sassy",
+      "text": {
+        "en": "Paperwork done. You’re welcome, future you.",
+        "es": "Papeleo listo. Tu yo del futuro me lo agradecerá."
+      }
+    },
+    {
+      "id": "saved-4",
+      "moment": "saved",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "Officially filed! That one’s a keeper.",
+        "es": "¡Archivado oficialmente! Este se queda."
+      }
+    },
+    {
+      "id": "saved-5",
+      "moment": "saved",
+      "tone": "chill",
+      "text": {
+        "en": "Saved. You can come back to this one.",
+        "es": "Guardado. Puedes volver cuando quieras."
+      }
+    },
+    {
+      "id": "repeatWinner-1",
+      "moment": "repeatWinner",
+      "tone": "any",
+      "text": {
+        "en": "Same dish. New draw. I don’t write the odds.",
+        "es": "Mismo plato. Nuevo sorteo. Yo no mando en el azar."
+      }
+    },
+    {
+      "id": "repeatWinner-2",
+      "moment": "repeatWinner",
+      "tone": "stern",
+      "text": {
+        "en": "The new draw reached the same result. Duly noted.",
+        "es": "El nuevo sorteo dio el mismo resultado. Que conste."
+      }
+    },
+    {
+      "id": "repeatWinner-3",
+      "moment": "repeatWinner",
+      "tone": "sassy",
+      "text": {
+        "en": "Well, well. Look who came back for an encore.",
+        "es": "Mira quién volvió para otra función."
+      }
+    },
+    {
+      "id": "repeatWinner-4",
+      "moment": "repeatWinner",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "An encore! The same dish won a fresh draw.",
+        "es": "¡Otra vez! El mismo plato ganó un nuevo sorteo."
+      }
+    },
+    {
+      "id": "repeatWinner-5",
+      "moment": "repeatWinner",
+      "tone": "chill",
+      "text": {
+        "en": "Same pick this time. Chance does that sometimes.",
+        "es": "Salió el mismo. A veces el azar repite."
+      }
+    },
+    {
+      "id": "reopen-1",
+      "moment": "reopen",
+      "tone": "any",
+      "text": {
+        "en": "Old case. Fresh appetite.",
+        "es": "Caso conocido. Hambre nueva."
+      }
+    },
+    {
+      "id": "reopen-2",
+      "moment": "reopen",
+      "tone": "stern",
+      "text": {
+        "en": "The original verdict stays on the record.",
+        "es": "El veredicto original permanece en el expediente."
+      }
+    },
+    {
+      "id": "reopen-3",
+      "moment": "reopen",
+      "tone": "sassy",
+      "text": {
+        "en": "A familiar cast. Let’s see what changed.",
+        "es": "Caras conocidas. Veamos qué cambió."
+      }
+    },
+    {
+      "id": "reopen-4",
+      "moment": "reopen",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "Welcome back, contenders! Another round awaits.",
+        "es": "¡Bienvenidos otra vez! Se viene otra ronda."
+      }
+    },
+    {
+      "id": "reopen-5",
+      "moment": "reopen",
+      "tone": "chill",
+      "text": {
+        "en": "Your lineup’s here. Tweak whatever you need.",
+        "es": "Aquí están tus opciones. Cambia lo que necesites."
+      }
+    },
+    {
+      "id": "share-1",
+      "moment": "share",
+      "tone": "any",
+      "text": {
+        "en": "A ruling this official deserves a receipt.",
+        "es": "Un veredicto tan oficial merece su recibo."
+      }
+    },
+    {
+      "id": "share-2",
+      "moment": "share",
+      "tone": "stern",
+      "text": {
+        "en": "A copy for the record. And the group chat.",
+        "es": "Una copia para el expediente. Y para el chat."
+      }
+    },
+    {
+      "id": "share-3",
+      "moment": "share",
+      "tone": "sassy",
+      "text": {
+        "en": "Send proof that somebody finally made a decision.",
+        "es": "Manda pruebas de que alguien por fin decidió."
+      }
+    },
+    {
+      "id": "share-4",
+      "moment": "share",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "Fresh from the court! Ready to share.",
+        "es": "¡Recién salido del tribunal! Listo para compartir."
+      }
+    },
+    {
+      "id": "share-5",
+      "moment": "share",
+      "tone": "chill",
+      "text": {
+        "en": "One neat little receipt. Pass it along.",
+        "es": "Un recibo listo. Compártelo si quieres."
+      }
+    },
+    {
+      "id": "jury-1",
+      "moment": "jury",
+      "tone": "any",
+      "text": {
+        "en": "Pass the phone. Keep your poker face.",
+        "es": "Pasa el teléfono. Que no se te note el voto."
+      }
+    },
+    {
+      "id": "jury-2",
+      "moment": "jury",
+      "tone": "stern",
+      "text": {
+        "en": "One juror. One private vote.",
+        "es": "Un miembro del jurado. Un voto privado."
+      }
+    },
+    {
+      "id": "jury-3",
+      "moment": "jury",
+      "tone": "sassy",
+      "text": {
+        "en": "No peeking. This is a very serious dinner.",
+        "es": "Nada de mirar. Esta cena es un asunto muy serio."
+      }
+    },
+    {
+      "id": "jury-4",
+      "moment": "jury",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "The whole table gets a say!",
+        "es": "¡Toda la mesa tiene voz!"
+      }
+    },
+    {
+      "id": "jury-5",
+      "moment": "jury",
+      "tone": "chill",
+      "text": {
+        "en": "Take your turn. We’ll count them together.",
+        "es": "Vota con calma. Luego los contamos juntos."
+      }
+    },
+    {
+      "id": "choiceConfirmed-1",
+      "moment": "choiceConfirmed",
+      "tone": "any",
+      "text": {
+        "en": "Case closed. Table open.",
+        "es": "Caso cerrado. Mesa lista."
+      }
+    },
+    {
+      "id": "choiceConfirmed-2",
+      "moment": "choiceConfirmed",
+      "tone": "stern",
+      "text": {
+        "en": "The court wishes you a pleasant meal.",
+        "es": "El tribunal te desea buen provecho."
+      }
+    },
+    {
+      "id": "choiceConfirmed-3",
+      "moment": "choiceConfirmed",
+      "tone": "sassy",
+      "text": {
+        "en": "My work here is done. Yours involves a fork.",
+        "es": "Mi trabajo terminó. El tuyo requiere un tenedor."
+      }
+    },
+    {
+      "id": "choiceConfirmed-4",
+      "moment": "choiceConfirmed",
+      "tone": "enthusiastic",
+      "text": {
+        "en": "Order up! Enjoy every bite.",
+        "es": "¡Orden lista! Disfruta cada bocado."
+      }
+    },
+    {
+      "id": "choiceConfirmed-5",
+      "moment": "choiceConfirmed",
+      "tone": "chill",
+      "text": {
+        "en": "All set. Go enjoy your meal.",
+        "es": "Todo listo. Ve a disfrutar tu comida."
+      }
+    }
+  ]
+}

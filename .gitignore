@@ -33,6 +33,10 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Per-environment gateway routing credentials (never commit tokens).
+/config/*.local.json
+/.local/
+
 # Symbolication related
 app.*.symbols
 

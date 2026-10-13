@@ -1,8 +1,42 @@
-# Redesign verification · 2026-10-11 / 2026-10-12
+# Implementation verification · October 2026
 
 These images are renders of the implemented Flutter app. Generated concept artwork is stored separately in `../explorations/`. Screenshots use sample cases through the isolated preview entry point or the test harness; production history is never seeded.
 
-## Results
+## Next chapter and Smart gateway · 2026-10-13
+
+The implemented followup adds interactive onboarding and practice, local Jury Duty, resumable drafts and named lineups, quick menu entry, history search/filtering, Objection recovery, PNG receipts, optional meal feedback and contextual Judge Bite reactions. Smart results use one winning-food mascot composition and a full-width ruling ticket. Lucky filing feedback appears only after a successful save; reduced motion completes immediately.
+
+New Flutter captures include [welcome practice](welcome-demo-phone.png), [evidence](welcome-evidence-phone.png), [personality](welcome-tone-phone.png), [final offer](welcome-offer-phone.png), [Jury results](jury-results-phone.png), [successful filing](filed-verdict-phone.png), and [Spanish meal feedback at 200%](feedback-es-200.png). Receipts use actual library artwork in [English](receipt-en.png), [Spanish](receipt-es.png) and [Spanish at 200%](receipt-es-200.png). Separate `receipt-photo-fixture-*.png` captures retain the synthetic-photo framing/byte-preservation checks. [Dark-mode sharing](smart-result-dark-share.png) keeps the exported receipt cream/ink, and [Spanish sharing controls](smart-result-es-200-share-actions.png) remain reachable at large text.
+
+The current Smart client is `AiGatewayService`; Firebase AI and initialization are removed. Versioned permission precedes real requests and can be withdrawn in Settings. Payloads contain the original case, actual optional photos and a random app UUID. Decorative art never becomes evidence. Both deployed gateway configurations require zero-data-retention providers and reasoning disabled on the primary model and both fallbacks. Model routing, privacy policy, dev/prod define files and exact request limits are documented in [the gateway contract](../../tool/gateway/README.md).
+
+The welcome allowance remains three Smart uses; Lucky Court remains unlimited. The new platform record holds only identity and charged operation IDs, reconciled monotonically with SQLite. Apple uses Keychain and Android uses backup-eligible preferences (DataStore). Storage failure cannot grant fresh uses; retry after a committed verdict/mirror failure returns the same result. This offers local reinstall resistance, not server-authoritative lifetime entitlement. Android restore depends on OS/user backup, and loss of both stores or device reset can reset local state. SQLite and the platform mirror do not share one transaction.
+
+Coverage is organized in [welcome/Jury flow tests](../../test/welcome_jury_flow_test.dart), [case shelf tests](../../test/case_shelf_test.dart), [verdict moments](../../test/verdict_moments_test.dart), [meal feedback persistence](../../test/meal_feedback_data_test.dart), [Smart allowance protection](../../test/smart_allowance_service_test.dart), [usage reconciliation](../../test/ai_usage_reconciliation_test.dart), [gateway adapter tests](../../test/ai_gateway_service_test.dart) and [permission tests](../../test/ai_consent_test.dart). These exercise controlled adapters, storage and HTTP responses. A final-use regression proves that a committed result can be recovered after a failed secure-storage mirror even at zero remaining uses, without another generation or charge; fresh requests remain blocked.
+
+| Integrated check | October 13 result |
+| --- | --- |
+| Flutter analyzer | No issues |
+| Complete Flutter suite | **284 tests passed** with preview capture enabled, concurrency 2 |
+| iOS simulator build | Passed, `main_dev.dart` with private dev defines |
+| Android debug APK | Passed, `main_prod.dart` with private prod defines |
+| Shared Worker suite | **28 tests passed**, TypeScript check clean; Beautifully/legacy behavior covered |
+| Remote configuration | Separate dev/prod configs applied and read back exactly; all three routes have reasoning disabled |
+| Live dev | Valid English text verdict, 2.29 seconds |
+| Live prod | Valid Spanish five-image/11-part verdict, 17.26 seconds |
+| Live protections | Both environments reject missing token, outdated permission, and client output-token overrides |
+| Native iPhone / iOS 26.5 | Practice reveal, evidence note, Sassy selection, final offer, two-dish menu entry, Keychain allowance preflight, permission sheet, real Smart result and PNG share-sheet export checked |
+| Credential hygiene | Both routing tokens absent from tracked/non-ignored files; private config files ignored and mode 600 |
+
+Native onboarding showed no free/Plus/pricing/quota language until the final offer. The real Smart sample used only Pizza and Tacos; it saved successfully and exported a 380 KB PNG receipt through the native share sheet. The sheet was dismissed without sending anything. Live five-image checks used bundled illustration fixtures, not personal photos, and are separate from the production rule against substituting decorative artwork for evidence. Sample timings are not performance guarantees.
+
+Worker source is `armandojimenez/ai-gateway` commit `c77199e`, deployed version `964eae07-bfcc-465e-9678-f9905fd2e7b0`. Raw local check logs are under `/tmp/foodjury-final-*.log`; repeatable commands and the live smoke script are documented in the gateway directory. Both native builds were repeated after the final retry and localization fixes. Camera hardware, real-device reinstall/backup restoration, full VoiceOver/TalkBack and physical haptic/audio behavior still require device acceptance.
+
+Firebase distribution was skipped as instructed when prerequisites were blocked: tester-group listing failed, Android lacks configured release signing, and no valid Apple Distribution identity is installed. See [delivery notes](../../tool/distribution/README.md). No tester release was uploaded.
+
+Plus remains an explicitly labeled billing preview. It performs no purchase or restore and grants no verified entitlement.
+
+## Historical redesign results · 2026-10-11 / 2026-10-12
 
 | Check | Result |
 | --- | --- |
@@ -46,7 +80,7 @@ Lucky Court layouts also cover 320×568 at 100% and 390×844 at 125% text. The r
 | Lid | [Phone](native-lucky-cloche-phone.png) | Covered by tablet render/animation checks |
 | Coin | [Phone](native-lucky-coin-phone.png) | Covered by tablet render/animation checks |
 
-Billing is deliberately a labeled price preview, as requested. No payment or verified entitlement is implemented. True lifetime allowance across reinstalls/devices and onboarding integration remain documented in [DESIGN.md](../../DESIGN.md#billing-intentionally-unfinished).
+At this checkpoint, billing was a labeled price preview and onboarding integration remained pending. The October 13 implementation now includes onboarding and platform usage persistence; real purchases, verified entitlement and account-level lifetime enforcement remain documented in [DESIGN.md](../../DESIGN.md#billing-intentionally-unfinished).
 
 ## Actual app captures
 
@@ -67,16 +101,16 @@ Native captures are prefixed `native-`. Widget-test captures omit OS chrome. The
 ```sh
 flutter analyze
 flutter test --dart-define=UPDATE_DESIGN_PREVIEWS=true
-flutter build ios --simulator --debug --no-codesign
-flutter build apk --debug
+flutter build ios --simulator --debug --no-codesign -t lib/main_dev.dart --dart-define-from-file=config/dev.local.json
+flutter build apk --debug -t lib/main_dev.dart --dart-define-from-file=config/dev.local.json
 flutter run -t lib/main_preview.dart
 ```
 
-The preview uses an in-memory Drift database and mock AI. `--dart-define=PREVIEW_ROUTE=/decision/verdict` opens the reveal. Runtime tokens/components, not screenshot coordinates, implement the design. Build logs are local under the ignored `build/redesign-audit/` folder.
+The preview uses an in-memory Drift database, allowance and permission stores, and mock AI. `--dart-define=PREVIEW_ROUTE=/decision/verdict` opens the reveal. For production configuration, pair `lib/main_prod.dart` with ignored `config/prod.local.json`. Never include private configuration contents or tokens in captures or logs. Runtime tokens/components, not screenshot coordinates, implement the design. Historical build logs are local under the ignored `build/redesign-audit/` folder.
 
 ## Validation limits
 
-This is an implementation and simulator check, not store release certification. The existing Firebase/Gemini service was preserved; the automated redesign flow uses a controlled AI service and local test database, so live model output was not revalidated. Camera/gallery service selection and exact photo preservation were tested using an injected picker, not physical camera hardware. Full VoiceOver/TalkBack and device permission acceptance should be checked on physical devices before launch. No messages were sent from the share sheet.
+The earlier redesign results are implementation and simulator checks, not store release certification. That checkpoint retained the former Firebase/Gemini service; the current gateway replaces it. Automated app flows use controlled AI/HTTP adapters and local test databases, so live model quality, gateway deployment and native reinstall/backup recovery require their own acceptance checks. Camera/gallery service selection and exact photo preservation were tested using an injected picker, not physical camera hardware. Full VoiceOver/TalkBack and device permission acceptance should be checked on physical devices before launch. No messages were sent from the recorded share-sheet checks.
 
 ## Review fixes incorporated
 

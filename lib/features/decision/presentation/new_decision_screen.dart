@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../config/routes/app_router.dart';
+import '../../case_shelf/data/case_shelf_models.dart';
+import '../../case_shelf/data/case_shelf_provider.dart';
+import '../../case_shelf/presentation/case_shelf_widgets.dart';
 import '../../food_library/data/food_catalog.dart';
 import '../../food_library/presentation/food_library_screen.dart';
 import '../../lucky/data/decision_case.dart';
@@ -20,15 +24,120 @@ import '../data/models/objective.dart';
 
 /// Build a case from two to five food options with an explicit objective.
 class NewDecisionScreen extends ConsumerStatefulWidget {
-  const NewDecisionScreen({super.key, this.initialCase});
+  const NewDecisionScreen({super.key, this.initialCase, this.initialDraft});
   final DecisionCase? initialCase;
+
+  /// A locally resumed draft may not have an objective yet.
+  final CaseDraft? initialDraft;
   @override
   ConsumerState<NewDecisionScreen> createState() => _NewDecisionScreenState();
 }
 
 class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
-  late final List<FoodOption> _options = [...?widget.initialCase?.options];
-  late Objective? _objective = widget.initialCase?.objective;
+  late final List<FoodOption> _options = [
+    ...?(widget.initialDraft?.options ?? widget.initialCase?.options),
+  ];
+  late Objective? _objective =
+      widget.initialDraft?.objective ?? widget.initialCase?.objective;
+  bool _savingDraft = false, _draftError = false;
+  int _draftRevision = 0;
+  bool _confirmingExit = false, _allowExit = false;
+
+  CaseDraft get _draft => CaseDraft(options: _options, objective: _objective);
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialCase != null || widget.initialDraft != null) {
+      unawaited(_persistDraft());
+    }
+  }
+
+  Future<void> _persistDraft() async {
+    final revision = ++_draftRevision;
+    setState(() {
+      _savingDraft = true;
+      _draftError = false;
+      _allowExit = false;
+    });
+    try {
+      await ref.read(caseShelfStoreProvider).saveDraft(_draft);
+      if (mounted && revision == _draftRevision) {
+        setState(() => _savingDraft = false);
+      }
+    } catch (_) {
+      if (mounted && revision == _draftRevision) {
+        setState(() {
+          _savingDraft = false;
+          _draftError = true;
+        });
+      }
+    }
+  }
+
+  Future<void> _requestExit() async {
+    if (_submitting || _savingDraft || _confirmingExit) return;
+    if (_draftError) {
+      _confirmingExit = true;
+      final leave = await AppDialog.showConfirmation(
+        context,
+        title: context.l10n.shelf_unsavedTitle,
+        message: context.l10n.shelf_unsavedHint,
+        confirmText: context.l10n.shelf_leaveUnsaved,
+        cancelText: context.l10n.shelf_keepEditing,
+      );
+      _confirmingExit = false;
+      if (!mounted || !leave) return;
+      setState(() => _allowExit = true);
+      await WidgetsBinding.instance.endOfFrame;
+      if (!mounted) return;
+    }
+    if (context.canPop()) {
+      context.pop();
+    } else {
+      context.go(AppRouter.home);
+    }
+  }
+
+  Future<void> _quickMenu() async {
+    if (_options.length >= 5 || _submitting) return;
+    final selected = await Navigator.of(context).push<List<FoodArt>>(
+      MaterialPageRoute(
+        builder: (_) => FoodLibraryScreen(
+          multiSelect: true,
+          minimumSelections: _options.isEmpty ? 2 : 1,
+          maximumSelections: 5 - _options.length,
+        ),
+      ),
+    );
+    if (!mounted || selected == null || selected.isEmpty) return;
+    final language = Localizations.localeOf(context).languageCode;
+    setState(() {
+      _options.addAll(
+        selected
+            .take(5 - _options.length)
+            .map(
+              (art) => FoodOption(
+                id: const Uuid().v4(),
+                name: art.label(language),
+                illustrationId: art.id,
+              ),
+            ),
+      );
+    });
+    await _persistDraft();
+  }
+
+  void _removeOption(FoodOption option) {
+    setState(() => _options.removeWhere((value) => value.id == option.id));
+    unawaited(_persistDraft());
+  }
+
+  void _selectGoal(Objective value) {
+    setState(() => _objective = value);
+    unawaited(_persistDraft());
+  }
+
   bool _submitting = false;
   bool get _ready => _options.length >= 2 && _objective != null && !_submitting;
 
@@ -52,11 +161,18 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
         if (index >= 0) _options[index] = result;
       }
     });
+    await _persistDraft();
   }
 
   Future<void> _submit() async {
     if (!_ready) return;
     setState(() => _submitting = true);
+    await _persistDraft();
+    if (!mounted) return;
+    if (_draftError) {
+      setState(() => _submitting = false);
+      return;
+    }
     await context.push(
       AppRouter.methods,
       extra: MethodRouteData(
@@ -72,13 +188,24 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
     ref.watch(judgeToneProvider);
     ref.watch(mockAiNotifierProvider);
     return PopScope(
-      canPop: !_submitting,
+      canPop: !_submitting && !_savingDraft && (!_draftError || _allowExit),
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) unawaited(_requestExit());
+      },
       child: Stack(
         children: [
           DinerBusyBoundary(
             busy: _submitting,
             child: DinerScaffold(
               title: context.l10n.diner_newCase,
+              onBack: _requestExit,
+              bottomAction: DinerButton(
+                key: const Key('submit-case'),
+                label: context.l10n.lucky_continue,
+                icon: Icons.gavel_rounded,
+                loading: _submitting,
+                onPressed: _ready ? _submit : null,
+              ),
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   final wide =
@@ -100,25 +227,16 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const SizedBox(height: AppDimensions.spaceLg),
-                      if (_options.isEmpty)
-                        DinerEntrance(
-                          order: 1,
-                          child: DinerTicket(
-                            child: Column(
-                              children: [
-                                const JudgeBite(
-                                  pose: JudgeBitePose.confused,
-                                  size: JudgeBiteSize.large,
-                                ),
-                                const SizedBox(height: AppDimensions.spaceMd),
-                                Text(
-                                  context.l10n.diner_emptyMenu,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
+                      if (_options.length < 5) ...[
+                        DinerButton(
+                          key: const Key('quick-menu'),
+                          label: context.l10n.shelf_quickMenu,
+                          icon: Icons.restaurant_menu_rounded,
+                          style: DinerButtonStyle.mustard,
+                          onPressed: _quickMenu,
                         ),
+                        const SizedBox(height: AppDimensions.spaceMd),
+                      ],
                       for (final option in _options)
                         Padding(
                           key: ValueKey(option.id),
@@ -129,11 +247,7 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                             child: _OptionCard(
                               option: option,
                               onEdit: () => _editOption(option),
-                              onRemove: () => setState(
-                                () => _options.removeWhere(
-                                  (o) => o.id == option.id,
-                                ),
-                              ),
+                              onRemove: () => _removeOption(option),
                             ),
                           ),
                         ),
@@ -141,7 +255,9 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                       if (_options.length < 5)
                         DinerButton(
                           key: const Key('add-option'),
-                          label: context.l10n.diner_addAnother,
+                          label: _options.isEmpty
+                              ? context.l10n.shelf_custom
+                              : context.l10n.diner_addAnother,
                           icon: Icons.add_rounded,
                           style: DinerButtonStyle.outline,
                           onPressed: () => _editOption(),
@@ -175,8 +291,7 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                                   child: DinerChoice(
                                     label: objective.getLabel(context),
                                     selected: _objective == objective,
-                                    onTap: () =>
-                                        setState(() => _objective = objective),
+                                    onTap: () => _selectGoal(objective),
                                   ),
                                 ),
                             ],
@@ -188,40 +303,73 @@ class _NewDecisionScreenState extends ConsumerState<NewDecisionScreen> {
                         duration: reduceDinerMotion(context)
                             ? Duration.zero
                             : DinerTokens.press,
-                        child: Row(
-                          key: ValueKey(_ready),
-                          children: [
-                            JudgeBite(
-                              pose: _ready
-                                  ? JudgeBitePose.excited
-                                  : JudgeBitePose.thinking,
-                              size: JudgeBiteSize.small,
-                            ),
-                            const SizedBox(width: AppDimensions.spaceSm),
-                            Expanded(
-                              child: Text(
-                                _options.length < 2
-                                    ? context.l10n.decision_addMoreOptions(
-                                        2 - _options.length,
-                                      )
-                                    : _objective == null
-                                    ? context.l10n.decision_pickYourGoal
-                                    : context.l10n.decision_readyForVerdict,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                ),
+                        child: _options.length == 1 || _ready
+                            ? JudgeAside(
+                                moment: _ready
+                                    ? JudgeMoment.caseReady
+                                    : JudgeMoment.firstContender,
+                                eventId: _options
+                                    .map((option) => option.id)
+                                    .join('-'),
+                                compact: true,
+                              )
+                            : Row(
+                                key: ValueKey(_ready),
+                                children: [
+                                  JudgeBite(
+                                    pose: _ready
+                                        ? JudgeBitePose.excited
+                                        : JudgeBitePose.thinking,
+                                    size: JudgeBiteSize.small,
+                                  ),
+                                  const SizedBox(width: AppDimensions.spaceSm),
+                                  Expanded(
+                                    child: Text(
+                                      _options.length < 2
+                                          ? context.l10n
+                                                .decision_addMoreOptions(
+                                                  2 - _options.length,
+                                                )
+                                          : _objective == null
+                                          ? context.l10n.decision_pickYourGoal
+                                          : context
+                                                .l10n
+                                                .decision_readyForVerdict,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
                       ),
                       const SizedBox(height: AppDimensions.spaceMd),
-                      DinerButton(
-                        key: const Key('submit-case'),
-                        label: context.l10n.lucky_continue,
-                        icon: Icons.gavel_rounded,
-                        onPressed: _ready ? _submit : null,
-                      ),
+                      if (_options.length >= 2)
+                        TextButton.icon(
+                          key: const Key('name-case-set'),
+                          icon: const Icon(Icons.bookmark_add_outlined),
+                          label: Text(context.l10n.shelf_saveSet),
+                          onPressed: () => saveCaseSetDialog(context, _draft),
+                        ),
+                      if (_options.isNotEmpty ||
+                          _objective != null ||
+                          _draftError ||
+                          _savingDraft) ...[
+                        const SizedBox(height: AppDimensions.spaceSm),
+                        Text(
+                          _draftError
+                              ? context.l10n.shelf_draftError
+                              : _savingDraft
+                              ? context.l10n.shelf_savingDraft
+                              : context.l10n.shelf_savedDraft,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        if (_draftError)
+                          TextButton(
+                            onPressed: _persistDraft,
+                            child: Text(context.l10n.common_retry),
+                          ),
+                      ],
                     ],
                   );
                   if (wide) {
@@ -361,6 +509,7 @@ class _OptionEditorState extends State<_OptionEditor> {
   late final _notes = TextEditingController(text: widget.original?.notes);
   late Uint8List? _bytes = widget.original?.imageBytes;
   late String? _illustrationId = widget.original?.illustrationId;
+  int _photoRevision = 0;
 
   Future<void> _chooseIllustration() async {
     final art = await Navigator.of(context).push<FoodArt>(
@@ -430,45 +579,10 @@ class _OptionEditorState extends State<_OptionEditor> {
             ],
           ),
           const SizedBox(height: AppDimensions.spaceMd),
-          DinerTicket(
-            child: Column(
-              children: [
-                FoodIllustration(
-                  name: _name.text,
-                  illustrationId: _illustrationId,
-                  size: DinerTokens.rulingJudge,
-                ),
-                const SizedBox(height: AppDimensions.spaceSm),
-                DinerButton(
-                  key: const Key('choose-food-art'),
-                  label: _illustrationId == null
-                      ? context.l10n.library_choose
-                      : context.l10n.library_change,
-                  icon: Icons.restaurant_menu_rounded,
-                  style: DinerButtonStyle.mustard,
-                  onPressed: _chooseIllustration,
-                ),
-                const SizedBox(height: AppDimensions.spaceSm),
-                Text(
-                  _bytes == null
-                      ? context.l10n.library_artNote
-                      : context.l10n.library_photoFirst,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: AppDimensions.spaceMd),
-          FoodImagePicker(
-            imageBytes: _bytes,
-            onImageSelected: (bytes) => setState(() => _bytes = bytes),
-            onImageRemoved: () => setState(() => _bytes = null),
-          ),
-          const SizedBox(height: AppDimensions.spaceMd),
           TextFormField(
             key: const Key('option-name'),
             controller: _name,
+            onChanged: (_) => setState(() {}),
             textCapitalization: TextCapitalization.sentences,
             maxLength: 80,
             textInputAction: TextInputAction.next,
@@ -497,6 +611,68 @@ class _OptionEditorState extends State<_OptionEditor> {
                 ? context.l10n.diner_notesLimit
                 : null,
           ),
+          const SizedBox(height: AppDimensions.spaceLg),
+          DinerSection(context.l10n.shelf_optionalEvidence),
+          const SizedBox(height: AppDimensions.spaceSm),
+          Text(
+            context.l10n.shelf_optionalHint,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          const SizedBox(height: AppDimensions.spaceMd),
+          DinerTicket(
+            child: Row(
+              children: [
+                if (MediaQuery.textScalerOf(context).scale(1) <
+                    DinerTokens.largeTextBreakpoint) ...[
+                  FoodIllustration(
+                    name: _name.text,
+                    illustrationId: _illustrationId,
+                    size: DinerTokens.thumbnail,
+                  ),
+                  const SizedBox(width: AppDimensions.spaceMd),
+                ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      DinerButton(
+                        key: const Key('choose-food-art'),
+                        label: _illustrationId == null
+                            ? context.l10n.library_choose
+                            : context.l10n.library_change,
+                        style: DinerButtonStyle.outline,
+                        onPressed: _chooseIllustration,
+                      ),
+                      const SizedBox(height: AppDimensions.spaceSm),
+                      Text(
+                        _bytes == null
+                            ? context.l10n.library_artNote
+                            : context.l10n.library_photoFirst,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spaceMd),
+          FoodImagePicker(
+            imageBytes: _bytes,
+            onImageSelected: (bytes) => setState(() {
+              _bytes = bytes;
+              _photoRevision++;
+            }),
+            onImageRemoved: () => setState(() => _bytes = null),
+          ),
+          if (_bytes != null && _photoRevision > 0) ...[
+            const SizedBox(height: AppDimensions.spaceSm),
+            JudgeAside(
+              moment: JudgeMoment.photoAdded,
+              eventId: 'photo-$_photoRevision',
+              compact: true,
+            ),
+          ],
           const SizedBox(height: AppDimensions.spaceMd),
           DinerButton(
             key: const Key('save-option'),

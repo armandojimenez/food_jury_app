@@ -8,6 +8,7 @@ export 'app_snackbar.dart';
 export 'app_text_field.dart';
 export 'food_image_picker.dart';
 export 'judge_bite.dart';
+export 'judge_aside.dart';
 export 'loading_overlay.dart';
 export 'objective_chip.dart';
 export 'diner_components.dart';

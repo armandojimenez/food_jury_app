@@ -10,6 +10,7 @@ import 'app.dart';
 import 'config/routes/app_router.dart';
 import 'core/env/env.dart';
 import 'core/providers/ai_service_provider.dart';
+import 'core/providers/ai_consent_provider.dart';
 import 'core/services/mock_ai_service.dart';
 import 'data/database/app_database.dart';
 import 'data/providers/database_provider.dart';
@@ -89,6 +90,8 @@ Future<void> main() async {
             'settings' => AppRouter.settings,
             'about' => AppRouter.aboutDeveloper,
             'home' => AppRouter.home,
+            'welcome' => AppRouter.onboarding,
+            'jury' => AppRouter.jury,
             _ => screen,
           };
     AppRouter.router.go(
@@ -119,6 +122,7 @@ Future<void> main() async {
     ProviderScope(
       overrides: [
         databaseProvider.overrideWithValue(db),
+        aiConsentStoreProvider.overrideWithValue(MemoryAiConsentStore()),
         aiServiceProvider.overrideWithValue(MockAiService()),
       ],
       child: const FoodJuryApp(

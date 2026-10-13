@@ -57,9 +57,17 @@ class AiAllowanceTicket extends ConsumerWidget {
                 ],
               ),
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (_, stack) => TextButton(
-                onPressed: () => ref.invalidate(aiAllowanceProvider),
-                child: Text(l.common_retry),
+              error: (_, stack) => Column(
+                children: [
+                  Text(
+                    l.moments_allowanceUnavailable,
+                    textAlign: TextAlign.center,
+                  ),
+                  TextButton(
+                    onPressed: () => ref.invalidate(aiAllowanceProvider),
+                    child: Text(l.common_retry),
+                  ),
+                ],
               ),
             ),
           const SizedBox(height: AppDimensions.spaceSm),

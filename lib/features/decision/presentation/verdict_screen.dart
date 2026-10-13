@@ -1,19 +1,21 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config/routes/app_router.dart';
 import '../../../core/theme/theme.dart';
+import '../../../core/services/court_feedback.dart';
 import '../../../core/utils/l10n_extensions.dart';
 import '../../../core/widgets/widgets.dart';
+import '../../moments/presentation/verdict_receipt.dart';
+import '../../moments/presentation/case_objection.dart';
+import '../../moments/presentation/meal_feedback_card.dart';
+import '../../case_shelf/presentation/case_shelf_widgets.dart';
 import '../data/models/verdict.dart';
 import '../../lucky/presentation/winner_hero.dart';
 
 /// A staged courtroom reveal followed by an immediately useful verdict ticket.
-class VerdictScreen extends StatefulWidget {
+class VerdictScreen extends ConsumerStatefulWidget {
   const VerdictScreen({
     required this.verdict,
     this.showRevealAnimation = true,
@@ -22,10 +24,10 @@ class VerdictScreen extends StatefulWidget {
   final Verdict verdict;
   final bool showRevealAnimation;
   @override
-  State<VerdictScreen> createState() => _VerdictScreenState();
+  ConsumerState<VerdictScreen> createState() => _VerdictScreenState();
 }
 
-class _VerdictScreenState extends State<VerdictScreen>
+class _VerdictScreenState extends ConsumerState<VerdictScreen>
     with TickerProviderStateMixin {
   late final _reveal = AnimationController(
     vsync: this,
@@ -49,7 +51,7 @@ class _VerdictScreenState extends State<VerdictScreen>
           mounted &&
           !reduceDinerMotion(context)) {
         _confetti.forward(from: 0);
-        HapticFeedback.mediumImpact();
+        CourtFeedback.play(context, ref, CourtCue.verdict);
       }
     });
   }
@@ -77,23 +79,8 @@ class _VerdictScreenState extends State<VerdictScreen>
   Future<void> _share() async {
     if (_sharing) return;
     setState(() => _sharing = true);
-    final l10n = context.l10n;
-    final box = _shareKey.currentContext?.findRenderObject() as RenderBox?;
     try {
-      await SharePlus.instance.share(
-        ShareParams(
-          title: 'FoodJury',
-          text:
-              '${l10n.diner_wins(widget.verdict.winner.name)}\n\n${widget.verdict.reasoning}\n\nFoodJury · ${l10n.diner_welcome}',
-          sharePositionOrigin: box == null
-              ? null
-              : box.localToGlobal(Offset.zero) & box.size,
-        ),
-      );
-    } catch (error) {
-      if (mounted) {
-        AppSnackbar.showError(context, message: l10n.error_genericMessage);
-      }
+      await showVerdictReceipt(context, widget.verdict);
     } finally {
       if (mounted) setState(() => _sharing = false);
     }
@@ -107,6 +94,7 @@ class _VerdictScreenState extends State<VerdictScreen>
       return Stack(
         children: [
           DinerBusyBoundary(
+            key: const Key('smart-verdict-busy'),
             busy: revealing,
             child: IgnorePointer(
               ignoring: revealing,
@@ -211,12 +199,24 @@ class _VerdictScreenState extends State<VerdictScreen>
                           loading: _sharing,
                           onPressed: _share,
                         ),
+                        const SizedBox(height: AppDimensions.spaceMd),
+                        DinerButton(
+                          key: const Key('objection-smart'),
+                          label: context.l10n.moments_objection,
+                          icon: Icons.gavel_rounded,
+                          style: DinerButtonStyle.outline,
+                          onPressed: () {
+                            CourtFeedback.play(
+                              context,
+                              ref,
+                              CourtCue.objection,
+                            );
+                            showCaseObjection(context, ref, widget.verdict);
+                          },
+                        ),
                         const SizedBox(height: AppDimensions.spaceSm),
                         TextButton(
-                          onPressed: () => context.go(
-                            AppRouter.newDecision,
-                            extra: UniqueKey(),
-                          ),
+                          onPressed: () => openShelfCase(context, ref),
                           child: Text(context.l10n.diner_anotherCase),
                         ),
                         if (!reduceDinerMotion(context))
@@ -228,6 +228,8 @@ class _VerdictScreenState extends State<VerdictScreen>
                             icon: const Icon(Icons.replay_rounded),
                             label: Text(context.l10n.diner_replay),
                           ),
+                        const SizedBox(height: AppDimensions.spaceLg),
+                        MealFeedbackCard(verdictId: widget.verdict.id),
                         if (widget.verdict.bonus?.isNotEmpty == true) ...[
                           const SizedBox(height: AppDimensions.spaceLg),
                           DinerSection(context.l10n.diner_bonus),
@@ -271,6 +273,7 @@ class _VerdictScreenState extends State<VerdictScreen>
             Positioned.fill(
               child: _RevealCurtain(
                 progress: _reveal.value,
+                verdict: widget.verdict,
                 onSkip: () => _reveal.animateTo(1, duration: DinerTokens.press),
               ),
             ),
@@ -297,9 +300,6 @@ class _RulingTicket extends StatelessWidget {
   final Verdict verdict;
   @override
   Widget build(BuildContext context) {
-    final largeText =
-        MediaQuery.textScalerOf(context).scale(1) >=
-        DinerTokens.largeTextBreakpoint;
     final text = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -329,29 +329,7 @@ class _RulingTicket extends StatelessWidget {
         ),
       ],
     );
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        DinerTicket(
-          dashed: true,
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: largeText ? 0 : DinerTokens.rulingInset,
-            ),
-            child: text,
-          ),
-        ),
-        if (!largeText)
-          const Positioned(
-            left: -14,
-            top: -20,
-            child: JudgeBiteAnimated(
-              pose: JudgeBitePose.celebrating,
-              dimension: DinerTokens.rulingJudge,
-            ),
-          ),
-      ],
-    );
+    return DinerTicket(dashed: true, child: text);
   }
 }
 
@@ -368,9 +346,16 @@ class _Winner extends StatelessWidget {
         child: DinerStamp(context.l10n.diner_caseClosed),
       ),
       const SizedBox(height: AppDimensions.spaceMd),
-      DinerPosterHeading(
-        context.l10n.diner_wins(verdict.winner.name),
-        large: wide,
+      Semantics(
+        liveRegion: true,
+        container: true,
+        excludeSemantics: true,
+        label:
+            '${context.l10n.diner_wins(verdict.winner.name)}. ${verdict.reasoning}',
+        child: DinerPosterHeading(
+          context.l10n.diner_wins(verdict.winner.name),
+          large: wide,
+        ),
       ),
       const SizedBox(height: AppDimensions.spaceMd),
       WinnerHero(option: verdict.winner),
@@ -379,8 +364,13 @@ class _Winner extends StatelessWidget {
 }
 
 class _RevealCurtain extends StatelessWidget {
-  const _RevealCurtain({required this.progress, required this.onSkip});
+  const _RevealCurtain({
+    required this.progress,
+    required this.verdict,
+    required this.onSkip,
+  });
   final double progress;
+  final Verdict verdict;
   final VoidCallback onSkip;
   @override
   Widget build(BuildContext context) {
@@ -416,12 +406,21 @@ class _RevealCurtain extends StatelessWidget {
                           offset: Offset(0, (1 - slam) * 18),
                           child: Transform.rotate(
                             angle: (1 - slam) * -.12,
-                            child: JudgeBite(
-                              pose: progress < .42
-                                  ? JudgeBitePose.stern
-                                  : JudgeBitePose.celebrating,
-                              dimension:
-                                  DinerTokens.heroJudge + AppDimensions.spaceLg,
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 180),
+                              child: progress < .42
+                                  ? const JudgeBite(
+                                      key: Key('smart-anticipation'),
+                                      pose: JudgeBitePose.inspecting,
+                                      dimension:
+                                          DinerTokens.heroJudge +
+                                          AppDimensions.spaceLg,
+                                    )
+                                  : SizedBox(
+                                      key: const Key('smart-winner-reveal'),
+                                      width: 320,
+                                      child: WinnerHero(option: verdict.winner),
+                                    ),
                             ),
                           ),
                         ),
@@ -431,7 +430,7 @@ class _RevealCurtain extends StatelessWidget {
                           child: Opacity(
                             opacity: slam.clamp(0, 1),
                             child: DinerSignText(
-                              context.l10n.diner_reveal,
+                              context.l10n.diner_wins(verdict.winner.name),
                               size: DinerTokens.headline,
                             ),
                           ),

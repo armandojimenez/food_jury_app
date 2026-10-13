@@ -116,6 +116,9 @@ abstract final class DinerTokens {
   /// Phone display headline size.
   static const double headline = 40;
 
+  /// Compact heading hierarchy at large text; still uses the full system scale.
+  static const double accessibleHeadline = 28;
+
   /// Wide-layout display headline size.
   static const double tabletHeadline = 56;
 
@@ -151,6 +154,9 @@ abstract final class DinerTokens {
 
   /// Finite celebration particle lifetime.
   static const Duration confetti = Duration(milliseconds: 1800);
+
+  /// Finite success-only stamp after a case has been saved.
+  static const Duration filingStamp = Duration(milliseconds: 740);
 
   /// Easing used for entering content.
   static const Curve enterCurve = Curves.easeOutCubic;

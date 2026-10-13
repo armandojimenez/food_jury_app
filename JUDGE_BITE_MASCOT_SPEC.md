@@ -28,11 +28,18 @@ The source of truth is `assets/images/judge_bite_v2/idle.png`, derived from the 
 | `plate.png` | Stern host balancing a porcelain plate, grounded full-body stance |
 | `ticket.png` | Stern receipt draw with the numbered ticket held clear of the face |
 
+| `bench.png` | Welcoming court host at the diner counter; imported from the approved onboarding artwork |
+| `inspecting.png` | Magnifying glass inspecting optional evidence; imported from the approved onboarding artwork |
+| `objection.png` | Open stop palm, arched skeptical eyebrow, restrained crooked smile |
+| `filing.png` | Small ink stamp pressed to a blank folder, focused satisfied expression |
+| `bell.png` | Ringing the service bell on a tray, raised brows and ready-to-eat energy |
+| `whispering.png` | Cupped glove by mouth, conspiratorial glance and compact silhouette |
+
 ## Export and QA
 
 Each pose is a separate square true-alpha PNG with the entire head, gloves and shoes inside the frame. Do not stretch/crop the silhouette or bake a checkerboard/background into the asset. Keep the navy contour clean against cream, orange, yellow and dark surfaces. Inspect expression, finger count, collar, teeth/mouth, limb attachment, edge clipping and alpha before installation.
 
-The original generation prompts and facial corrections are in [design/production/prompts.json](design/production/prompts.json). Lucky Court pose provenance is recorded in [the exploration prompts](design/explorations/2026-10-11/random-court/prompts.json). Use a current production pose as an image-generation reference for every new pose. Do not reinterpret the identity from prose alone.
+The original generation prompts and facial corrections are in [design/production/prompts.json](design/production/prompts.json). Lucky Court pose provenance is recorded in [the exploration prompts](design/explorations/2026-10-11/random-court/prompts.json). The six-pose October 12 expansion is documented in [next-chapter prompts](design/production/next-chapter/prompts.json), including original source paths, dimensions, alpha and SHA-256 hashes. Use a current production pose as an image-generation reference for every new pose. Do not reinterpret the identity from prose alone.
 
 ## In-app usage
 

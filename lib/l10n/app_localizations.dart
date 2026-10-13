@@ -2119,6 +2119,1068 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Every contender gets an equal chance.'**
   String get lucky_stageHint;
+
+  /// No description provided for @shelf_title.
+  ///
+  /// In en, this message translates to:
+  /// **'The usual'**
+  String get shelf_title;
+
+  /// No description provided for @shelf_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your favorite lineups, ready for another round.'**
+  String get shelf_hint;
+
+  /// No description provided for @shelf_resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume your case'**
+  String get shelf_resume;
+
+  /// No description provided for @shelf_draftHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contenders and photos are safe here.'**
+  String get shelf_draftHint;
+
+  /// No description provided for @shelf_discard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard draft'**
+  String get shelf_discard;
+
+  /// No description provided for @shelf_discardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard this unfinished case?'**
+  String get shelf_discardTitle;
+
+  /// No description provided for @shelf_discardHint.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes the unfinished case and its photos. Saved verdicts and lineups stay in your files.'**
+  String get shelf_discardHint;
+
+  /// No description provided for @shelf_replaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A case is still on the counter'**
+  String get shelf_replaceTitle;
+
+  /// No description provided for @shelf_replaceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening this case will replace your unfinished draft. Your saved verdicts and lineups will stay.'**
+  String get shelf_replaceHint;
+
+  /// No description provided for @shelf_replace.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace draft'**
+  String get shelf_replace;
+
+  /// No description provided for @shelf_new.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a fresh case'**
+  String get shelf_new;
+
+  /// No description provided for @shelf_quickMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick from the menu'**
+  String get shelf_quickMenu;
+
+  /// No description provided for @shelf_quickHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap your contenders. Add details afterward.'**
+  String get shelf_quickHint;
+
+  /// No description provided for @shelf_menuLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose {minimum}–{maximum} dishes.'**
+  String shelf_menuLimit(int minimum, int maximum);
+
+  /// No description provided for @shelf_addSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, one{Add 1 contender} other{Add {count} contenders}}'**
+  String shelf_addSelected(int count);
+
+  /// No description provided for @shelf_selectedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected · up to {maximum}'**
+  String shelf_selectedCount(int count, int maximum);
+
+  /// No description provided for @shelf_noMenuMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No dishes match. Try another search, or add your own contender.'**
+  String get shelf_noMenuMatch;
+
+  /// No description provided for @shelf_custom.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your own dish'**
+  String get shelf_custom;
+
+  /// No description provided for @shelf_optionalEvidence.
+  ///
+  /// In en, this message translates to:
+  /// **'Make it your own'**
+  String get shelf_optionalEvidence;
+
+  /// No description provided for @shelf_optionalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Illustrations and photos are optional.'**
+  String get shelf_optionalHint;
+
+  /// No description provided for @shelf_savedDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft saved on this device'**
+  String get shelf_savedDraft;
+
+  /// No description provided for @shelf_savingDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving your case…'**
+  String get shelf_savingDraft;
+
+  /// No description provided for @shelf_draftError.
+  ///
+  /// In en, this message translates to:
+  /// **'Your latest changes could not be saved. Keep this case open and try again.'**
+  String get shelf_draftError;
+
+  /// No description provided for @shelf_saveSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as the usual'**
+  String get shelf_saveSet;
+
+  /// No description provided for @shelf_setName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name this lineup'**
+  String get shelf_setName;
+
+  /// No description provided for @shelf_setHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday takeout, office lunch…'**
+  String get shelf_setHint;
+
+  /// No description provided for @shelf_setSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Your lineup is ready for next time.'**
+  String get shelf_setSaved;
+
+  /// No description provided for @shelf_setDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove this lineup?'**
+  String get shelf_setDeleteTitle;
+
+  /// No description provided for @shelf_setDeleteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your saved verdicts and any open case will stay.'**
+  String get shelf_setDeleteHint;
+
+  /// No description provided for @shelf_openSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Open lineup'**
+  String get shelf_openSet;
+
+  /// No description provided for @shelf_reopen.
+  ///
+  /// In en, this message translates to:
+  /// **'Reopen case'**
+  String get shelf_reopen;
+
+  /// No description provided for @shelf_returnTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Back for another bite?'**
+  String get shelf_returnTitle;
+
+  /// No description provided for @shelf_returnHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up where you left off, or bring a new case.'**
+  String get shelf_returnHint;
+
+  /// No description provided for @shelf_jury.
+  ///
+  /// In en, this message translates to:
+  /// **'Jury duty'**
+  String get shelf_jury;
+
+  /// No description provided for @shelf_juryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass the phone. Settle dinner together.'**
+  String get shelf_juryHint;
+
+  /// No description provided for @shelf_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search dishes and notes'**
+  String get shelf_search;
+
+  /// No description provided for @shelf_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All cases'**
+  String get shelf_all;
+
+  /// No description provided for @shelf_smart.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart'**
+  String get shelf_smart;
+
+  /// No description provided for @shelf_lucky.
+  ///
+  /// In en, this message translates to:
+  /// **'Lucky'**
+  String get shelf_lucky;
+
+  /// No description provided for @shelf_noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No cases match yet'**
+  String get shelf_noResults;
+
+  /// No description provided for @shelf_clearFilters.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search and filters'**
+  String get shelf_clearFilters;
+
+  /// No description provided for @shelf_caseCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} contenders'**
+  String shelf_caseCount(int count);
+
+  /// No description provided for @shelf_nameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Give this lineup a name.'**
+  String get shelf_nameRequired;
+
+  /// No description provided for @shelf_manage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage lineups'**
+  String get shelf_manage;
+
+  /// No description provided for @moments_shareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A ruling worth sharing'**
+  String get moments_shareTitle;
+
+  /// No description provided for @moments_shareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your receipt includes the winning photo or artwork, the ruling and dish names. Preview it before sharing.'**
+  String get moments_shareHint;
+
+  /// No description provided for @moments_shareImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Share receipt'**
+  String get moments_shareImage;
+
+  /// No description provided for @moments_shareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as text'**
+  String get moments_shareText;
+
+  /// No description provided for @moments_shareError.
+  ///
+  /// In en, this message translates to:
+  /// **'The receipt could not be shared. Try again, or share it as text.'**
+  String get moments_shareError;
+
+  /// No description provided for @moments_receiptFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner is decided. Court is adjourned.'**
+  String get moments_receiptFooter;
+
+  /// No description provided for @moments_objection.
+  ///
+  /// In en, this message translates to:
+  /// **'Objection!'**
+  String get moments_objection;
+
+  /// No description provided for @moments_objectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The court will hear you.'**
+  String get moments_objectionTitle;
+
+  /// No description provided for @moments_objectionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep these dishes and edit your case, or choose another method. Your original verdict stays intact. A new Smart ruling uses a welcome ruling or Plus; Lucky Court is always free.'**
+  String get moments_objectionHint;
+
+  /// No description provided for @moments_objectionAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept the verdict'**
+  String get moments_objectionAccept;
+
+  /// No description provided for @moments_filed.
+  ///
+  /// In en, this message translates to:
+  /// **'Filed!'**
+  String get moments_filed;
+
+  /// No description provided for @moments_filedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner has entered the record.'**
+  String get moments_filedHint;
+
+  /// No description provided for @moments_filedAnnouncement.
+  ///
+  /// In en, this message translates to:
+  /// **'Verdict saved to your case archive.'**
+  String get moments_filedAnnouncement;
+
+  /// No description provided for @moments_chooseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A thoughtful ruling, or a little luck. You choose.'**
+  String get moments_chooseHint;
+
+  /// No description provided for @moments_smartHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart ruling · with reasons'**
+  String get moments_smartHeading;
+
+  /// No description provided for @moments_smartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your goal, notes and photos help Judge Bite decide.'**
+  String get moments_smartHint;
+
+  /// No description provided for @moments_luckyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Free, offline, and fair. Every dish has an equal chance.'**
+  String get moments_luckyHint;
+
+  /// No description provided for @moments_wheelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Give dinner a spin.'**
+  String get moments_wheelHint;
+
+  /// No description provided for @moments_ticketHint.
+  ///
+  /// In en, this message translates to:
+  /// **'One ticket. One winner.'**
+  String get moments_ticketHint;
+
+  /// No description provided for @moments_clocheHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner is under wraps.'**
+  String get moments_clocheHint;
+
+  /// No description provided for @moments_coinHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Two dishes. One toss.'**
+  String get moments_coinHint;
+
+  /// No description provided for @moments_recoverLucky.
+  ///
+  /// In en, this message translates to:
+  /// **'Decide with Lucky Court'**
+  String get moments_recoverLucky;
+
+  /// No description provided for @moments_offline.
+  ///
+  /// In en, this message translates to:
+  /// **'The judge could not connect. Your case and welcome ruling are safe. Try again or choose Lucky Court below.'**
+  String get moments_offline;
+
+  /// No description provided for @moments_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'The judge took too long. Your welcome ruling was not used. Retry, or let Lucky Court decide.'**
+  String get moments_timeout;
+
+  /// No description provided for @shelf_caseActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Case actions'**
+  String get shelf_caseActions;
+
+  /// No description provided for @welcome_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to court'**
+  String get welcome_title;
+
+  /// No description provided for @welcome_skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get welcome_skip;
+
+  /// No description provided for @welcome_step.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of 3'**
+  String welcome_step(int step);
+
+  /// No description provided for @welcome_next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get welcome_next;
+
+  /// No description provided for @welcome_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get welcome_start;
+
+  /// No description provided for @welcome_replay.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the welcome tour'**
+  String get welcome_replay;
+
+  /// No description provided for @welcome_methodsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first verdict.'**
+  String get welcome_methodsTitle;
+
+  /// No description provided for @welcome_methodsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Two contenders. One delicious decision.'**
+  String get welcome_methodsBody;
+
+  /// No description provided for @welcome_lucky.
+  ///
+  /// In en, this message translates to:
+  /// **'Lucky · Let chance decide'**
+  String get welcome_lucky;
+
+  /// No description provided for @welcome_smart.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart · Follow your goal'**
+  String get welcome_smart;
+
+  /// No description provided for @welcome_demo.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice case'**
+  String get welcome_demo;
+
+  /// No description provided for @welcome_luckyDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'A fair draw. {food} gets the spotlight!'**
+  String welcome_luckyDemo(String food);
+
+  /// No description provided for @welcome_smartDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Tacos are ready now. Your Quick goal wins the day. Case closed!'**
+  String get welcome_smartDemo;
+
+  /// No description provided for @welcome_demoGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'The goal: something quick.'**
+  String get welcome_demoGoal;
+
+  /// No description provided for @welcome_tryDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a verdict'**
+  String get welcome_tryDemo;
+
+  /// No description provided for @welcome_demoWinner.
+  ///
+  /// In en, this message translates to:
+  /// **'The verdict: {food}'**
+  String welcome_demoWinner(String food);
+
+  /// No description provided for @welcome_evidenceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Build your case.'**
+  String get welcome_evidenceTitle;
+
+  /// No description provided for @welcome_evidenceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring 2–5 dishes and pick your mood. Notes and your own photos are optional.'**
+  String get welcome_evidenceBody;
+
+  /// No description provided for @welcome_evidenceToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a practice note'**
+  String get welcome_evidenceToggle;
+
+  /// No description provided for @welcome_evidenceExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Tacos · “Ready now, around \$10.” Evidence accepted!'**
+  String get welcome_evidenceExample;
+
+  /// No description provided for @welcome_evidenceEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Tacos. A name is enough to enter the court.'**
+  String get welcome_evidenceEmpty;
+
+  /// No description provided for @welcome_photoPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart asks permission before sending your dish details and attached photos through the developer’s AI gateway and its processing providers. Lucky draws stay on your device.'**
+  String get welcome_photoPrivacy;
+
+  /// No description provided for @welcome_toneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet your judge.'**
+  String get welcome_toneTitle;
+
+  /// No description provided for @welcome_toneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your kind of courtroom humor.'**
+  String get welcome_toneBody;
+
+  /// No description provided for @welcome_privacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your food, photos & data'**
+  String get welcome_privacyTitle;
+
+  /// No description provided for @welcome_privacyLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Cases, attached photos and preferences are stored on this device and may be included in your operating system backup. Lucky draws and Jury Duty run locally. Jury ballots are temporary; only anonymous totals are kept during the session. A random app ID and usage record help preserve the Smart allowance across reinstalls; they are not hardware identifiers.'**
+  String get welcome_privacyLocal;
+
+  /// No description provided for @welcome_privacySmart.
+  ///
+  /// In en, this message translates to:
+  /// **'With your permission, Smart sends names, notes, attached photos, your goal and judge personality through the developer’s Cloudflare AI Gateway and OpenRouter to Azure, OpenAI or BaseTen. These routes are configured for zero data retention and to deny data collection. Illustrations are not photo evidence. Photos cannot verify allergens, food safety or nutrition figures.'**
+  String get welcome_privacySmart;
+
+  /// No description provided for @welcome_privacyDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete a saved case in History to remove that local copy. Discard drafts and delete saved lineups separately on Home. Withdraw AI data permission here to stop future requests; it cannot recall data already sent to processing providers.'**
+  String get welcome_privacyDelete;
+
+  /// No description provided for @welcome_soundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Courtroom sounds'**
+  String get welcome_soundTitle;
+
+  /// No description provided for @welcome_soundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional system cues. Reduced motion turns off sound and haptics.'**
+  String get welcome_soundBody;
+
+  /// No description provided for @welcome_hapticsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Haptic feedback'**
+  String get welcome_hapticsTitle;
+
+  /// No description provided for @jury_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Jury Duty'**
+  String get jury_title;
+
+  /// No description provided for @jury_introTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let the whole table decide.'**
+  String get jury_introTitle;
+
+  /// No description provided for @jury_introBody.
+  ///
+  /// In en, this message translates to:
+  /// **'2–5 diners. Each person nominates a different dish, then gets one private vote. Pass the phone between turns. A tie goes to Lucky Court.'**
+  String get jury_introBody;
+
+  /// No description provided for @jury_howMany.
+  ///
+  /// In en, this message translates to:
+  /// **'How many jurors?'**
+  String get jury_howMany;
+
+  /// No description provided for @jury_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Seat the jury'**
+  String get jury_start;
+
+  /// No description provided for @jury_localNote.
+  ///
+  /// In en, this message translates to:
+  /// **'One phone. No accounts or internet needed. The session disappears when you close Jury Duty. Keep the screen to yourself while voting.'**
+  String get jury_localNote;
+
+  /// No description provided for @jury_distinctDish.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a dish that has not already been nominated.'**
+  String get jury_distinctDish;
+
+  /// No description provided for @jury_passTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass to juror {number}.'**
+  String jury_passTo(int number);
+
+  /// No description provided for @jury_ready.
+  ///
+  /// In en, this message translates to:
+  /// **'I’m juror {number} · Ready'**
+  String jury_ready(int number);
+
+  /// No description provided for @jury_nominateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your turn to bring a contender. Choose from the food menu or enter your own dish.'**
+  String get jury_nominateHint;
+
+  /// No description provided for @jury_votePrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Voting time. Previous choices are hidden. Take the phone, make your pick, then seal your ballot.'**
+  String get jury_votePrivacy;
+
+  /// No description provided for @jury_nominateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Juror {number}: your dish?'**
+  String jury_nominateTitle(int number);
+
+  /// No description provided for @jury_menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from the food menu'**
+  String get jury_menu;
+
+  /// No description provided for @jury_dishName.
+  ///
+  /// In en, this message translates to:
+  /// **'Or name your own dish'**
+  String get jury_dishName;
+
+  /// No description provided for @jury_nominate.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit my contender'**
+  String get jury_nominate;
+
+  /// No description provided for @jury_ballot.
+  ///
+  /// In en, this message translates to:
+  /// **'Juror {number}: your vote.'**
+  String jury_ballot(int number);
+
+  /// No description provided for @jury_ballotHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one dish. Only the final totals will be shown.'**
+  String get jury_ballotHint;
+
+  /// No description provided for @jury_seal.
+  ///
+  /// In en, this message translates to:
+  /// **'Seal my ballot'**
+  String get jury_seal;
+
+  /// No description provided for @jury_winner.
+  ///
+  /// In en, this message translates to:
+  /// **'The jury chooses {food}!'**
+  String jury_winner(String food);
+
+  /// No description provided for @jury_resultsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'All ballots are in. Here is the table’s verdict.'**
+  String get jury_resultsHint;
+
+  /// No description provided for @jury_votes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{0 votes} =1{1 vote} other{{count} votes}}'**
+  String jury_votes(int count);
+
+  /// No description provided for @jury_tie.
+  ///
+  /// In en, this message translates to:
+  /// **'A delicious deadlock.'**
+  String get jury_tie;
+
+  /// No description provided for @jury_tieHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only the dishes tied for first enter the draw. Two contenders get a coin toss; more get the plate. No Smart ruling is used.'**
+  String get jury_tieHint;
+
+  /// No description provided for @jury_tieBreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Let luck break the tie'**
+  String get jury_tieBreak;
+
+  /// No description provided for @jury_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Seat a new jury'**
+  String get jury_again;
+
+  /// No description provided for @judge_poseInspecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Inspecting the evidence'**
+  String get judge_poseInspecting;
+
+  /// No description provided for @judge_poseBench.
+  ///
+  /// In en, this message translates to:
+  /// **'Court is open'**
+  String get judge_poseBench;
+
+  /// No description provided for @judge_poseObjection.
+  ///
+  /// In en, this message translates to:
+  /// **'Objection?'**
+  String get judge_poseObjection;
+
+  /// No description provided for @judge_poseFiling.
+  ///
+  /// In en, this message translates to:
+  /// **'Filed for the record'**
+  String get judge_poseFiling;
+
+  /// No description provided for @judge_poseBell.
+  ///
+  /// In en, this message translates to:
+  /// **'Order up!'**
+  String get judge_poseBell;
+
+  /// No description provided for @judge_poseWhispering.
+  ///
+  /// In en, this message translates to:
+  /// **'A little aside'**
+  String get judge_poseWhispering;
+
+  /// No description provided for @shelf_saveLineup.
+  ///
+  /// In en, this message translates to:
+  /// **'Save lineup'**
+  String get shelf_saveLineup;
+
+  /// No description provided for @moments_feedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner check-in · optional'**
+  String get moments_feedbackTitle;
+
+  /// No description provided for @moments_feedbackChose.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you try this dish?'**
+  String get moments_feedbackChose;
+
+  /// No description provided for @moments_feedbackOrderAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Would you order it again?'**
+  String get moments_feedbackOrderAgain;
+
+  /// No description provided for @moments_feedbackNotThisTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Not this time'**
+  String get moments_feedbackNotThisTime;
+
+  /// No description provided for @moments_feedbackClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear answers'**
+  String get moments_feedbackClear;
+
+  /// No description provided for @moments_feedbackSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved on this device. Change your answers anytime.'**
+  String get moments_feedbackSaved;
+
+  /// No description provided for @moments_feedbackSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving your answer…'**
+  String get moments_feedbackSaving;
+
+  /// No description provided for @moments_feedbackLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening your check-in…'**
+  String get moments_feedbackLoading;
+
+  /// No description provided for @moments_feedbackLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Your check-in could not load.'**
+  String get moments_feedbackLoadError;
+
+  /// No description provided for @moments_feedbackSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Your answer was not saved. Please try again.'**
+  String get moments_feedbackSaveError;
+
+  /// No description provided for @moments_feedbackTried.
+  ///
+  /// In en, this message translates to:
+  /// **'Tried it'**
+  String get moments_feedbackTried;
+
+  /// No description provided for @moments_feedbackAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Would order again'**
+  String get moments_feedbackAgain;
+
+  /// No description provided for @welcome_readyNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready now'**
+  String get welcome_readyNow;
+
+  /// No description provided for @welcome_waitTime.
+  ///
+  /// In en, this message translates to:
+  /// **'25-minute wait'**
+  String get welcome_waitTime;
+
+  /// No description provided for @welcome_deliberating.
+  ///
+  /// In en, this message translates to:
+  /// **'A tasty decision…'**
+  String get welcome_deliberating;
+
+  /// No description provided for @welcome_replayDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Again!'**
+  String get welcome_replayDemo;
+
+  /// No description provided for @welcome_changeMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Try the other way'**
+  String get welcome_changeMethod;
+
+  /// No description provided for @welcome_readyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your judge is ready. Bring your own contenders.'**
+  String get welcome_readyMessage;
+
+  /// No description provided for @shelf_unsavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest changes are not saved'**
+  String get shelf_unsavedTitle;
+
+  /// No description provided for @shelf_unsavedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay and retry to keep your latest edits. If you leave now, only changes already saved will be here when you return.'**
+  String get shelf_unsavedHint;
+
+  /// No description provided for @shelf_leaveUnsaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave anyway'**
+  String get shelf_leaveUnsaved;
+
+  /// No description provided for @shelf_keepEditing.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep editing'**
+  String get shelf_keepEditing;
+
+  /// No description provided for @welcome_sternPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'The court has reviewed the menu. Dinner may proceed.'**
+  String get welcome_sternPreview;
+
+  /// No description provided for @welcome_sassyPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Case closed. Your group chat can finally rest.'**
+  String get welcome_sassyPreview;
+
+  /// No description provided for @welcome_enthusiasticPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'A delicious decision! Somebody ring the dinner bell!'**
+  String get welcome_enthusiasticPreview;
+
+  /// No description provided for @welcome_chillPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Good food, good company. We’re all set.'**
+  String get welcome_chillPreview;
+
+  /// No description provided for @moments_allowanceUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Smart allowance could not be verified. Try again, or use Lucky Court for free.'**
+  String get moments_allowanceUnavailable;
+
+  /// No description provided for @consent_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to Judge?'**
+  String get consent_title;
+
+  /// No description provided for @consent_data.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart sends your dish names, notes, goal and judge personality, plus any photos you attach. Food illustrations are never sent as photo evidence.'**
+  String get consent_data;
+
+  /// No description provided for @consent_recipients.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests pass through the developer’s Cloudflare AI Gateway and OpenRouter to Azure, OpenAI or BaseTen. These routes are configured for zero data retention and to deny data collection.'**
+  String get consent_recipients;
+
+  /// No description provided for @consent_identity.
+  ///
+  /// In en, this message translates to:
+  /// **'A random app installation ID is sent for rate limiting. It is not a hardware ID. Your operating system backup may retain local preferences and usage information.'**
+  String get consent_identity;
+
+  /// No description provided for @consent_control.
+  ///
+  /// In en, this message translates to:
+  /// **'You can withdraw permission in Settings for future requests. This cannot recall data already sent. Lucky draws and Jury Duty stay on your device.'**
+  String get consent_control;
+
+  /// No description provided for @consent_send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to Judge'**
+  String get consent_send;
+
+  /// No description provided for @consent_notNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get consent_notNow;
+
+  /// No description provided for @consent_settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI data permission'**
+  String get consent_settingsTitle;
+
+  /// No description provided for @consent_allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission is on for the current data policy.'**
+  String get consent_allowed;
+
+  /// No description provided for @consent_notAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart will ask before sending your data.'**
+  String get consent_notAllowed;
+
+  /// No description provided for @consent_review.
+  ///
+  /// In en, this message translates to:
+  /// **'Review permission'**
+  String get consent_review;
+
+  /// No description provided for @consent_revoke.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw permission'**
+  String get consent_revoke;
+
+  /// No description provided for @consent_saveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission could not be saved. No new request was sent. Please try again.'**
+  String get consent_saveError;
+
+  /// No description provided for @consent_updated.
+  ///
+  /// In en, this message translates to:
+  /// **'AI data permission needs to be reviewed again. If the problem continues, update the app before using Smart.'**
+  String get consent_updated;
+
+  /// No description provided for @moments_gatewayBusy.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart rulings are busy right now. Try again soon, or use Lucky Court for free.'**
+  String get moments_gatewayBusy;
+
+  /// No description provided for @moments_gatewayCaseReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Judge Bite could not use this case. Review the names, notes or photos and try again, or use Lucky Court.'**
+  String get moments_gatewayCaseReview;
+
+  /// No description provided for @moments_gatewayTooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'This case is too large to send. Try smaller photos or shorter notes, or use Lucky Court.'**
+  String get moments_gatewayTooLarge;
+
+  /// No description provided for @moments_gatewayUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart rulings are not available right now. You can still use Lucky Court for free.'**
+  String get moments_gatewayUnavailable;
 }
 
 class _AppLocalizationsDelegate
